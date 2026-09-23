@@ -57,6 +57,7 @@ public final class ModItems {
     public static final RegistryObject<Item> BIRD_EGG = ModRegistries.ITEMS.register("bird_egg", () -> new CreatureEggItem(ModEntities.BIRD));
     public static final RegistryObject<Item> BUTTERFLY_EGG = ModRegistries.ITEMS.register("butterfly_egg", () -> new CreatureEggItem(ModEntities.BUTTERFLY));
     public static final RegistryObject<Item> CASSOWARY_EGG = ModRegistries.ITEMS.register("cassowary_egg", () -> new CreatureEggItem(ModEntities.CASSOWARY));
+    public static final RegistryObject<Item> CAVEFISHER_EGG = ModRegistries.ITEMS.register("cavefisher_egg", () -> new CreatureEggItem(ModEntities.CAVE_FISHER));
     public static final RegistryObject<Item> DRAGONFLY_EGG = ModRegistries.ITEMS.register("dragonfly_egg", () -> new CreatureEggItem(ModEntities.DRAGONFLY));
     public static final RegistryObject<Item> POINTYSAURUS_EGG = ModRegistries.ITEMS.register("pointysaurus_egg", () -> new CreatureEggItem(ModEntities.POINTYSAURUS));
     public static final RegistryObject<Item> FIREFLY_EGG = ModRegistries.ITEMS.register("firefly_egg", () -> new CreatureEggItem(ModEntities.FIREFLY));
@@ -69,6 +70,7 @@ public final class ModItems {
     public static final RegistryObject<Item> BARYONYX_CAGE = ModRegistries.ITEMS.register("baryonyx_cage", () -> new CritterCageItem(ModEntities.BARYONYX, 0.4F));
     public static final RegistryObject<Item> BEAVER_CAGE = ModRegistries.ITEMS.register("beaver_cage", () -> new CritterCageItem(ModEntities.BEAVER, 0.4F));
     public static final RegistryObject<Item> CASSOWARY_CAGE = ModRegistries.ITEMS.register("cassowary_cage", () -> new CritterCageItem(ModEntities.CASSOWARY, 0.4F));
+    public static final RegistryObject<Item> CAVEFISHER_CAGE = ModRegistries.ITEMS.register("cavefisher_cage", () -> new CritterCageItem(ModEntities.CAVE_FISHER, 0.4F));
     public static final RegistryObject<Item> DRAGONFLY_CAGE = ModRegistries.ITEMS.register("dragonfly_cage", () -> new CritterCageItem(ModEntities.DRAGONFLY, 0.4F));
     public static final RegistryObject<Item> FIREFLY_CAGE = ModRegistries.ITEMS.register("firefly_cage", () -> new CritterCageItem(ModEntities.FIREFLY, 0.4F));
     public static final RegistryObject<Item> EXTREME_TORCH = ModRegistries.ITEMS.register("extreme_torch", () -> new StandingAndWallBlockItem(ModBlocks.EXTREME_TORCH.get(), ModBlocks.EXTREME_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
