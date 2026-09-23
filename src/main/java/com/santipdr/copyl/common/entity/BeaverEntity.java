@@ -123,7 +123,6 @@ public final class BeaverEntity extends Animal {
         BlockPos best = null;
         double bestDistance = 99999.0D;
 
-        // El original prueba radios 1..6 y después 8 y 10, con un máximo vertical de 2.
         for (int radius = 1; radius <= 10; radius += radius >= 6 ? 2 : 1) {
             int vertical = Math.min(radius, 2);
             for (int dx = -radius; dx <= radius; dx++) {
@@ -152,7 +151,6 @@ public final class BeaverEntity extends Animal {
     }
 
     private static boolean isWood(BlockState state) {
-        // El 1.12.2 acepta LOG + las seis cercas de madera + sus seis puertas.
         return state.is(BlockTags.LOGS)
                 || state.is(BlockTags.WOODEN_FENCES)
                 || state.is(BlockTags.FENCE_GATES);
@@ -250,7 +248,7 @@ public final class BeaverEntity extends Animal {
     }
 
     @Override
-    protected float getVoicePitch() {
+    public float getVoicePitch() {
         return isBaby()
                 ? (random.nextFloat() - random.nextFloat()) * 0.1F + 1.5F
                 : (random.nextFloat() - random.nextFloat()) * 0.1F + 1.0F;
