@@ -3,7 +3,6 @@ package com.santipdr.copyl.common.entity;
 import com.santipdr.copyl.common.entity.ai.LongRangeWanderGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerLevelAccessor;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
@@ -35,6 +34,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 
@@ -100,7 +100,6 @@ public final class GammaMetroidEntity extends TamableAnimal {
             }
         }
 
-        // El Gamma Metroid busca piedra cuando está herido y puede comerla para curarse.
         if (((this.random.nextInt(20) == 0 && this.getHealth() < this.getMaxHealth())
                 || this.random.nextInt(100) == 0)
                 && !this.isOrderedToSit()) {
@@ -239,7 +238,7 @@ public final class GammaMetroidEntity extends TamableAnimal {
     }
 
     @Override
-    protected float getVoicePitch() {
+    public float getVoicePitch() {
         return 1.0F;
     }
 
