@@ -2,6 +2,8 @@ package com.santipdr.copyl;
 
 import com.santipdr.copyl.client.CopyLClientSetup;
 import com.santipdr.copyl.common.block.ModBlocks;
+import com.santipdr.copyl.common.entity.ModEntities;
+import com.santipdr.copyl.common.entity.ModSounds;
 import com.santipdr.copyl.common.item.ModItems;
 import com.santipdr.copyl.common.item.armor.ModArmor;
 import com.santipdr.copyl.common.item.material.ModMaterialItems;
@@ -28,6 +30,8 @@ public final class CopyL {
         ModMaterialItems.bootstrap();
         ModTools.bootstrap();
         ModArmor.bootstrap();
+        ModEntities.bootstrap();
+        ModSounds.bootstrap();
         ModCreativeTabs.bootstrap();
 
         ModRegistries.BLOCKS.register(modEventBus);
