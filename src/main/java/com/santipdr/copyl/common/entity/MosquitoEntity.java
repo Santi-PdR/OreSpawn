@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -113,6 +114,12 @@ public final class MosquitoEntity extends AmbientCreature {
             state = level().getBlockState(currentFlightTarget);
             tries--;
         } while (!state.isAir() && tries != 0);
+    }
+
+    @Override
+    protected Entity.MovementEmission getMovementEmission() {
+        // Equivalente moderno a canTriggerWalking() = false del original.
+        return Entity.MovementEmission.NONE;
     }
 
     @Override
