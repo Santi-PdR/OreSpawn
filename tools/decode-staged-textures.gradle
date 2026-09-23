@@ -1,13 +1,32 @@
-// Temporary binary-safe bridge used by this port branch.
-// The source JAR's exact Alien PNG is stored as Base64 text because the GitHub connector
-// writes UTF-8 files. processResources decodes it into the normal Minecraft resource path.
+// Binary-safe bridge for original OreSpawn assets while working through the text-only connector.
+// Any *.b64 file placed under src/main/resources is decoded to the same relative path (without
+// the .b64 suffix) inside build/generated-binary-resources. The Base64 source itself is not
+// packaged into the mod JAR.
 
-tasks.named('processResources') {
-    doFirst {
-        def staged = file('src/main/resources/assets/copyl/textures/entity/alien.png.b64')
-        def target = file('src/main/resources/assets/copyl/textures/entity/alien.png')
-        if (staged.exists() && !target.exists()) {
-            target.bytes = staged.text.trim().decodeBase64()
+def stagedRoot = file('src/main/resources')
+def decodedRoot = file("$buildDir/generated-binary-resources")
+
+tasks.register('decodeStagedBinaryResources') {
+    inputs.files(fileTree(stagedRoot) { include '**/*.b64' })
+    outputs.dir(decodedRoot)
+
+    doLast {
+        delete(decodedRoot)
+        stagedRoot.eachFileRecurse { staged ->
+            if (staged.isFile() && staged.name.endsWith('.b64')) {
+                def relative = stagedRoot.toPath().relativize(staged.toPath()).toString()
+                def target = new File(decodedRoot, relative.substring(0, relative.length() - 4))
+                target.parentFile.mkdirs()
+                target.bytes = staged.text.trim().decodeBase64()
+            }
         }
     }
+}
+
+sourceSets.main.resources.srcDir(decodedRoot)
+
+tasks.named('processResources') {
+    dependsOn tasks.named('decodeStagedBinaryResources')
+    exclude '**/*.b64'
+    exclude '**/README-alien-texture.txt'
 }
