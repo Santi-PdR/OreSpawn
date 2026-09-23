@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -117,12 +116,8 @@ public final class MosquitoEntity extends AmbientCreature {
 
     @Override
     public boolean isPushable() {
+        // El original no permite empujarlo y collideWithEntity estaba vacío.
         return false;
-    }
-
-    @Override
-    protected void doPush(Entity entity) {
-        // El 1.12.2 deja collideWithEntity vacío.
     }
 
     @Override
