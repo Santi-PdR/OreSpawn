@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 /** Port de danger.orespawn.entity.render.RenderPointysaurus. */
 public final class PointysaurusRenderer extends MobRenderer<PointysaurusEntity, PointysaurusModel> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(CopyL.MOD_ID, "textures/entity/pointysaurus.png");
+            new ResourceLocation(CopyL.MOD_ID, "textures/entity/pointysaurus_original.png");
 
     public PointysaurusRenderer(EntityRendererProvider.Context context) {
         // El original usaba ModelPointysaurus(1.5F) y shadowSize 0.7F.
