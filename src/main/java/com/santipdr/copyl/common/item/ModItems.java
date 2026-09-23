@@ -9,7 +9,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraftforge.registries.RegistryObject;
 
-/** BlockItems y sistemas de items portados de OreSpawn. */
 public final class ModItems {
     public static final RegistryObject<Item> TITANIUM_ORE = blockItem("titanium_ore", ModBlocks.TITANIUM_ORE);
     public static final RegistryObject<Item> URANIUM_ORE = blockItem("uranium_ore", ModBlocks.URANIUM_ORE);
@@ -17,7 +16,6 @@ public final class ModItems {
     public static final RegistryObject<Item> TITANIUM_BLOCK = blockItem("titanium_block", ModBlocks.TITANIUM_BLOCK);
     public static final RegistryObject<Item> URANIUM_BLOCK = blockItem("uranium_block", ModBlocks.URANIUM_BLOCK);
     public static final RegistryObject<Item> AMETHYST_BLOCK = blockItem("amethyst_block", ModBlocks.AMETHYST_BLOCK);
-
     public static final RegistryObject<Item> ALIEN_ORE = blockItem("alien_ore", ModBlocks.ALIEN_ORE);
     public static final RegistryObject<Item> ALOSAURUS_ORE = blockItem("alosaurus_ore", ModBlocks.ALOSAURUS_ORE);
     public static final RegistryObject<Item> BARYONYX_ORE = blockItem("baryonyx_ore", ModBlocks.BARYONYX_ORE);
@@ -50,50 +48,21 @@ public final class ModItems {
     public static final RegistryObject<Item> TREX_ORE = blockItem("trex_ore", ModBlocks.TREX_ORE);
     public static final RegistryObject<Item> VELOCITYRAPTOR_ORE = blockItem("velocityraptor_ore", ModBlocks.VELOCITYRAPTOR_ORE);
     public static final RegistryObject<Item> ZOMBIE_ORE = blockItem("zombie_ore", ModBlocks.ZOMBIE_ORE);
-
-    public static final RegistryObject<Item> CRYOLOPHOSAURUS_EGG = ModRegistries.ITEMS.register(
-            "cryolophosaurus_egg", () -> new CreatureEggItem(ModEntities.CRYOLOPHOSAURUS));
-    public static final RegistryObject<Item> GAMMAMETROID_EGG = ModRegistries.ITEMS.register(
-            "gammametroid_egg", () -> new CreatureEggItem(ModEntities.GAMMA_METROID));
-    public static final RegistryObject<Item> ALIEN_EGG = ModRegistries.ITEMS.register(
-            "alien_egg", () -> new CreatureEggItem(ModEntities.ALIEN));
-    public static final RegistryObject<Item> BIRD_EGG = ModRegistries.ITEMS.register(
-            "bird_egg", () -> new CreatureEggItem(ModEntities.BIRD));
-    public static final RegistryObject<Item> DRAGONFLY_EGG = ModRegistries.ITEMS.register(
-            "dragonfly_egg", () -> new CreatureEggItem(ModEntities.DRAGONFLY));
-    public static final RegistryObject<Item> POINTYSAURUS_EGG = ModRegistries.ITEMS.register(
-            "pointysaurus_egg", () -> new CreatureEggItem(ModEntities.POINTYSAURUS));
-    public static final RegistryObject<Item> FIREFLY_EGG = ModRegistries.ITEMS.register(
-            "firefly_egg", () -> new CreatureEggItem(ModEntities.FIREFLY));
-
-    public static final RegistryObject<Item> EMPTY_CAGE = ModRegistries.ITEMS.register(
-            "empty_cage", CritterCageItem::empty);
-    public static final RegistryObject<Item> GAMMAMETROID_CAGE = ModRegistries.ITEMS.register(
-            "gammametroid_cage", () -> new CritterCageItem(ModEntities.GAMMA_METROID, 0.4F));
-    public static final RegistryObject<Item> ALIEN_CAGE = ModRegistries.ITEMS.register(
-            "alien_cage", () -> new CritterCageItem(ModEntities.ALIEN, 0.4F));
-    public static final RegistryObject<Item> DRAGONFLY_CAGE = ModRegistries.ITEMS.register(
-            "dragonfly_cage", () -> new CritterCageItem(ModEntities.DRAGONFLY, 0.4F));
-    public static final RegistryObject<Item> FIREFLY_CAGE = ModRegistries.ITEMS.register(
-            "firefly_cage", () -> new CritterCageItem(ModEntities.FIREFLY, 0.4F));
-
-    public static final RegistryObject<Item> EXTREME_TORCH = ModRegistries.ITEMS.register(
-            "extreme_torch",
-            () -> new StandingAndWallBlockItem(
-                    ModBlocks.EXTREME_TORCH.get(),
-                    ModBlocks.EXTREME_WALL_TORCH.get(),
-                    new Item.Properties(),
-                    Direction.DOWN
-            )
-    );
-
-    private static RegistryObject<Item> blockItem(String id, RegistryObject<? extends net.minecraft.world.level.block.Block> block) {
-        return ModRegistries.ITEMS.register(id, () -> new BlockItem(block.get(), new Item.Properties()));
-    }
-
-    public static void bootstrap() {
-    }
-
-    private ModItems() {
-    }
+    public static final RegistryObject<Item> CRYOLOPHOSAURUS_EGG = ModRegistries.ITEMS.register("cryolophosaurus_egg", () -> new CreatureEggItem(ModEntities.CRYOLOPHOSAURUS));
+    public static final RegistryObject<Item> GAMMAMETROID_EGG = ModRegistries.ITEMS.register("gammametroid_egg", () -> new CreatureEggItem(ModEntities.GAMMA_METROID));
+    public static final RegistryObject<Item> ALIEN_EGG = ModRegistries.ITEMS.register("alien_egg", () -> new CreatureEggItem(ModEntities.ALIEN));
+    public static final RegistryObject<Item> BIRD_EGG = ModRegistries.ITEMS.register("bird_egg", () -> new CreatureEggItem(ModEntities.BIRD));
+    public static final RegistryObject<Item> BUTTERFLY_EGG = ModRegistries.ITEMS.register("butterfly_egg", () -> new CreatureEggItem(ModEntities.BUTTERFLY));
+    public static final RegistryObject<Item> DRAGONFLY_EGG = ModRegistries.ITEMS.register("dragonfly_egg", () -> new CreatureEggItem(ModEntities.DRAGONFLY));
+    public static final RegistryObject<Item> POINTYSAURUS_EGG = ModRegistries.ITEMS.register("pointysaurus_egg", () -> new CreatureEggItem(ModEntities.POINTYSAURUS));
+    public static final RegistryObject<Item> FIREFLY_EGG = ModRegistries.ITEMS.register("firefly_egg", () -> new CreatureEggItem(ModEntities.FIREFLY));
+    public static final RegistryObject<Item> EMPTY_CAGE = ModRegistries.ITEMS.register("empty_cage", CritterCageItem::empty);
+    public static final RegistryObject<Item> GAMMAMETROID_CAGE = ModRegistries.ITEMS.register("gammametroid_cage", () -> new CritterCageItem(ModEntities.GAMMA_METROID, 0.4F));
+    public static final RegistryObject<Item> ALIEN_CAGE = ModRegistries.ITEMS.register("alien_cage", () -> new CritterCageItem(ModEntities.ALIEN, 0.4F));
+    public static final RegistryObject<Item> DRAGONFLY_CAGE = ModRegistries.ITEMS.register("dragonfly_cage", () -> new CritterCageItem(ModEntities.DRAGONFLY, 0.4F));
+    public static final RegistryObject<Item> FIREFLY_CAGE = ModRegistries.ITEMS.register("firefly_cage", () -> new CritterCageItem(ModEntities.FIREFLY, 0.4F));
+    public static final RegistryObject<Item> EXTREME_TORCH = ModRegistries.ITEMS.register("extreme_torch", () -> new StandingAndWallBlockItem(ModBlocks.EXTREME_TORCH.get(), ModBlocks.EXTREME_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
+    private static RegistryObject<Item> blockItem(String id, RegistryObject<? extends net.minecraft.world.level.block.Block> block) { return ModRegistries.ITEMS.register(id, () -> new BlockItem(block.get(), new Item.Properties())); }
+    public static void bootstrap() {}
+    private ModItems() {}
 }
