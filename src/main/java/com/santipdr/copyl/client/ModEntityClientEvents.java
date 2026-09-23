@@ -22,6 +22,7 @@ public final class ModEntityClientEvents {
         event.registerLayerDefinition(BirdModel.LAYER_LOCATION, BirdModel::createBodyLayer);
         event.registerLayerDefinition(ButterflyModel.LAYER_LOCATION, ButterflyModel::createBodyLayer);
         event.registerLayerDefinition(CassowaryModel.LAYER_LOCATION, CassowaryModel::createBodyLayer);
+        event.registerLayerDefinition(CamarasaurusModel.LAYER_LOCATION, CamarasaurusModel::createBodyLayer);
         event.registerLayerDefinition(CaveFisherModel.LAYER_LOCATION, CaveFisherModel::createBodyLayer);
         event.registerLayerDefinition(CryolophosaurusModel.LAYER_LOCATION, CryolophosaurusModel::createBodyLayer);
         event.registerLayerDefinition(DragonflyModel.LAYER_LOCATION, DragonflyModel::createBodyLayer);
@@ -41,6 +42,7 @@ public final class ModEntityClientEvents {
         event.registerEntityRenderer(ModEntities.BIRD.get(), BirdRenderer::new);
         event.registerEntityRenderer(ModEntities.BUTTERFLY.get(), ButterflyRenderer::new);
         event.registerEntityRenderer(ModEntities.CASSOWARY.get(), CassowaryRenderer::new);
+        event.registerEntityRenderer(ModEntities.CAMARASAURUS.get(), CamarasaurusRenderer::new);
         event.registerEntityRenderer(ModEntities.CAVE_FISHER.get(), CaveFisherRenderer::new);
         event.registerEntityRenderer(ModEntities.CRYOLOPHOSAURUS.get(), CryolophosaurusRenderer::new);
         event.registerEntityRenderer(ModEntities.DRAGONFLY.get(), DragonflyRenderer::new);
