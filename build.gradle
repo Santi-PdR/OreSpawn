@@ -75,3 +75,7 @@ jar {
         ])
     }
 }
+
+// GitHub's text-only connector cannot commit PNG bytes directly. During this port branch the
+// exact original Alien texture is stored as Base64 and decoded before resources are packaged.
+apply from: 'tools/decode-staged-textures.gradle'
