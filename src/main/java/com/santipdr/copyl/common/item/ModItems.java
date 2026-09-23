@@ -1,14 +1,15 @@
 package com.santipdr.copyl.common.item;
 
 import com.santipdr.copyl.common.block.ModBlocks;
+import com.santipdr.copyl.common.entity.ModEntities;
 import com.santipdr.copyl.common.registry.ModRegistries;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraftforge.registries.RegistryObject;
 
-/** BlockItems de los bloques de la Fase 3. */
+/** BlockItems y sistemas de items portados de OreSpawn. */
 public final class ModItems {
     public static final RegistryObject<Item> TITANIUM_ORE = blockItem("titanium_ore", ModBlocks.TITANIUM_ORE);
     public static final RegistryObject<Item> URANIUM_ORE = blockItem("uranium_ore", ModBlocks.URANIUM_ORE);
@@ -50,6 +51,22 @@ public final class ModItems {
     public static final RegistryObject<Item> TREX_ORE = blockItem("trex_ore", ModBlocks.TREX_ORE);
     public static final RegistryObject<Item> VELOCITYRAPTOR_ORE = blockItem("velocityraptor_ore", ModBlocks.VELOCITYRAPTOR_ORE);
     public static final RegistryObject<Item> ZOMBIE_ORE = blockItem("zombie_ore", ModBlocks.ZOMBIE_ORE);
+
+    // ItemGenericEgg: solo se habilitan los huevos de las entidades ya portadas.
+    public static final RegistryObject<Item> CRYOLOPHOSAURUS_EGG = ModRegistries.ITEMS.register(
+            "cryolophosaurus_egg", () -> new CreatureEggItem(ModEntities.CRYOLOPHOSAURUS));
+    public static final RegistryObject<Item> GAMMAMETROID_EGG = ModRegistries.ITEMS.register(
+            "gammametroid_egg", () -> new CreatureEggItem(ModEntities.GAMMA_METROID));
+    public static final RegistryObject<Item> ALIEN_EGG = ModRegistries.ITEMS.register(
+            "alien_egg", () -> new CreatureEggItem(ModEntities.ALIEN));
+
+    // CritterCage original: jaula vacía + jaulas de entidades ya portadas.
+    public static final RegistryObject<Item> EMPTY_CAGE = ModRegistries.ITEMS.register(
+            "empty_cage", CritterCageItem::empty);
+    public static final RegistryObject<Item> GAMMAMETROID_CAGE = ModRegistries.ITEMS.register(
+            "gammametroid_cage", () -> new CritterCageItem(ModEntities.GAMMA_METROID, 0.4F));
+    public static final RegistryObject<Item> ALIEN_CAGE = ModRegistries.ITEMS.register(
+            "alien_cage", () -> new CritterCageItem(ModEntities.ALIEN, 0.4F));
 
     public static final RegistryObject<Item> EXTREME_TORCH = ModRegistries.ITEMS.register(
             "extreme_torch",

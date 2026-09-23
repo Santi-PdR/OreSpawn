@@ -32,6 +32,15 @@ public final class ModEntities {
                     .updateInterval(1)
                     .build(CopyL.MOD_ID + ":cryolophosaurus"));
 
+    // EntityCage del 1.12.2 estaba registrado como "thrown_critter_cage".
+    public static final RegistryObject<EntityType<CageProjectileEntity>> CAGE_PROJECTILE =
+            ModRegistries.ENTITY_TYPES.register("thrown_critter_cage", () -> EntityType.Builder
+                    .<CageProjectileEntity>of(CageProjectileEntity::new, MobCategory.MISC)
+                    .sized(0.25F, 0.25F)
+                    .clientTrackingRange(4)
+                    .updateInterval(1)
+                    .build(CopyL.MOD_ID + ":thrown_critter_cage"));
+
     public static void bootstrap() {
     }
 

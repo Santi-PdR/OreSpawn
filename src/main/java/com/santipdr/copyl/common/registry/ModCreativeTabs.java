@@ -58,6 +58,13 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.VELOCITYRAPTOR_ORE.get());
                         output.accept(ModItems.ZOMBIE_ORE.get());
 
+                        output.accept(ModItems.ALIEN_EGG.get());
+                        output.accept(ModItems.GAMMAMETROID_EGG.get());
+                        output.accept(ModItems.CRYOLOPHOSAURUS_EGG.get());
+                        output.accept(ModItems.EMPTY_CAGE.get());
+                        output.accept(ModItems.ALIEN_CAGE.get());
+                        output.accept(ModItems.GAMMAMETROID_CAGE.get());
+
                         output.accept(ModMaterialItems.TITANIUM_NUGGET.get());
                         output.accept(ModMaterialItems.URANIUM_NUGGET.get());
                         output.accept(ModMaterialItems.TITANIUM_INGOT.get());
