@@ -4,10 +4,11 @@ import com.santipdr.copyl.common.block.ModBlocks;
 import com.santipdr.copyl.common.entity.ai.LongRangeWanderGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevelAccessor;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -30,11 +31,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 
 import java.util.Comparator;
 import java.util.List;
@@ -49,7 +48,7 @@ public final class AlienEntity extends Monster {
     public AlienEntity(EntityType<? extends AlienEntity> type, Level level) {
         super(type, level);
         this.xpReward = 100;
-        this.maxUpStep = 0.6F;
+        this.setMaxUpStep(0.6F);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -97,7 +96,6 @@ public final class AlienEntity extends Monster {
         }
         super.tick();
 
-        // El original genera ocasionalmente una gota de lava delante de la cabeza.
         if (this.level().isClientSide && this.random.nextInt(20) == 1) {
             float distance = 1.7F + Math.abs(this.random.nextFloat() * 0.75F);
             double yaw = Math.toRadians(this.getYHeadRot());
@@ -115,7 +113,6 @@ public final class AlienEntity extends Monster {
     protected void customServerAiStep() {
         super.customServerAiStep();
 
-        // Ataque/seguimiento original: cada ~8 ticks busca principalmente jugadores.
         if (this.random.nextInt(8) == 0) {
             LivingEntity target = findSomethingToAttack();
             if (target != null) {
@@ -131,7 +128,6 @@ public final class AlienEntity extends Monster {
                 setAttacking(0);
             }
         } else if (this.random.nextInt(30) == 0) {
-            // Si no está persiguiendo, el Alien busca antorchas y las destruye.
             BlockPos torch = findNearestTorch();
             if (torch != null) {
                 this.getNavigation().moveTo(torch.getX(), torch.getY(), torch.getZ(), 1.0D);
@@ -142,7 +138,6 @@ public final class AlienEntity extends Monster {
             }
         }
 
-        // Regeneración lenta del original.
         if (this.random.nextInt(40) == 1 && this.getHealth() < this.getMaxHealth()) {
             this.heal(1.0F);
         }
@@ -252,7 +247,7 @@ public final class AlienEntity extends Monster {
     }
 
     @Override
-    protected float getVoicePitch() {
+    public float getVoicePitch() {
         return 1.0F;
     }
 
@@ -291,7 +286,6 @@ public final class AlienEntity extends Monster {
         if (pos.getY() > 50 || !Monster.checkMonsterSpawnRules(type, level, reason, pos, random)) {
             return false;
         }
-        // El original exige 3x3 de aire durante tres bloques por encima.
         for (int dx = -1; dx <= 1; dx++) {
             for (int dz = -1; dz <= 1; dz++) {
                 for (int dy = 1; dy <= 3; dy++) {
