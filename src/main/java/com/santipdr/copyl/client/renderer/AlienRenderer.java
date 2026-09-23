@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 /** Port de danger.orespawn.entity.render.RenderAlien. */
 public final class AlienRenderer extends MobRenderer<AlienEntity, AlienModel> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(CopyL.MOD_ID, "textures/entity/alien.png");
+            new ResourceLocation(CopyL.MOD_ID, "textures/entity/alien_exact.png");
 
     public AlienRenderer(EntityRendererProvider.Context context) {
         // El original usaba ModelAlien(0.1F) y shadowSize 0.0F.
