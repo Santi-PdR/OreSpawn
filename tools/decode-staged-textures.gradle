@@ -1,0 +1,13 @@
+// Temporary binary-safe bridge used by this port branch.
+// The source JAR's exact Alien PNG is stored as Base64 text because the GitHub connector
+// writes UTF-8 files. processResources decodes it into the normal Minecraft resource path.
+
+tasks.named('processResources') {
+    doFirst {
+        def staged = file('src/main/resources/assets/copyl/textures/entity/alien.png.b64')
+        def target = file('src/main/resources/assets/copyl/textures/entity/alien.png')
+        if (staged.exists() && !target.exists()) {
+            target.bytes = staged.text.trim().decodeBase64()
+        }
+    }
+}
