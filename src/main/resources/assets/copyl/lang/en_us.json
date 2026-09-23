@@ -85,6 +85,7 @@
   "item.copyl.ultimate_boots": "Ultimate Boots",
 
   "item.copyl.alien_egg": "Alien Egg",
+  "item.copyl.alosaurus_egg": "Alosaurus Egg",
   "item.copyl.gammametroid_egg": "Gamma Metroid Egg",
   "item.copyl.cryolophosaurus_egg": "Cryolophosaurus Egg",
   "item.copyl.beaver_egg": "Beaver Egg",
@@ -99,6 +100,7 @@
 
   "item.copyl.empty_cage": "Empty Cage",
   "item.copyl.alien_cage": "Caged Alien",
+  "item.copyl.alosaurus_cage": "Caged Alosaurus",
   "item.copyl.beaver_cage": "Caged Beaver",
   "item.copyl.cassowary_cage": "Caged Cassowary",
   "item.copyl.gammametroid_cage": "Caged Gamma Metroid",
@@ -106,6 +108,7 @@
   "item.copyl.firefly_cage": "Caged Firefly",
 
   "entity.copyl.alien": "Alien",
+  "entity.copyl.alosaurus": "Alosaurus",
   "entity.copyl.gammametroid": "Gamma Metroid",
   "entity.copyl.cryolophosaurus": "Cryolophosaurus",
   "entity.copyl.beaver": "Beaver",
