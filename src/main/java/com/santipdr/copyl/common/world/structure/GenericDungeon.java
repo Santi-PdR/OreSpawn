@@ -74,7 +74,9 @@ public final class GenericDungeon {
             String id = SPAWNER_IDS[level.random.nextInt(SPAWNER_IDS.length)];
             var type = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(CopyL.MOD_ID, id));
             if (type != null) {
-                spawner.getSpawner().setEntityId(type, level.getRandom());
+                // 1.20.1 necesita también Level y posición para inicializar correctamente
+                // el SpawnData del BaseSpawner.
+                spawner.getSpawner().setEntityId(type, level, level.getRandom(), spawnerPos);
                 spawner.setChanged();
             }
         }
