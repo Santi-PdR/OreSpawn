@@ -18,6 +18,7 @@ public final class ModEntityEvents {
         event.put(ModEntities.CRYOLOPHOSAURUS.get(), CryolophosaurusEntity.createAttributes().build());
         event.put(ModEntities.BIRD.get(), BirdEntity.createAttributes().build());
         event.put(ModEntities.DRAGONFLY.get(), DragonflyEntity.createAttributes().build());
+        event.put(ModEntities.POINTYSAURUS.get(), PointysaurusEntity.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -40,6 +41,12 @@ public final class ModEntityEvents {
                     SpawnPlacements.Type.ON_GROUND,
                     Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                     CryolophosaurusEntity::checkSpawnRules
+            );
+            SpawnPlacements.register(
+                    ModEntities.POINTYSAURUS.get(),
+                    SpawnPlacements.Type.ON_GROUND,
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                    PointysaurusEntity::checkSpawnRules
             );
             // Bird y Dragonfly todavía no reciben un spawn placement inventado aquí.
             // Sus spawns naturales se conectarán junto con las listas originales de biomas.
