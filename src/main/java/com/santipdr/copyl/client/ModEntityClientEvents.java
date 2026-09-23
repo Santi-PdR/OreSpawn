@@ -6,11 +6,13 @@ import com.santipdr.copyl.client.model.BirdModel;
 import com.santipdr.copyl.client.model.CryolophosaurusModel;
 import com.santipdr.copyl.client.model.DragonflyModel;
 import com.santipdr.copyl.client.model.GammaMetroidModel;
+import com.santipdr.copyl.client.model.PointysaurusModel;
 import com.santipdr.copyl.client.renderer.AlienRenderer;
 import com.santipdr.copyl.client.renderer.BirdRenderer;
 import com.santipdr.copyl.client.renderer.CryolophosaurusRenderer;
 import com.santipdr.copyl.client.renderer.DragonflyRenderer;
 import com.santipdr.copyl.client.renderer.GammaMetroidRenderer;
+import com.santipdr.copyl.client.renderer.PointysaurusRenderer;
 import com.santipdr.copyl.common.entity.ModEntities;
 import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -31,6 +33,7 @@ public final class ModEntityClientEvents {
         event.registerLayerDefinition(CryolophosaurusModel.LAYER_LOCATION, CryolophosaurusModel::createBodyLayer);
         event.registerLayerDefinition(DragonflyModel.LAYER_LOCATION, DragonflyModel::createBodyLayer);
         event.registerLayerDefinition(GammaMetroidModel.LAYER_LOCATION, GammaMetroidModel::createBodyLayer);
+        event.registerLayerDefinition(PointysaurusModel.LAYER_LOCATION, PointysaurusModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -41,5 +44,6 @@ public final class ModEntityClientEvents {
         event.registerEntityRenderer(ModEntities.CRYOLOPHOSAURUS.get(), CryolophosaurusRenderer::new);
         event.registerEntityRenderer(ModEntities.DRAGONFLY.get(), DragonflyRenderer::new);
         event.registerEntityRenderer(ModEntities.GAMMA_METROID.get(), GammaMetroidRenderer::new);
+        event.registerEntityRenderer(ModEntities.POINTYSAURUS.get(), PointysaurusRenderer::new);
     }
 }
