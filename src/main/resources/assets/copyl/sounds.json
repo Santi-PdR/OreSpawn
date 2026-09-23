@@ -1,42 +1,33 @@
 {
-  "entity.alien.living": {
-    "category": "entity",
-    "subtitle": "entity.alien.living",
-    "sounds": [{"name": "copyl:entity/alien/living", "stream": true}]
-  },
-  "entity.alien.hurt": {
-    "category": "entity",
-    "subtitle": "entity.alien.hurt",
-    "sounds": [{"name": "copyl:entity/alien/hurt", "stream": true}]
-  },
-  "entity.gammametroid.living": {
-    "category": "entity",
-    "subtitle": "entity.gammametroid.living",
-    "sounds": [{"name": "copyl:entity/gammametroid/living", "stream": true}]
-  },
-  "entity.duck.hurt": {
-    "category": "entity",
-    "subtitle": "entity.duck.hurt",
-    "sounds": [{"name": "copyl:entity/duck/hurt", "stream": true}]
-  },
-  "entity.alosaurus.death": {
-    "category": "entity",
-    "subtitle": "entity.alosaurus.death",
-    "sounds": [{"name": "copyl:entity/alosaurus/death", "stream": true}]
-  },
-  "entity.cryo.living": {
-    "category": "entity",
-    "subtitle": "entity.cryo.living",
-    "sounds": [{"name": "copyl:entity/cryo/living", "stream": true}]
-  },
-  "entity.cryo.hurt": {
-    "category": "entity",
-    "subtitle": "entity.cryo.hurt",
-    "sounds": [{"name": "copyl:entity/cryo/hurt", "stream": true}]
-  },
-  "entity.cryo.death": {
-    "category": "entity",
-    "subtitle": "entity.cryo.death",
-    "sounds": [{"name": "copyl:entity/cryo/death", "stream": true}]
-  }
+  "entity.alien.living": {"category":"entity","subtitle":"entity.alien.living","sounds":[{"name":"copyl:entity/alien/living","stream":true}]},
+  "entity.alien.hurt": {"category":"entity","subtitle":"entity.alien.hurt","sounds":[{"name":"copyl:entity/alien/hurt","stream":true}]},
+  "entity.gammametroid.living": {"category":"entity","subtitle":"entity.gammametroid.living","sounds":[{"name":"copyl:entity/gammametroid/living","stream":true}]},
+  "entity.duck.hurt": {"category":"entity","subtitle":"entity.duck.hurt","sounds":[{"name":"copyl:entity/duck/hurt","stream":true}]},
+  "entity.alosaurus.death": {"category":"entity","subtitle":"entity.alosaurus.death","sounds":[{"name":"copyl:entity/alosaurus/death","stream":true}]},
+  "entity.cryo.living": {"category":"entity","subtitle":"entity.cryo.living","sounds":[{"name":"copyl:entity/cryo/living","stream":true}]},
+  "entity.cryo.hurt": {"category":"entity","subtitle":"entity.cryo.hurt","sounds":[{"name":"copyl:entity/cryo/hurt","stream":true}]},
+  "entity.cryo.death": {"category":"entity","subtitle":"entity.cryo.death","sounds":[{"name":"copyl:entity/cryo/death","stream":true}]},
+  "entity.bird.bird1": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds1","stream":true}]},
+  "entity.bird.bird2": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds2","stream":true}]},
+  "entity.bird.bird3": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds3","stream":true}]},
+  "entity.bird.bird4": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds4","stream":true}]},
+  "entity.bird.bird5": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds5","stream":true}]},
+  "entity.bird.bird6": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds6","stream":true}]},
+  "entity.bird.bird7": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds7","stream":true}]},
+  "entity.bird.bird8": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds8","stream":true}]},
+  "entity.bird.bird9": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds9","stream":true}]},
+  "entity.bird.bird10": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds10","stream":true}]},
+  "entity.bird.bird11": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds11","stream":true}]},
+  "entity.bird.bird12": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds12","stream":true}]},
+  "entity.bird.bird13": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds13","stream":true}]},
+  "entity.bird.bird14": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds14","stream":true}]},
+  "entity.bird.bird15": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds15","stream":true}]},
+  "entity.bird.bird16": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds16","stream":true}]},
+  "entity.bird.bird17": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds17","stream":true}]},
+  "entity.bird.bird18": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds18","stream":true}]},
+  "entity.bird.bird19": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds19","stream":true}]},
+  "entity.bird.bird20": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds20","stream":true}]},
+  "entity.bird.bird21": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds21","stream":true}]},
+  "entity.bird.bird22": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds22","stream":true}]},
+  "entity.bird.bird23": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds23","stream":true}]}
 }
