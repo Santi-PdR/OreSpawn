@@ -10,7 +10,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -36,6 +35,10 @@ public final class CaveFisherEntity extends Monster {
     private static final EntityDataAccessor<Byte> ATTACKING =
             SynchedEntityData.defineId(CaveFisherEntity.class, EntityDataSerializers.BYTE);
     private static final double MOVE_SPEED = 0.20D;
+
+    // Equivale a RenderInfo.ri1/ri2 del original: estado visual local de las pinzas.
+    private int renderChoice1;
+    private int renderChoice2;
 
     public CaveFisherEntity(EntityType<? extends CaveFisherEntity> type, Level level) {
         super(type, level);
@@ -133,6 +136,22 @@ public final class CaveFisherEntity extends Monster {
 
     public void setAttacking(int attacking) {
         entityData.set(ATTACKING, (byte) attacking);
+    }
+
+    public int getRenderChoice1() {
+        return renderChoice1;
+    }
+
+    public void setRenderChoice1(int value) {
+        renderChoice1 = value;
+    }
+
+    public int getRenderChoice2() {
+        return renderChoice2;
+    }
+
+    public void setRenderChoice2(int value) {
+        renderChoice2 = value;
     }
 
     @Override
