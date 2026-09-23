@@ -1,0 +1,77 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0.24,6.2)'
+}
+
+version = '3.3.0'
+group = 'com.santipdr.copyl'
+
+base {
+    archivesName = 'copyl'
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+}
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'info'
+
+            mods {
+                copyl {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        client {}
+
+        server {}
+
+        data {
+            workingDirectory project.file('run-data')
+            args '--mod', 'copyl', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    mavenCentral()
+    maven { name = 'GeckoLib'; url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.10'
+    // GeckoLib: solo se usa para las criaturas boss/mini-boss con animaciones multi-parte
+    // (ver PORTING_PLAN.md). Se agrega ahora porque el runtime lo necesita apenas se registre
+    // la primera entidad GeckoLib en Fase 4; no se usa todavía en Fase 3.
+    // Coordenadas verificadas contra el repo oficial de Cloudsmith (release estable para 1.20.1).
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.4.9')
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes([
+                'Specification-Title'     : 'CopyL',
+                'Specification-Vendor'    : 'Santi-PdR',
+                'Specification-Version'   : '3',
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.version,
+                'Implementation-Vendor'   : 'Santi-PdR'
+        ])
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "copyl:block/titanium_ore"
+    },
+    "lit=true": {
+      "model": "copyl:block/titanium_ore"
+    }
+  }
+}

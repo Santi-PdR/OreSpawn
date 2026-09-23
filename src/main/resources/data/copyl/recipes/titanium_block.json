@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "TTT",
+    "TTT",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "copyl:titanium_ingot"
+    }
+  },
+  "result": {
+    "item": "copyl:titanium_block"
+  }
+}

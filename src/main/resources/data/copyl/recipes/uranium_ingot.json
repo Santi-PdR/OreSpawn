@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "NNN",
+    "NNN",
+    "NNN"
+  ],
+  "key": {
+    "N": {
+      "item": "copyl:uranium_nugget"
+    }
+  },
+  "result": {
+    "item": "copyl:uranium_ingot"
+  }
+}

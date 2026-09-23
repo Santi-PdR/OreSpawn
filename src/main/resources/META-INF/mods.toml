@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="copyl"
+version="3.3.0"
+displayName="CopyL"
+authors="Santi-PdR"
+displayURL="https://github.com/Santi-PdR/Lclient"
+description='''
+CopyL para Forge 1.20.1: macros/atajos configurables del cliente y una base de contenido gameplay
+integrada. Esta rama de trabajo incorpora progresivamente contenido de OreSpawn al mismo modid.
+'''
+displayTest="MATCH_VERSION"
+
+[[dependencies.copyl]]
+modId="forge"
+mandatory=true
+versionRange="[47,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.copyl]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.20.2)"
+ordering="NONE"
+side="BOTH"

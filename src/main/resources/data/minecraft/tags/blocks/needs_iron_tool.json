@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "copyl:titanium_ore",
+    "copyl:uranium_ore",
+    "copyl:amethyst_ore",
+    "copyl:titanium_block",
+    "copyl:uranium_block",
+    "copyl:amethyst_block"
+  ]
+}

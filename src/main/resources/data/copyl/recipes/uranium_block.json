@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "UUU",
+    "UUU",
+    "UUU"
+  ],
+  "key": {
+    "U": {
+      "item": "copyl:uranium_ingot"
+    }
+  },
+  "result": {
+    "item": "copyl:uranium_block"
+  }
+}
