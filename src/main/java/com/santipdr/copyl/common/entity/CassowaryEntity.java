@@ -81,7 +81,7 @@ public final class CassowaryEntity extends Animal {
     }
 
     @Override
-    protected boolean removeWhenFarAway(double distanceToClosestPlayer) {
+    public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         // Original: las crías no pueden desaparecer; un adulto sí.
         return !isBaby();
     }
