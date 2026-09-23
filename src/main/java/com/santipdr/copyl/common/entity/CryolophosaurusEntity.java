@@ -5,11 +5,9 @@ import com.santipdr.copyl.common.entity.ai.LongRangeWanderGoal;
 import com.santipdr.copyl.common.item.material.ModMaterialItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevelAccessor;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
@@ -25,6 +23,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -135,7 +134,7 @@ public final class CryolophosaurusEntity extends Monster {
     }
 
     @Override
-    protected float getVoicePitch() {
+    public float getVoicePitch() {
         return 1.0F;
     }
 
