@@ -86,6 +86,7 @@
 
   "item.copyl.alien_egg": "Huevo de Alien",
   "item.copyl.alosaurus_egg": "Huevo de Alosaurus",
+  "item.copyl.baryonyx_egg": "Huevo de Baryonyx",
   "item.copyl.gammametroid_egg": "Huevo de Gamma Metroid",
   "item.copyl.cryolophosaurus_egg": "Huevo de Cryolophosaurus",
   "item.copyl.beaver_egg": "Huevo de castor",
@@ -101,6 +102,7 @@
   "item.copyl.empty_cage": "Jaula vacía",
   "item.copyl.alien_cage": "Alien enjaulado",
   "item.copyl.alosaurus_cage": "Alosaurus enjaulado",
+  "item.copyl.baryonyx_cage": "Baryonyx enjaulado",
   "item.copyl.beaver_cage": "Castor enjaulado",
   "item.copyl.cassowary_cage": "Casuario enjaulado",
   "item.copyl.gammametroid_cage": "Gamma Metroid enjaulado",
@@ -109,6 +111,7 @@
 
   "entity.copyl.alien": "Alien",
   "entity.copyl.alosaurus": "Alosaurus",
+  "entity.copyl.baryonyx": "Baryonyx",
   "entity.copyl.gammametroid": "Gamma Metroid",
   "entity.copyl.cryolophosaurus": "Cryolophosaurus",
   "entity.copyl.beaver": "Castor",
