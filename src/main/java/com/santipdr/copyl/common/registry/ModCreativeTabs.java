@@ -61,6 +61,7 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.ALIEN_EGG.get());
                         output.accept(ModItems.BIRD_EGG.get());
                         output.accept(ModItems.DRAGONFLY_EGG.get());
+                        output.accept(ModItems.POINTYSAURUS_EGG.get());
                         output.accept(ModItems.GAMMAMETROID_EGG.get());
                         output.accept(ModItems.CRYOLOPHOSAURUS_EGG.get());
                         output.accept(ModItems.EMPTY_CAGE.get());
