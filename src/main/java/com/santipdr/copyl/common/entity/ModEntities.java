@@ -6,7 +6,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.RegistryObject;
 
-/** Primer grupo de EntityTypes del OreSpawn 1.12.2. */
+/** EntityTypes porteados del OreSpawn 1.12.2. */
 public final class ModEntities {
     public static final RegistryObject<EntityType<AlienEntity>> ALIEN =
             ModRegistries.ENTITY_TYPES.register("alien", () -> EntityType.Builder
@@ -31,6 +31,14 @@ public final class ModEntities {
                     .clientTrackingRange(4)
                     .updateInterval(1)
                     .build(CopyL.MOD_ID + ":cryolophosaurus"));
+
+    public static final RegistryObject<EntityType<BirdEntity>> BIRD =
+            ModRegistries.ENTITY_TYPES.register("bird", () -> EntityType.Builder
+                    .of(BirdEntity::new, MobCategory.CREATURE)
+                    .sized(0.4F, 0.4F)
+                    .clientTrackingRange(4)
+                    .updateInterval(1)
+                    .build(CopyL.MOD_ID + ":bird"));
 
     // EntityCage del 1.12.2 estaba registrado como "thrown_critter_cage".
     public static final RegistryObject<EntityType<CageProjectileEntity>> CAGE_PROJECTILE =
