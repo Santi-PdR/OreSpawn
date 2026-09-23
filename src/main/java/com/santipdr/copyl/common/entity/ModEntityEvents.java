@@ -16,6 +16,7 @@ public final class ModEntityEvents {
         event.put(ModEntities.ALIEN.get(), AlienEntity.createAttributes().build());
         event.put(ModEntities.GAMMA_METROID.get(), GammaMetroidEntity.createAttributes().build());
         event.put(ModEntities.CRYOLOPHOSAURUS.get(), CryolophosaurusEntity.createAttributes().build());
+        event.put(ModEntities.BIRD.get(), BirdEntity.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -39,6 +40,8 @@ public final class ModEntityEvents {
                     Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                     CryolophosaurusEntity::checkSpawnRules
             );
+            // Bird no recibe todavía un spawn placement artificial: el JAR no define uno aquí.
+            // Su aparición natural se conectará cuando se porte la lista original de biomas/spawns.
         });
     }
 
