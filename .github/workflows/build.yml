@@ -1,0 +1,80 @@
+name: Build Forge 1.20.1
+
+on:
+  push:
+    branches: [ main, 'work/**', 'feature/**' ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orespawn-build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Check project is present
+        id: project
+        shell: bash
+        run: |
+          if [[ -f build.gradle && -d src ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "El repo todavía no contiene el checkpoint del proyecto."
+            echo "Cuando se suban build.gradle + src/, este workflow compilará automáticamente."
+          fi
+
+      - name: Set up Java 17
+        if: steps.project.outputs.ready == 'true'
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Set up Gradle 8.1.1
+        if: steps.project.outputs.ready == 'true'
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.1.1'
+
+      - name: Build mod
+        if: steps.project.outputs.ready == 'true'
+        run: gradle build --no-daemon --stacktrace
+
+      - name: Find final JAR
+        if: steps.project.outputs.ready == 'true'
+        id: jar
+        shell: bash
+        run: |
+          set -euo pipefail
+          JAR="$(find build/libs -maxdepth 1 -type f -name '*.jar' ! -name '*-sources.jar' ! -name '*-dev.jar' | head -n 1)"
+          if [[ -z "$JAR" || ! -f "$JAR" ]]; then
+            echo "No se encontró el JAR final en build/libs" >&2
+            find build/libs -maxdepth 1 -type f -printf '  %f\n' >&2 || true
+            exit 1
+          fi
+
+          unzip -t "$JAR" >/dev/null
+          echo "jar=$JAR" >> "$GITHUB_OUTPUT"
+          echo "name=$(basename "$JAR" .jar)" >> "$GITHUB_OUTPUT"
+          sha256sum "$JAR"
+
+      - name: Upload compiled JAR
+        if: steps.project.outputs.ready == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.jar.outputs.name }}
+          path: ${{ steps.jar.outputs.jar }}
+          if-no-files-found: error
+          retention-days: 30
