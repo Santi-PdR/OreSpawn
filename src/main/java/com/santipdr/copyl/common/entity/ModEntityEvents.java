@@ -19,6 +19,7 @@ public final class ModEntityEvents {
         event.put(ModEntities.BIRD.get(), BirdEntity.createAttributes().build());
         event.put(ModEntities.DRAGONFLY.get(), DragonflyEntity.createAttributes().build());
         event.put(ModEntities.POINTYSAURUS.get(), PointysaurusEntity.createAttributes().build());
+        event.put(ModEntities.FIREFLY.get(), FireflyEntity.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -48,7 +49,7 @@ public final class ModEntityEvents {
                     Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                     PointysaurusEntity::checkSpawnRules
             );
-            // Bird y Dragonfly todavía no reciben un spawn placement inventado aquí.
+            // Bird, Dragonfly y Firefly todavía no reciben un spawn placement inventado aquí.
             // Sus spawns naturales se conectarán junto con las listas originales de biomas.
         });
     }

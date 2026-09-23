@@ -18,7 +18,6 @@ public final class ModItems {
     public static final RegistryObject<Item> URANIUM_BLOCK = blockItem("uranium_block", ModBlocks.URANIUM_BLOCK);
     public static final RegistryObject<Item> AMETHYST_BLOCK = blockItem("amethyst_block", ModBlocks.AMETHYST_BLOCK);
 
-    // BlockItems de los 32 OreGenericEgg/creature ores del JAR.
     public static final RegistryObject<Item> ALIEN_ORE = blockItem("alien_ore", ModBlocks.ALIEN_ORE);
     public static final RegistryObject<Item> ALOSAURUS_ORE = blockItem("alosaurus_ore", ModBlocks.ALOSAURUS_ORE);
     public static final RegistryObject<Item> BARYONYX_ORE = blockItem("baryonyx_ore", ModBlocks.BARYONYX_ORE);
@@ -52,7 +51,6 @@ public final class ModItems {
     public static final RegistryObject<Item> VELOCITYRAPTOR_ORE = blockItem("velocityraptor_ore", ModBlocks.VELOCITYRAPTOR_ORE);
     public static final RegistryObject<Item> ZOMBIE_ORE = blockItem("zombie_ore", ModBlocks.ZOMBIE_ORE);
 
-    // ItemGenericEgg: se habilitan a medida que la entidad real queda porteada.
     public static final RegistryObject<Item> CRYOLOPHOSAURUS_EGG = ModRegistries.ITEMS.register(
             "cryolophosaurus_egg", () -> new CreatureEggItem(ModEntities.CRYOLOPHOSAURUS));
     public static final RegistryObject<Item> GAMMAMETROID_EGG = ModRegistries.ITEMS.register(
@@ -65,8 +63,9 @@ public final class ModItems {
             "dragonfly_egg", () -> new CreatureEggItem(ModEntities.DRAGONFLY));
     public static final RegistryObject<Item> POINTYSAURUS_EGG = ModRegistries.ITEMS.register(
             "pointysaurus_egg", () -> new CreatureEggItem(ModEntities.POINTYSAURUS));
+    public static final RegistryObject<Item> FIREFLY_EGG = ModRegistries.ITEMS.register(
+            "firefly_egg", () -> new CreatureEggItem(ModEntities.FIREFLY));
 
-    // CritterCage original: jaula vacía + jaulas de entidades que el JAR realmente tenia.
     public static final RegistryObject<Item> EMPTY_CAGE = ModRegistries.ITEMS.register(
             "empty_cage", CritterCageItem::empty);
     public static final RegistryObject<Item> GAMMAMETROID_CAGE = ModRegistries.ITEMS.register(
@@ -75,6 +74,8 @@ public final class ModItems {
             "alien_cage", () -> new CritterCageItem(ModEntities.ALIEN, 0.4F));
     public static final RegistryObject<Item> DRAGONFLY_CAGE = ModRegistries.ITEMS.register(
             "dragonfly_cage", () -> new CritterCageItem(ModEntities.DRAGONFLY, 0.4F));
+    public static final RegistryObject<Item> FIREFLY_CAGE = ModRegistries.ITEMS.register(
+            "firefly_cage", () -> new CritterCageItem(ModEntities.FIREFLY, 0.4F));
 
     public static final RegistryObject<Item> EXTREME_TORCH = ModRegistries.ITEMS.register(
             "extreme_torch",

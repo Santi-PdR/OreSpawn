@@ -5,12 +5,14 @@ import com.santipdr.copyl.client.model.AlienModel;
 import com.santipdr.copyl.client.model.BirdModel;
 import com.santipdr.copyl.client.model.CryolophosaurusModel;
 import com.santipdr.copyl.client.model.DragonflyModel;
+import com.santipdr.copyl.client.model.FireflyModel;
 import com.santipdr.copyl.client.model.GammaMetroidModel;
 import com.santipdr.copyl.client.model.PointysaurusModel;
 import com.santipdr.copyl.client.renderer.AlienRenderer;
 import com.santipdr.copyl.client.renderer.BirdRenderer;
 import com.santipdr.copyl.client.renderer.CryolophosaurusRenderer;
 import com.santipdr.copyl.client.renderer.DragonflyRenderer;
+import com.santipdr.copyl.client.renderer.FireflyRenderer;
 import com.santipdr.copyl.client.renderer.GammaMetroidRenderer;
 import com.santipdr.copyl.client.renderer.PointysaurusRenderer;
 import com.santipdr.copyl.common.entity.ModEntities;
@@ -32,6 +34,7 @@ public final class ModEntityClientEvents {
         event.registerLayerDefinition(BirdModel.LAYER_LOCATION, BirdModel::createBodyLayer);
         event.registerLayerDefinition(CryolophosaurusModel.LAYER_LOCATION, CryolophosaurusModel::createBodyLayer);
         event.registerLayerDefinition(DragonflyModel.LAYER_LOCATION, DragonflyModel::createBodyLayer);
+        event.registerLayerDefinition(FireflyModel.LAYER_LOCATION, FireflyModel::createBodyLayer);
         event.registerLayerDefinition(GammaMetroidModel.LAYER_LOCATION, GammaMetroidModel::createBodyLayer);
         event.registerLayerDefinition(PointysaurusModel.LAYER_LOCATION, PointysaurusModel::createBodyLayer);
     }
@@ -43,6 +46,7 @@ public final class ModEntityClientEvents {
         event.registerEntityRenderer(ModEntities.BIRD.get(), BirdRenderer::new);
         event.registerEntityRenderer(ModEntities.CRYOLOPHOSAURUS.get(), CryolophosaurusRenderer::new);
         event.registerEntityRenderer(ModEntities.DRAGONFLY.get(), DragonflyRenderer::new);
+        event.registerEntityRenderer(ModEntities.FIREFLY.get(), FireflyRenderer::new);
         event.registerEntityRenderer(ModEntities.GAMMA_METROID.get(), GammaMetroidRenderer::new);
         event.registerEntityRenderer(ModEntities.POINTYSAURUS.get(), PointysaurusRenderer::new);
     }

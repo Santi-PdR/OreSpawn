@@ -56,6 +56,14 @@ public final class ModEntities {
                     .updateInterval(1)
                     .build(CopyL.MOD_ID + ":pointysaurus"));
 
+    public static final RegistryObject<EntityType<FireflyEntity>> FIREFLY =
+            ModRegistries.ENTITY_TYPES.register("firefly", () -> EntityType.Builder
+                    .of(FireflyEntity::new, MobCategory.AMBIENT)
+                    .sized(0.4F, 0.8F)
+                    .clientTrackingRange(4)
+                    .updateInterval(1)
+                    .build(CopyL.MOD_ID + ":firefly"));
+
     // EntityCage del 1.12.2 estaba registrado como "thrown_critter_cage".
     public static final RegistryObject<EntityType<CageProjectileEntity>> CAGE_PROJECTILE =
             ModRegistries.ENTITY_TYPES.register("thrown_critter_cage", () -> EntityType.Builder
