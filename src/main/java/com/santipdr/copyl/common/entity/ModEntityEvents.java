@@ -17,6 +17,7 @@ public final class ModEntityEvents {
         event.put(ModEntities.CRYOLOPHOSAURUS.get(), CryolophosaurusEntity.createAttributes().build());
         event.put(ModEntities.BIRD.get(), BirdEntity.createAttributes().build());
         event.put(ModEntities.BUTTERFLY.get(), ButterflyEntity.createAttributes().build());
+        event.put(ModEntities.CASSOWARY.get(), CassowaryEntity.createAttributes().build());
         event.put(ModEntities.DRAGONFLY.get(), DragonflyEntity.createAttributes().build());
         event.put(ModEntities.POINTYSAURUS.get(), PointysaurusEntity.createAttributes().build());
         event.put(ModEntities.FIREFLY.get(), FireflyEntity.createAttributes().build());
@@ -30,6 +31,7 @@ public final class ModEntityEvents {
             SpawnPlacements.register(ModEntities.ALIEN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AlienEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.GAMMA_METROID.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GammaMetroidEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.CRYOLOPHOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CryolophosaurusEntity::checkSpawnRules);
+            SpawnPlacements.register(ModEntities.CASSOWARY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CassowaryEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.POINTYSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PointysaurusEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.MOTH.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MothEntity::checkSpawnRules);
         });
