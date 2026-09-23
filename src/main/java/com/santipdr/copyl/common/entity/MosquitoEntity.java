@@ -56,10 +56,10 @@ public final class MosquitoEntity extends AmbientCreature {
                 currentFlightTarget.distToCenterSqr((int) getX(), (int) getY(), (int) getZ()) < 3.0D) {
             boolean chosePlayer = false;
 
-            // El JAR intenta seguir a un jugador cercano una de cada cuatro veces.
+            // El JAR intenta seguir al jugador más cercano dentro de 10x6x10 una de cada cuatro veces.
             if (random.nextInt(4) == 0) {
                 AABB box = getBoundingBox().inflate(10.0D, 6.0D, 10.0D);
-                Player player = level().getEntitiesOfClass(Player.class, box, p -> p != this)
+                Player player = level().getEntitiesOfClass(Player.class, box)
                         .stream()
                         .min(Comparator.comparingDouble(this::distanceToSqr))
                         .orElse(null);
