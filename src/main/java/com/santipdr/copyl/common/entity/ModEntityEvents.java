@@ -21,6 +21,7 @@ public final class ModEntityEvents {
         event.put(ModEntities.POINTYSAURUS.get(), PointysaurusEntity.createAttributes().build());
         event.put(ModEntities.FIREFLY.get(), FireflyEntity.createAttributes().build());
         event.put(ModEntities.MOSQUITO.get(), MosquitoEntity.createAttributes().build());
+        event.put(ModEntities.MOTH.get(), MothEntity.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -30,6 +31,7 @@ public final class ModEntityEvents {
             SpawnPlacements.register(ModEntities.GAMMA_METROID.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GammaMetroidEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.CRYOLOPHOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CryolophosaurusEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.POINTYSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PointysaurusEntity::checkSpawnRules);
+            SpawnPlacements.register(ModEntities.MOTH.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MothEntity::checkSpawnRules);
         });
     }
     private ModEntityEvents() {}
