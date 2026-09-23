@@ -56,6 +56,7 @@ public final class ModItems {
     public static final RegistryObject<Item> DRAGONFLY_EGG = ModRegistries.ITEMS.register("dragonfly_egg", () -> new CreatureEggItem(ModEntities.DRAGONFLY));
     public static final RegistryObject<Item> POINTYSAURUS_EGG = ModRegistries.ITEMS.register("pointysaurus_egg", () -> new CreatureEggItem(ModEntities.POINTYSAURUS));
     public static final RegistryObject<Item> FIREFLY_EGG = ModRegistries.ITEMS.register("firefly_egg", () -> new CreatureEggItem(ModEntities.FIREFLY));
+    public static final RegistryObject<Item> MOSQUITO_EGG = ModRegistries.ITEMS.register("mosquito_egg", () -> new CreatureEggItem(ModEntities.MOSQUITO));
     public static final RegistryObject<Item> EMPTY_CAGE = ModRegistries.ITEMS.register("empty_cage", CritterCageItem::empty);
     public static final RegistryObject<Item> GAMMAMETROID_CAGE = ModRegistries.ITEMS.register("gammametroid_cage", () -> new CritterCageItem(ModEntities.GAMMA_METROID, 0.4F));
     public static final RegistryObject<Item> ALIEN_CAGE = ModRegistries.ITEMS.register("alien_cage", () -> new CritterCageItem(ModEntities.ALIEN, 0.4F));

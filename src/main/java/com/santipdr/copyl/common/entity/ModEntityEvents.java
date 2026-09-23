@@ -20,6 +20,7 @@ public final class ModEntityEvents {
         event.put(ModEntities.DRAGONFLY.get(), DragonflyEntity.createAttributes().build());
         event.put(ModEntities.POINTYSAURUS.get(), PointysaurusEntity.createAttributes().build());
         event.put(ModEntities.FIREFLY.get(), FireflyEntity.createAttributes().build());
+        event.put(ModEntities.MOSQUITO.get(), MosquitoEntity.createAttributes().build());
     }
 
     @SubscribeEvent

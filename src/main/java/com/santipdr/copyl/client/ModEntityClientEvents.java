@@ -22,6 +22,7 @@ public final class ModEntityClientEvents {
         event.registerLayerDefinition(DragonflyModel.LAYER_LOCATION, DragonflyModel::createBodyLayer);
         event.registerLayerDefinition(FireflyModel.LAYER_LOCATION, FireflyModel::createBodyLayer);
         event.registerLayerDefinition(GammaMetroidModel.LAYER_LOCATION, GammaMetroidModel::createBodyLayer);
+        event.registerLayerDefinition(MosquitoModel.LAYER_LOCATION, MosquitoModel::createBodyLayer);
         event.registerLayerDefinition(PointysaurusModel.LAYER_LOCATION, PointysaurusModel::createBodyLayer);
     }
     @SubscribeEvent
@@ -34,6 +35,7 @@ public final class ModEntityClientEvents {
         event.registerEntityRenderer(ModEntities.DRAGONFLY.get(), DragonflyRenderer::new);
         event.registerEntityRenderer(ModEntities.FIREFLY.get(), FireflyRenderer::new);
         event.registerEntityRenderer(ModEntities.GAMMA_METROID.get(), GammaMetroidRenderer::new);
+        event.registerEntityRenderer(ModEntities.MOSQUITO.get(), MosquitoRenderer::new);
         event.registerEntityRenderer(ModEntities.POINTYSAURUS.get(), PointysaurusRenderer::new);
     }
 }
