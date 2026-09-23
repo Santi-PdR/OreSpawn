@@ -13,6 +13,7 @@ public final class ModEntityEvents {
     @SubscribeEvent
     public static void createAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.ALIEN.get(), AlienEntity.createAttributes().build());
+        event.put(ModEntities.ALOSAURUS.get(), AlosaurusEntity.createAttributes().build());
         event.put(ModEntities.GAMMA_METROID.get(), GammaMetroidEntity.createAttributes().build());
         event.put(ModEntities.CRYOLOPHOSAURUS.get(), CryolophosaurusEntity.createAttributes().build());
         event.put(ModEntities.BEAVER.get(), BeaverEntity.createAttributes().build());
@@ -30,6 +31,7 @@ public final class ModEntityEvents {
     public static void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             SpawnPlacements.register(ModEntities.ALIEN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AlienEntity::checkSpawnRules);
+            SpawnPlacements.register(ModEntities.ALOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AlosaurusEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.GAMMA_METROID.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GammaMetroidEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.CRYOLOPHOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CryolophosaurusEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.BEAVER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BeaverEntity::checkSpawnRules);
