@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.Comparator;
+import java.util.List;
 
 /** Port directo de danger.orespawn.entity.Mosquito del JAR 1.12.2 proporcionado. */
 public final class MosquitoEntity extends AmbientCreature {
@@ -47,26 +47,32 @@ public final class MosquitoEntity extends AmbientCreature {
         }
         super.customServerAiStep();
 
+        BlockPos here = blockPosition();
         if (currentFlightTarget == null) {
-            currentFlightTarget = new BlockPos((int) getX(), (int) getY(), (int) getZ());
+            currentFlightTarget = here;
         }
 
-        if (random.nextInt(20) == 0 ||
-                currentFlightTarget.distToCenterSqr((int) getX(), (int) getY(), (int) getZ()) < 3.0D) {
+        if (random.nextInt(20) == 0 || currentFlightTarget.distSqr(here) < 3.0D) {
             boolean chosePlayer = false;
 
             // El JAR intenta seguir al jugador más cercano dentro de 10x6x10 una de cada cuatro veces.
             if (random.nextInt(4) == 0) {
                 AABB box = getBoundingBox().inflate(10.0D, 6.0D, 10.0D);
-                Player player = level().getEntitiesOfClass(Player.class, box)
-                        .stream()
-                        .min(Comparator.comparingDouble(this::distanceToSqr))
-                        .orElse(null);
-                if (player != null) {
+                List<Player> players = level().getEntitiesOfClass(Player.class, box);
+                Player nearest = null;
+                double nearestDistance = Double.MAX_VALUE;
+                for (Player player : players) {
+                    double distance = distanceToSqr(player);
+                    if (distance < nearestDistance) {
+                        nearestDistance = distance;
+                        nearest = player;
+                    }
+                }
+                if (nearest != null) {
                     currentFlightTarget = new BlockPos(
-                            (int) player.getX(),
-                            (int) player.getY() + 2,
-                            (int) player.getZ()
+                            (int) nearest.getX(),
+                            (int) nearest.getY() + 2,
+                            (int) nearest.getZ()
                     );
                     chosePlayer = true;
                 }
@@ -107,11 +113,6 @@ public final class MosquitoEntity extends AmbientCreature {
             state = level().getBlockState(currentFlightTarget);
             tries--;
         } while (!state.isAir() && tries != 0);
-    }
-
-    @Override
-    protected boolean canTriggerWalking() {
-        return false;
     }
 
     @Override
