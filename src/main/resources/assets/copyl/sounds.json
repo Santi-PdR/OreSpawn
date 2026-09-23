@@ -1,0 +1,42 @@
+{
+  "entity.alien.living": {
+    "category": "entity",
+    "subtitle": "entity.alien.living",
+    "sounds": [{"name": "copyl:entity/alien/living", "stream": true}]
+  },
+  "entity.alien.hurt": {
+    "category": "entity",
+    "subtitle": "entity.alien.hurt",
+    "sounds": [{"name": "copyl:entity/alien/hurt", "stream": true}]
+  },
+  "entity.gammametroid.living": {
+    "category": "entity",
+    "subtitle": "entity.gammametroid.living",
+    "sounds": [{"name": "copyl:entity/gammametroid/living", "stream": true}]
+  },
+  "entity.duck.hurt": {
+    "category": "entity",
+    "subtitle": "entity.duck.hurt",
+    "sounds": [{"name": "copyl:entity/duck/hurt", "stream": true}]
+  },
+  "entity.alosaurus.death": {
+    "category": "entity",
+    "subtitle": "entity.alosaurus.death",
+    "sounds": [{"name": "copyl:entity/alosaurus/death", "stream": true}]
+  },
+  "entity.cryo.living": {
+    "category": "entity",
+    "subtitle": "entity.cryo.living",
+    "sounds": [{"name": "copyl:entity/cryo/living", "stream": true}]
+  },
+  "entity.cryo.hurt": {
+    "category": "entity",
+    "subtitle": "entity.cryo.hurt",
+    "sounds": [{"name": "copyl:entity/cryo/hurt", "stream": true}]
+  },
+  "entity.cryo.death": {
+    "category": "entity",
+    "subtitle": "entity.cryo.death",
+    "sounds": [{"name": "copyl:entity/cryo/death", "stream": true}]
+  }
+}
