@@ -23,6 +23,10 @@ public final class ModSounds {
     public static final RegistryObject<SoundEvent> CRYO_HURT = sound("entity.cryo.hurt");
     public static final RegistryObject<SoundEvent> CRYO_DEATH = sound("entity.cryo.death");
 
+    public static final RegistryObject<SoundEvent> DRAGONFLY_LIVING = sound("entity.dragonfly.living");
+    public static final RegistryObject<SoundEvent> DRAGONFLY_HURT = sound("entity.dragonfly.hurt");
+    public static final RegistryObject<SoundEvent> DRAGONFLY_DEATH = sound("entity.dragonfly.death");
+
     // Bird.java del JAR puede elegir entre 23 cantos originales.
     public static final List<RegistryObject<SoundEvent>> BIRD_SOUNDS = IntStream.rangeClosed(1, 23)
             .mapToObj(i -> sound("entity.bird.bird" + i))
