@@ -175,17 +175,17 @@ public final class CamarasaurusEntity extends TamableAnimal {
                     if (random.nextInt(2) == 0) {
                         tame(player);
                         setOrderedToSit(true);
-                        broadcastEntityEvent((byte) 7);
+                        level().broadcastEntityEvent(this, (byte) 7);
                         heal(getMaxHealth() - getHealth());
                     } else {
-                        broadcastEntityEvent((byte) 6);
+                        level().broadcastEntityEvent(this, (byte) 6);
                         setOrderedToSit(true);
                     }
                 } else if (isOwnedBy(player)) {
                     if (getHealth() < getMaxHealth()) {
                         heal(getMaxHealth() - getHealth());
                     }
-                    broadcastEntityEvent((byte) 7);
+                    level().broadcastEntityEvent(this, (byte) 7);
                 }
                 if (!player.getAbilities().instabuild) {
                     stack.shrink(1);
