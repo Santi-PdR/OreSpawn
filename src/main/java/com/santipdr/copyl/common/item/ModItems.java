@@ -52,15 +52,17 @@ public final class ModItems {
     public static final RegistryObject<Item> VELOCITYRAPTOR_ORE = blockItem("velocityraptor_ore", ModBlocks.VELOCITYRAPTOR_ORE);
     public static final RegistryObject<Item> ZOMBIE_ORE = blockItem("zombie_ore", ModBlocks.ZOMBIE_ORE);
 
-    // ItemGenericEgg: solo se habilitan los huevos de las entidades ya portadas.
+    // ItemGenericEgg: se habilitan a medida que la entidad real queda porteada.
     public static final RegistryObject<Item> CRYOLOPHOSAURUS_EGG = ModRegistries.ITEMS.register(
             "cryolophosaurus_egg", () -> new CreatureEggItem(ModEntities.CRYOLOPHOSAURUS));
     public static final RegistryObject<Item> GAMMAMETROID_EGG = ModRegistries.ITEMS.register(
             "gammametroid_egg", () -> new CreatureEggItem(ModEntities.GAMMA_METROID));
     public static final RegistryObject<Item> ALIEN_EGG = ModRegistries.ITEMS.register(
             "alien_egg", () -> new CreatureEggItem(ModEntities.ALIEN));
+    public static final RegistryObject<Item> BIRD_EGG = ModRegistries.ITEMS.register(
+            "bird_egg", () -> new CreatureEggItem(ModEntities.BIRD));
 
-    // CritterCage original: jaula vacía + jaulas de entidades ya portadas.
+    // CritterCage original: jaula vacía + jaulas de entidades que el JAR realmente tenia.
     public static final RegistryObject<Item> EMPTY_CAGE = ModRegistries.ITEMS.register(
             "empty_cage", CritterCageItem::empty);
     public static final RegistryObject<Item> GAMMAMETROID_CAGE = ModRegistries.ITEMS.register(
