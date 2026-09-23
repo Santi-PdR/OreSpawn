@@ -9,7 +9,7 @@ version = '3.3.0'
 group = 'com.santipdr.copyl'
 
 base {
-    archivesName = 'copyl'
+    archivesName = 'orespawn-reforged'
 }
 
 java {
@@ -52,10 +52,6 @@ repositories {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.4.10'
-    // GeckoLib: solo se usa para las criaturas boss/mini-boss con animaciones multi-parte
-    // (ver PORTING_PLAN.md). Se agrega ahora porque el runtime lo necesita apenas se registre
-    // la primera entidad GeckoLib en Fase 4; no se usa todavía en Fase 3.
-    // Coordenadas verificadas contra el repo oficial de Cloudsmith (release estable para 1.20.1).
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.4.9')
 }
 
@@ -66,16 +62,15 @@ tasks.withType(JavaCompile).configureEach {
 jar {
     manifest {
         attributes([
-                'Specification-Title'     : 'CopyL',
+                'Specification-Title'     : 'OreSpawn Reforged',
                 'Specification-Vendor'    : 'Santi-PdR',
                 'Specification-Version'   : '3',
-                'Implementation-Title'    : project.name,
+                'Implementation-Title'    : 'OreSpawn Reforged',
                 'Implementation-Version'  : project.version,
                 'Implementation-Vendor'   : 'Santi-PdR'
         ])
     }
 }
 
-// GitHub's text-only connector cannot commit PNG bytes directly. During this port branch the
-// exact original Alien texture is stored as Base64 and decoded before resources are packaged.
+// Puente temporal para assets binarios originales que se guardan en Base64 desde el conector.
 apply from: 'tools/decode-staged-textures.gradle'
