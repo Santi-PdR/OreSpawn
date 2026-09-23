@@ -40,6 +40,14 @@ public final class ModEntities {
                     .updateInterval(1)
                     .build(CopyL.MOD_ID + ":bird"));
 
+    public static final RegistryObject<EntityType<DragonflyEntity>> DRAGONFLY =
+            ModRegistries.ENTITY_TYPES.register("dragonfly", () -> EntityType.Builder
+                    .of(DragonflyEntity::new, MobCategory.CREATURE)
+                    .sized(1.5F, 0.5F)
+                    .clientTrackingRange(4)
+                    .updateInterval(1)
+                    .build(CopyL.MOD_ID + ":dragonfly"));
+
     // EntityCage del 1.12.2 estaba registrado como "thrown_critter_cage".
     public static final RegistryObject<EntityType<CageProjectileEntity>> CAGE_PROJECTILE =
             ModRegistries.ENTITY_TYPES.register("thrown_critter_cage", () -> EntityType.Builder
