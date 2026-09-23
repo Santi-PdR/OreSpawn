@@ -1,8 +1,10 @@
 package com.santipdr.copyl.client;
 
 import com.santipdr.copyl.CopyL;
+import com.santipdr.copyl.client.model.AlienModel;
 import com.santipdr.copyl.client.model.CryolophosaurusModel;
 import com.santipdr.copyl.client.model.GammaMetroidModel;
+import com.santipdr.copyl.client.renderer.AlienRenderer;
 import com.santipdr.copyl.client.renderer.CryolophosaurusRenderer;
 import com.santipdr.copyl.client.renderer.GammaMetroidRenderer;
 import com.santipdr.copyl.common.entity.ModEntities;
@@ -20,6 +22,7 @@ public final class ModEntityClientEvents {
 
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(AlienModel.LAYER_LOCATION, AlienModel::createBodyLayer);
         event.registerLayerDefinition(CryolophosaurusModel.LAYER_LOCATION, CryolophosaurusModel::createBodyLayer);
         event.registerLayerDefinition(GammaMetroidModel.LAYER_LOCATION, GammaMetroidModel::createBodyLayer);
     }
@@ -27,6 +30,7 @@ public final class ModEntityClientEvents {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntities.CAGE_PROJECTILE.get(), NoopRenderer::new);
+        event.registerEntityRenderer(ModEntities.ALIEN.get(), AlienRenderer::new);
         event.registerEntityRenderer(ModEntities.CRYOLOPHOSAURUS.get(), CryolophosaurusRenderer::new);
         event.registerEntityRenderer(ModEntities.GAMMA_METROID.get(), GammaMetroidRenderer::new);
     }
