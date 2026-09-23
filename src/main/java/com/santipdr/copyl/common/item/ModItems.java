@@ -61,6 +61,8 @@ public final class ModItems {
             "alien_egg", () -> new CreatureEggItem(ModEntities.ALIEN));
     public static final RegistryObject<Item> BIRD_EGG = ModRegistries.ITEMS.register(
             "bird_egg", () -> new CreatureEggItem(ModEntities.BIRD));
+    public static final RegistryObject<Item> DRAGONFLY_EGG = ModRegistries.ITEMS.register(
+            "dragonfly_egg", () -> new CreatureEggItem(ModEntities.DRAGONFLY));
 
     // CritterCage original: jaula vacía + jaulas de entidades que el JAR realmente tenia.
     public static final RegistryObject<Item> EMPTY_CAGE = ModRegistries.ITEMS.register(
@@ -69,6 +71,8 @@ public final class ModItems {
             "gammametroid_cage", () -> new CritterCageItem(ModEntities.GAMMA_METROID, 0.4F));
     public static final RegistryObject<Item> ALIEN_CAGE = ModRegistries.ITEMS.register(
             "alien_cage", () -> new CritterCageItem(ModEntities.ALIEN, 0.4F));
+    public static final RegistryObject<Item> DRAGONFLY_CAGE = ModRegistries.ITEMS.register(
+            "dragonfly_cage", () -> new CritterCageItem(ModEntities.DRAGONFLY, 0.4F));
 
     public static final RegistryObject<Item> EXTREME_TORCH = ModRegistries.ITEMS.register(
             "extreme_torch",
