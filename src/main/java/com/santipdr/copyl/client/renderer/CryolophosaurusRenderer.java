@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 /** Port de danger.orespawn.entity.render.RenderCryolophosaurus. */
 public final class CryolophosaurusRenderer extends MobRenderer<CryolophosaurusEntity, CryolophosaurusModel> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(CopyL.MOD_ID, "textures/entity/cryolophosaurus.png");
+            new ResourceLocation(CopyL.MOD_ID, "textures/entity/cryolophosaurus_exact.png");
 
     public CryolophosaurusRenderer(EntityRendererProvider.Context context) {
         super(context, new CryolophosaurusModel(context.bakeLayer(CryolophosaurusModel.LAYER_LOCATION)), 0.3F);
