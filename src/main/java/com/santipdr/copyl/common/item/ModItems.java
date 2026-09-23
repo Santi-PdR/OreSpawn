@@ -52,6 +52,7 @@ public final class ModItems {
     public static final RegistryObject<Item> GAMMAMETROID_EGG = ModRegistries.ITEMS.register("gammametroid_egg", () -> new CreatureEggItem(ModEntities.GAMMA_METROID));
     public static final RegistryObject<Item> ALIEN_EGG = ModRegistries.ITEMS.register("alien_egg", () -> new CreatureEggItem(ModEntities.ALIEN));
     public static final RegistryObject<Item> ALOSAURUS_EGG = ModRegistries.ITEMS.register("alosaurus_egg", () -> new CreatureEggItem(ModEntities.ALOSAURUS));
+    public static final RegistryObject<Item> BARYONYX_EGG = ModRegistries.ITEMS.register("baryonyx_egg", () -> new CreatureEggItem(ModEntities.BARYONYX));
     public static final RegistryObject<Item> BEAVER_EGG = ModRegistries.ITEMS.register("beaver_egg", () -> new CreatureEggItem(ModEntities.BEAVER));
     public static final RegistryObject<Item> BIRD_EGG = ModRegistries.ITEMS.register("bird_egg", () -> new CreatureEggItem(ModEntities.BIRD));
     public static final RegistryObject<Item> BUTTERFLY_EGG = ModRegistries.ITEMS.register("butterfly_egg", () -> new CreatureEggItem(ModEntities.BUTTERFLY));
@@ -65,6 +66,7 @@ public final class ModItems {
     public static final RegistryObject<Item> GAMMAMETROID_CAGE = ModRegistries.ITEMS.register("gammametroid_cage", () -> new CritterCageItem(ModEntities.GAMMA_METROID, 0.4F));
     public static final RegistryObject<Item> ALIEN_CAGE = ModRegistries.ITEMS.register("alien_cage", () -> new CritterCageItem(ModEntities.ALIEN, 0.4F));
     public static final RegistryObject<Item> ALOSAURUS_CAGE = ModRegistries.ITEMS.register("alosaurus_cage", () -> new CritterCageItem(ModEntities.ALOSAURUS, 0.4F));
+    public static final RegistryObject<Item> BARYONYX_CAGE = ModRegistries.ITEMS.register("baryonyx_cage", () -> new CritterCageItem(ModEntities.BARYONYX, 0.4F));
     public static final RegistryObject<Item> BEAVER_CAGE = ModRegistries.ITEMS.register("beaver_cage", () -> new CritterCageItem(ModEntities.BEAVER, 0.4F));
     public static final RegistryObject<Item> CASSOWARY_CAGE = ModRegistries.ITEMS.register("cassowary_cage", () -> new CritterCageItem(ModEntities.CASSOWARY, 0.4F));
     public static final RegistryObject<Item> DRAGONFLY_CAGE = ModRegistries.ITEMS.register("dragonfly_cage", () -> new CritterCageItem(ModEntities.DRAGONFLY, 0.4F));
