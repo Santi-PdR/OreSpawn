@@ -152,3 +152,10 @@ El árbol actual ya contiene `AntHillFeature`, `DimensionTeleport`, los bloques/
 
 - **COMPLEMENTO**: auditoría de registros encontró la receta pendiente de Cassowary; se añadió también. Ahora las 20 parejas registradas huevo/bloque `*_ore` tienen receta específica.
 - **BUILD**: GitHub Actions run 401 pasó para `a7d9322c0905bcdd17180a04c393263347eeb23f`.
+
+### Materiales de gusano — 2026-09-24
+
+- **REGISTRADO**: `worm_tooth` y `worm_food` estaban en el inventario del JAR pero ausentes del registro moderno. Se añadieron como items base, a la pestaña creativa y a los ocho archivos de idioma. No se les asignaron efectos porque el código de las entidades actual no los referencia y no hay evidencia de su uso original disponible en esta rama.
+- **VISUAL**: sus modelos/texturas originales quedan para la pasada de assets; se evita reutilizar iconos de otros objetos.
+- **BUILD**: GitHub Actions run 403 pasó para `c7e6093bea82a2a1adcd9f7153bcc53ffb0e5063`.
+- **AVANCE GLOBAL ESTIMADO**: 66 %.
