@@ -65,6 +65,7 @@ public final class ModItems {
     public static final RegistryObject<Item> FIREFLY_EGG = ModRegistries.ITEMS.register("firefly_egg", () -> new CreatureEggItem(ModEntities.FIREFLY));
     public static final RegistryObject<Item> MOSQUITO_EGG = ModRegistries.ITEMS.register("mosquito_egg", () -> new CreatureEggItem(ModEntities.MOSQUITO));
     public static final RegistryObject<Item> MOTH_EGG = ModRegistries.ITEMS.register("moth_egg", () -> new CreatureEggItem(ModEntities.MOTH));
+    public static final RegistryObject<Item> MANTIS_EGG = ModRegistries.ITEMS.register("mantis_egg", () -> new CreatureEggItem(ModEntities.MANTIS));
     public static final RegistryObject<Item> REDCOW_EGG = ModRegistries.ITEMS.register("redcow_egg", () -> new CreatureEggItem(ModEntities.RED_COW));
     public static final RegistryObject<Item> STINKBUG_EGG = ModRegistries.ITEMS.register("stinkbug_egg", () -> new CreatureEggItem(ModEntities.STINK_BUG));
     public static final RegistryObject<Item> RED_ANT_EGG = ModRegistries.ITEMS.register("red_ant_egg", () -> new CreatureEggItem(ModEntities.RED_ANT));
@@ -81,9 +82,11 @@ public final class ModItems {
     public static final RegistryObject<Item> CAVEFISHER_CAGE = ModRegistries.ITEMS.register("cavefisher_cage", () -> new CritterCageItem(ModEntities.CAVE_FISHER, 0.4F));
     public static final RegistryObject<Item> DRAGONFLY_CAGE = ModRegistries.ITEMS.register("dragonfly_cage", () -> new CritterCageItem(ModEntities.DRAGONFLY, 0.4F));
     public static final RegistryObject<Item> FIREFLY_CAGE = ModRegistries.ITEMS.register("firefly_cage", () -> new CritterCageItem(ModEntities.FIREFLY, 0.4F));
+    public static final RegistryObject<Item> MANTIS_CAGE = ModRegistries.ITEMS.register("mantis_cage", () -> new CritterCageItem(ModEntities.MANTIS, 0.4F));
     public static final RegistryObject<Item> REDCOW_CAGE = ModRegistries.ITEMS.register("redcow_cage", () -> new CritterCageItem(ModEntities.RED_COW, 0.4F));
     public static final RegistryObject<Item> STINKBUG_CAGE = ModRegistries.ITEMS.register("stinkbug_cage", () -> new CritterCageItem(ModEntities.STINK_BUG, 0.4F));
 
+    public static final RegistryObject<Item> MANTIS_CLAW = ModRegistries.ITEMS.register("mantis_claw", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> EXTREME_TORCH = ModRegistries.ITEMS.register("extreme_torch", () -> new StandingAndWallBlockItem(ModBlocks.EXTREME_TORCH.get(), ModBlocks.EXTREME_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
 
     private static RegistryObject<Item> blockItem(String id, RegistryObject<? extends net.minecraft.world.level.block.Block> block) {
