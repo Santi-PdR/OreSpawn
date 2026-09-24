@@ -73,6 +73,7 @@ public final class ModItems {
     public static final RegistryObject<Item> SMALLWORM_EGG = ModRegistries.ITEMS.register("smallworm_egg", () -> new CreatureEggItem(ModEntities.SMALL_WORM));
     public static final RegistryObject<Item> MEDIUMWORM_EGG = ModRegistries.ITEMS.register("mediumworm_egg", () -> new CreatureEggItem(ModEntities.MEDIUM_WORM));
     public static final RegistryObject<Item> LARGEWORM_EGG = ModRegistries.ITEMS.register("largeworm_egg", () -> new CreatureEggItem(ModEntities.LARGE_WORM));
+    public static final RegistryObject<Item> TREX_EGG = ModRegistries.ITEMS.register("trex_egg", () -> new CreatureEggItem(ModEntities.TREX));
 
     public static final RegistryObject<Item> EMPTY_CAGE = ModRegistries.ITEMS.register("empty_cage", CritterCageItem::empty);
     public static final RegistryObject<Item> GAMMAMETROID_CAGE = ModRegistries.ITEMS.register("gammametroid_cage", () -> new CritterCageItem(ModEntities.GAMMA_METROID, 0.4F));
@@ -91,8 +92,10 @@ public final class ModItems {
     public static final RegistryObject<Item> SMALLWORM_CAGE = ModRegistries.ITEMS.register("smallworm_cage", () -> new CritterCageItem(ModEntities.SMALL_WORM, 0.4F));
     public static final RegistryObject<Item> MEDIUMWORM_CAGE = ModRegistries.ITEMS.register("mediumworm_cage", () -> new CritterCageItem(ModEntities.MEDIUM_WORM, 0.4F));
     public static final RegistryObject<Item> LARGEWORM_CAGE = ModRegistries.ITEMS.register("largeworm_cage", () -> new CritterCageItem(ModEntities.LARGE_WORM, 0.4F));
+    public static final RegistryObject<Item> TREX_CAGE = ModRegistries.ITEMS.register("trex_cage", () -> new CritterCageItem(ModEntities.TREX, 0.4F));
 
     public static final RegistryObject<Item> MANTIS_CLAW = ModRegistries.ITEMS.register("mantis_claw", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> TREX_TOOTH = ModRegistries.ITEMS.register("trextooth", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> EXTREME_TORCH = ModRegistries.ITEMS.register("extreme_torch", () -> new StandingAndWallBlockItem(ModBlocks.EXTREME_TORCH.get(), ModBlocks.EXTREME_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
 
     private static RegistryObject<Item> blockItem(String id, RegistryObject<? extends net.minecraft.world.level.block.Block> block) {
