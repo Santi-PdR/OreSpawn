@@ -100,6 +100,7 @@
   "item.copyl.firefly_egg": "Firefly Egg",
   "item.copyl.mosquito_egg": "Mosquito Egg",
   "item.copyl.moth_egg": "Moth Egg",
+  "item.copyl.redcow_egg": "Apple Cow Egg",
 
   "item.copyl.empty_cage": "Empty Cage",
   "item.copyl.alien_cage": "Caged Alien",
@@ -112,6 +113,7 @@
   "item.copyl.gammametroid_cage": "Caged Gamma Metroid",
   "item.copyl.dragonfly_cage": "Caged Dragonfly",
   "item.copyl.firefly_cage": "Caged Firefly",
+  "item.copyl.redcow_cage": "Caged Apple Cow",
 
   "entity.copyl.alien": "Alien",
   "entity.copyl.alosaurus": "Alosaurus",
@@ -129,6 +131,7 @@
   "entity.copyl.firefly": "Firefly",
   "entity.copyl.mosquito": "Mosquito",
   "entity.copyl.moth": "Moth",
+  "entity.copyl.redcow": "Apple Cow",
   "entity.copyl.thrown_critter_cage": "Thrown Critter Cage",
 
   "block.copyl.alien_ore": "Ancient Dried Alien Spawn Egg",
