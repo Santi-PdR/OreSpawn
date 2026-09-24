@@ -22,4 +22,5 @@ public final class NastysaurusModel extends EntityModel<NastysaurusEntity>{
  r.addOrReplaceChild("rear_right_leg",CubeListBuilder.create().texOffs(220,80).mirror().addBox(-7,-27,-6,14,27,14),PartPose.offset(-11,0,15));
  return LayerDefinition.create(mesh,512,256);}
  @Override public void setupAnim(NastysaurusEntity e,float swing,float amount,float age,float yaw,float pitch){head.yRot=yaw*Mth.DEG_TO_RAD;head.xRot=pitch*Mth.DEG_TO_RAD;float step=Mth.cos(swing*0.6662F)*0.8F*amount;legs[0].xRot=step;legs[3].xRot=step;legs[1].xRot=-step;legs[2].xRot=-step;tail.yRot=Mth.cos(age*0.08F)*0.08F;}
+ @Override public void renderToBuffer(PoseStack pose,VertexConsumer consumer,int light,int overlay,float red,float green,float blue,float alpha){root.render(pose,consumer,light,overlay,red,green,blue,alpha);}
 }
