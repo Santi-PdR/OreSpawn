@@ -17,6 +17,7 @@ public final class ModEntityClientEvents {
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(AlienModel.LAYER_LOCATION, AlienModel::createBodyLayer);
         event.registerLayerDefinition(AlosaurusModel.LAYER_LOCATION, AlosaurusModel::createBodyLayer);
+        event.registerLayerDefinition(AntModel.LAYER_LOCATION, AntModel::createBodyLayer);
         event.registerLayerDefinition(BaryonyxModel.LAYER_LOCATION, BaryonyxModel::createBodyLayer);
         event.registerLayerDefinition(BeaverModel.LAYER_LOCATION, BeaverModel::createBodyLayer);
         event.registerLayerDefinition(BirdModel.LAYER_LOCATION, BirdModel::createBodyLayer);
@@ -38,6 +39,8 @@ public final class ModEntityClientEvents {
         event.registerEntityRenderer(ModEntities.CAGE_PROJECTILE.get(), NoopRenderer::new);
         event.registerEntityRenderer(ModEntities.ALIEN.get(), AlienRenderer::new);
         event.registerEntityRenderer(ModEntities.ALOSAURUS.get(), AlosaurusRenderer::new);
+        event.registerEntityRenderer(ModEntities.RED_ANT.get(), RedAntRenderer::new);
+        event.registerEntityRenderer(ModEntities.TERMITE.get(), TermiteRenderer::new);
         event.registerEntityRenderer(ModEntities.BARYONYX.get(), BaryonyxRenderer::new);
         event.registerEntityRenderer(ModEntities.BEAVER.get(), BeaverRenderer::new);
         event.registerEntityRenderer(ModEntities.BIRD.get(), BirdRenderer::new);
