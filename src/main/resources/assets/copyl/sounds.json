@@ -6,6 +6,8 @@
   "entity.alosaurus.living": {"category":"entity","subtitle":"entity.alosaurus.living","sounds":[{"name":"copyl:entity/alosaurus/living","stream":true}]},
   "entity.alosaurus.hurt": {"category":"entity","subtitle":"entity.alosaurus.hurt","sounds":[{"name":"copyl:entity/alosaurus/hurt","stream":true}]},
   "entity.alosaurus.death": {"category":"entity","subtitle":"entity.alosaurus.death","sounds":[{"name":"copyl:entity/alosaurus/death","stream":true}]},
+  "entity.trex.ambient": {"category":"entity","subtitle":"entity.trex.ambient","sounds":[{"name":"copyl:entity/trex/ambient","stream":true}]},
+  "entity.trex.death": {"category":"entity","subtitle":"entity.trex.death","sounds":[{"name":"copyl:entity/trex/death","stream":true}]},
   "entity.cryo.living": {"category":"entity","subtitle":"entity.cryo.living","sounds":[{"name":"copyl:entity/cryo/living","stream":true}]},
   "entity.cryo.hurt": {"category":"entity","subtitle":"entity.cryo.hurt","sounds":[{"name":"copyl:entity/cryo/hurt","stream":true}]},
   "entity.cryo.death": {"category":"entity","subtitle":"entity.cryo.death","sounds":[{"name":"copyl:entity/cryo/death","stream":true}]},
