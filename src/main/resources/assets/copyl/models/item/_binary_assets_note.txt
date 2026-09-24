@@ -1,1 +1,0 @@
-Binary assets are committed from the original 1.12.2 JAR.
