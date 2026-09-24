@@ -123,3 +123,11 @@ local. `[ ]` = fase todavía no portada.
   - Una captura de mundo muestra un mob/insecto con partes del modelo estiradas o separadas.
 - Estas capturas quedan como regresiones visuales pendientes; se revisarán tras completar registros, comportamiento, recursos y build del port.
 
+### Checkpoint run 388 — 2026-09-24
+
+- **PORTED**: las seis jaulas vanilla registradas por el original: vaca, creeper, ghast, caballo, cerdo y zombi. Se conectan al mismo sistema de jaula lanzada y liberación que usa el resto del port.
+- **RECURSOS**: modelos de item y nombres EN/ES añadidos. Los seis modelos reutilizan temporalmente el icono base de jaula vacía; sus iconos originales quedan pendientes de la pasada visual.
+- **SPAWNS**: auditoría de las reglas documentadas contra los biome modifiers actuales; los grupos comunes, bosque/selva, pantano y colinas ya están cubiertos, sin añadir reglas nuevas.
+- **BUILD**: GitHub Actions run 388 compiló correctamente `0c677bb3dce78b31843facb48bf33bcafa18ae15`.
+- **AVANCE GLOBAL ESTIMADO**: 64 %. Siguen pendientes las seis entidades indicadas arriba y los sistemas especiales/worldgen restantes.
+
