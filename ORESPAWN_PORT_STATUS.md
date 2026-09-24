@@ -78,7 +78,7 @@ local. `[ ]` = fase todavía no portada.
 ## Fase 4 — entidades
 
 - [x] `OreGenericEgg`: los 32 bloques `*_ore` usan el bloque de criatura con stats y XP originales.
-- [~] EntityTypes/atributos/spawn placements: registrados para las criaturas implementadas; Spyro, Nastysaurus, Kyuubi, Mothra, Doomworm y Brutalfly siguen pendientes.
+- [~] EntityTypes/atributos/spawn placements: registrados para las criaturas implementadas; Spyro, Kyuubi, Mothra, Doomworm y Brutalfly siguen pendientes; Nastysaurus ya está portado con entidad, IA, atributos, spawn, huevo, jaula y renderer.
 - [~] AI: algunos Goals de movimiento y ataques migrados; falta portar la conducta completa de varias criaturas y las familias restantes.
 - [~] Modelos/renderers/sonidos parciales para las entidades implementadas; faltan las criaturas aún no portadas y verificación visual final.
 - [~] Huevos y jaulas registrados para parte de las criaturas implementadas; faltan las entradas de criaturas pendientes y drops asociados.
@@ -194,3 +194,12 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - El log de las 16:02 del perfil `test-1` muestra que la creación de mundo falló al parsear `copyl:dimension_type/mining.json`; al fallar esa carga también quedaron sin resolver las placed features vanilla de agua.
 - En el log posterior del mismo perfil, Minecraft inició el servidor integrado a las 16:17, cargó el mundo `Mundo nuevo` y guardó repetidamente el nivel `copyl:mining` hasta las 16:23. El crash dejó de reproducirse con un artefacto instalado después.
 - **LÍMITE DE LA PRUEBA**: el log no identifica el SHA del artefacto instalado; esto verifica la prueba local histórica, no certifica por sí solo el head actual de GitHub. Se requiere volver a validar runtime con el build actual.
+
+
+### Nastysaurus — integración funcional 2026-09-24
+
+- **PORTADO**: estadísticas, IA y condiciones especiales contrastadas con la clase original; registro de EntityType, atributos y spawn placement.
+- **CONTENIDO**: huevo, jaula y sus modelos; render layer, renderer y textura del JAR original. La geometría básica se deja marcada para la auditoría visual final solicitada.
+- **BUILD**: GitHub Actions run 419 pasó para `7c23e9e79f6fbe82dd7013488241fa432f329967`. Runs 417/419 compilan; los runs intermedios 418 y 420 fallaron porque el modelo no implementaba `renderToBuffer`, corregido antes de validar el head actual.
+- **PENDIENTE**: Spyro, Kyuubi, Mothra, Doom Worm y Brutalfly; prueba runtime y revisión visual final.
+- **AVANCE GLOBAL ESTIMADO**: 68 %. El bloque de Nastysaurus cierra una de las seis entidades grandes pendientes; la paridad runtime y los otros cinco port siguen abiertos.
