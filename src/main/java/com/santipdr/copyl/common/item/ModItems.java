@@ -65,6 +65,7 @@ public final class ModItems {
     public static final RegistryObject<Item> MOSQUITO_EGG = ModRegistries.ITEMS.register("mosquito_egg", () -> new CreatureEggItem(ModEntities.MOSQUITO));
     public static final RegistryObject<Item> MOTH_EGG = ModRegistries.ITEMS.register("moth_egg", () -> new CreatureEggItem(ModEntities.MOTH));
     public static final RegistryObject<Item> REDCOW_EGG = ModRegistries.ITEMS.register("redcow_egg", () -> new CreatureEggItem(ModEntities.RED_COW));
+    public static final RegistryObject<Item> STINKBUG_EGG = ModRegistries.ITEMS.register("stinkbug_egg", () -> new CreatureEggItem(ModEntities.STINK_BUG));
     public static final RegistryObject<Item> EMPTY_CAGE = ModRegistries.ITEMS.register("empty_cage", CritterCageItem::empty);
     public static final RegistryObject<Item> GAMMAMETROID_CAGE = ModRegistries.ITEMS.register("gammametroid_cage", () -> new CritterCageItem(ModEntities.GAMMA_METROID, 0.4F));
     public static final RegistryObject<Item> ALIEN_CAGE = ModRegistries.ITEMS.register("alien_cage", () -> new CritterCageItem(ModEntities.ALIEN, 0.4F));
@@ -77,6 +78,7 @@ public final class ModItems {
     public static final RegistryObject<Item> DRAGONFLY_CAGE = ModRegistries.ITEMS.register("dragonfly_cage", () -> new CritterCageItem(ModEntities.DRAGONFLY, 0.4F));
     public static final RegistryObject<Item> FIREFLY_CAGE = ModRegistries.ITEMS.register("firefly_cage", () -> new CritterCageItem(ModEntities.FIREFLY, 0.4F));
     public static final RegistryObject<Item> REDCOW_CAGE = ModRegistries.ITEMS.register("redcow_cage", () -> new CritterCageItem(ModEntities.RED_COW, 0.4F));
+    public static final RegistryObject<Item> STINKBUG_CAGE = ModRegistries.ITEMS.register("stinkbug_cage", () -> new CritterCageItem(ModEntities.STINK_BUG, 0.4F));
     public static final RegistryObject<Item> EXTREME_TORCH = ModRegistries.ITEMS.register("extreme_torch", () -> new StandingAndWallBlockItem(ModBlocks.EXTREME_TORCH.get(), ModBlocks.EXTREME_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
     private static RegistryObject<Item> blockItem(String id, RegistryObject<? extends net.minecraft.world.level.block.Block> block) { return ModRegistries.ITEMS.register(id, () -> new BlockItem(block.get(), new Item.Properties())); }
     public static void bootstrap() {}
