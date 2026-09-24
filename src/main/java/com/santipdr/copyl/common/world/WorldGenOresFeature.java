@@ -67,9 +67,9 @@ public final class WorldGenOresFeature extends Feature<NoneFeatureConfiguration>
                                  int minY, int maxY, int veinSize, int chances) {
         int deltaY = maxY - minY;
         for (int attempt = 0; attempt < chances; attempt++) {
-            int x = chunkMinX + random.nextInt(16) + 8;
+            int x = chunkMinX + random.nextInt(16);
             int y = minY + random.nextInt(deltaY);
-            int z = chunkMinZ + random.nextInt(16) + 8;
+            int z = chunkMinZ + random.nextInt(16);
             generateVein(context, random, ore, x, y, z, veinSize);
         }
     }
@@ -86,7 +86,7 @@ public final class WorldGenOresFeature extends Feature<NoneFeatureConfiguration>
         double y1 = y + random.nextInt(3) - 2;
         MutableBlockPos cursor = new MutableBlockPos();
 
-        for (int step = 0; step <= veinSize; step++) {
+        for (int step = 0; step < veinSize; step++) {
             double cx = x0 + (x1 - x0) * step / veinSize;
             double cy = y0 + (y1 - y0) * step / veinSize;
             double cz = z0 + (z1 - z0) * step / veinSize;
