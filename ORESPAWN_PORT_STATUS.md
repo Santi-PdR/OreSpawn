@@ -142,3 +142,10 @@ El árbol actual ya contiene `AntHillFeature`, `DimensionTeleport`, los bloques/
 - **BUILD**: GitHub Actions run 397 compiló correctamente el commit `d3cab775758bddfb56e5b44bddbb09c9c935e424`.
 - **VISUAL QA POST-PORT**: las cuatro capturas nuevas detallan iconos magenta/faltantes para huevos y jaulas, un objeto/parte de mob con geometría plana o mal orientada en primera persona y un mob alado de modelo deformado con piezas estiradas/separadas. Se mantienen para la pasada visual una vez cerrada la paridad funcional.
 - **AVANCE GLOBAL ESTIMADO**: 64 %; este bloque solo cerró recursos de localización y no cambia el cálculo funcional.
+
+### Recetas de huevos de criaturas — 2026-09-24
+
+- **PORTADO**: diez recetas shapeless que faltaban para Alosaurus, Baryonyx, Bird, Beaver, Cave Fisher, Dragonfly, Mantis, Pointysaurus, Small Worm y Red Cow. Cada una conserva el patrón ya verificado en las recetas originales del port: huevo vanilla + su bloque `*_ore` = huevo correspondiente.
+- **VALIDACIÓN**: los diez JSON parsean y las referencias de bloques e ítems existen en los registros actuales.
+- **BUILD**: GitHub Actions run 399 pasó para `35c53037f5eefd012508635fa8cdcdee1a0b19f3`.
+- **AVANCE GLOBAL ESTIMADO**: 65 %; sube un punto por cerrar recetas funcionales pendientes.
