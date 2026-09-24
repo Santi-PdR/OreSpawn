@@ -107,6 +107,7 @@ public final class ModItems {
     public static final RegistryObject<Item> FIREFLY_PLANT = blockItem("firefly_plant", ModBlocks.FIREFLY_PLANT);
     public static final RegistryObject<Item> MOSQUITO_PLANT = blockItem("mosquito_plant", ModBlocks.MOSQUITO_PLANT);
     public static final RegistryObject<Item> MOTH_PLANT = blockItem("moth_plant", ModBlocks.MOTH_PLANT);
+    public static final RegistryObject<Item> RED_ANT_TROLL_BLOCK = blockItem("red_ant_troll_block", ModBlocks.RED_ANT_TROLL_BLOCK);
     public static final RegistryObject<Item> ANT_BLOCK = blockItem("ant_block", ModBlocks.ANT_BLOCK);
     public static final RegistryObject<Item> EXTREME_TORCH = ModRegistries.ITEMS.register("extreme_torch", () -> new StandingAndWallBlockItem(ModBlocks.EXTREME_TORCH.get(), ModBlocks.EXTREME_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
 
