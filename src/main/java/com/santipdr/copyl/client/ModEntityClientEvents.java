@@ -51,5 +51,6 @@ public final class ModEntityClientEvents {
         event.registerEntityRenderer(ModEntities.MOSQUITO.get(), MosquitoRenderer::new);
         event.registerEntityRenderer(ModEntities.MOTH.get(), MothRenderer::new);
         event.registerEntityRenderer(ModEntities.POINTYSAURUS.get(), PointysaurusRenderer::new);
+        event.registerEntityRenderer(ModEntities.RED_COW.get(), RedCowRenderer::new);
     }
 }
