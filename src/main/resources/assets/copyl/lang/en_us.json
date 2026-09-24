@@ -50,6 +50,7 @@
   "item.copyl.uranium_nugget": "Uranium Nugget",
   "item.copyl.amethyst": "Amethyst",
   "item.copyl.moth_scale": "Moth Scale",
+  "item.copyl.mantis_claw": "Mantis Claw",
 
   "item.copyl.amethyst_sword": "Amethyst Sword",
   "item.copyl.amethyst_pickaxe": "Amethyst Pickaxe",
@@ -100,6 +101,7 @@
   "item.copyl.firefly_egg": "Firefly Egg",
   "item.copyl.mosquito_egg": "Mosquito Egg",
   "item.copyl.moth_egg": "Moth Egg",
+  "item.copyl.mantis_egg": "Mantis Egg",
   "item.copyl.redcow_egg": "Apple Cow Egg",
   "item.copyl.stinkbug_egg": "StinkBug Egg",
   "item.copyl.red_ant_egg": "Spawn Red Ant",
@@ -116,6 +118,7 @@
   "item.copyl.gammametroid_cage": "Caged Gamma Metroid",
   "item.copyl.dragonfly_cage": "Caged Dragonfly",
   "item.copyl.firefly_cage": "Caged Firefly",
+  "item.copyl.mantis_cage": "Caged Mantis",
   "item.copyl.redcow_cage": "Caged Apple Cow",
   "item.copyl.stinkbug_cage": "Caged StinkBug",
 
@@ -135,6 +138,7 @@
   "entity.copyl.firefly": "Firefly",
   "entity.copyl.mosquito": "Mosquito",
   "entity.copyl.moth": "Moth",
+  "entity.copyl.mantis": "Mantis",
   "entity.copyl.redcow": "Apple Cow",
   "entity.copyl.stinkbug": "StinkBug",
   "entity.copyl.red_ant": "Red Ant",
