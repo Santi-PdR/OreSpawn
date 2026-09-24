@@ -121,3 +121,4 @@ public final class ModItems {
 
     public static void bootstrap() {}
     private ModItems() {}
+}

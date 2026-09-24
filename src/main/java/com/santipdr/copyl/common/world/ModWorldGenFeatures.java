@@ -17,7 +17,10 @@ public final class ModWorldGenFeatures {
 
 
 
+
+
     public static void bootstrap() {
     }
 
     private ModWorldGenFeatures() {}
+}

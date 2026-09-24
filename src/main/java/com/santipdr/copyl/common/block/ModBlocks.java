@@ -3,6 +3,7 @@ package com.santipdr.copyl.common.block;
 import com.santipdr.copyl.common.registry.ModRegistries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.RegistryObject;
@@ -23,12 +24,21 @@ public final class ModBlocks {
 
     private static BlockBehaviour.Properties creatureOreProperties() {
         // OreGenericEgg 1.12.2: ROCK, hardness 0.5, resistance 1.0, stone sound.
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.STONE)
                 .strength(0.5F, 1.0F)
+                .sound(SoundType.STONE);
+    }
 
     private static BlockBehaviour.Properties storageProperties() {
         // 1.12.2: IRON, hardness 5, resistance 5, harvest level 2, light value 0.2.
+        return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.METAL)
+                .requiresCorrectToolForDrops()
+                .strength(5.0F, 5.0F)
+                .lightLevel(state -> 3)
                 .sound(SoundType.METAL);
+    }
 
     public static final RegistryObject<Block> TITANIUM_ORE =
             ModRegistries.BLOCKS.register("titanium_ore", () -> new ReactiveOreBlock(oreProperties()));
@@ -105,8 +115,18 @@ public final class ModBlocks {
     public static final RegistryObject<Block> EXTREME_WALL_TORCH = ModRegistries.BLOCKS.register(
             "extreme_wall_torch",
             () -> new ExtremeWallTorchBlock(
+                    BlockBehaviour.Properties.of()
+                            .noCollission()
+                            .instabreak()
+                            .lightLevel(state -> 15)
+                            .sound(SoundType.WOOD)
                             .lootFrom(EXTREME_TORCH)
+            )
+    );
 
     public static void bootstrap() {
+    }
 
     private ModBlocks() {
+    }
+}

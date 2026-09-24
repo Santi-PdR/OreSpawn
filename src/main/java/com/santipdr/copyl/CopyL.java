@@ -50,3 +50,5 @@ public final class CopyL {
         if (FMLEnvironment.dist == Dist.CLIENT) {
             CopyLClientSetup.registerConfigScreen();
         }
+    }
+}
