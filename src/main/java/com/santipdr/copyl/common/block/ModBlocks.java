@@ -89,6 +89,11 @@ public final class ModBlocks {
     public static final RegistryObject<Block> VELOCITYRAPTOR_ORE = ModRegistries.BLOCKS.register("velocityraptor_ore", () -> new CreatureOreBlock(creatureOreProperties()));
     public static final RegistryObject<Block> ZOMBIE_ORE = ModRegistries.BLOCKS.register("zombie_ore", () -> new CreatureOreBlock(creatureOreProperties()));
 
+    public static final RegistryObject<Block> BUTTERFLY_PLANT = ModRegistries.BLOCKS.register("butterfly_plant", () -> new InsectSpawnPlant(() -> com.santipdr.copyl.common.item.ModItems.BUTTERFLY_SEED.get(), () -> com.santipdr.copyl.common.entity.ModEntities.BUTTERFLY.get(), true, 7));
+    public static final RegistryObject<Block> FIREFLY_PLANT = ModRegistries.BLOCKS.register("firefly_plant", () -> new InsectSpawnPlant(() -> com.santipdr.copyl.common.item.ModItems.FIREFLY_SEED.get(), () -> com.santipdr.copyl.common.entity.ModEntities.FIREFLY.get(), false, 6));
+    public static final RegistryObject<Block> MOSQUITO_PLANT = ModRegistries.BLOCKS.register("mosquito_plant", () -> new InsectSpawnPlant(() -> com.santipdr.copyl.common.item.ModItems.MOSQUITO_SEED.get(), () -> com.santipdr.copyl.common.entity.ModEntities.MOSQUITO.get(), true, 6));
+    public static final RegistryObject<Block> MOTH_PLANT = ModRegistries.BLOCKS.register("moth_plant", () -> new InsectSpawnPlant(() -> com.santipdr.copyl.common.item.ModItems.MOTH_SEED.get(), () -> com.santipdr.copyl.common.entity.ModEntities.MOTH.get(), false, 6));
+
     public static final RegistryObject<Block> ANT_BLOCK = ModRegistries.BLOCKS.register("ant_block", AntHillBlock::new);
 
     public static final RegistryObject<Block> EXTREME_TORCH = ModRegistries.BLOCKS.register(

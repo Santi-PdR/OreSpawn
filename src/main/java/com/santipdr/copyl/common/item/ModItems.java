@@ -98,6 +98,15 @@ public final class ModItems {
 
     public static final RegistryObject<Item> MANTIS_CLAW = ModRegistries.ITEMS.register("mantis_claw", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TREX_TOOTH = ModRegistries.ITEMS.register("trextooth", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BUTTERFLY_SEED = ModRegistries.ITEMS.register("butterfly_seed", () -> new net.minecraft.world.item.ItemNameBlockItem(ModBlocks.BUTTERFLY_PLANT.get(), new Item.Properties()));
+    public static final RegistryObject<Item> FIREFLY_SEED = ModRegistries.ITEMS.register("firefly_seed", () -> new net.minecraft.world.item.ItemNameBlockItem(ModBlocks.FIREFLY_PLANT.get(), new Item.Properties()));
+    public static final RegistryObject<Item> MOSQUITO_SEED = ModRegistries.ITEMS.register("mosquito_seed", () -> new net.minecraft.world.item.ItemNameBlockItem(ModBlocks.MOSQUITO_PLANT.get(), new Item.Properties()));
+    public static final RegistryObject<Item> MOTH_SEED = ModRegistries.ITEMS.register("moth_seed", () -> new net.minecraft.world.item.ItemNameBlockItem(ModBlocks.MOTH_PLANT.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> BUTTERFLY_PLANT = blockItem("butterfly_plant", ModBlocks.BUTTERFLY_PLANT);
+    public static final RegistryObject<Item> FIREFLY_PLANT = blockItem("firefly_plant", ModBlocks.FIREFLY_PLANT);
+    public static final RegistryObject<Item> MOSQUITO_PLANT = blockItem("mosquito_plant", ModBlocks.MOSQUITO_PLANT);
+    public static final RegistryObject<Item> MOTH_PLANT = blockItem("moth_plant", ModBlocks.MOTH_PLANT);
     public static final RegistryObject<Item> ANT_BLOCK = blockItem("ant_block", ModBlocks.ANT_BLOCK);
     public static final RegistryObject<Item> EXTREME_TORCH = ModRegistries.ITEMS.register("extreme_torch", () -> new StandingAndWallBlockItem(ModBlocks.EXTREME_TORCH.get(), ModBlocks.EXTREME_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
 
