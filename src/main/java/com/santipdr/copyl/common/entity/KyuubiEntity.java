@@ -25,7 +25,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.projectile.SmallFireball;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -164,15 +163,6 @@ public final class KyuubiEntity extends Monster {
     @Override public float getVoicePitch() { return 1.0F; }
     @Override public boolean removeWhenFarAway(double distanceToClosestPlayer) { return !isPersistenceRequired(); }
 
-    @Override
-    protected Item getDropItem() {
-        return switch (random.nextInt(6)) {
-            case 0 -> Items.GOLD_NUGGET;
-            case 1 -> com.santipdr.copyl.common.item.material.ModMaterialItems.URANIUM_NUGGET.get();
-            case 2 -> com.santipdr.copyl.common.item.material.ModMaterialItems.TITANIUM_NUGGET.get();
-            default -> null;
-        };
-    }
 
     @Override
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHit) {
