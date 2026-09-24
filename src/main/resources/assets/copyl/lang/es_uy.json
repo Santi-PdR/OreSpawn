@@ -50,6 +50,7 @@
   "item.copyl.uranium_ingot": "Lingote de uranio",
   "item.copyl.amethyst": "Amatista",
   "item.copyl.moth_scale": "Escama de polilla",
+  "item.copyl.mantis_claw": "Garra de mantis",
 
   "item.copyl.amethyst_sword": "Espada de amatista",
   "item.copyl.amethyst_pickaxe": "Pico de amatista",
@@ -100,6 +101,7 @@
   "item.copyl.firefly_egg": "Huevo de luciérnaga",
   "item.copyl.mosquito_egg": "Huevo de mosquito",
   "item.copyl.moth_egg": "Huevo de polilla",
+  "item.copyl.mantis_egg": "Huevo de mantis",
   "item.copyl.redcow_egg": "Huevo de Apple Cow",
   "item.copyl.stinkbug_egg": "Huevo de StinkBug",
   "item.copyl.red_ant_egg": "Huevo de hormiga roja",
@@ -116,6 +118,7 @@
   "item.copyl.gammametroid_cage": "Gamma Metroid enjaulado",
   "item.copyl.dragonfly_cage": "Libélula enjaulada",
   "item.copyl.firefly_cage": "Luciérnaga enjaulada",
+  "item.copyl.mantis_cage": "Mantis enjaulada",
   "item.copyl.redcow_cage": "Apple Cow enjaulada",
   "item.copyl.stinkbug_cage": "StinkBug enjaulado",
 
@@ -135,6 +138,7 @@
   "entity.copyl.firefly": "Luciérnaga",
   "entity.copyl.mosquito": "Mosquito",
   "entity.copyl.moth": "Polilla",
+  "entity.copyl.mantis": "Mantis",
   "entity.copyl.redcow": "Apple Cow",
   "entity.copyl.stinkbug": "StinkBug",
   "entity.copyl.red_ant": "Hormiga roja",
