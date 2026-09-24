@@ -25,6 +25,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.projectile.SmallFireball;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -77,10 +78,21 @@ public final class KyuubiEntity extends Monster {
     @Override
     public void aiStep() {
         super.aiStep();
-        if (level().isClientSide && random.nextInt(10) == 1) {
+        if (random.nextInt(10) != 1) return;
+
+        setSecondsOnFire(5);
+        if (level().isClientSide) {
             level().addParticle(new DustParticleOptions(new Vector3f(1.0F, 0.0F, 0.0F), 1.0F),
                     getX(), getY() + 2.0D, getZ(), 0.0D, 0.0D, 0.0D);
             level().addParticle(ParticleTypes.LAVA, getX(), getY() + 2.0D, getZ(), 0.0D, 0.0D, 0.0D);
+            if (isInWater()) {
+                level().addParticle(ParticleTypes.SMOKE, getX(), getY() + 1.75D, getZ(), 0.0D, 0.0D, 0.0D);
+                level().addParticle(ParticleTypes.LARGE_SMOKE, getX(), getY() + 1.75D, getZ(), 0.0D, 0.0D, 0.0D);
+                level().addParticle(ParticleTypes.SMOKE, getX(), getY() + 2.0D, getZ(), 0.0D, 0.0D, 0.0D);
+                level().addParticle(ParticleTypes.LARGE_SMOKE, getX(), getY() + 2.0D, getZ(), 0.0D, 0.0D, 0.0D);
+            }
+        } else if (isInWater()) {
+            doHurtTarget(this);
         }
     }
 
@@ -142,14 +154,6 @@ public final class KyuubiEntity extends Monster {
         return super.doHurtTarget(target);
     }
 
-    @Override
-    public void baseTick() {
-        super.baseTick();
-        if (tickCount % 10 == 0) {
-            setSecondsOnFire(5);
-            if (isInWater() && !level().isClientSide) doHurtTarget(this);
-        }
-    }
 
     @Override
     protected SoundEvent getAmbientSound() {
