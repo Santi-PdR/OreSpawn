@@ -64,7 +64,7 @@ public abstract class AntEntity extends Animal {
     }
 
     @Override
-    protected InteractionResult mobInteract(Player player, InteractionHand hand) {
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
         if (player.getItemInHand(hand).isEmpty()) {
             return InteractionResult.sidedSuccess(level().isClientSide);
         }
