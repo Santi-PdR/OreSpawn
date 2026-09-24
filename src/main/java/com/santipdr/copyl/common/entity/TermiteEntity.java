@@ -4,7 +4,7 @@ import com.santipdr.copyl.common.entity.ai.LongRangeWanderGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.difficulty.Difficulty;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -152,29 +152,22 @@ public final class TermiteEntity extends AntEntity {
             return;
         }
 
+        // El original decide primero si esta interacción convierte en tierra o elimina el bloque.
+        boolean removeBranch = random.nextInt(3) == 0;
         if (server.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
-            if (random.nextInt(3) != 0) {
-                server.setBlockAndUpdate(pos, Blocks.DIRT.defaultBlockState());
-            } else {
+            if (removeBranch) {
                 server.removeBlock(pos, false);
+            } else {
+                server.setBlockAndUpdate(pos, Blocks.DIRT.defaultBlockState());
             }
         }
 
         if (findBuddies() < 10) {
             TermiteEntity termite = ModEntities.TERMITE.get().create(server);
             if (termite != null) {
-                double x;
-                double y;
-                double z;
-                if (server.getBlockState(pos).isAir()) {
-                    x = pos.getX() + 0.1D;
-                    y = pos.getY() + 0.1D;
-                    z = pos.getZ() + 0.1D;
-                } else {
-                    x = getX() + 0.1D;
-                    y = getY() + 0.1D;
-                    z = getZ() + 0.1D;
-                }
+                double x = removeBranch ? pos.getX() + 0.1D : getX() + 0.1D;
+                double y = removeBranch ? pos.getY() + 0.1D : getY() + 0.1D;
+                double z = removeBranch ? pos.getZ() + 0.1D : getZ() + 0.1D;
                 termite.moveTo(x, y, z, random.nextFloat() * 360.0F, 0.0F);
                 server.addFreshEntity(termite);
             }
