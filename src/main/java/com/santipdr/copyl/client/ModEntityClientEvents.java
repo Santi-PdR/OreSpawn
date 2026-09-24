@@ -36,6 +36,7 @@ public final class ModEntityClientEvents {
         event.registerLayerDefinition(StinkBugModel.LAYER_LOCATION, StinkBugModel::createBodyLayer);
         event.registerLayerDefinition(WormSmallModel.LAYER_LOCATION, WormSmallModel::createBodyLayer);
         event.registerLayerDefinition(WormMediumModel.LAYER_LOCATION, WormMediumModel::createBodyLayer);
+        event.registerLayerDefinition(WormLargeModel.LAYER_LOCATION, WormLargeModel::createBodyLayer);
     }
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
@@ -63,5 +64,6 @@ public final class ModEntityClientEvents {
         event.registerEntityRenderer(ModEntities.STINK_BUG.get(), StinkBugRenderer::new);
         event.registerEntityRenderer(ModEntities.SMALL_WORM.get(), WormSmallRenderer::new);
         event.registerEntityRenderer(ModEntities.MEDIUM_WORM.get(), WormMediumRenderer::new);
+        event.registerEntityRenderer(ModEntities.LARGE_WORM.get(), WormLargeRenderer::new);
     }
 }
