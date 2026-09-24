@@ -93,7 +93,7 @@ local. `[ ]` = fase todavía no portada.
 ## Fase 6 — mecánicas especiales
 - [~] Sistema Ant/RedAnt/Termite: `AntHillBlock` libera Red Ants, Red Ant combate/teletransporta y Termite busca/consume madera; falta auditar paridad completa de comportamiento y multiplayer.
 - [x] Plantas de Butterfly/Firefly/Mosquito/Moth y crecimiento de Corn con BlockEntity moderno; falta validación runtime final.
-- [~] `DimensionTeleport` y teletransporte por Red Ant están implementados; el comando independiente de teletransporte aún falta.
+- [~] `DimensionTeleport`, teletransporte por Red Ant y el comando independiente `/dimensiontp` están implementados; la paridad multiplayer y de aterrizaje aún requiere verificación runtime.
 
 ## Fase 7–10
 - [ ] Migración del resto de assets al avanzar cada sistema.
@@ -179,3 +179,11 @@ El árbol actual ya contiene `AntHillFeature`, `DimensionTeleport`, los bloques/
 ### Auditoría estática de texturas para la pasada final
 
 Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitHub, faltan PNG cargables para `alosaurus`, `baryonyx`, `beaver`, `camarasaurus`, `cavefisher`, `dragonfly`, `pointysaurus_original`, `trextexture` y `wormlargetexture`. En varios casos la rama contiene fragmentos o archivos con extensión `.b64`, que Minecraft no carga como texturas PNG. Se conserva este hallazgo para la pasada visual final solicitada; no se cambian estos recursos durante el port funcional.
+
+
+### Validación de receta y recursos de audio — 2026-09-24
+
+- **RECETA**: corregida la receta Ultimate Boots eliminando la clave de ingrediente sin símbolo usado, que hacía que Forge descartara la receta al cargar datapacks. Auditoría de las 62 recetas: sin símbolos huérfanos ni referencias desconocidas.
+- **AUDIO**: restaurados desde el JAR original los 47 OGG ausentes. Los 50 eventos de `sounds.json` ahora referencian 50 archivos existentes.
+- **BUILD**: run 412 detectó duplicados entre audios binarios nuevos y fragmentos Base64 de Alosaurus; se retiraron los ocho fragmentos obsoletos. GitHub Actions run 413 pasó para `12224379bb0f687e76c5f9f25746a3e1f2f09378`.
+- **AVANCE GLOBAL ESTIMADO**: se mantiene en 67 %; la restauración de sonidos y corrección de receta cierran errores concretos, pero no reducen el alcance pendiente de entidades, paridad de mecánicas y pruebas runtime.
