@@ -101,6 +101,9 @@
   "item.copyl.mosquito_egg": "Mosquito Egg",
   "item.copyl.moth_egg": "Moth Egg",
   "item.copyl.redcow_egg": "Apple Cow Egg",
+  "item.copyl.stinkbug_egg": "StinkBug Egg",
+  "item.copyl.red_ant_egg": "Spawn Red Ant",
+  "item.copyl.termite_egg": "Spawn Termite",
 
   "item.copyl.empty_cage": "Empty Cage",
   "item.copyl.alien_cage": "Caged Alien",
@@ -114,6 +117,7 @@
   "item.copyl.dragonfly_cage": "Caged Dragonfly",
   "item.copyl.firefly_cage": "Caged Firefly",
   "item.copyl.redcow_cage": "Caged Apple Cow",
+  "item.copyl.stinkbug_cage": "Caged StinkBug",
 
   "entity.copyl.alien": "Alien",
   "entity.copyl.alosaurus": "Alosaurus",
@@ -132,6 +136,9 @@
   "entity.copyl.mosquito": "Mosquito",
   "entity.copyl.moth": "Moth",
   "entity.copyl.redcow": "Apple Cow",
+  "entity.copyl.stinkbug": "StinkBug",
+  "entity.copyl.red_ant": "Red Ant",
+  "entity.copyl.termite": "Termite",
   "entity.copyl.thrown_critter_cage": "Thrown Critter Cage",
 
   "block.copyl.alien_ore": "Ancient Dried Alien Spawn Egg",
