@@ -77,18 +77,18 @@ local. `[ ]` = fase todavía no portada.
 
 ## Fase 4 — entidades
 
-- [ ] Analizar/portar `OreGenericEgg` antes de registrar los 32 creature `*_ore` como bloques normales.
-- [ ] Registrar EntityTypes por grupos.
-- [ ] Migrar AI legacy `MyEntityAI*` a Goals modernos preservando comportamiento.
-- [ ] Portar modelos/renderers y sonidos por criatura.
-- [ ] Portar huevos, jaulas y drops vinculados.
-- [ ] Bosses/entidades complejas: decidir caso por caso dónde GeckoLib aporta valor real.
+- [x] `OreGenericEgg`: los 32 bloques `*_ore` usan el bloque de criatura con stats y XP originales.
+- [~] EntityTypes/atributos/spawn placements: registrados para las criaturas implementadas; Spyro, Nastysaurus, Kyuubi, Mothra, Doomworm y Brutalfly siguen pendientes.
+- [~] AI: algunos Goals de movimiento y ataques migrados; falta portar la conducta completa de varias criaturas y las familias restantes.
+- [~] Modelos/renderers/sonidos parciales para las entidades implementadas; faltan las criaturas aún no portadas y verificación visual final.
+- [~] Huevos y jaulas registrados para parte de las criaturas implementadas; faltan las entradas de criaturas pendientes y drops asociados.
+- [~] Alien, Gamma Metroid y otros bosses tienen clases/renderers base; faltan varias criaturas complejas y paridad de animación.
 - [x] `util/premium` auditado: checker inactivo/always-true; excluido por ser código legacy sin gameplay.
 
 ## Fase 5 — worldgen/dimensión
 - [~] WorldGenOres: registered vein feature now covers the original 28 creature ores plus Uranium, Titanium and Amethyst in Overworld and Mining Dimension; exact 1.12.2 heights, per-chunk attempts and 5–9 vein sizes are preserved.
-- [~] Mining Dimension base: datapack dimension/type + fixed mining biome, hills-style vanilla noise and ore/mob spawn tables. Original day rollover is ported; Red Ant provides the original empty-hand two-way teleport. Exact custom chunk-noise parity, OreGenericEgg ore placement, missing Spyro/Nastysaurus loot entries and AntHillGenerator remain in progress.
-- [~] GenericDungeon connected to new Mining Dimension chunks at the original 1/16 frequency and Y 5–44; remaining structures/AntHillGenerator still pending.
+- [~] Mining Dimension base: datapack dimension/type + fixed mining biome, hills-style vanilla noise and ore/mob spawn tables. Original day rollover is ported; Red Ant provides the original empty-hand two-way teleport. Exact custom chunk-noise parity, the two missing Spyro/Nastysaurus dungeon-loot entries and AntHillGenerator remain in progress.
+- [~] GenericDungeon is connected to new Mining Dimension chunks at the original 1/16 frequency and Y 5–44; its chest loot table currently includes all registered original items.
 
 ## Fase 6 — mecánicas especiales
 - [ ] Colonias Ant/RedAnt/Termite.
@@ -110,5 +110,5 @@ local. `[ ]` = fase todavía no portada.
 - **PARTIAL**: `GenericDungeon` logic ported: 12×6×12 clear volume, obsidian floor, random stone/cobblestone walls+roof, center spawner and south-facing chest. The spawner randomly selects the registered `copyl:alien`, `copyl:gammametroid`, or `copyl:cryolophosaurus` types.
 - **PORTED**: `StructureGenerator` runs only for new Mining Dimension chunks (1/16 chance, Y 5–44). No Overworld fallback was added.
 - **PORTED**: `WorldGenStructure` modern template helper. The provided JAR contains no `.nbt` structure templates, so no templates were invented.
-- **IMPLEMENTED (2026-09-24)**: Mining Dimension datapack registration, dimension type, fixed mining biome, vanilla hills-style terrain/features and original Red Ant teleport/day rollover. The 1.12.2 source has no separate portal block. Custom noise parity, mob-ore placement and GenericDungeon is connected to new Mining Dimension chunks; custom noise parity, mob-ore placement, two not-yet-registered egg entries and AntHillGenerator remain pending.
-- **BUILD NOT VERIFIED IN THIS ENVIRONMENT**: Gradle wrapper bootstrap attempted but this environment cannot resolve `raw.githubusercontent.com`, so `compileJava/build` could not start. This is not reported as BUILD SUCCESSFUL.
+- **IMPLEMENTED (2026-09-24)**: Mining Dimension datapack registration, dimension type, fixed mining biome, vanilla hills-style terrain/features and original Red Ant teleport/day rollover. The 1.12.2 source has no separate portal block. GenericDungeon is connected to new Mining Dimension chunks. The chest table has the original 3–5 rolls and all currently registered original rewards; Spyro/Nastysaurus eggs and AntHillGenerator remain pending.
+- **BUILD VERIFIED**: GitHub Actions runs 373, 374 and 375 passed; run 375 built commit `1644b6ccfc56d60c7eed77f49af165ba0798b5f1` with Java 17 and Gradle 8.1.1.
