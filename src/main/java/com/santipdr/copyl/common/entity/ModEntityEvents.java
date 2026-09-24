@@ -34,6 +34,7 @@ public final class ModEntityEvents {
         event.put(ModEntities.RED_ANT.get(), RedAntEntity.createAttributes().build());
         event.put(ModEntities.TERMITE.get(), TermiteEntity.createAttributes().build());
         event.put(ModEntities.SMALL_WORM.get(), WormSmallEntity.createAttributes().build());
+        event.put(ModEntities.MEDIUM_WORM.get(), WormMediumEntity.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -56,6 +57,7 @@ public final class ModEntityEvents {
             SpawnPlacements.register(ModEntities.RED_ANT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, RedAntEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.TERMITE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TermiteEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.SMALL_WORM.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WormSmallEntity::checkSpawnRules);
+            SpawnPlacements.register(ModEntities.MEDIUM_WORM.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WormMediumEntity::checkSpawnRules);
         });
     }
     private ModEntityEvents() {}
