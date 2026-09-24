@@ -50,14 +50,25 @@ public final class WormSmallEntity extends Monster {
         }
 
         Player nearby = level().getNearestPlayer(this, 8.0D);
-        if (upCount > 0) {
+
+        // OreSpawnMain.PlayNicely defaults to 0 in the reference JAR. In that
+        // default mode an unattended worm immediately goes back underground
+        // instead of running the normal player-facing up/down cycle.
+        if (nearby == null) {
+            upCount = random.nextInt(50);
+            downCount = 0;
+            if (!isBurrowBlockAllowed(blockAtYOffset(2.0D))) {
+                discard();
+                return;
+            }
+            setDeltaMovement(getDeltaMovement().x, getDeltaMovement().y + 0.10000000149011612D, getDeltaMovement().z);
+            setPos(getX(), getY() + 0.05000000074505806D, getZ());
+        } else if (upCount > 0) {
             --upCount;
             if (upCount == 0) {
                 downCount = 100 + random.nextInt(150);
             }
-            if (nearby != null) {
-                pointAt(nearby);
-            }
+            pointAt(nearby);
             if (!isBurrowBlockAllowed(blockAtYOffset(0.25D))) {
                 discard();
                 return;
