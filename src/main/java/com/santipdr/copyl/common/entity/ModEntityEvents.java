@@ -37,6 +37,7 @@ public final class ModEntityEvents {
         event.put(ModEntities.MEDIUM_WORM.get(), WormMediumEntity.createAttributes().build());
         event.put(ModEntities.LARGE_WORM.get(), WormLargeEntity.createAttributes().build());
         event.put(ModEntities.TREX.get(), TRexEntity.createAttributes().build());
+        event.put(ModEntities.VELOCITY_RAPTOR.get(), VelocityRaptorEntity.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -62,6 +63,7 @@ public final class ModEntityEvents {
             SpawnPlacements.register(ModEntities.MEDIUM_WORM.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WormMediumEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.LARGE_WORM.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WormLargeEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.TREX.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TRexEntity::checkSpawnRules);
+            SpawnPlacements.register(ModEntities.VELOCITY_RAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, VelocityRaptorEntity::checkSpawnRules);
         });
     }
     private ModEntityEvents() {}
