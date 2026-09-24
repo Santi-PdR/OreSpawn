@@ -200,6 +200,6 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 
 - **PORTADO**: estadísticas, IA y condiciones especiales contrastadas con la clase original; registro de EntityType, atributos y spawn placement.
 - **CONTENIDO**: huevo, jaula y sus modelos; render layer, renderer y textura del JAR original. La geometría básica se deja marcada para la auditoría visual final solicitada.
-- **BUILD**: GitHub Actions run 419 pasó para `7c23e9e79f6fbe82dd7013488241fa432f329967`. Runs 417/419 compilan; los runs intermedios 418 y 420 fallaron porque el modelo no implementaba `renderToBuffer`, corregido antes de validar el head actual.
+- **BUILD**: GitHub Actions run 420 pasó para `7c23e9e79f6fbe82dd7013488241fa432f329967`. Run 417 también compila el bloque de entidad/IA previo; los runs intermedios 418 y 419 fallaron porque el modelo no implementaba `renderToBuffer`, corregido antes de validar el head actual.
 - **PENDIENTE**: Spyro, Kyuubi, Mothra, Doom Worm y Brutalfly; prueba runtime y revisión visual final.
 - **AVANCE GLOBAL ESTIMADO**: 68 %. El bloque de Nastysaurus cierra una de las seis entidades grandes pendientes; la paridad runtime y los otros cinco port siguen abiertos.
