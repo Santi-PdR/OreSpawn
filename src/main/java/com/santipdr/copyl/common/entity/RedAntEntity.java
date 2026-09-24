@@ -1,7 +1,10 @@
 package com.santipdr.copyl.common.entity;
 
+import com.santipdr.copyl.common.world.DimensionTeleport;
+import com.santipdr.copyl.common.world.ModDimensionKeys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
@@ -18,7 +21,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
-/** Port de danger.orespawn.entity.RedAnt. La interacción de dimensión queda bloqueada hasta portar Mining Dimension. */
+/** Port directo de danger.orespawn.entity.RedAnt del JAR 1.12.2 proporcionado. */
 public final class RedAntEntity extends AntEntity {
     private static final double MOVE_SPEED = 0.20D;
     private int attackDelay = 20;
@@ -74,8 +77,16 @@ public final class RedAntEntity extends AntEntity {
 
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
-        // En 1.12.2 una mano vacía alterna entre Overworld y Mining Dimension.
-        // Mining Dimension está pausada por decisión del port, así que no se crea un destino falso.
+        if (player.getItemInHand(hand).isEmpty() && !level().isClientSide && player instanceof ServerPlayer serverPlayer) {
+            // Original 1.12.2 behavior:
+            // Overworld -> Mining Dimension; any other dimension -> Overworld.
+            // The Mining Dimension itself remains paused. When it is absent,
+            // DimensionTeleport simply leaves the player where they are.
+            var target = level().dimension().equals(Level.OVERWORLD)
+                    ? ModDimensionKeys.MINING
+                    : Level.OVERWORLD;
+            DimensionTeleport.teleportToDimension(serverPlayer, target, player.getX(), player.getZ());
+        }
         return super.mobInteract(player, hand);
     }
 
