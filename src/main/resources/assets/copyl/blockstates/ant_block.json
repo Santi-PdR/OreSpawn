@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "copyl:block/ant_block" }
+  }
+}

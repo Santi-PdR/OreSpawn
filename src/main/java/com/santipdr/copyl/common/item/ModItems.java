@@ -98,6 +98,7 @@ public final class ModItems {
 
     public static final RegistryObject<Item> MANTIS_CLAW = ModRegistries.ITEMS.register("mantis_claw", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TREX_TOOTH = ModRegistries.ITEMS.register("trextooth", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ANT_BLOCK = blockItem("ant_block", ModBlocks.ANT_BLOCK);
     public static final RegistryObject<Item> EXTREME_TORCH = ModRegistries.ITEMS.register("extreme_torch", () -> new StandingAndWallBlockItem(ModBlocks.EXTREME_TORCH.get(), ModBlocks.EXTREME_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
 
     private static RegistryObject<Item> blockItem(String id, RegistryObject<? extends net.minecraft.world.level.block.Block> block) {

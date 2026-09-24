@@ -3,6 +3,7 @@ package com.santipdr.copyl.common.block;
 import com.santipdr.copyl.common.registry.ModRegistries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.RegistryObject;
@@ -87,6 +88,8 @@ public final class ModBlocks {
     public static final RegistryObject<Block> TREX_ORE = ModRegistries.BLOCKS.register("trex_ore", () -> new CreatureOreBlock(creatureOreProperties()));
     public static final RegistryObject<Block> VELOCITYRAPTOR_ORE = ModRegistries.BLOCKS.register("velocityraptor_ore", () -> new CreatureOreBlock(creatureOreProperties()));
     public static final RegistryObject<Block> ZOMBIE_ORE = ModRegistries.BLOCKS.register("zombie_ore", () -> new CreatureOreBlock(creatureOreProperties()));
+
+    public static final RegistryObject<Block> ANT_BLOCK = ModRegistries.BLOCKS.register("ant_block", AntHillBlock::new);
 
     public static final RegistryObject<Block> EXTREME_TORCH = ModRegistries.BLOCKS.register(
             "extreme_torch",
