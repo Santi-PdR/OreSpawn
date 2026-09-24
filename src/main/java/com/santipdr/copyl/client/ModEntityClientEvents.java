@@ -31,6 +31,7 @@ public final class ModEntityClientEvents {
         event.registerLayerDefinition(MosquitoModel.LAYER_LOCATION, MosquitoModel::createBodyLayer);
         event.registerLayerDefinition(MothModel.LAYER_LOCATION, MothModel::createBodyLayer);
         event.registerLayerDefinition(PointysaurusModel.LAYER_LOCATION, PointysaurusModel::createBodyLayer);
+        event.registerLayerDefinition(StinkBugModel.LAYER_LOCATION, StinkBugModel::createBodyLayer);
     }
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
@@ -52,5 +53,6 @@ public final class ModEntityClientEvents {
         event.registerEntityRenderer(ModEntities.MOTH.get(), MothRenderer::new);
         event.registerEntityRenderer(ModEntities.POINTYSAURUS.get(), PointysaurusRenderer::new);
         event.registerEntityRenderer(ModEntities.RED_COW.get(), RedCowRenderer::new);
+        event.registerEntityRenderer(ModEntities.STINK_BUG.get(), StinkBugRenderer::new);
     }
 }
