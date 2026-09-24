@@ -1,4 +1,6 @@
 package com.santipdr.copyl.client.model;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.santipdr.copyl.CopyL;
 import com.santipdr.copyl.common.entity.NastysaurusEntity;
 import net.minecraft.client.model.EntityModel;
@@ -8,8 +10,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 public final class NastysaurusModel extends EntityModel<NastysaurusEntity>{
  public static final ModelLayerLocation LAYER_LOCATION=new ModelLayerLocation(new ResourceLocation(CopyL.MOD_ID,"nastysaurus"),"main");
- private final ModelPart head,tail;private final ModelPart[] legs=new ModelPart[4];
- public NastysaurusModel(ModelPart root){head=root.getChild("head");tail=root.getChild("tail");legs[0]=root.getChild("front_left_leg");legs[1]=root.getChild("front_right_leg");legs[2]=root.getChild("rear_left_leg");legs[3]=root.getChild("rear_right_leg");}
+ private final ModelPart root,head,tail;private final ModelPart[] legs=new ModelPart[4];
+ public NastysaurusModel(ModelPart root){this.root=root;head=root.getChild("head");tail=root.getChild("tail");legs[0]=root.getChild("front_left_leg");legs[1]=root.getChild("front_right_leg");legs[2]=root.getChild("rear_left_leg");legs[3]=root.getChild("rear_right_leg");}
  public static LayerDefinition createBodyLayer(){MeshDefinition mesh=new MeshDefinition();PartDefinition r=mesh.getRoot();
  r.addOrReplaceChild("body",CubeListBuilder.create().texOffs(0,0).addBox(-16,-48,-20,32,30,48),PartPose.ZERO);
  r.addOrReplaceChild("head",CubeListBuilder.create().texOffs(0,80).addBox(-13,-66,-37,26,24,24),PartPose.ZERO);
