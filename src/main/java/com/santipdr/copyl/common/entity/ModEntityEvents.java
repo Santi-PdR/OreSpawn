@@ -28,6 +28,7 @@ public final class ModEntityEvents {
         event.put(ModEntities.FIREFLY.get(), FireflyEntity.createAttributes().build());
         event.put(ModEntities.MOSQUITO.get(), MosquitoEntity.createAttributes().build());
         event.put(ModEntities.MOTH.get(), MothEntity.createAttributes().build());
+        event.put(ModEntities.RED_COW.get(), RedCowEntity.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -44,6 +45,7 @@ public final class ModEntityEvents {
             SpawnPlacements.register(ModEntities.CAVE_FISHER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CaveFisherEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.POINTYSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PointysaurusEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.MOTH.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MothEntity::checkSpawnRules);
+            SpawnPlacements.register(ModEntities.RED_COW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, RedCowEntity::checkSpawnRules);
         });
     }
     private ModEntityEvents() {}
