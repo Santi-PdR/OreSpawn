@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "copyl:beaver_ore"
+    }
+  ],
+  "result": {
+    "item": "copyl:beaver_egg",
+    "count": 1
+  }
+}

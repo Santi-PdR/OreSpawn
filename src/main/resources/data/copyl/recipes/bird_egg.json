@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "copyl:bird_ore"
+    }
+  ],
+  "result": {
+    "item": "copyl:bird_egg",
+    "count": 1
+  }
+}
