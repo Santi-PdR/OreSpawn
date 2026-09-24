@@ -110,8 +110,6 @@ public final class ModItems {
     public static final RegistryObject<Item> CORN = ModRegistries.ITEMS.register("corn", () -> new net.minecraft.world.item.ItemNameBlockItem(ModBlocks.CORN_PLANT.get(), new Item.Properties().food(new net.minecraft.world.food.FoodProperties.Builder().nutrition(1).saturationMod(1.0F).build())));
     public static final RegistryObject<Item> CORN_PLANT = blockItem("corn_plant", ModBlocks.CORN_PLANT);
 
-    public static final RegistryObject<Item> CORN = ModRegistries.ITEMS.register("corn", () -> new net.minecraft.world.item.ItemNameBlockItem(ModBlocks.CORN_PLANT.get(), new Item.Properties().food(new net.minecraft.world.food.FoodProperties.Builder().nutrition(1).saturationMod(1.0F).build())));
-    public static final RegistryObject<Item> CORN_PLANT = blockItem("corn_plant", ModBlocks.CORN_PLANT);
 
     public static final RegistryObject<Item> RED_ANT_TROLL_BLOCK = blockItem("red_ant_troll_block", ModBlocks.RED_ANT_TROLL_BLOCK);
     public static final RegistryObject<Item> ANT_BLOCK = blockItem("ant_block", ModBlocks.ANT_BLOCK);
@@ -123,4 +121,3 @@ public final class ModItems {
 
     public static void bootstrap() {}
     private ModItems() {}
-}

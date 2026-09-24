@@ -3,7 +3,6 @@ package com.santipdr.copyl;
 import com.santipdr.copyl.client.CopyLClientSetup;
 import com.santipdr.copyl.common.block.ModBlocks;
 import com.santipdr.copyl.common.block.entity.ModBlockEntities;
-import com.santipdr.copyl.common.block.ModBlockEntities;
 import com.santipdr.copyl.common.entity.ModEntities;
 import com.santipdr.copyl.common.entity.ModSounds;
 import com.santipdr.copyl.common.item.ModItems;
@@ -30,7 +29,6 @@ public final class CopyL {
         // de que los DeferredRegister se conecten al bus.
         ModBlocks.bootstrap();
         ModBlockEntities.bootstrap();
-        ModBlockEntities.bootstrap();
         ModItems.bootstrap();
         ModMaterialItems.bootstrap();
         ModTools.bootstrap();
@@ -52,5 +50,3 @@ public final class CopyL {
         if (FMLEnvironment.dist == Dist.CLIENT) {
             CopyLClientSetup.registerConfigScreen();
         }
-    }
-}
