@@ -78,7 +78,7 @@ local. `[ ]` = fase todavía no portada.
 ## Fase 4 — entidades
 
 - [x] `OreGenericEgg`: los 32 bloques `*_ore` usan el bloque de criatura con stats y XP originales.
-- [~] EntityTypes/atributos/spawn placements: registrados para las criaturas implementadas; Spyro, Kyuubi, Mothra, Doomworm y Brutalfly siguen pendientes; Nastysaurus ya está portado con entidad, IA, atributos, spawn, huevo, jaula y renderer.
+- [~] EntityTypes/atributos/spawn placements: registrados para las criaturas implementadas; Spyro, Mothra, Doomworm y Brutalfly siguen pendientes; Nastysaurus y Kyuubi ya están portados con entidades y contenido asociado.
 - [~] AI: algunos Goals de movimiento y ataques migrados; falta portar la conducta completa de varias criaturas y las familias restantes.
 - [~] Modelos/renderers/sonidos parciales para las entidades implementadas; faltan las criaturas aún no portadas y verificación visual final.
 - [~] Huevos y jaulas registrados para parte de las criaturas implementadas; faltan las entradas de criaturas pendientes y drops asociados.
@@ -203,3 +203,13 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **BUILD**: GitHub Actions run 420 pasó para `7c23e9e79f6fbe82dd7013488241fa432f329967`. Run 417 también compila el bloque de entidad/IA previo; los runs intermedios 418 y 419 fallaron porque el modelo no implementaba `renderToBuffer`, corregido antes de validar el head actual.
 - **PENDIENTE**: Spyro, Kyuubi, Mothra, Doom Worm y Brutalfly; prueba runtime y revisión visual final.
 - **AVANCE GLOBAL ESTIMADO**: 68 %. El bloque de Nastysaurus cierra una de las seis entidades grandes pendientes; la paridad runtime y los otros cinco port siguen abiertos.
+
+
+### Kyuubi — integración funcional 2026-09-24
+
+- **PORTADO**: atributos, inmunidad al fuego, AI de objetivo y bolas de fuego pequeñas; daño propio periódico al estar en agua; partículas y drops explícitos cotejados con bytecode.
+- **SPAWN**: el registro original `EntitySpawns.addSpawns` asigna peso 15/grupo 1 solo a biomas cuyo ID contiene `hell`. El port usa el tag `minecraft:is_nether` como equivalente 1.20.1; no se agregó spawn al Overworld.
+- **CONTENIDO**: EntityType, placement, renderer/modelo inicial, huevo, jaula, localización EN/ES y texturas originales. El JAR no trae archivo de audio Kyuubi pese a referenciar un evento; no se inventó un sonido.
+- **BUILD**: GitHub Actions run 425 pasó para `bc96ae330cb67f0c6d457532b9be9b8cad3f0664`; el run del head posterior validará también el biome modifier y el estado.
+- **PENDIENTE**: Spyro, Mothra, Doom Worm, Brutalfly; prueba runtime y revisión visual final.
+- **AVANCE GLOBAL ESTIMADO**: 69 %.
