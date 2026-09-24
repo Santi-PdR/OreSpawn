@@ -100,6 +100,7 @@
   "item.copyl.firefly_egg": "Huevo de luciérnaga",
   "item.copyl.mosquito_egg": "Huevo de mosquito",
   "item.copyl.moth_egg": "Huevo de polilla",
+  "item.copyl.redcow_egg": "Huevo de Apple Cow",
 
   "item.copyl.empty_cage": "Jaula vacía",
   "item.copyl.alien_cage": "Alien enjaulado",
@@ -112,6 +113,7 @@
   "item.copyl.gammametroid_cage": "Gamma Metroid enjaulado",
   "item.copyl.dragonfly_cage": "Libélula enjaulada",
   "item.copyl.firefly_cage": "Luciérnaga enjaulada",
+  "item.copyl.redcow_cage": "Apple Cow enjaulada",
 
   "entity.copyl.alien": "Alien",
   "entity.copyl.alosaurus": "Alosaurus",
@@ -129,6 +131,7 @@
   "entity.copyl.firefly": "Luciérnaga",
   "entity.copyl.mosquito": "Mosquito",
   "entity.copyl.moth": "Polilla",
+  "entity.copyl.redcow": "Apple Cow",
   "entity.copyl.thrown_critter_cage": "Jaula lanzada",
 
   "block.copyl.alien_ore": "Ancient Dried Alien Spawn Egg",
