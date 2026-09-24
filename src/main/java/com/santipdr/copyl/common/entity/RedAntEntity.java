@@ -73,7 +73,7 @@ public final class RedAntEntity extends AntEntity {
     }
 
     @Override
-    protected InteractionResult mobInteract(Player player, InteractionHand hand) {
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
         // En 1.12.2 una mano vacía alterna entre Overworld y Mining Dimension.
         // Mining Dimension está pausada por decisión del port, así que no se crea un destino falso.
         return super.mobInteract(player, hand);
