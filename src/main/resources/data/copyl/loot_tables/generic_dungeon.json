@@ -1,0 +1,103 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 3,
+        "max": 5
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "copyl:emerald_pickaxe",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:emerald_shovel",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:emerald_sword",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:emerald_hoe",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:emerald_axe",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:emerald_helmet",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:emerald_chestplate",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:emerald_leggings",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:emerald_boots",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:cryolophosaurus_egg",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:velocityraptor_egg",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:dragonfly_egg",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:bird_egg",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:baryonyx_egg",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:gammametroid_egg",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:alien_egg",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:pointysaurus_egg",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "copyl:empty_cage",
+          "weight": 15
+        }
+      ]
+    }
+  ]
+}
