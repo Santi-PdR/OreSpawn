@@ -14,6 +14,7 @@
   "entity.dragonfly.death": {"category":"entity","subtitle":"entity.dragonfly.death","sounds":[{"name":"copyl:entity/dragonfly/dragonfly_death","stream":true}]},
   "entity.mosquito.living": {"category":"entity","subtitle":"entity.mosquito.living","sounds":[{"name":"copyl:entity/mosquito/mosquito","stream":true}]},
   "entity.misc.little_splat": {"category":"misc","subtitle":"entity.misc.little_splat","sounds":[{"name":"copyl:entity/misc/little_splat","stream":true}]},
+  "entity.misc.big_splat": {"category":"misc","subtitle":"entity.misc.big_splat","sounds":[{"name":"copyl:entity/misc/big_splat","stream":true}]},
   "entity.bird.bird1": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds1","stream":true}]},
   "entity.bird.bird2": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds2","stream":true}]},
   "entity.bird.bird3": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds3","stream":true}]},
