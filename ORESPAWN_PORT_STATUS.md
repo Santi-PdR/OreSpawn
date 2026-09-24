@@ -174,3 +174,8 @@ El árbol actual ya contiene `AntHillFeature`, `DimensionTeleport`, los bloques/
 - **COMANDO**: portado el comando original `dimensiontp` con sus alias `orespawn`, `tpdim` y `dimtp`. Mantiene el permiso de operador y los IDs de dimensión originales: -1 Nether, 0 Overworld, 1 End y 5 Mining Dimension. El aterrizaje conserva el escaneo descendente original desde Y=255.
 - **BUILD**: GitHub Actions run 407 pasó para los recursos; run 408 pasó para el comando y el conjunto acumulado, commit `d0aeb8beb369fe65cfb664313d99f922e3faba42`.
 - **AVANCE GLOBAL ESTIMADO**: 67 %. Las seis entidades pendientes y la verificación de paridad/runtime siguen abiertas; las capturas de defectos visuales se dejan para la pasada final.
+
+
+### Auditoría estática de texturas para la pasada final
+
+Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitHub, faltan PNG cargables para `alosaurus`, `baryonyx`, `beaver`, `camarasaurus`, `cavefisher`, `dragonfly`, `pointysaurus_original`, `trextexture` y `wormlargetexture`. En varios casos la rama contiene fragmentos o archivos con extensión `.b64`, que Minecraft no carga como texturas PNG. Se conserva este hallazgo para la pasada visual final solicitada; no se cambian estos recursos durante el port funcional.
