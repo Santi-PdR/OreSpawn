@@ -149,3 +149,6 @@ El árbol actual ya contiene `AntHillFeature`, `DimensionTeleport`, los bloques/
 - **VALIDACIÓN**: los diez JSON parsean y las referencias de bloques e ítems existen en los registros actuales.
 - **BUILD**: GitHub Actions run 399 pasó para `35c53037f5eefd012508635fa8cdcdee1a0b19f3`.
 - **AVANCE GLOBAL ESTIMADO**: 65 %; sube un punto por cerrar recetas funcionales pendientes.
+
+- **COMPLEMENTO**: auditoría de registros encontró la receta pendiente de Cassowary; se añadió también. Ahora las 20 parejas registradas huevo/bloque `*_ore` tienen receta específica.
+- **BUILD**: GitHub Actions run 401 pasó para `a7d9322c0905bcdd17180a04c393263347eeb23f`.
