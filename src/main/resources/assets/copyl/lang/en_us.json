@@ -102,6 +102,7 @@
   "item.copyl.mosquito_egg": "Mosquito Egg",
   "item.copyl.moth_egg": "Moth Egg",
   "item.copyl.mantis_egg": "Mantis Egg",
+  "item.copyl.smallworm_egg": "Small Worm Egg",
   "item.copyl.redcow_egg": "Apple Cow Egg",
   "item.copyl.stinkbug_egg": "StinkBug Egg",
   "item.copyl.red_ant_egg": "Spawn Red Ant",
@@ -119,6 +120,7 @@
   "item.copyl.dragonfly_cage": "Caged Dragonfly",
   "item.copyl.firefly_cage": "Caged Firefly",
   "item.copyl.mantis_cage": "Caged Mantis",
+  "item.copyl.smallworm_cage": "Caged Small Worm",
   "item.copyl.redcow_cage": "Caged Apple Cow",
   "item.copyl.stinkbug_cage": "Caged StinkBug",
 
@@ -139,6 +141,7 @@
   "entity.copyl.mosquito": "Mosquito",
   "entity.copyl.moth": "Moth",
   "entity.copyl.mantis": "Mantis",
+  "entity.copyl.smallworm": "Small Worm",
   "entity.copyl.redcow": "Apple Cow",
   "entity.copyl.stinkbug": "StinkBug",
   "entity.copyl.red_ant": "Red Ant",
