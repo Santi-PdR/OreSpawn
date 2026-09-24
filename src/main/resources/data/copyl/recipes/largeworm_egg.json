@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "minecraft:egg"},
+    {"item": "copyl:largeworm_ore"}
+  ],
+  "result": {
+    "item": "copyl:largeworm_egg",
+    "count": 1
+  }
+}
