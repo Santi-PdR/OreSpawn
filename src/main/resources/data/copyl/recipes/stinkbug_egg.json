@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {"item": "minecraft:egg"},
+    {"item": "copyl:stinkbug_ore"}
+  ],
+  "result": {"item": "copyl:stinkbug_egg", "count": 1}
+}
