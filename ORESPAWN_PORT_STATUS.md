@@ -135,3 +135,10 @@ local. `[ ]` = fase todavía no portada.
 
 El árbol actual ya contiene `AntHillFeature`, `DimensionTeleport`, los bloques/entidades Ant, RedAnt y Termite, las cuatro plantas de insectos y `CornPlantBlockEntity`. Se corrigieron arriba casillas antiguas que los describían como ausentes. Esto confirma que el código existe; no equivale a una prueba runtime ni a una auditoría de paridad contra el JAR.
 
+
+### Checkpoint de subtítulos — 2026-09-24
+
+- **RECURSOS**: se añadieron traducciones para los 28 subtítulos definidos en `sounds.json` (inglés y las siete variantes españolas). Antes, las claves no existían en los archivos de idioma.
+- **BUILD**: GitHub Actions run 397 compiló correctamente el commit `d3cab775758bddfb56e5b44bddbb09c9c935e424`.
+- **VISUAL QA POST-PORT**: las cuatro capturas nuevas detallan iconos magenta/faltantes para huevos y jaulas, un objeto/parte de mob con geometría plana o mal orientada en primera persona y un mob alado de modelo deformado con piezas estiradas/separadas. Se mantienen para la pasada visual una vez cerrada la paridad funcional.
+- **AVANCE GLOBAL ESTIMADO**: 64 %; este bloque solo cerró recursos de localización y no cambia el cálculo funcional.
