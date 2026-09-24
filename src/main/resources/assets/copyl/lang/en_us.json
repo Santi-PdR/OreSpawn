@@ -236,5 +236,8 @@
   "item.copyl.worm_food": "Worm Food",
   "item.copyl.nastysaurus_egg": "Nastysaurus Egg",
   "item.copyl.nastysaurus_cage": "Nastysaurus Cage",
-  "entity.copyl.nastysaurus": "Nastysaurus"
+  "entity.copyl.nastysaurus": "Nastysaurus",
+  "item.copyl.kyuubi_egg": "Kyuubi Egg",
+  "item.copyl.kyuubi_cage": "Kyuubi Cage",
+  "entity.copyl.kyuubi": "Kyuubi"
 }

@@ -34,6 +34,7 @@ public final class ModEntityClientEvents {
         event.registerLayerDefinition(MantisModel.LAYER_LOCATION, MantisModel::createBodyLayer);
         event.registerLayerDefinition(PointysaurusModel.LAYER_LOCATION, PointysaurusModel::createBodyLayer);
         event.registerLayerDefinition(NastysaurusModel.LAYER_LOCATION, NastysaurusModel::createBodyLayer);
+        event.registerLayerDefinition(KyuubiModel.LAYER_LOCATION, KyuubiModel::createBodyLayer);
         event.registerLayerDefinition(StinkBugModel.LAYER_LOCATION, StinkBugModel::createBodyLayer);
         event.registerLayerDefinition(WormSmallModel.LAYER_LOCATION, WormSmallModel::createBodyLayer);
         event.registerLayerDefinition(WormMediumModel.LAYER_LOCATION, WormMediumModel::createBodyLayer);
@@ -64,6 +65,7 @@ public final class ModEntityClientEvents {
         event.registerEntityRenderer(ModEntities.MANTIS.get(), MantisRenderer::new);
         event.registerEntityRenderer(ModEntities.POINTYSAURUS.get(), PointysaurusRenderer::new);
         event.registerEntityRenderer(ModEntities.NASTYSAURUS.get(), NastysaurusRenderer::new);
+        event.registerEntityRenderer(ModEntities.KYUUBI.get(), KyuubiRenderer::new);
         event.registerEntityRenderer(ModEntities.RED_COW.get(), RedCowRenderer::new);
         event.registerEntityRenderer(ModEntities.STINK_BUG.get(), StinkBugRenderer::new);
         event.registerEntityRenderer(ModEntities.SMALL_WORM.get(), WormSmallRenderer::new);
