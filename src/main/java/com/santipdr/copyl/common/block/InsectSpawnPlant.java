@@ -5,7 +5,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.item.ItemLike;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -43,7 +43,7 @@ public final class InsectSpawnPlant extends CropBlock {
         AABB area = new AABB(pos.getX() - 50.0D, 0.0D, pos.getZ() - 50.0D,
                 pos.getX() + 50.0D, 200.0D, pos.getZ() + 50.0D);
         EntityType<? extends Mob> type = insect.get();
-        if (level.getEntitiesOfClass(Mob.class, area, type::is).size() > 15) {
+        if (level.getEntitiesOfClass(Mob.class, area, (Mob mob) -> mob.getType() == type).size() > 15) {
             return;
         }
         int rate = matureSpawnRate - (state.getValue(AGE) & 7);
