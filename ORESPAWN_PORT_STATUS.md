@@ -187,3 +187,10 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **AUDIO**: restaurados desde el JAR original los 47 OGG ausentes. Los 50 eventos de `sounds.json` ahora referencian 50 archivos existentes.
 - **BUILD**: run 412 detectó duplicados entre audios binarios nuevos y fragmentos Base64 de Alosaurus; se retiraron los ocho fragmentos obsoletos. GitHub Actions run 413 pasó para `12224379bb0f687e76c5f9f25746a3e1f2f09378`.
 - **AVANCE GLOBAL ESTIMADO**: se mantiene en 67 %; la restauración de sonidos y corrección de receta cierran errores concretos, pero no reducen el alcance pendiente de entidades, paridad de mecánicas y pruebas runtime.
+
+
+### Seguimiento del crash de carga de mundo — 2026-09-24
+
+- El log de las 16:02 del perfil `test-1` muestra que la creación de mundo falló al parsear `copyl:dimension_type/mining.json`; al fallar esa carga también quedaron sin resolver las placed features vanilla de agua.
+- En el log posterior del mismo perfil, Minecraft inició el servidor integrado a las 16:17, cargó el mundo `Mundo nuevo` y guardó repetidamente el nivel `copyl:mining` hasta las 16:23. El crash dejó de reproducirse con un artefacto instalado después.
+- **LÍMITE DE LA PRUEBA**: el log no identifica el SHA del artefacto instalado; esto verifica la prueba local histórica, no certifica por sí solo el head actual de GitHub. Se requiere volver a validar runtime con el build actual.
