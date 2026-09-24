@@ -28,6 +28,7 @@ public final class ModSounds {
     public static final RegistryObject<SoundEvent> DRAGONFLY_HURT = sound("entity.dragonfly.hurt");
     public static final RegistryObject<SoundEvent> DRAGONFLY_DEATH = sound("entity.dragonfly.death");
     public static final RegistryObject<SoundEvent> MOSQUITO_LIVING = sound("entity.mosquito.living");
+    public static final RegistryObject<SoundEvent> MOTHRA_WINGS = sound("entity.mothra.wings");
     public static final RegistryObject<SoundEvent> LITTLE_SPLAT = sound("entity.misc.little_splat");
     public static final RegistryObject<SoundEvent> BIG_SPLAT = sound("entity.misc.big_splat");
     public static final List<RegistryObject<SoundEvent>> BIRD_SOUNDS = IntStream.rangeClosed(1, 23).mapToObj(i -> sound("entity.bird.bird" + i)).toList();

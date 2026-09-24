@@ -239,5 +239,9 @@
   "entity.copyl.nastysaurus": "Nastysaurus",
   "item.copyl.kyuubi_egg": "Kyuubi Egg",
   "item.copyl.kyuubi_cage": "Kyuubi Cage",
-  "entity.copyl.kyuubi": "Kyuubi"
+  "entity.copyl.kyuubi": "Kyuubi",
+  "entity.copyl.mothra": "Mothra",
+  "item.copyl.mothra_egg": "Mothra Egg",
+  "item.copyl.mothra_cage": "Caged Mothra",
+  "entity.mothra.wings": "Mothra wings"
 }

@@ -64,6 +64,7 @@ public final class ModItems {
     public static final RegistryObject<Item> POINTYSAURUS_EGG = ModRegistries.ITEMS.register("pointysaurus_egg", () -> new CreatureEggItem(ModEntities.POINTYSAURUS));
     public static final RegistryObject<Item> NASTYSAURUS_EGG = ModRegistries.ITEMS.register("nastysaurus_egg", () -> new CreatureEggItem(ModEntities.NASTYSAURUS));
     public static final RegistryObject<Item> KYUUBI_EGG = ModRegistries.ITEMS.register("kyuubi_egg", () -> new CreatureEggItem(ModEntities.KYUUBI));
+    public static final RegistryObject<Item> MOTHRA_EGG = ModRegistries.ITEMS.register("mothra_egg", () -> new CreatureEggItem(ModEntities.MOTHRA));
     public static final RegistryObject<Item> FIREFLY_EGG = ModRegistries.ITEMS.register("firefly_egg", () -> new CreatureEggItem(ModEntities.FIREFLY));
     public static final RegistryObject<Item> MOSQUITO_EGG = ModRegistries.ITEMS.register("mosquito_egg", () -> new CreatureEggItem(ModEntities.MOSQUITO));
     public static final RegistryObject<Item> MOTH_EGG = ModRegistries.ITEMS.register("moth_egg", () -> new CreatureEggItem(ModEntities.MOTH));
@@ -105,6 +106,7 @@ public final class ModItems {
     public static final RegistryObject<Item> VELOCITYRAPTOR_CAGE = ModRegistries.ITEMS.register("velocityraptor_cage", () -> new CritterCageItem(ModEntities.VELOCITY_RAPTOR, 0.4F));
     public static final RegistryObject<Item> NASTYSAURUS_CAGE = ModRegistries.ITEMS.register("nastysaurus_cage", () -> new CritterCageItem(ModEntities.NASTYSAURUS, 0.4F));
     public static final RegistryObject<Item> KYUUBI_CAGE = ModRegistries.ITEMS.register("kyuubi_cage", () -> new CritterCageItem(ModEntities.KYUUBI, 0.4F));
+    public static final RegistryObject<Item> MOTHRA_CAGE = ModRegistries.ITEMS.register("mothra_cage", () -> new CritterCageItem(ModEntities.MOTHRA, 0.4F));
 
     public static final RegistryObject<Item> MANTIS_CLAW = ModRegistries.ITEMS.register("mantis_claw", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TREX_TOOTH = ModRegistries.ITEMS.register("trextooth", () -> new Item(new Item.Properties()));

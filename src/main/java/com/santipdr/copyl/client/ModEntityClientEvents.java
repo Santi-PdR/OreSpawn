@@ -66,6 +66,7 @@ public final class ModEntityClientEvents {
         event.registerEntityRenderer(ModEntities.POINTYSAURUS.get(), PointysaurusRenderer::new);
         event.registerEntityRenderer(ModEntities.NASTYSAURUS.get(), NastysaurusRenderer::new);
         event.registerEntityRenderer(ModEntities.KYUUBI.get(), KyuubiRenderer::new);
+        event.registerEntityRenderer(ModEntities.MOTHRA.get(), MothraRenderer::new);
         event.registerEntityRenderer(ModEntities.RED_COW.get(), RedCowRenderer::new);
         event.registerEntityRenderer(ModEntities.STINK_BUG.get(), StinkBugRenderer::new);
         event.registerEntityRenderer(ModEntities.SMALL_WORM.get(), WormSmallRenderer::new);

@@ -211,5 +211,15 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **SPAWN**: el registro original `EntitySpawns.addSpawns` asigna peso 15/grupo 1 solo a biomas cuyo ID contiene `hell`. El port usa el tag `minecraft:is_nether` como equivalente 1.20.1; no se agregó spawn al Overworld.
 - **CONTENIDO**: EntityType, placement, renderer/modelo inicial, huevo, jaula, localización EN/ES y texturas originales. El JAR no trae archivo de audio Kyuubi pese a referenciar un evento; no se inventó un sonido.
 - **BUILD**: GitHub Actions run 425 pasó para `bc96ae330cb67f0c6d457532b9be9b8cad3f0664`; el run del head posterior validará también el biome modifier y el estado.
-- **PENDIENTE**: Spyro, Mothra, Doom Worm, Brutalfly; prueba runtime y revisión visual final.
+- **PENDIENTE**: Spyro, Doom Worm, Brutalfly; prueba runtime y revisión visual final.
 - **AVANCE GLOBAL ESTIMADO**: 69 %.
+
+
+### Mothra — integración funcional 2026-09-24
+
+- **PORTADO**: vuelo derivado de Butterfly; vida 150, velocidad 0.35, armadura 12, inmunidad al fuego, curación periódica y ataques de bola de fuego según la dificultad. Se conservan el movimiento aéreo y el objetivo de vuelo del JAR.
+- **MUERTE**: sonido genérico de explosión del original, ráfaga de 20 partículas, 20 Moths invocadas y botín original (marco, 53 pepitas de oro, 3 varas de blaze y una estrella del Nether).
+- **CONTENIDO**: EntityType/atributos/spawn placement, aparición peso 15/grupo 1 en Extreme Hills, huevo y jaula con texturas originales, renderer y sonido de alas extraído del JAR.
+- **BUILD**: pendiente de GitHub Actions para este commit.
+- **PENDIENTE**: Spyro, Doom Worm y Brutalfly; auditoría de conducta/loot, runtime y revisión visual final.
+- **AVANCE GLOBAL ESTIMADO**: 70 %.

@@ -11,6 +11,12 @@
       "weight": 15,
       "minCount": 1,
       "maxCount": 1
+    },
+    {
+      "type": "copyl:mothra",
+      "weight": 15,
+      "minCount": 1,
+      "maxCount": 1
     }
   ]
 }
