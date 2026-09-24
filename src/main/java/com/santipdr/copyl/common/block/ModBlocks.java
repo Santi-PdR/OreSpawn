@@ -94,6 +94,8 @@ public final class ModBlocks {
     public static final RegistryObject<Block> MOSQUITO_PLANT = ModRegistries.BLOCKS.register("mosquito_plant", () -> new InsectSpawnPlant(() -> com.santipdr.copyl.common.item.ModItems.MOSQUITO_SEED.get(), () -> com.santipdr.copyl.common.entity.ModEntities.MOSQUITO.get(), true, 6));
     public static final RegistryObject<Block> MOTH_PLANT = ModRegistries.BLOCKS.register("moth_plant", () -> new InsectSpawnPlant(() -> com.santipdr.copyl.common.item.ModItems.MOTH_SEED.get(), () -> com.santipdr.copyl.common.entity.ModEntities.MOTH.get(), false, 6));
 
+    public static final RegistryObject<Block> CORN_PLANT = ModRegistries.BLOCKS.register("corn_plant", CornPlantBlock::new);
+
     public static final RegistryObject<Block> RED_ANT_TROLL_BLOCK = ModRegistries.BLOCKS.register("red_ant_troll_block", RedAntTrollBlock::new);
 
     public static final RegistryObject<Block> ANT_BLOCK = ModRegistries.BLOCKS.register("ant_block", AntHillBlock::new);

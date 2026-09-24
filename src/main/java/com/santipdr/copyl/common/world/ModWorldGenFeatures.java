@@ -12,6 +12,12 @@ public final class ModWorldGenFeatures {
     public static final RegistryObject<Feature<?>> ANT_HILLS =
             ModRegistries.FEATURES.register("ant_hills", AntHillFeature::new);
 
+    public static final RegistryObject<Feature<?>> CORN_PLANT =
+            ModRegistries.FEATURES.register("corn_plant", CornPlantFeature::new);
+
+    public static final RegistryObject<Feature<?>> CORN_PLANT =
+            ModRegistries.FEATURES.register("corn_plant", CornPlantFeature::new);
+
     public static void bootstrap() {
     }
 

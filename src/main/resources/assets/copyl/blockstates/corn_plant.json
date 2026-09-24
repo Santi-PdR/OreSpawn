@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "stage=0": {
+      "model": "copyl:block/corn_plant0"
+    },
+    "stage=1": {
+      "model": "copyl:block/corn_plant1"
+    },
+    "stage=2": {
+      "model": "copyl:block/corn_plant2"
+    },
+    "stage=3": {
+      "model": "copyl:block/corn_plant3"
+    }
+  }
+}

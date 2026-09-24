@@ -1,0 +1,8 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "copyl:mining_biome"
+  ],
+  "features": "copyl:corn_plant",
+  "step": "vegetal_decoration"
+}
