@@ -11,6 +11,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -71,6 +72,14 @@ public final class NastysaurusEntity extends Monster {
     }
 
     @Override
+    public void tick() {
+        if (this.getAttribute(Attributes.MOVEMENT_SPEED) != null) {
+            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(ORIGINAL_MOVE_SPEED);
+        }
+        super.tick();
+    }
+
+    @Override
     protected void customServerAiStep() {
         if (this.isRemoved()) return;
         super.customServerAiStep();
@@ -104,16 +113,28 @@ public final class NastysaurusEntity extends Monster {
     private LivingEntity findSomethingToAttack() {
         AABB search = this.getBoundingBox().inflate(32.0D, 8.0D, 32.0D);
         List<LivingEntity> candidates = this.level().getEntitiesOfClass(LivingEntity.class, search);
-        candidates.sort(Comparator.comparingDouble(this::distanceToSqr));
+        candidates.sort(Comparator.comparingDouble(this::getOriginalTargetScore));
         for (LivingEntity candidate : candidates) {
             if (candidate == this || !candidate.isAlive()
                     || candidate instanceof NastysaurusEntity
                     || candidate instanceof CryolophosaurusEntity
                     || !this.getSensing().hasLineOfSight(candidate)
-                    || (candidate instanceof Player player && (player.isCreative() || player.isSpectator()))) continue;
+                    || (candidate instanceof Player player && player.isCreative())) continue;
             return candidate;
         }
         return null;
+    }
+
+    private double getOriginalTargetScore(LivingEntity target) {
+        double score = this.distanceToSqr(target);
+        if (target instanceof Creeper) {
+            score /= 2.0D;
+        }
+        double targetArea = (double) target.getBbHeight() * target.getBbWidth();
+        if (targetArea > 1.0D) {
+            score /= targetArea;
+        }
+        return score;
     }
 
     public int getAttacking() { return this.entityData.get(ATTACKING); }
