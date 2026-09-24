@@ -159,3 +159,10 @@ El árbol actual ya contiene `AntHillFeature`, `DimensionTeleport`, los bloques/
 - **VISUAL**: sus modelos/texturas originales quedan para la pasada de assets; se evita reutilizar iconos de otros objetos.
 - **BUILD**: GitHub Actions run 403 pasó para `c7e6093bea82a2a1adcd9f7153bcc53ffb0e5063`.
 - **AVANCE GLOBAL ESTIMADO**: 66 %.
+
+### Ajuste de generación de vetas — 2026-09-24
+
+- **CORREGIDO**: `WorldGenOresFeature` recibía el origen del feature con solo `minecraft:biome` como placement modifier; se quitó el desplazamiento horizontal extra de +8 para que los intentos queden anclados en las coordenadas aleatorias completas del chunk.
+- **CORREGIDO**: el rasterizado de cada veta procesaba `size + 1` pasos; ahora procesa exactamente `size` segmentos.
+- **BUILD**: GitHub Actions run 405 pasó para `45a58dea9524754ab94519d162a87bd93a7c59b7`. La paridad de generación aún requiere verificación runtime.
+- **AVANCE GLOBAL ESTIMADO**: se mantiene en 66 % mientras falta esa verificación y continúan pendientes las criaturas restantes.
