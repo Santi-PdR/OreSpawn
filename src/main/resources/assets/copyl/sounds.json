@@ -35,5 +35,14 @@
   "entity.bird.bird20": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds20","stream":true}]},
   "entity.bird.bird21": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds21","stream":true}]},
   "entity.bird.bird22": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds22","stream":true}]},
-  "entity.bird.bird23": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds23","stream":true}]}
+  "entity.bird.bird23": {"category":"entity","subtitle":"entity.bird.bird","sounds":[{"name":"copyl:entity/birds/birds23","stream":true}]},
+  "entity.stinkbug.fart1": {"category":"entity","subtitle":"entity.stinkbug.fart1","sounds":[{"name":"copyl:entity/stinkbug/fart1","stream":true}]},
+  "entity.stinkbug.fart2": {"category":"entity","subtitle":"entity.stinkbug.fart2","sounds":[{"name":"copyl:entity/stinkbug/fart2","stream":true}]},
+  "entity.stinkbug.fart3": {"category":"entity","subtitle":"entity.stinkbug.fart3","sounds":[{"name":"copyl:entity/stinkbug/fart3","stream":true}]},
+  "entity.stinkbug.fart4": {"category":"entity","subtitle":"entity.stinkbug.fart4","sounds":[{"name":"copyl:entity/stinkbug/fart4","stream":true}]},
+  "entity.stinkbug.fart5": {"category":"entity","subtitle":"entity.stinkbug.fart5","sounds":[{"name":"copyl:entity/stinkbug/fart5","stream":true}]},
+  "entity.stinkbug.fart6": {"category":"entity","subtitle":"entity.stinkbug.fart6","sounds":[{"name":"copyl:entity/stinkbug/fart6","stream":true}]},
+  "entity.stinkbug.fart7": {"category":"entity","subtitle":"entity.stinkbug.fart7","sounds":[{"name":"copyl:entity/stinkbug/fart7","stream":true}]},
+  "entity.stinkbug.fart8": {"category":"entity","subtitle":"entity.stinkbug.fart8","sounds":[{"name":"copyl:entity/stinkbug/fart8","stream":true}]},
+  "entity.stinkbug.fart9": {"category":"entity","subtitle":"entity.stinkbug.fart9","sounds":[{"name":"copyl:entity/stinkbug/fart9","stream":true}]}
 }
