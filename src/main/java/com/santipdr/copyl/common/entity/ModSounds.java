@@ -27,8 +27,21 @@ public final class ModSounds {
     public static final RegistryObject<SoundEvent> DRAGONFLY_DEATH = sound("entity.dragonfly.death");
     public static final RegistryObject<SoundEvent> MOSQUITO_LIVING = sound("entity.mosquito.living");
     public static final List<RegistryObject<SoundEvent>> BIRD_SOUNDS = IntStream.rangeClosed(1, 23).mapToObj(i -> sound("entity.bird.bird" + i)).toList();
-    public static SoundEvent randomBirdSound(RandomSource random) { return BIRD_SOUNDS.get(random.nextInt(BIRD_SOUNDS.size())).get(); }
-    private static RegistryObject<SoundEvent> sound(String id) { return ModRegistries.SOUND_EVENTS.register(id, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(CopyL.MOD_ID, id))); }
+    public static final List<RegistryObject<SoundEvent>> STINKBUG_FARTS = IntStream.rangeClosed(1, 9).mapToObj(i -> sound("entity.stinkbug.fart" + i)).toList();
+
+    public static SoundEvent randomBirdSound(RandomSource random) {
+        return BIRD_SOUNDS.get(random.nextInt(BIRD_SOUNDS.size())).get();
+    }
+
+    public static SoundEvent randomStinkBugFart(RandomSource random) {
+        return STINKBUG_FARTS.get(random.nextInt(STINKBUG_FARTS.size())).get();
+    }
+
+    private static RegistryObject<SoundEvent> sound(String id) {
+        return ModRegistries.SOUND_EVENTS.register(id,
+                () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(CopyL.MOD_ID, id)));
+    }
+
     public static void bootstrap() {}
     private ModSounds() {}
 }
