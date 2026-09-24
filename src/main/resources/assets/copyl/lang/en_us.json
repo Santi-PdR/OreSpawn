@@ -233,5 +233,8 @@
   "entity.stinkbug.fart8": "Stinkbug fart",
   "entity.stinkbug.fart9": "Stinkbug fart",
   "item.copyl.worm_tooth": "Worm Tooth",
-  "item.copyl.worm_food": "Worm Food"
+  "item.copyl.worm_food": "Worm Food",
+  "item.copyl.nastysaurus_egg": "Nastysaurus Egg",
+  "item.copyl.nastysaurus_cage": "Nastysaurus Cage",
+  "entity.copyl.nastysaurus": "Nastysaurus"
 }

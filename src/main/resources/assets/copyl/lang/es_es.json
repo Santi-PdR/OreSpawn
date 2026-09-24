@@ -147,5 +147,8 @@
   "entity.stinkbug.fart8": "Pedito de chinche",
   "entity.stinkbug.fart9": "Pedito de chinche",
   "item.copyl.worm_tooth": "Diente de gusano",
-  "item.copyl.worm_food": "Comida para gusanos"
+  "item.copyl.worm_food": "Comida para gusanos",
+  "item.copyl.nastysaurus_egg": "Huevo de Nastysaurus",
+  "item.copyl.nastysaurus_cage": "Jaula de Nastysaurus",
+  "entity.copyl.nastysaurus": "Nastysaurus"
 }
