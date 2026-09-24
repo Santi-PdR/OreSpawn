@@ -129,7 +129,7 @@ public final class CornPlantBlock extends Block implements EntityBlock {
         } else {
             tile.setAge(tile.getAge() + 1);
         }
-        ForgeHooks.onCropsGrowPost(level, pos, state, level.getBlockState(pos));
+        ForgeHooks.onCropsGrowPost(level, pos, state);
     }
 
     @Nullable
