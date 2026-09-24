@@ -8,6 +8,7 @@ import com.santipdr.copyl.common.item.ModItems;
 import com.santipdr.copyl.common.item.armor.ModArmor;
 import com.santipdr.copyl.common.item.material.ModMaterialItems;
 import com.santipdr.copyl.common.item.tool.ModTools;
+import com.santipdr.copyl.common.world.ModWorldGenFeatures;
 import com.santipdr.copyl.common.registry.ModCreativeTabs;
 import com.santipdr.copyl.common.registry.ModRegistries;
 import net.minecraftforge.api.distmarker.Dist;
@@ -31,6 +32,7 @@ public final class CopyL {
         ModTools.bootstrap();
         ModArmor.bootstrap();
         ModEntities.bootstrap();
+        ModWorldGenFeatures.bootstrap();
         ModSounds.bootstrap();
         ModCreativeTabs.bootstrap();
 
@@ -38,6 +40,7 @@ public final class CopyL {
         ModRegistries.ITEMS.register(modEventBus);
         ModRegistries.BLOCK_ENTITIES.register(modEventBus);
         ModRegistries.ENTITY_TYPES.register(modEventBus);
+        ModRegistries.FEATURES.register(modEventBus);
         ModRegistries.SOUND_EVENTS.register(modEventBus);
         ModRegistries.MENU_TYPES.register(modEventBus);
         ModRegistries.CREATIVE_TABS.register(modEventBus);

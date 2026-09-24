@@ -86,7 +86,7 @@ local. `[ ]` = fase todavía no portada.
 - [x] `util/premium` auditado: checker inactivo/always-true; excluido por ser código legacy sin gameplay.
 
 ## Fase 5 — worldgen/dimensión
-- [ ] Ores worldgen.
+- [~] WorldGenOres: registered vein feature now covers the original 28 creature ores plus Uranium, Titanium and Amethyst in Overworld and Mining Dimension; exact 1.12.2 heights, per-chunk attempts and 5–9 vein sizes are preserved.
 - [~] Mining Dimension base: datapack dimension/type + fixed mining biome, hills-style vanilla noise and ore/mob spawn tables. Original day rollover is ported; Red Ant provides the original empty-hand two-way teleport. Exact custom chunk-noise parity, OreGenericEgg ore placement and dungeon integration remain in progress.
 - [ ] Dungeons/structures/AntHillGenerator.
 
