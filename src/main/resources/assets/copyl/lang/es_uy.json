@@ -101,6 +101,9 @@
   "item.copyl.mosquito_egg": "Huevo de mosquito",
   "item.copyl.moth_egg": "Huevo de polilla",
   "item.copyl.redcow_egg": "Huevo de Apple Cow",
+  "item.copyl.stinkbug_egg": "Huevo de StinkBug",
+  "item.copyl.red_ant_egg": "Huevo de hormiga roja",
+  "item.copyl.termite_egg": "Huevo de termita",
 
   "item.copyl.empty_cage": "Jaula vacía",
   "item.copyl.alien_cage": "Alien enjaulado",
@@ -114,6 +117,7 @@
   "item.copyl.dragonfly_cage": "Libélula enjaulada",
   "item.copyl.firefly_cage": "Luciérnaga enjaulada",
   "item.copyl.redcow_cage": "Apple Cow enjaulada",
+  "item.copyl.stinkbug_cage": "StinkBug enjaulado",
 
   "entity.copyl.alien": "Alien",
   "entity.copyl.alosaurus": "Alosaurus",
@@ -132,6 +136,9 @@
   "entity.copyl.mosquito": "Mosquito",
   "entity.copyl.moth": "Polilla",
   "entity.copyl.redcow": "Apple Cow",
+  "entity.copyl.stinkbug": "StinkBug",
+  "entity.copyl.red_ant": "Hormiga roja",
+  "entity.copyl.termite": "Termita",
   "entity.copyl.thrown_critter_cage": "Jaula lanzada",
 
   "block.copyl.alien_ore": "Ancient Dried Alien Spawn Egg",
