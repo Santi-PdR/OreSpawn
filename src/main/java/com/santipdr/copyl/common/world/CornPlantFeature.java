@@ -24,9 +24,8 @@ public final class CornPlantFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         WorldGenLevel level = context.level();
         RandomSource random = context.random();
-        if (level.getLevel().dimension() == Level.NETHER) {
-            return false;
-        }
+        if (level.getLevel().dimension() == Level.NETHER) return false;
+
         int x = context.origin().getX() + random.nextInt(16) + 8;
         int z = context.origin().getZ() + random.nextInt(16) + 8;
         BlockPos surface = level.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, new BlockPos(x, 0, z));
@@ -37,29 +36,26 @@ public final class CornPlantFeature extends Feature<NoneFeatureConfiguration> {
             candidate.set(surface.getX() + random.nextInt(8) - random.nextInt(8),
                     surface.getY() + random.nextInt(4) - random.nextInt(4),
                     surface.getZ() + random.nextInt(8) - random.nextInt(8));
-            if (!level.isEmptyBlock(candidate) || level.getBlockState(candidate.below()).is(ModBlocks.CORN_PLANT.get())
-                    || level.isEmptyBlock(candidate.below()) || !level.getBlockState(candidate.below()).is(Blocks.GRASS_BLOCK)) {
+            if (!level.isEmptyBlock(candidate)
+                    || level.getBlockState(candidate.below()).is(ModBlocks.CORN_PLANT.get())
+                    || level.isEmptyBlock(candidate.below())
+                    || !level.getBlockState(candidate.below()).is(Blocks.GRASS_BLOCK)) {
                 continue;
             }
-            int height = 0;
+
+            int totalHeight = 0;
             BlockPos.MutableBlockPos stalk = candidate.mutable();
-            while (height < 21 && (level.isEmptyBlock(stalk) || level.getBlockState(stalk).is(Blocks.TALL_GRASS))
-                    && stalk.getY() < 255 && ModBlocks.CORN_PLANT.get().canSurvive(
-                    ModBlocks.CORN_PLANT.get().defaultBlockState(), level, stalk)) {
+            while (totalHeight < 21 && (level.isEmptyBlock(stalk) || level.getBlockState(stalk).is(Blocks.TALL_GRASS))
+                    && stalk.getY() < 255
+                    && ModBlocks.CORN_PLANT.get().canSurvive(ModBlocks.CORN_PLANT.get().defaultBlockState(), level, stalk)) {
                 BlockState mature = ModBlocks.CORN_PLANT.get().defaultBlockState().setValue(CornPlantBlock.STAGE, 3);
                 if (!level.setBlock(stalk, mature, 2)) break;
+                int contribution = random.nextInt(5) + 3;
                 if (level.getBlockEntity(stalk) instanceof CornPlantBlockEntity tile) {
-                    int contribution = random.nextInt(5) + 3;
                     tile.setHeightContribution(contribution);
-                    height += contribution;
-                } else {
-                    height += random.nextInt(5) + 3;
                 }
-                stalk.move(0, Math.max(1, height == 0 ? 1 : 0), 0); // corrected below to the segment contribution
-                // Move to the next candidate height; each segment stores the height it contributes.
-                int lastContribution = level.getBlockEntity(stalk.below()) instanceof CornPlantBlockEntity tile
-                        ? tile.getHeightContribution() : 3;
-                stalk.set(stalk.getX(), stalk.getY() + lastContribution, stalk.getZ());
+                totalHeight += contribution;
+                stalk.move(0, contribution, 0);
             }
             level.setBlock(stalk, ModBlocks.CORN_PLANT.get().defaultBlockState(), 2);
             generated = true;

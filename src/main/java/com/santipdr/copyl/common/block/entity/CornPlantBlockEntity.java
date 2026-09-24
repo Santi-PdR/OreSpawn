@@ -1,6 +1,6 @@
 package com.santipdr.copyl.common.block.entity;
 
-import com.santipdr.copyl.common.block.ModBlockEntities;
+import com.santipdr.copyl.common.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RandomSource;

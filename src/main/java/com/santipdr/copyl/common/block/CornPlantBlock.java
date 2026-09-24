@@ -1,17 +1,19 @@
 package com.santipdr.copyl.common.block;
 
 import com.santipdr.copyl.common.block.entity.CornPlantBlockEntity;
-import com.santipdr.copyl.common.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -19,9 +21,6 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.ForgeHooks;
 import org.jetbrains.annotations.Nullable;
 
@@ -57,9 +56,9 @@ public final class CornPlantBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState state, net.minecraft.core.Direction direction, BlockState neighbor,
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighbor,
                                   LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
-        return direction == net.minecraft.core.Direction.DOWN && !canSurvive(state, level, pos)
+        return direction == Direction.DOWN && !canSurvive(state, level, pos)
                 ? Blocks.AIR.defaultBlockState()
                 : super.updateShape(state, direction, neighbor, level, pos, neighborPos);
     }
@@ -71,35 +70,31 @@ public final class CornPlantBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public boolean hasAnalogOutputSignal(BlockState state) {
-        return false;
-    }
-
-    @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if (!level.isEmptyBlock(pos.above()) || !canSurvive(state, level, pos)) {
-            if (!canSurvive(state, level, pos)) {
-                level.destroyBlock(pos, true);
-            }
+        if (!level.isEmptyBlock(pos.above())) {
+            return;
+        }
+        if (!canSurvive(state, level, pos)) {
+            level.destroyBlock(pos, true);
             return;
         }
 
-        int height = 0;
+        int accumulatedHeight = 0;
         int below = 1;
         while (level.getBlockState(pos.below(below)).is(this)) {
             CornPlantBlockEntity tile = getPlantEntity(level, pos);
             if (tile == null) return;
-            height += tile.getHeightContribution();
+            accumulatedHeight += tile.getHeightContribution();
             below++;
         }
 
         if (!ForgeHooks.onCropsGrowPre(level, pos, state, true)) {
             return;
         }
-
         CornPlantBlockEntity tile = getPlantEntity(level, pos);
         if (tile == null) return;
-        if (height < 21) {
+
+        if (accumulatedHeight < 21) {
             if (tile.getAge() == 15) {
                 tile.setAge(0);
                 level.setBlock(pos.above(), defaultBlockState(), 2);
@@ -141,9 +136,5 @@ public final class CornPlantBlock extends Block implements EntityBlock {
     private static CornPlantBlockEntity getPlantEntity(Level level, BlockPos pos) {
         BlockEntity entity = level.getBlockEntity(pos);
         return entity instanceof CornPlantBlockEntity plant ? plant : null;
-    }
-
-    public boolean isMature(BlockState state) {
-        return state.getValue(STAGE) == 3;
     }
 }

@@ -96,6 +96,8 @@ public final class ModBlocks {
 
     public static final RegistryObject<Block> CORN_PLANT = ModRegistries.BLOCKS.register("corn_plant", CornPlantBlock::new);
 
+    public static final RegistryObject<Block> CORN_PLANT = ModRegistries.BLOCKS.register("corn_plant", CornPlantBlock::new);
+
     public static final RegistryObject<Block> RED_ANT_TROLL_BLOCK = ModRegistries.BLOCKS.register("red_ant_troll_block", RedAntTrollBlock::new);
 
     public static final RegistryObject<Block> ANT_BLOCK = ModRegistries.BLOCKS.register("ant_block", AntHillBlock::new);

@@ -2,6 +2,7 @@ package com.santipdr.copyl;
 
 import com.santipdr.copyl.client.CopyLClientSetup;
 import com.santipdr.copyl.common.block.ModBlocks;
+import com.santipdr.copyl.common.block.entity.ModBlockEntities;
 import com.santipdr.copyl.common.block.ModBlockEntities;
 import com.santipdr.copyl.common.entity.ModEntities;
 import com.santipdr.copyl.common.entity.ModSounds;
@@ -28,6 +29,7 @@ public final class CopyL {
         // Las llamadas bootstrap fuerzan la inicialización de todos los RegistryObject antes
         // de que los DeferredRegister se conecten al bus.
         ModBlocks.bootstrap();
+        ModBlockEntities.bootstrap();
         ModBlockEntities.bootstrap();
         ModItems.bootstrap();
         ModMaterialItems.bootstrap();
