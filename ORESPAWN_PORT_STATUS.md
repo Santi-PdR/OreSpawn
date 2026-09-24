@@ -166,3 +166,11 @@ El árbol actual ya contiene `AntHillFeature`, `DimensionTeleport`, los bloques/
 - **CORREGIDO**: el rasterizado de cada veta procesaba `size + 1` pasos; ahora procesa exactamente `size` segmentos.
 - **BUILD**: GitHub Actions run 405 pasó para `45a58dea9524754ab94519d162a87bd93a7c59b7`. La paridad de generación aún requiere verificación runtime.
 - **AVANCE GLOBAL ESTIMADO**: se mantiene en 66 % mientras falta esa verificación y continúan pendientes las criaturas restantes.
+
+
+### Assets y comando de dimensión — 2026-09-24
+
+- **RECURSOS**: se añadieron los modelos de ítem 1.20.1 y las texturas originales del JAR para `worm_food` y `worm_tooth`, que ya estaban registrados pero aparecían sin icono propio.
+- **COMANDO**: portado el comando original `dimensiontp` con sus alias `orespawn`, `tpdim` y `dimtp`. Mantiene el permiso de operador y los IDs de dimensión originales: -1 Nether, 0 Overworld, 1 End y 5 Mining Dimension. El aterrizaje conserva el escaneo descendente original desde Y=255.
+- **BUILD**: GitHub Actions run 407 pasó para los recursos; run 408 pasó para el comando y el conjunto acumulado, commit `d0aeb8beb369fe65cfb664313d99f922e3faba42`.
+- **AVANCE GLOBAL ESTIMADO**: 67 %. Las seis entidades pendientes y la verificación de paridad/runtime siguen abiertas; las capturas de defectos visuales se dejan para la pasada final.
