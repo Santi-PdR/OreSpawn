@@ -36,7 +36,6 @@
   "screen.copyl.backup_invalid": "The clipboard does not contain a valid OreSpawn Reforged backup.",
   "screen.copyl.backup_save_failed": "The backup is valid, but the configuration could not be saved.",
   "itemGroup.copyl": "OreSpawn Reforged",
-
   "block.copyl.titanium_ore": "Titanium Ore",
   "block.copyl.uranium_ore": "Uranium Ore",
   "block.copyl.amethyst_ore": "Amethyst Ore",
@@ -64,7 +63,6 @@
   "item.copyl.moth_scale": "Moth Scale",
   "item.copyl.mantis_claw": "Mantis Claw",
   "item.copyl.trextooth": "T-Rex Tooth",
-
   "item.copyl.amethyst_sword": "Amethyst Sword",
   "item.copyl.amethyst_pickaxe": "Amethyst Pickaxe",
   "item.copyl.amethyst_axe": "Amethyst Axe",
@@ -80,7 +78,6 @@
   "item.copyl.ultimate_axe": "Ultimate Axe",
   "item.copyl.ultimate_shovel": "Ultimate Shovel",
   "item.copyl.ultimate_hoe": "Ultimate Hoe",
-
   "item.copyl.amethyst_helmet": "Amethyst Helmet",
   "item.copyl.amethyst_chestplate": "Amethyst Chestplate",
   "item.copyl.amethyst_leggings": "Amethyst Leggings",
@@ -97,7 +94,6 @@
   "item.copyl.ultimate_chestplate": "Ultimate Chestplate",
   "item.copyl.ultimate_leggings": "Ultimate Leggings",
   "item.copyl.ultimate_boots": "Ultimate Boots",
-
   "item.copyl.alien_egg": "Alien Egg",
   "item.copyl.alosaurus_egg": "Alosaurus Egg",
   "item.copyl.baryonyx_egg": "Baryonyx Egg",
@@ -124,7 +120,6 @@
   "item.copyl.stinkbug_egg": "StinkBug Egg",
   "item.copyl.red_ant_egg": "Spawn Red Ant",
   "item.copyl.termite_egg": "Spawn Termite",
-
   "item.copyl.empty_cage": "Empty Cage",
   "item.copyl.alien_cage": "Caged Alien",
   "item.copyl.alosaurus_cage": "Caged Alosaurus",
@@ -144,7 +139,6 @@
   "item.copyl.velocityraptor_cage": "Caged Velocity Raptor",
   "item.copyl.redcow_cage": "Caged Apple Cow",
   "item.copyl.stinkbug_cage": "Caged StinkBug",
-
   "entity.copyl.alien": "Alien",
   "entity.copyl.alosaurus": "Alosaurus",
   "entity.copyl.baryonyx": "Baryonyx",
@@ -172,7 +166,6 @@
   "entity.copyl.red_ant": "Red Ant",
   "entity.copyl.termite": "Termite",
   "entity.copyl.thrown_critter_cage": "Thrown Critter Cage",
-
   "block.copyl.alien_ore": "Ancient Dried Alien Spawn Egg",
   "block.copyl.alosaurus_ore": "Ancient Dried Alosaurus Spawn Egg",
   "block.copyl.baryonyx_ore": "Ancient Dried Baryonyx Spawn Egg",
@@ -204,5 +197,11 @@
   "block.copyl.stinkbug_ore": "Ancient Dried StinkBug Spawn Egg",
   "block.copyl.trex_ore": "Ancient Dried T-Rex Spawn Egg",
   "block.copyl.velocityraptor_ore": "Ancient Dried Velocity Raptor Spawn Egg",
-  "block.copyl.zombie_ore": "Ancient Dried Zombie Spawn Egg"
+  "block.copyl.zombie_ore": "Ancient Dried Zombie Spawn Egg",
+  "item.copyl.cow_cage": "Cow Cage",
+  "item.copyl.creeper_cage": "Creeper Cage",
+  "item.copyl.ghast_cage": "Ghast Cage",
+  "item.copyl.horse_cage": "Horse Cage",
+  "item.copyl.pig_cage": "Pig Cage",
+  "item.copyl.zombie_cage": "Zombie Cage"
 }

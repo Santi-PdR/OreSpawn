@@ -77,6 +77,12 @@ public final class ModItems {
     public static final RegistryObject<Item> VELOCITYRAPTOR_EGG = ModRegistries.ITEMS.register("velocityraptor_egg", () -> new CreatureEggItem(ModEntities.VELOCITY_RAPTOR));
 
     public static final RegistryObject<Item> EMPTY_CAGE = ModRegistries.ITEMS.register("empty_cage", CritterCageItem::empty);
+    public static final RegistryObject<Item> COW_CAGE = ModRegistries.ITEMS.register("cow_cage", () -> new CritterCageItem(() -> net.minecraft.world.entity.EntityType.COW, 0.4F));
+    public static final RegistryObject<Item> CREEPER_CAGE = ModRegistries.ITEMS.register("creeper_cage", () -> new CritterCageItem(() -> net.minecraft.world.entity.EntityType.CREEPER, 0.4F));
+    public static final RegistryObject<Item> GHAST_CAGE = ModRegistries.ITEMS.register("ghast_cage", () -> new CritterCageItem(() -> net.minecraft.world.entity.EntityType.GHAST, 0.4F));
+    public static final RegistryObject<Item> HORSE_CAGE = ModRegistries.ITEMS.register("horse_cage", () -> new CritterCageItem(() -> net.minecraft.world.entity.EntityType.HORSE, 0.4F));
+    public static final RegistryObject<Item> PIG_CAGE = ModRegistries.ITEMS.register("pig_cage", () -> new CritterCageItem(() -> net.minecraft.world.entity.EntityType.PIG, 0.4F));
+    public static final RegistryObject<Item> ZOMBIE_CAGE = ModRegistries.ITEMS.register("zombie_cage", () -> new CritterCageItem(() -> net.minecraft.world.entity.EntityType.ZOMBIE, 0.4F));
     public static final RegistryObject<Item> GAMMAMETROID_CAGE = ModRegistries.ITEMS.register("gammametroid_cage", () -> new CritterCageItem(ModEntities.GAMMA_METROID, 0.4F));
     public static final RegistryObject<Item> ALIEN_CAGE = ModRegistries.ITEMS.register("alien_cage", () -> new CritterCageItem(ModEntities.ALIEN, 0.4F));
     public static final RegistryObject<Item> ALOSAURUS_CAGE = ModRegistries.ITEMS.register("alosaurus_cage", () -> new CritterCageItem(ModEntities.ALOSAURUS, 0.4F));
