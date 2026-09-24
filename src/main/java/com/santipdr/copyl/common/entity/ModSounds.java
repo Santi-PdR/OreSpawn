@@ -19,6 +19,8 @@ public final class ModSounds {
     public static final RegistryObject<SoundEvent> ALOSAURUS_LIVING = sound("entity.alosaurus.living");
     public static final RegistryObject<SoundEvent> ALOSAURUS_HURT = sound("entity.alosaurus.hurt");
     public static final RegistryObject<SoundEvent> ALOSAURUS_DEATH = sound("entity.alosaurus.death");
+    public static final RegistryObject<SoundEvent> TREX_AMBIENT = sound("entity.trex.ambient");
+    public static final RegistryObject<SoundEvent> TREX_DEATH = sound("entity.trex.death");
     public static final RegistryObject<SoundEvent> CRYO_LIVING = sound("entity.cryo.living");
     public static final RegistryObject<SoundEvent> CRYO_HURT = sound("entity.cryo.hurt");
     public static final RegistryObject<SoundEvent> CRYO_DEATH = sound("entity.cryo.death");
