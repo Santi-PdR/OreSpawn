@@ -112,3 +112,14 @@ local. `[ ]` = fase todavía no portada.
 - **PORTED**: `WorldGenStructure` modern template helper. The provided JAR contains no `.nbt` structure templates, so no templates were invented.
 - **IMPLEMENTED (2026-09-24)**: Mining Dimension datapack registration, dimension type, fixed mining biome, vanilla hills-style terrain/features and original Red Ant teleport/day rollover. The 1.12.2 source has no separate portal block. GenericDungeon is connected to new Mining Dimension chunks. The chest table has the original 3–5 rolls and all currently registered original rewards; Spyro/Nastysaurus eggs and AntHillGenerator remain pending.
 - **BUILD VERIFIED**: GitHub Actions runs 373, 374 and 375 passed; run 375 built commit `1644b6ccfc56d60c7eed77f49af165ba0798b5f1` with Java 17 and Gradle 8.1.1.
+
+## Seguimiento — 2026-09-24
+
+- **Build**: GitHub Actions run 387 completó correctamente para `a40c3f970b61c0044a7db6a157caf4e85e26f490` en `work/eggs-cages-20260923`.
+- **Prioridad activa**: cerrar el port funcional antes de la auditoría visual final. Siguen sin portearse Spyro, Nastysaurus, Doom Worm, Kyuubi, Mothra y Brutalfly, incluyendo sus registros y contenido dependiente.
+- **Defectos visuales reportados para revisar después del port**:
+  - Dos capturas del inventario muestran iconos magenta/cuadriculados donde faltan texturas/modelos de objetos.
+  - Una captura en primera persona muestra la mano/objeto sostenido con geometría plana o mal orientada.
+  - Una captura de mundo muestra un mob/insecto con partes del modelo estiradas o separadas.
+- Estas capturas quedan como regresiones visuales pendientes; se revisarán tras completar registros, comportamiento, recursos y build del port.
+
