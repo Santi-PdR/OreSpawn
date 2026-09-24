@@ -37,6 +37,7 @@ public final class ModEntityClientEvents {
         event.registerLayerDefinition(WormSmallModel.LAYER_LOCATION, WormSmallModel::createBodyLayer);
         event.registerLayerDefinition(WormMediumModel.LAYER_LOCATION, WormMediumModel::createBodyLayer);
         event.registerLayerDefinition(WormLargeModel.LAYER_LOCATION, WormLargeModel::createBodyLayer);
+        event.registerLayerDefinition(TRexModel.LAYER_LOCATION, TRexModel::createBodyLayer);
     }
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
@@ -65,5 +66,6 @@ public final class ModEntityClientEvents {
         event.registerEntityRenderer(ModEntities.SMALL_WORM.get(), WormSmallRenderer::new);
         event.registerEntityRenderer(ModEntities.MEDIUM_WORM.get(), WormMediumRenderer::new);
         event.registerEntityRenderer(ModEntities.LARGE_WORM.get(), WormLargeRenderer::new);
+        event.registerEntityRenderer(ModEntities.TREX.get(), TRexRenderer::new);
     }
 }
