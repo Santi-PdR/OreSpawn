@@ -111,4 +111,4 @@ y siempre acepta al jugador. No se porta; no es necesario para ninguna mecánica
 4. Port CritterCage/EntityCage and then enable the unmodified Generic Dungeon loot contents.
 5. Continue remaining entities/bosses/projectiles/plants/items.
 
-Mining Dimension remains deferred by user; do not hook `StructureGenerator` to Overworld.
+Mining Dimension is authorized and now active. Keep its original dungeon and ore generation inside `copyl:mining`; do not redirect `StructureGenerator` to the Overworld. Red Ant remains the original empty-hand two-way teleport trigger.
