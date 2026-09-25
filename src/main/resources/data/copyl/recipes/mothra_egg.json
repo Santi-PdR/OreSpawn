@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "copyl:mothra_ore"
+    }
+  ],
+  "result": {
+    "item": "copyl:mothra_egg",
+    "count": 1
+  }
+}
