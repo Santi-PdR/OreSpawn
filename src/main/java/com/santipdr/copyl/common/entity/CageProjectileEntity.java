@@ -87,8 +87,12 @@ public final class CageProjectileEntity extends ThrowableProjectile {
 
         Entity target = entityHit.getEntity();
         emitCaptureEffects(level, target);
-        level.playSound(null, target.blockPosition(), SoundEvents.GENERIC_EXPLODE,
-                SoundSource.PLAYERS, 1.0F, 1.5F);
+        // 1.12.2 played capture audio at the player who threw the cage.
+        Entity owner = getOwner();
+        if (owner != null) {
+            level.playSound(null, owner.getX(), owner.getY(), owner.getZ(), SoundEvents.GENERIC_EXPLODE,
+                    SoundSource.PLAYERS, 1.0F, 1.5F);
+        }
 
         if (!(target instanceof LivingEntity)) {
             return;
