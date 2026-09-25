@@ -25,7 +25,6 @@ import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.SmallFireball;
@@ -34,10 +33,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.RandomSource;
-import net.minecraftforge.common.ForgeMod;
 
 import javax.annotation.Nullable;
 import java.util.Comparator;
@@ -126,15 +123,7 @@ public final class SpyroEntity extends TamableAnimal {
         }
         if (attackCooldown > 0) attackCooldown--;
 
-        LivingTarget:
-        {
-            List<Monster> targets = level().getEntitiesOfClass(Monster.class,
-                    getBoundingBox().inflate(12.0D, 6.0D, 12.0D),
-                    target -> target.isAlive() && target != this && hasLineOfSight(target));
-            targets.sort(Comparator.comparingDouble(this::targetScore));
-            Monster target = targets.isEmpty() ? null : targets.get(0);
-            if (isT tame()) { }
-        }
+        // Attack selection and flight steering are handled together in tick().
     }
 
     private double targetScore(Monster target) {
