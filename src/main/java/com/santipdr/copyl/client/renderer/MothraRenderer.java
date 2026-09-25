@@ -2,19 +2,19 @@ package com.santipdr.copyl.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.santipdr.copyl.CopyL;
-import com.santipdr.copyl.client.model.ButterflyModel;
+import com.santipdr.copyl.client.model.MothraModel;
 import com.santipdr.copyl.common.entity.MothraEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 /** Renderer equivalente al RenderMothra original; el original usa eyemoth.png. */
-public final class MothraRenderer extends MobRenderer<MothraEntity, ButterflyModel> {
+public final class MothraRenderer extends MobRenderer<MothraEntity, MothraModel> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(CopyL.MOD_ID, "textures/entity/eyemoth.png");
 
     public MothraRenderer(EntityRendererProvider.Context context) {
-        super(context, new ButterflyModel(context.bakeLayer(ButterflyModel.LAYER_LOCATION)), 0.0F);
+        super(context, new MothraModel(context.bakeLayer(MothraModel.LAYER_LOCATION)), 0.0F);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.santipdr.copyl.common.entity;
 
 import com.santipdr.copyl.CopyL;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

@@ -31,6 +31,7 @@ public final class ModEntityClientEvents {
         event.registerLayerDefinition(GammaMetroidModel.LAYER_LOCATION, GammaMetroidModel::createBodyLayer);
         event.registerLayerDefinition(MosquitoModel.LAYER_LOCATION, MosquitoModel::createBodyLayer);
         event.registerLayerDefinition(MothModel.LAYER_LOCATION, MothModel::createBodyLayer);
+        event.registerLayerDefinition(MothraModel.LAYER_LOCATION, MothraModel::createBodyLayer);
         event.registerLayerDefinition(MantisModel.LAYER_LOCATION, MantisModel::createBodyLayer);
         event.registerLayerDefinition(PointysaurusModel.LAYER_LOCATION, PointysaurusModel::createBodyLayer);
         event.registerLayerDefinition(NastysaurusModel.LAYER_LOCATION, NastysaurusModel::createBodyLayer);

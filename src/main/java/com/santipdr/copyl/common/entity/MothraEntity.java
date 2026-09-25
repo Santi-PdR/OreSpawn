@@ -48,7 +48,7 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
     protected float getSoundVolume() { return 1.5F; }
 
     @Override
-    protected float getVoicePitch() { return 1.0F; }
+    public float getVoicePitch() { return 1.0F; }
 
     @Override
     protected net.minecraft.sounds.SoundEvent getAmbientSound() { return null; }
