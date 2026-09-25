@@ -127,11 +127,11 @@ public final class WormLargeEntity extends Monster {
 
         pointAt(target);
         getNavigation().moveTo(target, 1.0D);
-        if (random.nextInt(10) != 1 || distanceTo(target) >= 3.0F) return;
+        if (level().getRandom().nextInt(10) != 1 || distanceTo(target) >= 3.0F) return;
 
         doHurtTarget(target);
 
-        if (random.nextInt(4) == 1) {
+        if (level().getRandom().nextInt(4) == 1) {
             ItemStack armor = target.getItemBySlot(EquipmentSlot.FEET);
             EquipmentSlot slot = EquipmentSlot.FEET;
             if (!canStrip(armor)) {
@@ -143,7 +143,7 @@ public final class WormLargeEntity extends Monster {
             }
         }
 
-        if (random.nextInt(4) == 1) {
+        if (level().getRandom().nextInt(4) == 1) {
             ItemStack held = target.getItemBySlot(EquipmentSlot.MAINHAND);
             if (canStrip(held)) stripAndThrow(target, EquipmentSlot.MAINHAND, held);
         }

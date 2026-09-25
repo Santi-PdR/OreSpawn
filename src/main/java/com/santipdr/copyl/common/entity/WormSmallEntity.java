@@ -124,12 +124,12 @@ public final class WormSmallEntity extends Monster {
         }
 
         pointAt(player);
-        if (upCount <= 0 || random.nextInt(15) != 1) {
+        if (upCount <= 0 || level().getRandom().nextInt(15) != 1) {
             return;
         }
 
         doHurtTarget(player);
-        if (random.nextInt(6) != 1) {
+        if (level().getRandom().nextInt(6) != 1) {
             return;
         }
 

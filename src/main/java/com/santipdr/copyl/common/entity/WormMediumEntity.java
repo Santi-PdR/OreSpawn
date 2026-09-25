@@ -103,9 +103,9 @@ public final class WormMediumEntity extends Monster {
                 .stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
         if (player == null) return;
         pointAt(player);
-        if (upCount <= 0 || random.nextInt(15) != 1) return;
+        if (upCount <= 0 || level().getRandom().nextInt(15) != 1) return;
         doHurtTarget(player);
-        if (random.nextInt(6) != 1) return;
+        if (level().getRandom().nextInt(6) != 1) return;
         ItemStack stolen = player.getInventory().getItem(1);
         if (stolen.isEmpty()) return;
         player.getInventory().setItem(1, ItemStack.EMPTY);
