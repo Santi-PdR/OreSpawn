@@ -117,6 +117,8 @@ public final class BeaverEntity extends Animal {
             cutConnectedWood(target);
         }
         heal(1.0F);
+        // 1.12.2 samples pitch for its uninitialized/null CHAINSAW event here.
+        level().getRandom().nextFloat();
     }
 
     @Nullable
