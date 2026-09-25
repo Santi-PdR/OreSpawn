@@ -315,11 +315,11 @@ public final class SpyroEntity extends TamableAnimal {
             }
         }
 
-        if (activity == 2 && flightTarget != null && !targetInSight) {
+        if (activity != 1 && flightTarget != null) {
             double tx = flightTarget.getX() - (int) getX();
             double ty = flightTarget.getY() - (int) getY();
             double tz = flightTarget.getZ() - (int) getZ();
-            if (tx * tx + ty * ty + tz * tz < 2.1D) chooseNewTarget = true;
+            if (activity != 3 && tx * tx + ty * ty + tz * tz < 2.1D) chooseNewTarget = true;
         }
         if (chooseNewTarget && !targetInSight) {
             BlockPos origin = owner != null
