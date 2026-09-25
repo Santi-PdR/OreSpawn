@@ -197,11 +197,11 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
             if (random.nextBoolean()) ox = -ox;
             if (random.nextBoolean()) oz = -oz;
             BlockPos candidate = origin.offset(ox, random.nextInt(7) - 1 - groundOffset, oz);
+            flightTarget = candidate;
             if (level().isEmptyBlock(candidate) && hasLineOfSightTo(candidate)) {
-                flightTarget = candidate; stuckTicks = 0; return;
+                stuckTicks = 0; return;
             }
         }
-        flightTarget = null;
         stuckTicks = 0;
     }
 
