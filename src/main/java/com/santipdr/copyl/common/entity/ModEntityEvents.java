@@ -43,6 +43,7 @@ public final class ModEntityEvents {
         event.put(ModEntities.VELOCITY_RAPTOR.get(), VelocityRaptorEntity.createAttributes().build());
         event.put(ModEntities.SPYRO.get(), SpyroEntity.createAttributes().build());
         event.put(ModEntities.DOOMWORM.get(), DoomWormEntity.createAttributes().build());
+        event.put(ModEntities.BRUTALFLY.get(), BrutalflyEntity.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -66,6 +67,7 @@ public final class ModEntityEvents {
             SpawnPlacements.register(ModEntities.NASTYSAURUS.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, NastysaurusEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.KYUUBI.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, KyuubiEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.MOTHRA.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MothraEntity::checkSpawnRules);
+            SpawnPlacements.register(ModEntities.BRUTALFLY.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BrutalflyEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.MOTH.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MothEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.MANTIS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MantisEntity::checkSpawnRules);
             SpawnPlacements.register(ModEntities.RED_COW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, RedCowEntity::checkSpawnRules);
