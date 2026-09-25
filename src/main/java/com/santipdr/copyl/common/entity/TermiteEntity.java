@@ -1,5 +1,7 @@
 package com.santipdr.copyl.common.entity;
 
+import com.santipdr.copyl.common.util.LegacyRandom;
+
 import com.santipdr.copyl.common.entity.ai.LongRangeWanderGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -57,7 +59,7 @@ public final class TermiteEntity extends AntEntity {
 
     @Override
     public boolean doHurtTarget(Entity target) {
-        if (level().getRandom().nextInt(15) != 0 || level().getDifficulty() == Difficulty.PEACEFUL) {
+        if (LegacyRandom.nextInt(15) != 0 || level().getDifficulty() == Difficulty.PEACEFUL) {
             return false;
         }
         return target.hurt(damageSources().mobAttack(this), 1.0F);
