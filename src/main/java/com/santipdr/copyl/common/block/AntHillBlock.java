@@ -1,5 +1,7 @@
 package com.santipdr.copyl.common.block;
 
+import com.santipdr.copyl.common.util.LegacyRandom;
+
 import com.santipdr.copyl.common.entity.ModEntities;
 import com.santipdr.copyl.common.entity.RedAntEntity;
 import net.minecraft.core.BlockPos;
@@ -35,7 +37,7 @@ public final class AntHillBlock extends Block {
             return;
         }
 
-        int amount = random.nextInt(6) + 2;
+        int amount = LegacyRandom.nextInt(6) + 2;
         for (int i = 0; i < amount; i++) {
             RedAntEntity ant = ModEntities.RED_ANT.get().create(level);
             if (ant == null) {
