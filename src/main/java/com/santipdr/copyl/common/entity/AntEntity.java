@@ -57,7 +57,7 @@ public abstract class AntEntity extends Animal {
 
     @Override
     protected void customServerAiStep() {
-        if (random.nextInt(200) == 1) {
+        if (level().getRandom().nextInt(200) == 1) {
             setTarget(null);
         }
         super.customServerAiStep();
