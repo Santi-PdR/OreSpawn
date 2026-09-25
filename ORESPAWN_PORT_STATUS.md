@@ -247,3 +247,13 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **BUILD**: Actions #438 pasó tras corregir el import del modelo; #440 pasó para el head con textura e idiomas, commit `e9a848c3dba7746ea92a3096cc411b58a0c864bd`.
 - **PENDIENTE**: Doom Worm requiere cotejar visual/runtime; quedan Brutalfly y las auditorías finales de IA, contenido, runtime y visuales.
 - **AVANCE GLOBAL ESTIMADO**: 72 %.
+
+
+### Brutalfly — port inicial 2026-09-24
+
+- **CÓDIGO**: registradas estadísticas originales (110 de vida, velocidad 0,35, ataque 10, armadura 6, inmunidad al fuego y 100 XP), vuelo/selección de blancos, combate cuerpo a cuerpo y de proyectiles, curación cada 100 ticks, retaliación y muerte con 53 pepitas de oro + 20 mariposas.
+- **SPAWN**: bosque/selva con peso 10 y grupo 1; se conserva noche, Y≥70, columna de aire y radio de separación de 64×32×64 del original.
+- **CONTENIDO**: huevo, jaula, modelos, renderer y cuatro imágenes originales extraídas del JAR, incluida la capa superpuesta alada; traducciones EN y siete variantes ES.
+- **FIDELIDAD PENDIENTE**: el proyectil grande usa por ahora LargeFireball (explosión 1) en lugar de reproducir el código completo de BetterFireball; el mesh aún reutiliza la geometría de Butterfly. Falta cotejar el bytecode restante, cargar en cliente/servidor y terminar la pasada visual solicitada.
+- **BUILD**: GitHub Actions #466 pasó para `1234cd0ab3678d39c46dcaf8344d1cd769efd14a`.
+- **AVANCE GLOBAL ESTIMADO**: 73%; el objetivo sigue activo.
