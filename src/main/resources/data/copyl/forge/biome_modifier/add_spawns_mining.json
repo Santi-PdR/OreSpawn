@@ -39,6 +39,12 @@
       "weight": 15,
       "minCount": 1,
       "maxCount": 1
+    },
+    {
+      "type": "copyl:spyro",
+      "weight": 250,
+      "minCount": 1,
+      "maxCount": 1
     }
   ]
 }
