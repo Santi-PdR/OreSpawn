@@ -400,3 +400,11 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **SOURCE**: commits `19d983f553044e5e328d54b1ec176f9f537c22b6` y `9d24b2046dd116468d5aa32a7622a1dd35a02f48`.
 - **BUILD**: GitHub Actions #530 pasó para Doom Worm; #531 pasó para el conjunto final, con `Build mod`, detección del JAR final y carga del artefacto completadas.
 - **AVANCE GLOBAL ESTIMADO**: 87%; esta corrección mejora la distancia de sincronización de tres criaturas. La paridad restante y las pruebas runtime/client/server siguen abiertas; los fallos visuales de las capturas se revisarán tras cerrar el port funcional.
+
+### Sonidos de Doom Worm — 2026-09-25
+
+- **CORREGIDO**: el bytecode de `WormDoom` retorna los eventos registrados `entity.alosaurus.hurt` y `entity.alosaurus.death`; `DoomWormEntity` ahora reproduce ambos sonidos originales.
+- **FIDELIDAD**: el método ambiental hace la tirada `world.rand.nextInt(4)` y retorna uno de cuatro campos Caterkiller no inicializados por `SoundsHandler.registerSounds()`. El resultado original es silencioso; el port conserva la tirada y retorna `null` en vez de inventar eventos/audio.
+- **RECURSOS**: comprobados los OGG originales de Alosaurus y sus rutas en los recursos modernos.
+- **BUILD**: GitHub Actions #533 pasó para `4b53ebccacefb3c23a1eaec1baec57cb7aa3cfc8`, incluyendo empaquetado del JAR.
+- **AVANCE GLOBAL ESTIMADO**: 87%; queda continuar la auditoría de mecánicas y entidades, además de runtime/client/server antes de la pasada visual final.
