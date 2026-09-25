@@ -313,3 +313,12 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **VALIDACIÓN**: Actions #486 pasó `gradle build`, la comprobación del JAR final y la carga del artefacto para `f16b7117813c03bca8e90510b5ee901c41ac22a1`.
 - **PENDIENTE**: comprobar en runtime las variantes/spawn data; continúan abiertas paridad de IA, dimensión/terreno y pruebas client/server antes de la revisión visual final.
 - **AVANCE GLOBAL ESTIMADO**: 81%; el bloque de invocación por huevos ahora conserva la fase original de inicialización.
+
+
+### Spyro — fidelidad de vida y selección de objetivos — 2026-09-25
+
+- **CORREGIDO**: cotejado `onUpdate`/`updateAITasks` del JAR. Spyro ahora gana `+0.07` de velocidad vertical por tick en agua (sin curarse cada tick); recupera 1 punto con una tirada de 1/100 por tick, independientemente del agua.
+- **CORREGIDO**: se portó el reemplazo automático de Spyros no persistentes con probabilidad 1/100000 por tick, conservando posición, orientación aleatoria, inicialización natural, transferencia del estado domesticado y eliminación del original. El orden de objetivos ahora también aplica el peso original de distancia a Creepers (×0.5), además de distancia por área.
+- **VALIDACIÓN**: Actions #488 pasó las reglas de agua/curación; #489 y #491 fallaron por el import omitido de `ServerLevel`; se corrigió y Actions #492 pasó el build, verificación del JAR y carga del artefacto para `ed567a3d1e4d36e41d41d696de2e575d302aefb1`.
+- **PENDIENTE**: el algoritmo de búsqueda/steering de vuelo aún es una simplificación moderna pendiente de cotejo; runtime y restantes entidades/mecánicas siguen abiertos.
+- **AVANCE GLOBAL ESTIMADO**: 82%; mejoró la paridad de vida/objetivos, pero Spyro aún no está completamente cotejado.
