@@ -363,3 +363,12 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **VALIDACIÓN ESTÁTICA**: comparados los campos registrados en `ModItems` (112), `ModMaterialItems` (8), `ModTools` (15) y `ModArmor` (16) con las referencias de `ModCreativeTabs`. No faltan entradas ni hay referencias huérfanas. La validación de huevos y jaulas se registra en los checkpoints anteriores.
 - **BUILD/RUNTIME**: esta comprobación solo cubre la lista de contenido en código; no sustituye compilación ni prueba en juego. El resultado de Actions para los últimos pushes continúa sin poder verificarse mediante el endpoint de runs disponible.
 - **AVANCE GLOBAL ESTIMADO**: se mantiene en 86%; esta es una auditoría de cobertura del inventario ya portado, no un bloque nuevo de gameplay.
+
+
+### Paridad de Ant/Red Ant/Termite — 2026-09-25
+
+- **RED ANT**: quitados los objetivos añadidos de persecución y combate cuerpo a cuerpo. El bytecode solo muestra el intento de ataque manual cada 20 ticks contra el jugador más cercano a distancia 1.5; se conserva la tirada de daño 1/15 y el teletransporte con mano vacía.
+- **ANT/TERMITE**: las tiradas periódicas de limpiar objetivo, buscar madera, seleccionar su consumo y orientar termitas invocadas ahora usan el RNG del mundo como las rutinas originales.
+- **SOURCE**: commits `98bf49164e119e2f207215dcc905ab518ce8a725`, `b3d15947265d20d083c91af94eacb020777b2029`, `8c9f85ef54419903af5f44da5630bfcf7e12ee40` y `f5fd17155b6d5ea36ca9e8400499cfb76731949b`.
+- **PENDIENTE**: verificar build/runtime; faltan aún la auditoría completa de los objetivos pasivos heredados y el ciclo de consumo de madera en juego. Los checks de los pushes todavía no son visibles en el conector GitHub actual.
+- **AVANCE GLOBAL ESTIMADO**: 87%; se retiró una agresión añadida y se ajustaron las tiradas, pero la paridad de esta familia sigue en revisión.
