@@ -43,11 +43,11 @@ public final class BirdEntity extends PathfinderMob {
         }
 
         if (spawnPosition == null || random.nextInt(30) == 0 ||
-                spawnPosition.distToCenterSqr(getX(), getY(), getZ()) < 4.0D) {
+                distanceFromLegacyPositionSquared() < 4.0D) {
             spawnPosition = new BlockPos(
-                    Mth.floor(getX()) + random.nextInt(7) - random.nextInt(7),
-                    Mth.floor(getY()) + random.nextInt(6) - 2,
-                    Mth.floor(getZ()) + random.nextInt(7) - random.nextInt(7)
+                    (int) getX() + random.nextInt(7) - random.nextInt(7),
+                    (int) getY() + random.nextInt(6) - 2,
+                    (int) getZ() + random.nextInt(7) - random.nextInt(7)
             );
         }
 
@@ -66,6 +66,13 @@ public final class BirdEntity extends PathfinderMob {
         float targetYaw = (float) (Mth.atan2(nextMotion.z, nextMotion.x) * (180.0D / Math.PI)) - 90.0F;
         setYRot(getYRot() + Mth.wrapDegrees(targetYaw - getYRot()));
         this.zza = 0.5F;
+    }
+
+    private double distanceFromLegacyPositionSquared() {
+        double dx = spawnPosition.getX() - (int) getX();
+        double dy = spawnPosition.getY() - (int) getY();
+        double dz = spawnPosition.getZ() - (int) getZ();
+        return dx * dx + dy * dy + dz * dz;
     }
 
     @Override

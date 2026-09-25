@@ -67,7 +67,7 @@ public final class FireflyEntity extends AmbientCreature {
             currentFlightTarget = new BlockPos((int) getX(), (int) getY(), (int) getZ());
         }
 
-        if (random.nextInt(40) == 0 || currentFlightTarget.distToCenterSqr((int) getX(), (int) getY(), (int) getZ()) < 2.0D) {
+        if (random.nextInt(40) == 0 || distanceFromLegacyPositionSquared() < 2.0D) {
             int tries = 25;
             BlockPos candidate;
             do {
@@ -96,6 +96,13 @@ public final class FireflyEntity extends AmbientCreature {
         float yawDelta = Mth.wrapDegrees(targetYaw - getYRot());
         this.zza = 0.2F;
         setYRot(getYRot() + yawDelta / 4.0F);
+    }
+
+    private double distanceFromLegacyPositionSquared() {
+        double dx = currentFlightTarget.getX() - (int) getX();
+        double dy = currentFlightTarget.getY() - (int) getY();
+        double dz = currentFlightTarget.getZ() - (int) getZ();
+        return dx * dx + dy * dy + dz * dz;
     }
 
     @Override
