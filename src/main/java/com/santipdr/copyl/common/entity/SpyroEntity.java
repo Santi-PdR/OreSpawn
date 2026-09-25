@@ -12,6 +12,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -33,6 +34,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
@@ -48,7 +51,8 @@ public final class SpyroEntity extends TamableAnimal {
     private int activity = 1;
     private boolean fireballsEnabled = true;
     @Nullable private BlockPos flightTarget;
-    private int attackCooldown;
+    private boolean targetInSight;
+    private boolean ownerFlying;
 
     public SpyroEntity(EntityType<? extends SpyroEntity> type, Level level) {
         super(type, level);
@@ -127,8 +131,6 @@ public final class SpyroEntity extends TamableAnimal {
             activity = 1;
             return;
         }
-        if (attackCooldown > 0) attackCooldown--;
-
         // Attack selection and flight steering are handled together in tick().
     }
 
@@ -140,25 +142,52 @@ public final class SpyroEntity extends TamableAnimal {
     }
 
     private void attack(Monster target) {
-        if (attackCooldown > 0) return;
-        setTarget(target);
-        activity = 2;
-        flightTarget = BlockPos.containing(target.getX(), target.getY() + 1.0D, target.getZ());
         if (distanceToSqr(target) < Math.pow(3.0D + target.getBbWidth() * 0.5D, 2.0D)) {
             doHurtTarget(target);
-            attackCooldown = 20;
-        } else if (distanceToSqr(target) < 64.0D &&
-                (fireballsEnabled ? random.nextInt(10) == 0 : random.nextInt(15) == 0)) {
-            SmallFireball fireball = new SmallFireball(level(), this,
-                    target.getX() - getX(),
-                    target.getY() + 0.25D - (getY() + 1.25D),
-                    target.getZ() - getZ());
-            fireball.setPos(getX(), getY() + 1.25D, getZ());
-            level().addFreshEntity(fireball);
-            level().playSound(null, this, SoundEvents.GHAST_SHOOT, SoundSource.HOSTILE,
-                    0.75F, 0.8F / (random.nextFloat() * 0.4F + 0.8F));
-            attackCooldown = 10;
+            return;
         }
+        if (distanceToSqr(target) >= 64.0D || isInWater()) return;
+
+        // The legacy roll attempts 1/10 when fire is enabled, then falls through
+        // to the 1/15 roll when that first attempt misses (or fire is disabled).
+        boolean fire = fireballsEnabled && level().getRandom().nextInt(10) == 0;
+        if (!fire) fire = level().getRandom().nextInt(15) == 1;
+        if (!fire) return;
+
+        SmallFireball fireball = new SmallFireball(level(), this,
+                target.getX() - getX(),
+                target.getY() + 0.25D - (getY() + 1.25D),
+                target.getZ() - getZ());
+        fireball.setPos(getX(), getY() + 1.25D, getZ());
+        level().addFreshEntity(fireball);
+        level().playSound(null, this, SoundEvents.GHAST_SHOOT, SoundSource.NEUTRAL,
+                0.75F, 1.0F / (level().getRandom().nextFloat() * 0.2F + 0.9F));
+    }
+
+    private boolean canSeeTarget(double x, double y, double z) {
+        Vec3 start = new Vec3(getX(), getY() + 0.75D, getZ());
+        Vec3 end = new Vec3(x, y, z);
+        return level().clip(new ClipContext(start, end, ClipContext.Block.COLLIDER,
+                ClipContext.Fluid.NONE, this)).getType() == HitResult.Type.MISS;
+    }
+
+    private BlockPos chooseFlightTarget(BlockPos origin) {
+        int minHorizontal = ownerFlying ? 0 : 6;
+        int horizontalRange = ownerFlying ? 6 : isTame() && getOwner() != null ? 4 : 5;
+        BlockPos candidate = origin;
+        for (int attempt = 0; attempt < 50; attempt++) {
+            int dx = minHorizontal + level().getRandom().nextInt(horizontalRange);
+            int dz = minHorizontal + level().getRandom().nextInt(horizontalRange);
+            if (level().getRandom().nextBoolean()) dx = -dx;
+            if (level().getRandom().nextBoolean()) dz = -dz;
+            int dy = level().getRandom().nextInt(9 + (ownerFlying ? 2 : 0)) - 4;
+            candidate = origin.offset(dx, dy, dz);
+            if (level().getBlockState(candidate).isAir()
+                    && canSeeTarget(candidate.getX(), candidate.getY(), candidate.getZ())) {
+                return candidate;
+            }
+        }
+        return candidate;
     }
 
     @Override
@@ -193,19 +222,27 @@ public final class SpyroEntity extends TamableAnimal {
         }
         setNoGravity(true);
         if (level().isClientSide) return;
-        if (isTame() && getOwner() instanceof Player owner && owner.getAbilities().flying) {
-            activity = 2;
-            flightTarget = BlockPos.containing(owner.getX(), owner.getY() + 2.0D, owner.getZ());
-        } else if (isTame() && getOwner() != null && distanceToSqr(getOwner()) > 256.0D) {
-            activity = 2;
-            flightTarget = BlockPos.containing(getOwner().getX(), getOwner().getY() + 2.0D, getOwner().getZ());
+        LivingEntity owner = isTame() ? getOwner() : null;
+        ownerFlying = owner instanceof Player ownerPlayer && ownerPlayer.getAbilities().flying;
+
+        boolean chooseNewTarget = flightTarget == null;
+        if (activity == 2 && level().getRandom().nextInt(300) == 0) chooseNewTarget = true;
+        if (owner != null) {
+            double ownerDistance = distanceToSqr(owner);
+            if (ownerDistance > 100.0D || ownerFlying && ownerDistance > 36.0D) {
+                chooseNewTarget = true;
+                activity = 2;
+            }
         }
-        if (activity == 1 && random.nextInt(8) == 0) {
-            activity = 2;
-            flightTarget = BlockPos.containing(getX() + random.nextInt(17) - 8,
-                    getY() + random.nextInt(7) - 2, getZ() + random.nextInt(17) - 8);
+        if (!targetInSight && level().getRandom().nextInt(100) == 1) {
+            activity = 1;
+            if (level().getRandom().nextInt(8) == 1) {
+                activity = 2;
+                chooseNewTarget = true;
+            }
         }
-        if (random.nextInt(6) == 1) {
+
+        if (level().getRandom().nextInt(6) == 1 && level().getDifficulty() != Difficulty.PEACEFUL) {
             List<Monster> targets = level().getEntitiesOfClass(Monster.class,
                     getBoundingBox().inflate(12.0D, 6.0D, 12.0D),
                     target -> target.isAlive() && hasLineOfSight(target));
@@ -214,25 +251,51 @@ public final class SpyroEntity extends TamableAnimal {
                 Monster target = targets.get(0);
                 if (isTame() && getHealth() / getMaxHealth() < 0.25F) {
                     activity = 2;
+                    targetInSight = false;
                     flightTarget = BlockPos.containing(2.0D * getX() - target.getX(),
                             getY() + 1.0D, 2.0D * getZ() - target.getZ());
+                    chooseNewTarget = false;
                 } else {
+                    activity = 2;
+                    targetInSight = true;
+                    flightTarget = BlockPos.containing(target.getX(), target.getY() + 1.0D, target.getZ());
+                    getNavigation().moveTo(target, 1.25D);
+                    chooseNewTarget = false;
                     attack(target);
                 }
+            } else {
+                targetInSight = false;
             }
         }
+
+        if (activity == 2 && flightTarget != null && !targetInSight) {
+            Vec3 destination = new Vec3(flightTarget.getX(), flightTarget.getY(), flightTarget.getZ());
+            if (destination.distanceToSqr(getX(), getY(), getZ()) < 2.1D) chooseNewTarget = true;
+        }
+        if (chooseNewTarget && !targetInSight) {
+            BlockPos origin = owner != null ? owner.blockPosition() : blockPosition();
+            flightTarget = chooseFlightTarget(origin);
+        }
+
         if (activity == 2 && flightTarget != null) {
             double dx = flightTarget.getX() + 0.5D - getX();
             double dy = flightTarget.getY() + 0.1D - getY();
             double dz = flightTarget.getZ() + 0.5D - getZ();
-            Vec3 motion = getDeltaMovement();
-            setDeltaMovement(motion.x + (Math.signum(dx) * 0.5D - motion.x) * 0.15D,
-                    motion.y + (Math.signum(dy) * 0.7D - motion.y) * 0.21D,
-                    motion.z + (Math.signum(dz) * 0.5D - motion.z) * 0.15D);
-            if (Math.abs(dx) < 2.0D && Math.abs(dy) < 2.0D && Math.abs(dz) < 2.0D) {
-                activity = 1;
-                flightTarget = null;
+            double speed = 0.5D;
+            if (ownerFlying) {
+                speed = 1.75D;
+                if (owner != null && distanceToSqr(owner) > 49.0D) speed = 3.5D;
             }
+            Vec3 motion = getDeltaMovement();
+            setDeltaMovement(
+                    motion.x + (Math.signum(dx) * 0.5D - motion.x) * 0.15D * speed,
+                    motion.y + (Math.signum(dy) * 0.7D - motion.y) * 0.21D * speed,
+                    motion.z + (Math.signum(dz) * 0.5D - motion.z) * 0.15D * speed);
+            float targetYaw = (float) Math.toDegrees(Math.atan2(getDeltaMovement().z, getDeltaMovement().x)) - 90.0F;
+            float yawTurn = targetYaw - getYRot();
+            while (yawTurn < -180.0F) yawTurn += 360.0F;
+            while (yawTurn >= 180.0F) yawTurn -= 360.0F;
+            setYRot(getYRot() + yawTurn / 3.0F);
         }
     }
 
