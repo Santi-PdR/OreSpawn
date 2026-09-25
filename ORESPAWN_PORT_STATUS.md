@@ -221,6 +221,6 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **MUERTE**: sonido genérico de explosión del original, ráfaga de 20 partículas, 20 Moths invocadas y botín original (marco, 53 pepitas de oro, 3 varas de blaze y una estrella del Nether).
 - **CONTENIDO**: EntityType/atributos/spawn placement, aparición peso 15/grupo 1 en Extreme Hills, huevo y jaula con texturas originales, renderer y sonido de alas extraído del JAR.
 - **SPAWN**: cotejados con el método original el requisito de noche, altura mínima Y=70, columna de aire y separación de 64×32×64 respecto de otra Mothra.
-- **BUILD**: GitHub Actions run 428 pasó para `d9dd40e947315d959f1104977df9c179ad581e62`; se encontró y corrigió después la diferencia de placement y selección de objetivos. El nuevo checkpoint queda pendiente de Actions.
+- **BUILD**: GitHub Actions run 428 pasó para el checkpoint inicial y run 429 pasó tras cotejar/corregir placement y selección de objetivos (`844959e4009da5b31fcab1af700ccad65089c56a`).
 - **PENDIENTE**: Spyro, Doom Worm y Brutalfly; auditoría de conducta/loot, runtime y revisión visual final.
 - **AVANCE GLOBAL ESTIMADO**: 70 %.
