@@ -356,3 +356,10 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **VALIDACIÓN ESTÁTICA**: comparación del JAR con `ModItems` y `ModCreativeTabs`: los 32 huevos originales están registrados y los 32 son accesibles desde la pestaña, sin duplicados ni extras. Cambio en commit `525c67316c496fa337ebbd0eb0b60b29eefe3dba`.
 - **BUILD**: el workflow corre en pushes, pero los estados combinados siguen sin checks y el conector actual solo lista ejecuciones de PR; compilación de este head aún no confirmada.
 - **AVANCE GLOBAL ESTIMADO**: 86%; accesibilidad de huevos/jaulas ajustada al inventario original. Runtime y build siguen pendientes.
+
+
+### Auditoría del resto del inventario creativo — 2026-09-25
+
+- **VALIDACIÓN ESTÁTICA**: comparados los campos registrados en `ModItems` (112), `ModMaterialItems` (8), `ModTools` (15) y `ModArmor` (16) con las referencias de `ModCreativeTabs`. No faltan entradas ni hay referencias huérfanas. La validación de huevos y jaulas se registra en los checkpoints anteriores.
+- **BUILD/RUNTIME**: esta comprobación solo cubre la lista de contenido en código; no sustituye compilación ni prueba en juego. El resultado de Actions para los últimos pushes continúa sin poder verificarse mediante el endpoint de runs disponible.
+- **AVANCE GLOBAL ESTIMADO**: se mantiene en 86%; esta es una auditoría de cobertura del inventario ya portado, no un bloque nuevo de gameplay.
