@@ -506,3 +506,12 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **SOURCE**: commits `a045e1ee`, `ea5e74ce`, `bd031fa6`, `2a324f42` y `4f84801c`.
 - **BUILD/RUNTIME**: estado combinado y ejecuciones asociadas no aparecen en la respuesta del conector GitHub para estos commits. No se marca el build verde; runtime y multiplayer siguen pendientes.
 - **AVANCE GLOBAL ESTIMADO**: 87%; continúa pendiente la auditoría del resto de entidades y sistemas.
+
+
+### Spyro — sincronización de estado cliente/servidor — 2026-09-25
+
+- **CORREGIDO CONTRA BYTECODE**: el JAR declara `ACTIVITY` y `FIRE` como `DataParameter<Byte>`, los registra en el entity data manager y accede a ellos mediante getters/setters. El port los tenía en campos locales, por lo que clientes remotos podían conservar actividad y estado de fuego desactualizados.
+- **PORTADO**: `SpyroEntity` ahora define ambos valores en `SynchedEntityData`; la IA, el guardado NBT y las interacciones con Hielo/Pedernal y Acero leen o actualizan esos mismos valores sincronizables. Se mantiene el default de fuego activado y los tags NBT actuales.
+- **SOURCE**: commit `3d681f9b90315b96bb0f706983a1a525fb391fb8`; el archivo fue releído de la rama GitHub tras el commit.
+- **BUILD**: el push activa el workflow `Build Forge 1.20.1`. El conector reporta estados combinados y runs vacíos para ese commit; aún no hay evidencia visible de resultado de Actions, así que no se marca verde.
+- **AVANCE GLOBAL ESTIMADO**: 87%; se cerró una diferencia específica de sincronización, con el build y las pruebas runtime/multiplayer todavía pendientes.
