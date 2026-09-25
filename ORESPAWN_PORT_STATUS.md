@@ -392,3 +392,11 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **CORREGIDO**: el barrido replica el orden de las seis caras del método `scan_it` (X, Y, Z), manteniendo el desempate de bloques a igual distancia. El origen usa conversión int→bloque por truncamiento como el bytecode `d2i`, incluso con coordenadas negativas.
 - **VALIDACIÓN**: cotejo estático de `scan_it`, `updateAITick` e `isWood` del JAR con `TermiteEntity`; source commits `293c14e90fec19a0b55ac832aab17918024568ca` y `dff2630aa3bef1904809fbc7604676cb6ecfe15e`. GitHub Actions #528 valida el build, detección y publicación del JAR para el head actual; la prueba runtime sigue pendiente.
 - **AVANCE GLOBAL ESTIMADO**: 87%; avanza la paridad de la familia, pero siguen pendientes build/runtime y el resto de entidades/sistemas.
+
+### Alcance de seguimiento de entidades — 2026-09-25
+
+- **CORREGIDO**: cotejado `ModEntities.registerEntities()` del JAR. Los registros ordinarios usan `trackingRange=50`; en 1.20.1 se aproximan con 4 chunks (64 bloques). Mothra y Brutalfly ya usan ese alcance, en lugar de 8 chunks.
+- **CORREGIDO**: Doom Worm usa el registro especial de 325 bloques del JAR; `clientTrackingRange` moderno queda en 21 chunks (336 bloques), en lugar de 12 (192 bloques).
+- **SOURCE**: commits `19d983f553044e5e328d54b1ec176f9f537c22b6` y `9d24b2046dd116468d5aa32a7622a1dd35a02f48`.
+- **BUILD**: GitHub Actions #530 pasó para Doom Worm; #531 pasó para el conjunto final, con `Build mod`, detección del JAR final y carga del artefacto completadas.
+- **AVANCE GLOBAL ESTIMADO**: 87%; esta corrección mejora la distancia de sincronización de tres criaturas. La paridad restante y las pruebas runtime/client/server siguen abiertas; los fallos visuales de las capturas se revisarán tras cerrar el port funcional.
