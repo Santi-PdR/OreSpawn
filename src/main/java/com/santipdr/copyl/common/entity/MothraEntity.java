@@ -115,10 +115,10 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
         if (lastX == x && lastY == y && lastZ == z) stuckTicks++;
         else { stuckTicks = 0; lastX = x; lastY = y; lastZ = z; }
         int attackDivisor = level().getDifficulty() == Difficulty.HARD ? 2 : 3;
-        if (flightTarget == null || stuckTicks > 50 || (random.nextInt(300) == 0 &&
+        if (flightTarget == null || stuckTicks > 50 || (level().getRandom().nextInt(300) == 0 &&
                 flightTarget.distToCenterSqr(getX(), getY(), getZ()) < 81.0D)) {
             chooseFlightTarget();
-        } else if (random.nextInt(10) == 0 && level().getDifficulty() != Difficulty.PEACEFUL
+        } else if (level().getRandom().nextInt(10) == 0 && level().getDifficulty() != Difficulty.PEACEFUL
                 && LegacyGameplayFlags.PLAY_NICELY == 0) {
             Player player = level().getEntitiesOfClass(Player.class,
                     getBoundingBox().inflate(25.0D, 20.0D, 25.0D))
@@ -126,7 +126,7 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
             if (player != null && player.isAlive() && !player.getAbilities().instabuild && hasLineOfSight(player)) {
                 flightTarget = BlockPos.containing(player.getX(), player.getY() + 4.0D, player.getZ());
                 if (random.nextInt(attackDivisor) == 0) attackWithSomething(player);
-            } else if (random.nextInt(3) == 0) {
+            } else if (level().getRandom().nextInt(3) == 0) {
                 LivingEntity victim = level().getEntitiesOfClass(LivingEntity.class,
                         getBoundingBox().inflate(15.0D, 20.0D, 15.0D),
                         e -> e != this && e.isAlive() &&
@@ -137,7 +137,7 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
                         .stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
                 if (victim != null) {
                     flightTarget = BlockPos.containing(victim.getX(), victim.getY() + 5.0D, victim.getZ());
-                    if (random.nextInt(attackDivisor) == 0) attackWithSomething(victim);
+                    if (level().getRandom().nextInt(attackDivisor) == 0) attackWithSomething(victim);
                 }
             }
         }
