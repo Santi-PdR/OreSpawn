@@ -94,7 +94,7 @@ public final class AlosaurusEntity extends Monster {
         }
         super.customServerAiStep();
 
-        if (this.random.nextInt(5) != 0) {
+        if (this.level().getRandom().nextInt(5) != 0) {
             return;
         }
 
@@ -108,7 +108,7 @@ public final class AlosaurusEntity extends Monster {
         double reach = 4.0D + target.getBbWidth() / 2.0D;
         if (this.distanceToSqr(target) < reach * reach) {
             setAttacking(1);
-            if (this.random.nextInt(4) == 0 || this.random.nextInt(5) == 1) {
+            if (this.level().getRandom().nextInt(4) == 0 || this.level().getRandom().nextInt(5) == 1) {
                 this.doHurtTarget(target);
             }
         } else {
@@ -137,7 +137,7 @@ public final class AlosaurusEntity extends Monster {
         if (!this.getSensing().hasLineOfSight(target)) {
             return false;
         }
-        return !(target instanceof Player player) || (!player.isCreative() && !player.isSpectator());
+        return !(target instanceof Player player) || !player.isCreative();
     }
 
     @Override
