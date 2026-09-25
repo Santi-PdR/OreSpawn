@@ -421,3 +421,10 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **CORREGIDO**: las clases Dragonfly y Mosquito referencian en el JAR campos que nunca son inicializados por el registro original; sus sonidos resultan silenciosos. Se eliminaron del registro moderno los tres eventos Dragonfly y el evento Mosquito, incluido el evento de muerte Dragonfly que no tiene campo original. Los métodos modernos ahora retornan `null`, fiel al original.
 - **VALIDACIÓN**: comparados los campos estáticos referenciados por el bytecode, la lista de registro original y las rutas de audio existentes. Actions #540 pasó compilación, detección y carga del JAR para `73e830ffa7523f259c252378cb68516f9680a47c`.
 - **AVANCE GLOBAL ESTIMADO**: 87%; continúan abiertas otras auditorías de paridad y la verificación runtime/client/server antes de la pasada visual final.
+
+### Mining Dimension — capas inferiores sin deepslate — 2026-09-25
+
+- **CORREGIDO**: el `noise_settings/mining.json` moderno heredaba una regla del Overworld 1.20 que sustituía la piedra de Y=0–7 por deepslate. El generador original 1.12.2 usa piedra y bedrock; se retiró esa sustitución moderna sin cambiar el resto de las reglas de superficie.
+- **VALIDACIÓN**: bytecode de `ChunkGeneratorMiningDimension.generateBiomeTerrain()` cotejado; JSON parseado y confirmado sin reglas de deepslate. Actions #542 pasó `Build mod`, detección y carga del JAR para `8ab113e9134685496a3e1fc697f797759430a06f`.
+- **PENDIENTE**: el router de ruido y las cuevas modernos aún no reproducen en bits el generador 1.12.2; falta comparar mundo generado en runtime.
+- **AVANCE GLOBAL ESTIMADO**: 87%; se corrigió una sustitución de bloques no original en la dimensión y continúa la auditoría del terreno.
