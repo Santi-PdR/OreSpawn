@@ -50,7 +50,7 @@ public final class MosquitoEntity extends AmbientCreature {
         }
         super.customServerAiStep();
 
-        BlockPos here = blockPosition();
+        BlockPos here = new BlockPos((int) getX(), (int) getY(), (int) getZ());
         if (currentFlightTarget == null) {
             currentFlightTarget = here;
         }
