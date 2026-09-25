@@ -231,5 +231,8 @@
   "entity.copyl.mothra": "Mothra",
   "item.copyl.mothra_egg": "Huevo de Mothra",
   "item.copyl.mothra_cage": "Mothra enjaulada",
-  "entity.mothra.wings": "Alas de Mothra"
+  "entity.mothra.wings": "Alas de Mothra",
+  "item.copyl.spyro_egg": "Huevo de Spyro",
+  "item.copyl.spyro_cage": "Spyro enjaulado",
+  "entity.copyl.spyro": "Spyro"
 }

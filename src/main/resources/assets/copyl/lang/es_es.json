@@ -153,5 +153,8 @@
   "entity.copyl.nastysaurus": "Nastysaurus",
   "item.copyl.kyuubi_egg": "Huevo de Kyuubi",
   "item.copyl.kyuubi_cage": "Jaula de Kyuubi",
-  "entity.copyl.kyuubi": "Kyuubi"
+  "entity.copyl.kyuubi": "Kyuubi",
+  "item.copyl.spyro_egg": "Huevo de Spyro",
+  "item.copyl.spyro_cage": "Spyro enjaulado",
+  "entity.copyl.spyro": "Spyro"
 }

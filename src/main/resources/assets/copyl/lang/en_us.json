@@ -243,5 +243,8 @@
   "entity.copyl.mothra": "Mothra",
   "item.copyl.mothra_egg": "Mothra Egg",
   "item.copyl.mothra_cage": "Caged Mothra",
-  "entity.mothra.wings": "Mothra wings"
+  "entity.mothra.wings": "Mothra wings",
+  "item.copyl.spyro_egg": "Spyro Egg",
+  "item.copyl.spyro_cage": "Caged Spyro",
+  "entity.copyl.spyro": "Spyro"
 }
