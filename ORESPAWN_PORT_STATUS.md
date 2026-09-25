@@ -515,3 +515,12 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **SOURCE**: commit `3d681f9b90315b96bb0f706983a1a525fb391fb8`; el archivo fue releído de la rama GitHub tras el commit.
 - **BUILD**: el push activa el workflow `Build Forge 1.20.1`. El conector reporta estados combinados y runs vacíos para ese commit; aún no hay evidencia visible de resultado de Actions, así que no se marca verde.
 - **AVANCE GLOBAL ESTIMADO**: 87%; se cerró una diferencia específica de sincronización, con el build y las pruebas runtime/multiplayer todavía pendientes.
+
+
+### Auditoría de estados sincronizados de entidades — 2026-09-25
+
+- **COTEJO**: inspeccionados los campos `DataParameter` de las clases de entidad del JAR de referencia. El original solo declara estado sincronizado en Alien, Alosaurus, CaveFisher, Nastysaurus, TRex (`ATTACKING: Byte`) y Spyro (`ACTIVITY/FIRE: Byte`).
+- **PORT**: las cinco señales `ATTACKING` ya están en `SynchedEntityData`; Spyro fue migrado en `3d681f9b90315b96bb0f706983a1a525fb391fb8`. En Nastysaurus el modelo original no lee `ATTACKING`; la animación se apoya en `RenderInfo`, por lo que no se inventó una dependencia visual nueva.
+- **ALCANCE**: revisión de las clases principales de entidad listadas en el JAR; no sustituye las auditorías pendientes de IA, persistencia, render y comportamiento en runtime.
+- **BUILD**: el checkpoint de código y este registro disparan el workflow configurado para pushes a `work/**`. El conector no publica esos runs de push en sus respuestas actuales; compilación todavía sin verificar.
+- **AVANCE GLOBAL ESTIMADO**: 87%; esta auditoría cierra los campos de datos sincronizados identificados, y deja abiertas las diferencias funcionales y pruebas generales.
