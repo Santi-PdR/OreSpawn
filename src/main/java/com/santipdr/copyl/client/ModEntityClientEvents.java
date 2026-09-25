@@ -33,6 +33,7 @@ public final class ModEntityClientEvents {
         event.registerLayerDefinition(MosquitoModel.LAYER_LOCATION, MosquitoModel::createBodyLayer);
         event.registerLayerDefinition(MothModel.LAYER_LOCATION, MothModel::createBodyLayer);
         event.registerLayerDefinition(MothraModel.LAYER_LOCATION, MothraModel::createBodyLayer);
+        event.registerLayerDefinition(BrutalflyModel.LAYER_LOCATION, BrutalflyModel::createBodyLayer);
         event.registerLayerDefinition(SpyroModel.LAYER_LOCATION, SpyroModel::createBodyLayer);
         event.registerLayerDefinition(DoomWormModel.LAYER_LOCATION, DoomWormModel::createBodyLayer);
         event.registerLayerDefinition(MantisModel.LAYER_LOCATION, MantisModel::createBodyLayer);
@@ -71,6 +72,7 @@ public final class ModEntityClientEvents {
         event.registerEntityRenderer(ModEntities.NASTYSAURUS.get(), NastysaurusRenderer::new);
         event.registerEntityRenderer(ModEntities.KYUUBI.get(), KyuubiRenderer::new);
         event.registerEntityRenderer(ModEntities.MOTHRA.get(), MothraRenderer::new);
+        event.registerEntityRenderer(ModEntities.BRUTALFLY.get(), BrutalflyRenderer::new);
         event.registerEntityRenderer(ModEntities.SPYRO.get(), SpyroRenderer::new);
         event.registerEntityRenderer(ModEntities.DOOMWORM.get(), DoomWormRenderer::new);
         event.registerEntityRenderer(ModEntities.RED_COW.get(), RedCowRenderer::new);
