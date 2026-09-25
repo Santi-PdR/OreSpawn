@@ -533,3 +533,11 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **AUDITORÍA**: comparación de las entidades principales encontró que los demás tamaños que fija explícitamente el constructor coinciden con sus registros modernos; el cotejo no sustituye una revisión de colisiones en runtime.
 - **BUILD**: el push activa el workflow de compilación; el conector sigue devolviendo arrays vacíos para estados y ejecuciones de push, por lo que este cambio aún no tiene resultado de Actions verificable.
 - **AVANCE GLOBAL ESTIMADO**: 87%; se corrige una diferencia de colisión específica, pero la paridad de las entidades y las pruebas runtime siguen pendientes.
+
+
+### Hitbox base de Doom Worm — 2026-09-25
+
+- **COTEJO**: la clase original `WormDoom` hereda de `EntityLiving` y no contiene llamada a `setSize` ni reemplazo de bounding box. Conserva la caja base del JAR, de `0.6 × 1.8`; el cuerpo segmentado grande es geometría visual.
+- **CORREGIDO**: `ModEntities.DOOMWORM` deja de usar `2 × 2` y recupera `0.6 × 1.8`. El registro moderno tampoco sobrescribe el tamaño desde `DoomWormEntity`. Cambio en `729826ff35b9868d5d475154097d1fe6b921950f`.
+- **BUILD**: push al workflow de compilación; la respuesta disponible del conector aún no permite verificar el resultado de las ejecuciones push.
+- **AVANCE GLOBAL ESTIMADO**: 87%; este ajuste restituye la caja original y no equivale a validar movimiento/collisions en runtime.
