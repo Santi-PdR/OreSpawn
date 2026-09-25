@@ -78,7 +78,7 @@ local. `[ ]` = fase todavía no portada.
 ## Fase 4 — entidades
 
 - [x] `OreGenericEgg`: los 32 bloques `*_ore` usan el bloque de criatura con stats y XP originales.
-- [~] EntityTypes/atributos/spawn placements: registrados para las criaturas implementadas; Spyro, Mothra, Doomworm y Brutalfly siguen pendientes; Nastysaurus y Kyuubi ya están portados con entidades y contenido asociado.
+- [~] EntityTypes/atributos/spawn placements: las entidades principales (incluidos Spyro, Mothra, Doomworm, Brutalfly, Nastysaurus y Kyuubi) ya tienen registro y contenido asociado; queda cotejar exhaustivamente cada registro y regla de spawn del JAR.
 - [~] AI: algunos Goals de movimiento y ataques migrados; falta portar la conducta completa de varias criaturas y las familias restantes.
 - [~] Modelos/renderers/sonidos parciales para las entidades implementadas; faltan las criaturas aún no portadas y verificación visual final.
 - [~] Huevos y jaulas registrados para parte de las criaturas implementadas; faltan las entradas de criaturas pendientes y drops asociados.
@@ -87,7 +87,7 @@ local. `[ ]` = fase todavía no portada.
 
 ## Fase 5 — worldgen/dimensión
 - [~] WorldGenOres: registered vein feature now covers the original 28 creature ores plus Uranium, Titanium and Amethyst in Overworld and Mining Dimension; exact 1.12.2 heights, per-chunk attempts and 5–9 vein sizes are preserved.
-- [~] Mining Dimension base: datapack dimension/type + fixed mining biome, hills-style vanilla noise and ore/mob spawn tables. Original day rollover is ported; Red Ant provides the original empty-hand two-way teleport. Exact custom chunk-noise parity and the two missing Spyro/Nastysaurus dungeon-loot entries remain in progress. AntHillFeature, its configured/placed features and Overworld/Mining biome modifiers are now present; original-frequency/runtime parity still needs verification.
+- [~] Mining Dimension base: datapack dimension/type + fixed mining biome, hills-style vanilla noise and ore/mob spawn tables. Original day rollover is ported; Red Ant provides the original empty-hand two-way teleport. Exact custom chunk-noise parity and runtime behavior still need verification. AntHillFeature, its configured/placed features and Overworld/Mining biome modifiers are present.
 - [~] GenericDungeon is connected to new Mining Dimension chunks at the original 1/16 frequency and Y 5–44; its chest loot table currently includes all registered original items.
 
 ## Fase 6 — mecánicas especiales
@@ -110,7 +110,7 @@ local. `[ ]` = fase todavía no portada.
 - **PARTIAL**: `GenericDungeon` logic ported: 12×6×12 clear volume, obsidian floor, random stone/cobblestone walls+roof, center spawner and south-facing chest. The spawner randomly selects the registered `copyl:alien`, `copyl:gammametroid`, or `copyl:cryolophosaurus` types.
 - **PORTED**: `StructureGenerator` runs only for new Mining Dimension chunks (1/16 chance, Y 5–44). No Overworld fallback was added.
 - **PORTED**: `WorldGenStructure` modern template helper. The provided JAR contains no `.nbt` structure templates, so no templates were invented.
-- **IMPLEMENTED (2026-09-24)**: Mining Dimension datapack registration, dimension type, fixed mining biome, vanilla hills-style terrain/features and original Red Ant teleport/day rollover. The 1.12.2 source has no separate portal block. GenericDungeon is connected to new Mining Dimension chunks. The chest table has the original 3–5 rolls and all currently registered original rewards; Spyro/Nastysaurus eggs remain pending; AntHillFeature and its biome modifiers were added afterward.
+- **IMPLEMENTED (2026-09-24)**: Mining Dimension datapack registration, dimension type, fixed mining biome, vanilla hills-style terrain/features and original Red Ant teleport/day rollover. The 1.12.2 source has no separate portal block. GenericDungeon is connected to new Mining Dimension chunks. The chest table preserves the original 3–5 rolls and all 20 original entries, including Spyro and Nastysaurus eggs; AntHillFeature and its biome modifiers are also present.
 - **BUILD VERIFIED**: GitHub Actions runs 373, 374 and 375 passed; run 375 built commit `1644b6ccfc56d60c7eed77f49af165ba0798b5f1` with Java 17 and Gradle 8.1.1.
 
 ## Seguimiento — 2026-09-24
@@ -258,3 +258,11 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **BUILD**: Actions #466 pasó el registro/contenido y #469 pasó después del port del proyectil (incluye `gradle build`, validación del JAR final y carga de artefacto).
 - **PENDIENTE**: revisar el mesh original y runtime cliente/servidor; la pasada final atenderá también los fallos visuales de las capturas.
 - **AVANCE GLOBAL ESTIMADO**: 74%; el objetivo sigue activo.
+
+
+### Recompensas originales de GenericDungeon — 2026-09-24
+
+- **CORREGIDO**: añadidos `copyl:spyro_egg` y `copyl:nastysaurus_egg` a la loot table, cada uno con peso 15 y respetando el orden del JSON original del JAR. Ambos IDs existen en el registro de ítems actual.
+- **VALIDACIÓN**: Actions run 471 compiló correctamente el commit `8e6812e69d968df42a82f75181ff310cfd44ff42`, incluyendo el build del mod, la comprobación del JAR y la carga del artefacto.
+- **AUDITORÍA**: confirmados en el source actual los registros/modelos/renderers de las entidades principales antes marcadas como pendientes. Continúa pendiente la comparación completa de IA, spawn y runtime.
+- **AVANCE GLOBAL ESTIMADO**: 75%; sigue activo el cotejo de comportamiento y las pruebas runtime antes de la pasada visual final.
