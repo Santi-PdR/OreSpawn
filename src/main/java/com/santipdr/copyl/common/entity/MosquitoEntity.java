@@ -1,5 +1,7 @@
 package com.santipdr.copyl.common.entity;
 
+import com.santipdr.copyl.common.util.LegacyRandom;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
@@ -57,7 +59,7 @@ public final class MosquitoEntity extends AmbientCreature {
             boolean chosePlayer = false;
 
             // El JAR intenta seguir al jugador más cercano dentro de 10x6x10 una de cada cuatro veces.
-            if (random.nextInt(4) == 0) {
+            if (LegacyRandom.nextInt(4) == 0) {
                 AABB box = getBoundingBox().inflate(10.0D, 6.0D, 10.0D);
                 List<Player> players = level().getEntitiesOfClass(Player.class, box);
                 Player nearest = null;
