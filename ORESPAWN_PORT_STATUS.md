@@ -448,11 +448,19 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **AVANCE GLOBAL ESTIMADO**: 87%; sigue abierta la auditoría del resto de llamadas aleatorias, además de IA, spawn y runtime.
 
 
-### RNG compartido — Moth, plantas de insecto y maíz — 2026-09-25
+### RNG global — cotejo estático completo — 2026-09-25
 
-- **CORREGIDO**: `MothEntity` usa `LegacyRandom.nextInt(4)` para la variante que en el original consumía `OreSpawnRand`; las tiradas de vuelo que usan el RNG de entidad se dejaron intactas.
-- **CORREGIDO**: `InsectSpawnPlant` usa la fuente global para las probabilidades compartidas por Butterfly, Firefly, Mosquito y Moth; mantiene el parámetro aleatorio moderno para la llamada base.
-- **CORREGIDO**: `CornPlantBlockEntity` usa la fuente legacy para el valor inicial y para el fallback de guardado antiguo, equivalentes a `TileEntityPlant` del JAR.
-- **VALIDACIÓN**: comparación directa de los métodos originales y las llamadas actuales. Actions #571 pasó `compileJava`, `build`, localización del JAR y carga del artefacto.
-- **PENDIENTE**: quedan otros usos de `OreSpawnRand` en bloques y entidades. No se sustituyó a ciegas el RNG de entidad/nivel, ya que el bytecode distingue esos flujos.
-- **AVANCE GLOBAL ESTIMADO**: 87%; esta migración parcial mejora fidelidad sin cerrar la auditoría global ni las pruebas runtime.
+- **AUDITORÍA**: se compararon las referencias a `OreSpawnMain.OreSpawnRand` en el JAR con las llamadas modernas a `LegacyRandom`. El flujo sigue inicializado con `java.util.Random(151L)`.
+- **MIGRADO**: Ant Hill; probabilidades compartidas de las cuatro plantas de insectos; valor inicial/fallback de maíz; ataque de Red Ant y Termite; variante de Moth; selección de Mosquito; dispersión del botín de Alien, Alosaurus, Beaver, Gamma Metroid, Kyuubi, Nastysaurus, Pointysaurus y T-Rex; gotas individuales de Brutalfly y Mothra; y las tres familias de Worm.
+- **COTEJO**: el uso de plantas está compartido por una sola implementación moderna; el helper de dispersión de WormLarge consolida dos sitios originales; Corn conserva además un fallback moderno para partidas antiguas. Estas diferencias de conteo estático no demuestran diferencia de secuencia.
+- **LÍMITE**: quedaron mapeados los puntos de consumo estáticos. No se afirma equivalencia de secuencia entre cargas, ticks, entidades o clientes; eso requiere prueba runtime.
+- **BUILD**: GitHub Actions #590 pasó para `c55e806b522e8c6eb58ade5afe1ec1b42d39e7f8`, incluyendo compilación y artefacto.
+- **AVANCE GLOBAL ESTIMADO**: 87%; quedan auditorías de comportamiento y pruebas runtime/client/server.
+
+### Alien — selección de blancos — 2026-09-25
+
+- **CORREGIDO**: la búsqueda ahora considera cualquier `LivingEntity` viva en el AABB original de 12×4×12, excluye jugadores creativos y el propio Alien, y selecciona la entidad más cercana. Se quitaron filtros extra de línea de visión y espectador que el JAR no aplica.
+- **COTEJO**: comparados `findSomethingToAttack()` y `isSuitableTarget()` del bytecode de `danger.orespawn.entity.Alien` con `AlienEntity.findSomethingToAttack()`.
+- **BUILD**: GitHub Actions #591 pasó para `cb5f09767635441423da12fe1d58e5ed91009b9c`; `Build mod`, detección del JAR y carga del artefacto terminaron correctamente.
+- **PENDIENTE**: verificar combate y selección de blancos en runtime.
+- **AVANCE GLOBAL ESTIMADO**: 87%; queda paridad de otras mecánicas y validación runtime.
