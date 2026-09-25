@@ -174,6 +174,9 @@ public final class DragonflyEntity extends Animal {
 
     @Nullable
     private LivingEntity findSomethingToAttack() {
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
+            return null;
+        }
         AABB box = getBoundingBox().inflate(10.0D, 6.0D, 10.0D);
         List<LivingEntity> candidates = level().getEntitiesOfClass(LivingEntity.class, box,
                 this::isSuitableTarget);

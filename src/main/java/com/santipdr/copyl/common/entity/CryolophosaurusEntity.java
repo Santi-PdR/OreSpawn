@@ -86,6 +86,9 @@ public final class CryolophosaurusEntity extends Monster {
     }
 
     private LivingEntity findSomethingToAttack() {
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
+            return null;
+        }
         AABB search = this.getBoundingBox().inflate(9.0D, 2.0D, 9.0D);
         List<LivingEntity> candidates = this.level().getEntitiesOfClass(LivingEntity.class, search, this::isSuitableTargetOriginal);
         return candidates.isEmpty() ? null : candidates.get(0);

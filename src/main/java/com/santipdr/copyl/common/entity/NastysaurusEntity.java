@@ -113,6 +113,9 @@ public final class NastysaurusEntity extends Monster {
     }
 
     private LivingEntity findSomethingToAttack() {
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
+            return null;
+        }
         AABB search = this.getBoundingBox().inflate(32.0D, 8.0D, 32.0D);
         List<LivingEntity> candidates = this.level().getEntitiesOfClass(LivingEntity.class, search);
         candidates.sort(Comparator.comparingDouble(this::getOriginalTargetScore));

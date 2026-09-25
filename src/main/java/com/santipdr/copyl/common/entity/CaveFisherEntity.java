@@ -107,6 +107,9 @@ public final class CaveFisherEntity extends Monster {
     }
 
     private LivingEntity findSomethingToAttack() {
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
+            return null;
+        }
         AABB area = getBoundingBox().inflate(10.0D, 3.0D, 10.0D);
         List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, area);
         for (LivingEntity candidate : entities) {

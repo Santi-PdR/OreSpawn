@@ -123,6 +123,9 @@ public final class KyuubiEntity extends Monster {
     }
 
     private LivingEntity findSomethingToAttack() {
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
+            return null;
+        }
         List<LivingEntity> candidates = level().getEntitiesOfClass(LivingEntity.class,
                 getBoundingBox().inflate(12.0D, 4.0D, 12.0D));
         candidates.sort(Comparator.comparingDouble(this::originalTargetScore));

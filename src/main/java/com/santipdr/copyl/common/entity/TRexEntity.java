@@ -126,6 +126,9 @@ public final class TRexEntity extends Monster {
     }
 
     private LivingEntity findSomethingToAttack() {
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
+            return null;
+        }
         AABB area = this.getBoundingBox().inflate(20.0D, 6.0D, 20.0D);
         List<LivingEntity> candidates = this.level().getEntitiesOfClass(LivingEntity.class, area);
         for (LivingEntity candidate : candidates) {

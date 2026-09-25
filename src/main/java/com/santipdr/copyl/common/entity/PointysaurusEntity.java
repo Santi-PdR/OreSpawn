@@ -116,6 +116,9 @@ public final class PointysaurusEntity extends Monster {
     }
 
     private LivingEntity findSomethingToAttack() {
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
+            return null;
+        }
         AABB search = this.getBoundingBox().inflate(12.0D, 5.0D, 12.0D);
         List<LivingEntity> candidates = this.level().getEntitiesOfClass(LivingEntity.class, search);
         for (LivingEntity candidate : candidates) {

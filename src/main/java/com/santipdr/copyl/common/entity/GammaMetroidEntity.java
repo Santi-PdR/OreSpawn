@@ -120,6 +120,9 @@ public final class GammaMetroidEntity extends TamableAnimal {
     }
 
     private LivingEntity findSomethingToAttack() {
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
+            return null;
+        }
         if (this.isBaby() || this.isTame()) {
             return null;
         }
