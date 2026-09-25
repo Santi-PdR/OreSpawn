@@ -1,5 +1,7 @@
 package com.santipdr.copyl.common.entity;
 
+import com.santipdr.copyl.common.util.LegacyRandom;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
@@ -113,8 +115,8 @@ public final class WormMediumEntity extends Monster {
             if (stolen.getDamageValue() >= stolen.getMaxDamage()) stolen.shrink(1);
         }
         if (!stolen.isEmpty()) {
-            double x = getX() + random.nextInt(5) - random.nextInt(5);
-            double z = getZ() + random.nextInt(5) - random.nextInt(5);
+            double x = getX() + LegacyRandom.nextInt(5) - LegacyRandom.nextInt(5);
+            double z = getZ() + LegacyRandom.nextInt(5) - LegacyRandom.nextInt(5);
             level().addFreshEntity(new ItemEntity(level(), x, getY() + 3.0D, z, stolen));
         }
     }
@@ -153,9 +155,9 @@ public final class WormMediumEntity extends Monster {
     }
 
     private void dropOriginalItem(Item item) {
-        double x = getX() + random.nextInt(3) - random.nextInt(3);
-        double y = getY() + 2.5D + random.nextInt(3);
-        double z = getZ() + random.nextInt(3) - random.nextInt(3);
+        double x = getX() + LegacyRandom.nextInt(3) - LegacyRandom.nextInt(3);
+        double y = getY() + 2.5D + level().getRandom().nextInt(3);
+        double z = getZ() + LegacyRandom.nextInt(3) - LegacyRandom.nextInt(3);
         level().addFreshEntity(new ItemEntity(level(), x, y, z, new ItemStack(item)));
     }
 }
