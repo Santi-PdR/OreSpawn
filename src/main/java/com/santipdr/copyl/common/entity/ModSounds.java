@@ -24,10 +24,6 @@ public final class ModSounds {
     public static final RegistryObject<SoundEvent> CRYO_LIVING = sound("entity.cryo.living");
     public static final RegistryObject<SoundEvent> CRYO_HURT = sound("entity.cryo.hurt");
     public static final RegistryObject<SoundEvent> CRYO_DEATH = sound("entity.cryo.death");
-    public static final RegistryObject<SoundEvent> DRAGONFLY_LIVING = sound("entity.dragonfly.living");
-    public static final RegistryObject<SoundEvent> DRAGONFLY_HURT = sound("entity.dragonfly.hurt");
-    public static final RegistryObject<SoundEvent> DRAGONFLY_DEATH = sound("entity.dragonfly.death");
-    public static final RegistryObject<SoundEvent> MOSQUITO_LIVING = sound("entity.mosquito.living");
     public static final RegistryObject<SoundEvent> MOTHRA_WINGS = sound("entity.mothra.wings");
     public static final RegistryObject<SoundEvent> LITTLE_SPLAT = sound("entity.misc.little_splat");
     public static final RegistryObject<SoundEvent> BIG_SPLAT = sound("entity.misc.big_splat");
