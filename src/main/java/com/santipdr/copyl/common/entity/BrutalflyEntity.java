@@ -92,7 +92,7 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
         if (lastX==x && lastY==y && lastZ==z) stuckTicks++;
         else { lastX=x; lastY=y; lastZ=z; stuckTicks=0; }
         if (flightTarget == null || stuckTicks > 30 ||
-                (random.nextInt(200)==0 && distanceFromLegacyPositionSquared()<81))
+                (random.nextInt(200)==0 && distanceFromLegacyPositionSquared()<9.0D))
             chooseFlightTarget();
 
         if (level().getRandom().nextInt(6)==0 && level().getDifficulty()!=Difficulty.PEACEFUL) {
@@ -136,12 +136,12 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
 
     private void chooseFlightTarget() {
         BlockPos origin=new BlockPos((int)getX(),(int)getY(),(int)getZ());
-        int nearestGround=999;
+        int nearestGround=20;
         for(int ox=-5;ox<=5;ox+=5) for(int oz=-5;oz<=5;oz+=5)
             for(int down=1;down<=19;down++) if(!level().isEmptyBlock(origin.offset(ox,-down,oz))) {
                 nearestGround=Math.min(nearestGround,down); break;
             }
-        int groundOffset=nearestGround<10?nearestGround-9:0;
+        int groundOffset=nearestGround>10?nearestGround-9:0;
         for(int i=0;i<30;i++) {
             int xSign = level().getRandom().nextInt(2) == 0 ? -1 : 1;
             int zSign = level().getRandom().nextInt(2) == 0 ? -1 : 1;

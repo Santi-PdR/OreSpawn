@@ -116,7 +116,7 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
         else { stuckTicks = 0; lastX = x; lastY = y; lastZ = z; }
         int attackDivisor = level().getDifficulty() == Difficulty.HARD ? 2 : 3;
         if (flightTarget == null || stuckTicks > 50 || (level().getRandom().nextInt(300) == 0 &&
-                distanceFromLegacyPositionSquared() < 81.0D)) {
+                distanceFromLegacyPositionSquared() < 9.0D)) {
             chooseFlightTarget();
         } else if (level().getRandom().nextInt(10) == 0 && level().getDifficulty() != Difficulty.PEACEFUL
                 && LegacyGameplayFlags.PLAY_NICELY == 0) {
@@ -162,7 +162,7 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
 
     private void chooseFlightTarget() {
         int groundOffset = 0;
-        int bestHeight = 999;
+        int bestHeight = 20;
         BlockPos origin = new BlockPos((int) getX(), (int) getY(), (int) getZ());
         for (int ox = -5; ox <= 5; ox += 5) for (int oz = -5; oz <= 5; oz += 5) {
             for (int dy = 1; dy <= 19; dy++) {
@@ -174,7 +174,7 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
                 }
             }
         }
-        if (bestHeight < 10) groundOffset = bestHeight - 9;
+        if (bestHeight > 10) groundOffset = bestHeight - 9;
         for (int tries = 0; tries < 50; tries++) {
             int ox = random.nextInt(20) + 8, oz = random.nextInt(20) + 8;
             if (random.nextBoolean()) ox = -ox;
