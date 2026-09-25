@@ -156,6 +156,13 @@ public final class SpyroEntity extends TamableAnimal {
     @Override
     public void tick() {
         super.tick();
+        if (isOrderedToSit()) {
+            setNoGravity(false);
+            activity = 1;
+            flightTarget = null;
+            getNavigation().stop();
+            return;
+        }
         setNoGravity(true);
         if (level().isClientSide) return;
         if (isTame() && getOwner() instanceof Player owner && owner.getAbilities().flying) {
@@ -164,6 +171,11 @@ public final class SpyroEntity extends TamableAnimal {
         } else if (isTame() && getOwner() != null && distanceToSqr(getOwner()) > 256.0D) {
             activity = 2;
             flightTarget = BlockPos.containing(getOwner().getX(), getOwner().getY() + 2.0D, getOwner().getZ());
+        }
+        if (activity == 1 && random.nextInt(8) == 0) {
+            activity = 2;
+            flightTarget = BlockPos.containing(getX() + random.nextInt(17) - 8,
+                    getY() + random.nextInt(7) - 2, getZ() + random.nextInt(17) - 8);
         }
         if (random.nextInt(6) == 1) {
             List<Monster> targets = level().getEntitiesOfClass(Monster.class,
