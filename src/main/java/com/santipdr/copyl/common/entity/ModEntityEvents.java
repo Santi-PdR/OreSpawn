@@ -42,6 +42,7 @@ public final class ModEntityEvents {
         event.put(ModEntities.TREX.get(), TRexEntity.createAttributes().build());
         event.put(ModEntities.VELOCITY_RAPTOR.get(), VelocityRaptorEntity.createAttributes().build());
         event.put(ModEntities.SPYRO.get(), SpyroEntity.createAttributes().build());
+        event.put(ModEntities.DOOMWORM.get(), DoomWormEntity.createAttributes().build());
     }
 
     @SubscribeEvent

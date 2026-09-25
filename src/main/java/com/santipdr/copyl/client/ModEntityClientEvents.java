@@ -2,6 +2,7 @@ package com.santipdr.copyl.client;
 
 import com.santipdr.copyl.CopyL;
 import com.santipdr.copyl.client.model.*;
+import com.santipdr.copyl.common.entity.DoomWormEntity;
 import com.santipdr.copyl.client.renderer.*;
 import com.santipdr.copyl.common.entity.ModEntities;
 import net.minecraft.client.renderer.entity.NoopRenderer;
@@ -33,6 +34,7 @@ public final class ModEntityClientEvents {
         event.registerLayerDefinition(MothModel.LAYER_LOCATION, MothModel::createBodyLayer);
         event.registerLayerDefinition(MothraModel.LAYER_LOCATION, MothraModel::createBodyLayer);
         event.registerLayerDefinition(SpyroModel.LAYER_LOCATION, SpyroModel::createBodyLayer);
+        event.registerLayerDefinition(DoomWormModel.LAYER_LOCATION, DoomWormModel::createBodyLayer);
         event.registerLayerDefinition(MantisModel.LAYER_LOCATION, MantisModel::createBodyLayer);
         event.registerLayerDefinition(PointysaurusModel.LAYER_LOCATION, PointysaurusModel::createBodyLayer);
         event.registerLayerDefinition(NastysaurusModel.LAYER_LOCATION, NastysaurusModel::createBodyLayer);
@@ -70,6 +72,7 @@ public final class ModEntityClientEvents {
         event.registerEntityRenderer(ModEntities.KYUUBI.get(), KyuubiRenderer::new);
         event.registerEntityRenderer(ModEntities.MOTHRA.get(), MothraRenderer::new);
         event.registerEntityRenderer(ModEntities.SPYRO.get(), SpyroRenderer::new);
+        event.registerEntityRenderer(ModEntities.DOOMWORM.get(), DoomWormRenderer::new);
         event.registerEntityRenderer(ModEntities.RED_COW.get(), RedCowRenderer::new);
         event.registerEntityRenderer(ModEntities.STINK_BUG.get(), StinkBugRenderer::new);
         event.registerEntityRenderer(ModEntities.SMALL_WORM.get(), WormSmallRenderer::new);
