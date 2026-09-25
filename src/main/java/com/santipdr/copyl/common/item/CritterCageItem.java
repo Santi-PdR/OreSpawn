@@ -12,6 +12,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.horse.Horse;
+import net.minecraft.world.entity.animal.horse.Variant;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -109,7 +110,7 @@ public final class CritterCageItem extends Item {
             entity.moveTo(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D,
                     entity.getYRot(), entity.getXRot());
             if (entity instanceof Horse horse) {
-                horse.setVariant(Horse.Variant.byId((serverLevel.random.nextInt() & 255) % Horse.Variant.values().length));
+                horse.setVariant(Variant.byId((serverLevel.random.nextInt() & 255) % Variant.values().length));
             }
             level.addFreshEntity(entity);
             if (entity instanceof net.minecraft.world.entity.LivingEntity && stack.hasCustomHoverName()) {
