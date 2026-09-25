@@ -109,7 +109,7 @@ public final class CritterCageItem extends Item {
             entity.moveTo(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D,
                     entity.getYRot(), entity.getXRot());
             if (entity instanceof Horse horse) {
-                horse.setVariant(serverLevel.random.nextInt());
+                horse.setVariant(Horse.Variant.byId(serverLevel.random.nextInt()));
             }
             level.addFreshEntity(entity);
             if (entity instanceof net.minecraft.world.entity.LivingEntity && stack.hasCustomHoverName()) {
