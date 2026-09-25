@@ -466,3 +466,11 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **BUILD**: Actions #591 pasó para la selección de blancos, #593 para el tipo de atacante y #594 para el flujo RNG; los tres compilaron y empaquetaron el JAR.
 - **PENDIENTE**: verificar combate, efectos aleatorios y selección de blancos en runtime.
 - **AVANCE GLOBAL ESTIMADO**: 87%; queda paridad de otras mecánicas y validación runtime.
+
+
+## Checkpoint 2026-09-25 — PlayNicely + RNG parity
+
+- **PORTED**: Added the mutable `LegacyGameplayFlags.PLAY_NICELY` compatibility field (default 0) and checked all 21 original entity classes that reference `OreSpawnMain.PlayNicely` against the JAR. Preserved both target acquisition and stored-retaliation behavior, including the original RNG rolls before gates.
+- **PORTED**: Corrected world-vs-entity RNG sources in the audited AI paths for Alien, Alosaurus, Beaver, Baryonyx, Camarasaurus, CaveFisher, Cryolophosaurus, GammaMetroid, Kyuubi, Mothra, Nastysaurus, Pointysaurus, Spyro, T-Rex, VelocityRaptor, Termite and WormLarge/Medium/Small. Beaver also keeps the original world-RNG pitch draw for its uninitialized chainsaw sound event.
+- **VALIDATED**: GitHub Actions builds #597–#607 pass on `work/eggs-cages-20260923`, including compilation, final JAR detection and artifact upload.
+- This closes the `PlayNicely` call-site audit; it does **not** complete full entity AI parity. Original-vs-port behavior, Mining Dimension terrain at runtime, client/server and multiplayer testing, and remaining resource/render checks remain open. Overall progress stays at approximately **87%** until the wider port audit changes materially.
