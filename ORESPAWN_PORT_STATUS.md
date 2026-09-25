@@ -372,3 +372,11 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **SOURCE**: commits `98bf49164e119e2f207215dcc905ab518ce8a725`, `b3d15947265d20d083c91af94eacb020777b2029`, `8c9f85ef54419903af5f44da5630bfcf7e12ee40` y `f5fd17155b6d5ea36ca9e8400499cfb76731949b`.
 - **PENDIENTE**: verificar build/runtime; faltan aún la auditoría completa de los objetivos pasivos heredados y el ciclo de consumo de madera en juego. Los checks de los pushes todavía no son visibles en el conector GitHub actual.
 - **AVANCE GLOBAL ESTIMADO**: 87%; se retiró una agresión añadida y se ajustaron las tiradas, pero la paridad de esta familia sigue en revisión.
+
+
+### Jaulas — paridad de captura/liberación — 2026-09-25
+
+- **COTEJO CON BYTECODE**: revisados `EntityCage.func_70184_a` y `CritterCage.handleRightClick` del JAR original. El proyectil de jaula llena libera exactamente en X/Z del bloque y Y+1 (no en el centro); se conserva esa coordenada del source actual. La jaula aleatoria de caballo se selecciona con `World.rand.nextInt()` y el nombre custom se aplica tras insertar la criatura.
+- **CORREGIDO**: la captura ya contempla `LivingEntity` (el JAR no limita a `Mob`); la partícula de captura usa explosión normal en vez de nube; liberar desde jaula directa o proyectil restaura la variante aleatoria de `Horse`; la liberación usa el emisor de explosión grande del original. Source en commits `846a3b8d1216c154bedb8acba8786d56106c7d05`, `4c88a446ea87eb51e3947af389e6c80c9b09318c` y `84ed9389a9ed4d287264a533db1e3e46a662a5bb`.
+- **VALIDACIÓN**: comprobados los archivos guardados en la rama y comparadas las coordenadas/orden de efectos con el bytecode del JAR. El estado combinado de GitHub para el commit `4c88a446ea87eb51e3947af389e6c80c9b09318c` no devuelve checks; no se declara compilación validada. Falta build/runtime de los commits actuales y continuar paridad de entidades/contenido.
+- **AVANCE GLOBAL ESTIMADO**: 87%; avance acotado de paridad en jaulas, con validación build/runtime aún pendiente.
