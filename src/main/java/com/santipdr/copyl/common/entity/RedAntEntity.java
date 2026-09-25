@@ -40,7 +40,7 @@ public final class RedAntEntity extends AntEntity {
 
     @Override
     public boolean doHurtTarget(Entity target) {
-        if (random.nextInt(15) != 0 || level().getDifficulty() == Difficulty.PEACEFUL) {
+        if (level().getRandom().nextInt(15) != 0 || level().getDifficulty() == Difficulty.PEACEFUL) {
             return false;
         }
         return target.hurt(damageSources().mobAttack(this), 1.0F);
