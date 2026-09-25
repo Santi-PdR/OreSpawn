@@ -1,5 +1,7 @@
 package com.santipdr.copyl.common.entity;
 
+import com.santipdr.copyl.common.util.LegacyRandom;
+
 import com.santipdr.copyl.common.entity.ai.LongRangeWanderGoal;
 import com.santipdr.copyl.common.item.material.ModMaterialItems;
 import net.minecraft.core.BlockPos;
@@ -160,8 +162,8 @@ public final class WormLargeEntity extends Monster {
             if (stolen.getDamageValue() >= stolen.getMaxDamage()) stolen.shrink(1);
         }
         if (!stolen.isEmpty()) {
-            double x = getX() + random.nextInt(5) - random.nextInt(5);
-            double z = getZ() + random.nextInt(5) - random.nextInt(5);
+            double x = getX() + LegacyRandom.nextInt(5) - LegacyRandom.nextInt(5);
+            double z = getZ() + LegacyRandom.nextInt(5) - LegacyRandom.nextInt(5);
             level().addFreshEntity(new ItemEntity(level(), x, getY() + 3.0D, z, stolen));
         }
     }
