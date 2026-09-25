@@ -153,9 +153,10 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
             int ox = (random.nextInt(20) + 8) * xSign;
             int y = origin.getY() + level().getRandom().nextInt(7) - 1 - groundOffset;
             BlockPos p = new BlockPos(origin.getX() + ox, y, origin.getZ() + oz);
-            if(level().isEmptyBlock(p)&&hasLineOfSightTo(p)){flightTarget=p;stuckTicks=0;return;}
+            flightTarget = p;
+            if (level().isEmptyBlock(p) && hasLineOfSightTo(p)) { stuckTicks=0; return; }
         }
-        flightTarget=null; stuckTicks=0;
+        stuckTicks=0;
     }
 
     private boolean hasLineOfSightTo(BlockPos p) {
