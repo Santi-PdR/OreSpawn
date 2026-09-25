@@ -524,3 +524,12 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **ALCANCE**: revisión de las clases principales de entidad listadas en el JAR; no sustituye las auditorías pendientes de IA, persistencia, render y comportamiento en runtime.
 - **BUILD**: el checkpoint de código y este registro disparan el workflow configurado para pushes a `work/**`. El conector no publica esos runs de push en sus respuestas actuales; compilación todavía sin verificar.
 - **AVANCE GLOBAL ESTIMADO**: 87%; esta auditoría cierra los campos de datos sincronizados identificados, y deja abiertas las diferencias funcionales y pruebas generales.
+
+
+### Dimensiones de hitbox — Cave Fisher — 2026-09-25
+
+- **COTEJO**: `danger.orespawn.entity.CaveFisher` llama a `setSize(1.35F, 0.75F)` en su constructor. El `CaveFisherEntity` moderno no redefine la caja; el `EntityType` estaba registrado con `1.4F × 0.9F`.
+- **CORREGIDO**: `ModEntities.CAVE_FISHER` ahora usa `1.35F × 0.75F`, igual al original. Cambio en el commit `416459e561988fa9edde1d5a0bacefc92732091b`.
+- **AUDITORÍA**: comparación de las entidades principales encontró que los demás tamaños que fija explícitamente el constructor coinciden con sus registros modernos; el cotejo no sustituye una revisión de colisiones en runtime.
+- **BUILD**: el push activa el workflow de compilación; el conector sigue devolviendo arrays vacíos para estados y ejecuciones de push, por lo que este cambio aún no tiene resultado de Actions verificable.
+- **AVANCE GLOBAL ESTIMADO**: 87%; se corrige una diferencia de colisión específica, pero la paridad de las entidades y las pruebas runtime siguen pendientes.
