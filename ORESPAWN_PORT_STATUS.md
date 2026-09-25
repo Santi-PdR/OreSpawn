@@ -499,10 +499,10 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 
 ### Spyro — coordenadas, RNG de vuelo y búsqueda de agua — 2026-09-25
 
-- **CORREGIDO**: posiciones de Spyro, dueño, blanco y punto de vuelo ahora usan truncamiento JVM `d2i`; el chequeo de llegada conserva la distancia del JAR desde la posición truncada y el umbral 2.1.
+- **CORREGIDO**: posiciones de Spyro, dueño, blanco y punto de vuelo ahora usan truncamiento JVM `d2i`; el chequeo de llegada conserva la distancia del JAR desde la posición truncada y el umbral 2.1. Actividad normal ya no elige rutas de vuelo; seguir al dueño y la amortiguación vertical se alinearon con `do_movement`/`onUpdate`.
 - **CORREGIDO**: los offsets de vuelo consumen primero Z, luego X, después los signos Z/X y finalmente Y, usando tiradas del mundo como el bytecode. El tono del disparo consume el RNG de entidad, como en el original.
 - **CORREGIDO**: búsqueda de agua parte de `(int)x, (int)y - 1, (int)z` y replica el salto de radios del original: 1, 2, 3, 4, 5, 6, 8, 10.
 - **VALIDACIÓN**: comparados `Spyro.func_70030_z`, `do_movement` y `scan_it` del JAR; el código se releyó en la rama GitHub.
-- **SOURCE**: commits `a045e1ee`, `ea5e74ce` y `bd031fa6`.
+- **SOURCE**: commits `a045e1ee`, `ea5e74ce`, `bd031fa6` y `2a324f42`.
 - **BUILD/RUNTIME**: estado combinado y ejecuciones asociadas no aparecen en la respuesta del conector GitHub para estos commits. No se marca el build verde; runtime y multiplayer siguen pendientes.
 - **AVANCE GLOBAL ESTIMADO**: 87%; continúa pendiente la auditoría del resto de entidades y sistemas.
