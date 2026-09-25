@@ -91,9 +91,13 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
         int x=(int)getX(), y=(int)getY(), z=(int)getZ();
         if (lastX==x && lastY==y && lastZ==z) stuckTicks++;
         else { lastX=x; lastY=y; lastZ=z; stuckTicks=0; }
-        if (flightTarget == null || stuckTicks > 30 ||
-                (random.nextInt(200)==0 && distanceFromLegacyPositionSquared()<9.0D))
+        if (flightTarget == null) {
+            flightTarget = new BlockPos((int) getX(), (int) getY(), (int) getZ());
+        }
+        if (stuckTicks > 30 || level().getRandom().nextInt(200) == 0
+                || distanceFromLegacyPositionSquared() < 9.0D) {
             chooseFlightTarget();
+        }
 
         if (level().getRandom().nextInt(6)==0 && level().getDifficulty()!=Difficulty.PEACEFUL) {
             Player player = level().getEntitiesOfClass(Player.class,getBoundingBox().inflate(30,20,30))
