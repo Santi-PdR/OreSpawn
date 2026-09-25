@@ -273,3 +273,11 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **CORREGIDO**: añadidas al grupo `creature` de `mining_biome.json` las apariciones originales omitidas de Spyro (peso 250) y Nastysaurus (peso 200), manteniendo sus grupos 1–1 y el orden del registro del JAR.
 - **VALIDACIÓN**: el JSON parsea y las ocho criaturas del listado quedan registradas; Actions run 473 compiló y empaquetó el commit `ee19a8218b0cff5964ed923fbb8d117fb5d99d5b`.
 - **AVANCE GLOBAL ESTIMADO**: 76%; falta prueba de spawn runtime y continúa la auditoría de paridad general.
+
+
+### Auditoría de spawns globales — 2026-09-24
+
+- **CORREGIDO**: retirado el spawn adicional de Spyro del modifier Mining. El JAR lo añade una sola vez desde la lista de criaturas propia de `BiomeMiningDimension`; el modifier moderno lo duplicaba.
+- **COTEJADO**: las 14 entradas globales de `EntitySpawns.addSpawns()` están representadas en los modifiers de Overworld, Mining, Nether, bosque/selva, pantano y colinas extremas, con pesos y tamaños originales. Se conservaron duplicaciones que sí existen en el JAR (Bird/Butterfly en Mining).
+- **BUILD**: Actions run 475 pasó para el commit `0221e48819c6341e12035584759f91b759a4995a`, incluido empaquetado del JAR.
+- **AVANCE GLOBAL ESTIMADO**: 77%; quedan validación runtime, paridad de terreno/IA y el alcance completo de contenido.
