@@ -99,22 +99,30 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
             chooseFlightTarget();
         }
 
-        if (level().getRandom().nextInt(6)==0 && level().getDifficulty()!=Difficulty.PEACEFUL) {
-            Player player = level().getEntitiesOfClass(Player.class,getBoundingBox().inflate(30,20,30))
+        if (level().getRandom().nextInt(6) == 0) {
+            int attackDivisor = level().getDifficulty() == Difficulty.HARD ? 2 : 3;
+            Player player = level().getEntitiesOfClass(Player.class, getBoundingBox().inflate(30, 20, 30))
                     .stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
             if (player != null && player.getAbilities().instabuild) {
                 player = null;
             }
-            LivingEntity target = player;
-            if (target==null && level().getRandom().nextInt(3)==0)
-                target=level().getEntitiesOfClass(LivingEntity.class,getBoundingBox().inflate(25,20,25),this::isOriginalHostile)
+            if (player != null) {
+                if (hasLineOfSight(player)) {
+                    flightTarget = new BlockPos((int) player.getX(), (int) player.getY() + 4, (int) player.getZ());
+                    if (random.nextInt(attackDivisor) == 0) shoot(player);
+                }
+            } else if (level().getRandom().nextInt(3) == 0) {
+                LivingEntity target = level().getEntitiesOfClass(LivingEntity.class,
+                                getBoundingBox().inflate(25, 20, 25), this::isOriginalHostile)
                         .stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
-            if (target!=null) {
-                flightTarget=new BlockPos((int)target.getX(),(int)target.getY()+(player!=null?4:5),(int)target.getZ());
-                if (distanceToSqr(target)<=25) doHurtTarget(target);
-                else if ((player != null
-                        ? random.nextInt(level().getDifficulty()==Difficulty.HARD?2:3)
-                        : level().getRandom().nextInt(level().getDifficulty()==Difficulty.HARD?2:3)) == 0) shoot(target);
+                if (target != null) {
+                    flightTarget = new BlockPos((int) target.getX(), (int) target.getY() + 5, (int) target.getZ());
+                    if (distanceToSqr(target) > 25.0D) {
+                        if (level().getRandom().nextInt(attackDivisor) == 0) shoot(target);
+                    } else {
+                        doHurtTarget(target);
+                    }
+                }
             }
         }
         if (flightTarget==null) return;
