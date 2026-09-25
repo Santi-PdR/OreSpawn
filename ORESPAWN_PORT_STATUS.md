@@ -435,5 +435,14 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **AUDITORÍA**: se extrajeron los 28 IDs de recetas de huevo registrados por `danger.orespawn.recipes.CraftingRecipes` en el JAR original y se compararon con `data/copyl/recipes`.
 - **CORREGIDO**: se añadieron las 11 recetas del original que faltaban: las seis recetas de spawn eggs vanilla y las recetas de Nastysaurus, Spyro, Kyuubi, Brutalfly y Mothra. Cada una usa `minecraft:egg` más su bloque `copyl:*_ore`; las vanilla producen el spawn egg vanilla y las demás su item de criatura.
 - **CORREGIDO**: se eliminaron las tres recetas modernas `largeworm_egg`, `mediumworm_egg` y `smallworm_egg`. El JAR sí registra esos items, pero su registro completo de recetas no contiene esas recetas.
-- **VALIDACIÓN**: los 11 JSON nuevos parsean y se contrastó el conjunto final de 28 IDs con los 28 IDs del bytecode original. Cambios en commits `7c44a329`–`26b0e178`; GitHub Actions pendiente para el head consolidado.
+- **VALIDACIÓN**: los 11 JSON nuevos parsean y se contrastó el conjunto final de 28 IDs con los 28 IDs del bytecode original. Cambios en commits `7c44a329`–`26b0e178`; GitHub Actions #564 pasó para el head de esta auditoría (`ab35f07ac10af45a66f9407dd92e1bd560d0c11b`), incluyendo build, detección del JAR y carga del artefacto.
 - **AVANCE GLOBAL ESTIMADO**: 87%; se cierra una brecha concreta de recetas, mientras siguen pendientes paridad completa de criaturas/sistemas y runtime/client/server.
+
+
+### RNG global — tirada de combate Red Ant — 2026-09-25
+
+- **CORREGIDO**: `OreSpawnMain.OreSpawnRand` se inicializa como `java.util.Random(151L)`; `RedAnt.func_70652_k` usa esa fuente para `nextInt(15)`. El port ahora usa `LegacyRandom.nextInt(15)` con el mismo flujo compartido, en vez del RNG de cada mundo.
+- **SOURCE**: commits `b1a5558f` y `6ad911bb`.
+- **ALCANCE PENDIENTE**: el mismo RNG global aparece en otros 22 tipos/clases del JAR; solo se migró aquí la llamada cuyo uso se había identificado. No se afirma todavía paridad de la secuencia global.
+- **BUILD**: GitHub Actions pendiente para el head actual `6ad911bbd94448891b66b3eb852d13172c633847`.
+- **AVANCE GLOBAL ESTIMADO**: 87%; sigue abierta la auditoría del resto de llamadas aleatorias, además de IA, spawn y runtime.
