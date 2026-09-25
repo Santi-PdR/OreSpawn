@@ -382,3 +382,11 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **AVANCE GLOBAL ESTIMADO**: 87%; avance acotado de paridad en jaulas, con validación build/runtime aún pendiente.
 
 - **API 1.20.1**: verificado el tipo público `Horse.Variant` y su método `byId(int)`; las liberaciones pasan el siguiente ID del RNG del mundo a `Horse#setVariant(Variant)`, adaptando el antiguo entero a la API moderna. Correcciones de API en commits `db22638e9c3b2bb028e9820a6a92482dbefb8022` y `c6c41a4474f0a336a48116f357d3eb5c1c2e55df`. Sigue pendiente validar con Actions.
+
+
+### Termite — búsqueda original de madera — 2026-09-25
+
+- **CORREGIDO**: la whitelist de madera ahora reconoce las seis variantes modernas de cartel de pie, equivalentes al bloque legacy `standing_sign` con sus variantes de madera.
+- **CORREGIDO**: el barrido replica el orden de las seis caras del método `scan_it` (X, Y, Z), manteniendo el desempate de bloques a igual distancia. El origen usa conversión int→bloque por truncamiento como el bytecode `d2i`, incluso con coordenadas negativas.
+- **VALIDACIÓN**: cotejo estático de `scan_it`, `updateAITick` e `isWood` del JAR con `TermiteEntity`; source commits `293c14e90fec19a0b55ac832aab17918024568ca` y `dff2630aa3bef1904809fbc7604676cb6ecfe15e`. Combined status del commit actual consultado y sin checks reportados; compilación/runtime siguen sin probarse.
+- **AVANCE GLOBAL ESTIMADO**: 87%; avanza la paridad de la familia, pero siguen pendientes build/runtime y el resto de entidades/sistemas.
