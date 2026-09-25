@@ -97,7 +97,7 @@ public final class TermiteEntity extends AntEntity {
             int radius = 1;
             while (radius < 8) {
                 int vertical = Math.min(radius, 4);
-                if (scanShell(blockPosition().above(), radius, vertical)) {
+                if (scanShell(new BlockPos((int) getX(), (int) getY() + 1, (int) getZ()), radius, vertical)) {
                     break;
                 }
                 radius += radius >= 5 ? 2 : 1;
@@ -117,27 +117,39 @@ public final class TermiteEntity extends AntEntity {
 
     private boolean scanShell(BlockPos origin, int radius, int vertical) {
         boolean found = false;
+
+        // Mismo orden de scan_it del JAR: caras X, después Y y por último Z.
+        for (int dy = -vertical; dy <= vertical; ++dy) {
+            for (int dz = -radius; dz <= radius; ++dz) {
+                found |= considerWood(origin.offset(radius, dy, dz), radius, dy, dz);
+                found |= considerWood(origin.offset(-radius, dy, dz), -radius, dy, dz);
+            }
+        }
+        for (int dx = -radius; dx <= radius; ++dx) {
+            for (int dz = -radius; dz <= radius; ++dz) {
+                found |= considerWood(origin.offset(dx, vertical, dz), dx, vertical, dz);
+                found |= considerWood(origin.offset(dx, -vertical, dz), dx, -vertical, dz);
+            }
+        }
         for (int dx = -radius; dx <= radius; ++dx) {
             for (int dy = -vertical; dy <= vertical; ++dy) {
-                for (int dz = -radius; dz <= radius; ++dz) {
-                    boolean shell = Math.abs(dx) == radius || Math.abs(dz) == radius || Math.abs(dy) == vertical;
-                    if (!shell) {
-                        continue;
-                    }
-                    BlockPos pos = origin.offset(dx, dy, dz);
-                    if (!isOriginalWood(level().getBlockState(pos))) {
-                        continue;
-                    }
-                    int distance = dx * dx + dy * dy + dz * dz;
-                    if (distance < closest) {
-                        closest = distance;
-                        woodTarget = pos.immutable();
-                    }
-                    found = true;
-                }
+                found |= considerWood(origin.offset(dx, dy, radius), dx, dy, radius);
+                found |= considerWood(origin.offset(dx, dy, -radius), dx, dy, -radius);
             }
         }
         return found;
+    }
+
+    private boolean considerWood(BlockPos pos, int dx, int dy, int dz) {
+        if (!isOriginalWood(level().getBlockState(pos))) {
+            return false;
+        }
+        int distance = dx * dx + dy * dy + dz * dz;
+        if (distance < closest) {
+            closest = distance;
+            woodTarget = pos.immutable();
+        }
+        return true;
     }
 
     private static boolean isOriginalWood(BlockState state) {
