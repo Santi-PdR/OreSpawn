@@ -489,9 +489,9 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 
 - **CORREGIDO CONTRA BYTECODE**: ambas criaturas vuelven a seleccionar destino si la tirada aleatoria tiene éxito **o** el destino está a menos de 3 bloques; antes el port exigía ambas condiciones. Se conserva la conversión `d2i` y el consumo de RNG previo al chequeo de distancia.
 - **MOTHRA**: el combate solo corre en el camino donde no se recalcula el destino. La selección de jugador creativo habilita la búsqueda de otro blanco; un jugador visible bloqueado por terreno sigue siendo el seleccionado y no provoca búsqueda de mobs. `PlayNicely` continúa afectando solo a la adquisición de objetivos no jugador.
-- **BRUTALFLY**: el jugador creativo se descarta antes del fallback de mobs, mientras que el jugador más cercano oculto por terreno impide ese fallback, como en el JAR.
-- **VUELO**: si se agotan los 30 intentos de Brutalfly o los 50 de Mothra, se conserva el último candidato, igual que el campo `currentFlightTarget` del original.
-- **SOURCE**: commits `5989e5af`, `6e0fcc37`, `e115f8a4`, `5fe46033`, `2b7e15bc` y `b7c527c9`.
+- **BRUTALFLY**: el jugador creativo se descarta antes del fallback de mobs; un jugador más cercano oculto por terreno conserva la selección original, sin redirigir el vuelo ni atacar ese tick. El combate original no bloquea la dificultad Pacífica y usa el disparo probabilístico para jugadores.
+- **VUELO**: si se agotan los 30 intentos de Brutalfly o los 50 de Mothra, se conserva el último candidato, igual que el campo `currentFlightTarget` del original. Los rayos de visibilidad terminan en las coordenadas enteras del bloque, no en su centro.
+- **SOURCE**: commits `5989e5af`, `6e0fcc37`, `e115f8a4`, `5fe46033`, `2b7e15bc`, `b7c527c9`, `d83b45c2`, `2b240ad3` y `da74b1a1`.
 - **VALIDACIÓN**: comparados los métodos de IA y selección de objetivos con `Mothra.func_70619_bc`, `Brutalfly.func_70619_bc` y `findSomethingToAttack` del JAR de referencia; los archivos actualizados se releyeron desde la rama GitHub.
 - **BUILD/RUNTIME**: el conector devuelve listas vacías tanto para el estado combinado como para runs asociados a estos commits; no hay evidencia para declarar verde este bloque. Runtime y verificación visual siguen abiertos.
 - **AVANCE GLOBAL ESTIMADO**: 87%; estas correcciones cierran diferencias puntuales de IA, sin sustituir la auditoría del resto del port.
