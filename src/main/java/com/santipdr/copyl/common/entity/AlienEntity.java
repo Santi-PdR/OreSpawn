@@ -132,7 +132,7 @@ public final class AlienEntity extends Monster {
             } else {
                 setAttacking(0);
             }
-        } else if (this.random.nextInt(30) == 0) {
+        } else if (this.random.nextInt(30) == 0 && LegacyGameplayFlags.PLAY_NICELY == 0) {
             BlockPos torch = findNearestTorch();
             if (torch != null) {
                 this.getNavigation().moveTo(torch.getX(), torch.getY(), torch.getZ(), 1.0D);
@@ -149,6 +149,9 @@ public final class AlienEntity extends Monster {
     }
 
     private LivingEntity findSomethingToAttack() {
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
+            return null;
+        }
         LivingEntity current = this.getTarget();
         if (current != null && current.isAlive()) {
             return current;

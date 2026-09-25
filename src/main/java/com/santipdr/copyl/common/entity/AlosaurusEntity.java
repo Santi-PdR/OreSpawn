@@ -117,6 +117,9 @@ public final class AlosaurusEntity extends Monster {
     }
 
     private LivingEntity findSomethingToAttack() {
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
+            return null;
+        }
         AABB area = this.getBoundingBox().inflate(12.0D, 5.0D, 12.0D);
         List<LivingEntity> candidates = this.level().getEntitiesOfClass(LivingEntity.class, area);
         for (LivingEntity candidate : candidates) {

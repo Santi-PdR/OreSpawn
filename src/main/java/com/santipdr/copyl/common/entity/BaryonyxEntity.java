@@ -77,14 +77,12 @@ public final class BaryonyxEntity extends Animal {
 
     @Override
     protected void customServerAiStep() {
-        if (random.nextInt(200) == 1) {
+        if (level().getRandom().nextInt(200) == 1) {
             setTarget(null);
         }
 
-        // OreSpawn's PlayNicely default is the destructive behaviour: seek grass,
-        // turn it into dirt, heal and burp. The compatibility toggle itself has
-        // not been ported yet, so this preserves that original default.
-        if (random.nextInt(60) == 0) {
+        // The original PlayNicely switch disables this grass-seeking behaviour.
+        if (level().getRandom().nextInt(60) == 0 && LegacyGameplayFlags.PLAY_NICELY == 0) {
             closest = 99999;
             tx = ty = tz = 0;
 
@@ -105,7 +103,7 @@ public final class BaryonyxEntity extends Animal {
                         level().setBlock(new BlockPos(tx, ty, tz), Blocks.DIRT.defaultBlockState(), 3);
                     }
                     heal(1.0F);
-                    playSound(SoundEvents.PLAYER_BURP, 1.0F, random.nextFloat() * 0.2F + 0.9F);
+                    playSound(SoundEvents.PLAYER_BURP, 1.0F, level().getRandom().nextFloat() * 0.2F + 0.9F);
                 }
             }
         }
