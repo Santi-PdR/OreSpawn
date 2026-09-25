@@ -1,5 +1,7 @@
 package com.santipdr.copyl.common.entity;
 
+import com.santipdr.copyl.common.util.LegacyRandom;
+
 import com.santipdr.copyl.common.entity.ai.LongRangeWanderGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
@@ -218,8 +220,8 @@ public final class PointysaurusEntity extends Monster {
             return;
         }
         for (int i = 0; i < count; i++) {
-            double x = this.getX() + this.random.nextInt(4) - this.random.nextInt(4);
-            double z = this.getZ() + this.random.nextInt(4) - this.random.nextInt(4);
+            double x = this.getX() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4);
+            double z = this.getZ() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4);
             ItemEntity entity = new ItemEntity(this.level(), x, this.getY() + 2.0D, z, new ItemStack(item));
             this.level().addFreshEntity(entity);
         }
