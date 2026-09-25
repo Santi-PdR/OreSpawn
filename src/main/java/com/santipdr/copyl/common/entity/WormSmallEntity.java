@@ -109,7 +109,7 @@ public final class WormSmallEntity extends Monster {
     @Override
     protected void customServerAiStep() {
         super.customServerAiStep();
-        if (!isAlive()) {
+        if (LegacyGameplayFlags.PLAY_NICELY != 0 || !isAlive()) {
             return;
         }
 

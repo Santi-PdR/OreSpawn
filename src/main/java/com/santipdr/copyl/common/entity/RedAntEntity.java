@@ -40,7 +40,9 @@ public final class RedAntEntity extends AntEntity {
         goalSelector.addGoal(0, new net.minecraft.world.entity.ai.goal.PanicGoal(this, 1.4D));
         goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, false));
         goalSelector.addGoal(2, new com.santipdr.copyl.common.entity.ai.LongRangeWanderGoal(this, 10, 1.0D));
-        targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        if (LegacyGameplayFlags.PLAY_NICELY == 0) {
+            targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        }
     }
 
     @Override
@@ -66,7 +68,7 @@ public final class RedAntEntity extends AntEntity {
         }
         attackDelay = 20;
 
-        if (level().getDifficulty() == Difficulty.PEACEFUL) {
+        if (level().getDifficulty() == Difficulty.PEACEFUL || LegacyGameplayFlags.PLAY_NICELY != 0) {
             return;
         }
 

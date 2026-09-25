@@ -118,7 +118,8 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
         if (flightTarget == null || stuckTicks > 50 || (random.nextInt(300) == 0 &&
                 flightTarget.distToCenterSqr(getX(), getY(), getZ()) < 81.0D)) {
             chooseFlightTarget();
-        } else if (random.nextInt(10) == 0 && level().getDifficulty() != Difficulty.PEACEFUL) {
+        } else if (random.nextInt(10) == 0 && level().getDifficulty() != Difficulty.PEACEFUL
+                && LegacyGameplayFlags.PLAY_NICELY == 0) {
             Player player = level().getEntitiesOfClass(Player.class,
                     getBoundingBox().inflate(25.0D, 20.0D, 25.0D))
                     .stream().min(Comparator.comparingDouble((Player p) -> distanceToSqr(p))).orElse(null);

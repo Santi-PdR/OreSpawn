@@ -119,6 +119,7 @@ public final class WormLargeEntity extends Monster {
     protected void customServerAiStep() {
         if (isDeadOrDying()) return;
         if (!noPhysics) super.customServerAiStep();
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) return;
         if (nearestMedium(8.0D, 8.0D, 8.0D) != null) return;
 
         Player target = nearestPlayer(8.0D, 6.0D, 8.0D, true);

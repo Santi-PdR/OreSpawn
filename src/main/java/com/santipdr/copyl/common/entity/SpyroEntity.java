@@ -286,7 +286,8 @@ public final class SpyroEntity extends TamableAnimal {
         }
 
         if (activity == 2 && level().getRandom().nextInt(6) == 1
-                && level().getDifficulty() != Difficulty.PEACEFUL) {
+                && level().getDifficulty() != Difficulty.PEACEFUL
+                && LegacyGameplayFlags.PLAY_NICELY == 0) {
             List<Monster> targets = level().getEntitiesOfClass(Monster.class,
                     getBoundingBox().inflate(12.0D, 6.0D, 12.0D),
                     target -> target.isAlive() && hasLineOfSight(target));

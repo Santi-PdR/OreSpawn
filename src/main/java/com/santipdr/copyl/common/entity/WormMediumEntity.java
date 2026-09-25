@@ -96,6 +96,7 @@ public final class WormMediumEntity extends Monster {
     @Override
     protected void customServerAiStep() {
         super.customServerAiStep();
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) return;
         if (!isAlive() || nearestSmallWorm(8.0D, 8.0D, 8.0D) != null) return;
         Player player = level().getEntitiesOfClass(Player.class, getBoundingBox().inflate(2.25D, 8.0D, 2.25D),
                         p -> p.isAlive() && !p.getAbilities().instabuild)
