@@ -224,3 +224,16 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **BUILD**: GitHub Actions run 428 pasó para el checkpoint inicial y run 429 pasó tras cotejar/corregir placement y selección de objetivos (`844959e4009da5b31fcab1af700ccad65089c56a`).
 - **PENDIENTE**: Spyro, Doom Worm y Brutalfly; auditoría de conducta/loot, runtime y revisión visual final.
 - **AVANCE GLOBAL ESTIMADO**: 70 %.
+
+
+### Spyro — integración inicial 2026-09-25
+
+- PORTADO: entidad domesticable con salud 200, velocidad 0.3, armadura 5, daño cuerpo a cuerpo 4 e inmunidad al fuego según la clase original.
+- INTERACCIONES: carne para domesticar al 50% y curar; arbusto muerto para soltar; hielo y pedernal para cambiar el estado de bolas de fuego; etiqueta para nombrar; mano vacía para sentarlo/levantarlo.
+- ATAQUE: selección de monstruos cercanos, huida con salud inferior al 25% domesticado, golpes y SmallFireball con las probabilidades originales según el estado de fuego. Actividad y fuego persisten en NBT.
+- SPAWN: la clase original de Mining Dimension registra Spyro con peso 250 y grupo de 1; no se añadió spawn natural al Overworld.
+- CONTENIDO: EntityType, atributos, huevo, jaula, renderer, mesh inicial, texturas originales, loot y nombres EN/ES.
+- PENDIENTE DE PARIDAD: el orden exacto de objetivos y la búsqueda/steering de vuelo original aún requieren auditoría; el mesh inicial se revisará con las capturas en la pasada visual final.
+- BUILD: Actions #433 validó entidad/modelo, #434 el spawn en Mining Dimension y #435 los ajustes de vuelo/sentado. Head `45dd05d94799ab08e728d79482ba0ce0759ad0d9`.
+- SIGUIENTE: Doom Worm y Brutalfly, loot de dungeon pendiente, auditoría AI y pruebas runtime/visual.
+- AVANCE GLOBAL ESTIMADO: 71%; el objetivo completo sigue activo.
