@@ -305,3 +305,11 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **BUILD**: Actions #483 validó el movimiento y #484 validó el renderer; ambas pasaron `gradle build` y empaquetado en commits `db290a84e1e48c349912d5204e12cb4295a1b940` y `6046f089bf68398d9f5263f3a1ae2db3716bc75a`.
 - **PENDIENTE**: validar movimiento/culling dentro de juego y seguir cotejando la conducta, el modelo y el resto del contenido contra el JAR. Las capturas de defectos visuales siguen reservadas para la pasada final.
 - **AVANCE GLOBAL ESTIMADO**: 80%; la compilación verde confirma build, no runtime ni cierre del port.
+
+
+### Inicialización de mobs invocados por huevo — 2026-09-25
+
+- **CORREGIDO**: `ItemGenericEgg` del JAR llama `EntityLiving.onInitialSpawn` después de insertar la entidad. `CreatureEggItem` ahora ejecuta `Mob.finalizeSpawn` con la dificultad local y `MobSpawnType.SPAWN_EGG`, preservando la inicialización moderna de variantes/equipo para todos los huevos genéricos; posición, consumo y uso en creativo quedan iguales.
+- **VALIDACIÓN**: Actions #486 pasó `gradle build`, la comprobación del JAR final y la carga del artefacto para `f16b7117813c03bca8e90510b5ee901c41ac22a1`.
+- **PENDIENTE**: comprobar en runtime las variantes/spawn data; continúan abiertas paridad de IA, dimensión/terreno y pruebas client/server antes de la revisión visual final.
+- **AVANCE GLOBAL ESTIMADO**: 81%; el bloque de invocación por huevos ahora conserva la fase original de inicialización.
