@@ -266,3 +266,10 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **VALIDACIÓN**: Actions run 471 compiló correctamente el commit `8e6812e69d968df42a82f75181ff310cfd44ff42`, incluyendo el build del mod, la comprobación del JAR y la carga del artefacto.
 - **AUDITORÍA**: confirmados en el source actual los registros/modelos/renderers de las entidades principales antes marcadas como pendientes. Continúa pendiente la comparación completa de IA, spawn y runtime.
 - **AVANCE GLOBAL ESTIMADO**: 75%; sigue activo el cotejo de comportamiento y las pruebas runtime antes de la pasada visual final.
+
+
+### Spawns del bioma Mining — 2026-09-24
+
+- **CORREGIDO**: añadidas al grupo `creature` de `mining_biome.json` las apariciones originales omitidas de Spyro (peso 250) y Nastysaurus (peso 200), manteniendo sus grupos 1–1 y el orden del registro del JAR.
+- **VALIDACIÓN**: el JSON parsea y las ocho criaturas del listado quedan registradas; Actions run 473 compiló y empaquetó el commit `ee19a8218b0cff5964ed923fbb8d117fb5d99d5b`.
+- **AVANCE GLOBAL ESTIMADO**: 76%; falta prueba de spawn runtime y continúa la auditoría de paridad general.
