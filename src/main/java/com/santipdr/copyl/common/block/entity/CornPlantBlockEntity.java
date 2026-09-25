@@ -39,6 +39,6 @@ public final class CornPlantBlockEntity extends BlockEntity {
         phase = tag.getInt("Phase");
         heightContribution = tag.contains("HeightContribution")
                 ? tag.getInt("HeightContribution")
-                : RandomSource.create().nextInt(5) + 3;
+                : LegacyRandom.nextInt(5) + 3;
     }
 }
