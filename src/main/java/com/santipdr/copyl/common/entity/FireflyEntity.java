@@ -144,7 +144,7 @@ public final class FireflyEntity extends AmbientCreature {
 
     /** Condiciones de getCanSpawnHere() del original, sin inventar biomas. */
     public boolean matchesOriginalSpawnConditions() {
-        if (!level().isEmptyBlock(blockPosition())) {
+        if (!level().isEmptyBlock(new BlockPos((int) getX(), (int) getY(), (int) getZ()))) {
             return false;
         }
         if (level().isDay()) {
