@@ -115,6 +115,11 @@ public final class SpyroEntity extends TamableAnimal {
     @Override
     protected void customServerAiStep() {
         super.customServerAiStep();
+        // Spyro.updateAITasks heals one point on a 1-in-100 server-tick roll,
+        // independently of water; water supplies lift rather than healing.
+        if (random.nextInt(100) == 1 && getHealth() < getMaxHealth()) {
+            heal(1.0F);
+        }
         if (level().getDifficulty() == Difficulty.PEACEFUL) {
             setTarget(null);
             activity = 1;
@@ -156,6 +161,10 @@ public final class SpyroEntity extends TamableAnimal {
     @Override
     public void tick() {
         super.tick();
+        // The original onUpdate adds a fixed upward motion while in water.
+        if (isInWater()) {
+            setDeltaMovement(getDeltaMovement().add(0.0D, 0.07D, 0.0D));
+        }
         if (isOrderedToSit()) {
             setNoGravity(false);
             activity = 1;
@@ -206,12 +215,6 @@ public final class SpyroEntity extends TamableAnimal {
                 flightTarget = null;
             }
         }
-    }
-
-    @Override
-    public void aiStep() {
-        super.aiStep();
-        if (isInWater()) heal(1.0F);
     }
 
     @Override
