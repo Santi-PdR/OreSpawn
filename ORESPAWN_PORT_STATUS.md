@@ -367,11 +367,13 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 
 ### Paridad de Ant/Red Ant/Termite — 2026-09-25
 
-- **RED ANT**: quitados los objetivos añadidos de persecución y combate cuerpo a cuerpo. El bytecode solo muestra el intento de ataque manual cada 20 ticks contra el jugador más cercano a distancia 1.5; se conserva la tirada de daño 1/15 y el teletransporte con mano vacía.
-- **ANT/TERMITE**: las tiradas periódicas de limpiar objetivo, buscar madera, seleccionar su consumo y orientar termitas invocadas ahora usan el RNG del mundo como las rutinas originales.
-- **SOURCE**: commits `98bf49164e119e2f207215dcc905ab518ce8a725`, `b3d15947265d20d083c91af94eacb020777b2029`, `8c9f85ef54419903af5f44da5630bfcf7e12ee40` y `f5fd17155b6d5ea36ca9e8400499cfb76731949b`.
-- **PENDIENTE**: verificar build/runtime; faltan aún la auditoría completa de los objetivos pasivos heredados y el ciclo de consumo de madera en juego. Los checks de los pushes todavía no son visibles en el conector GitHub actual.
-- **AVANCE GLOBAL ESTIMADO**: 87%; se retiró una agresión añadida y se ajustaron las tiradas, pero la paridad de esta familia sigue en revisión.
+- **ANT/TERMITE**: las tiradas periódicas de limpiar objetivo, buscar madera, seleccionar su consumo y orientar termitas invocadas usan el RNG del mundo, como las rutinas cotejadas. Termite conserva los radios, capas, avance de búsqueda, coste de madera y regeneración; el orden de caras y desempate queda corregido en el checkpoint siguiente.
+- **RED ANT**: el constructor del JAR registra Panic, MeleeAttack y Wander y añade objetivo de jugador cercano cuando `OreSpawnMain.PlayNicely == 0`; el bytecode inicializa esa bandera a 0. La persecución/ataque se restauró en el port en commit `e017fdc84e10b0bbd8393fd8464460359189feda`, manteniendo además el ataque manual cada 20 ticks y el teletransporte con mano vacía.
+- **RNG PENDIENTE**: la tirada de daño Red Ant original usa `OreSpawnMain.OreSpawnRand`, un flujo global sembrado con 151, mientras que el port conserva la probabilidad 1/15 pero usa RNG del mundo. Varias clases originales consumen la misma fuente global; falta completar esa auditoría antes de afirmar paridad exacta de secuencias. El caso no predeterminado de `PlayNicely` también queda pendiente.
+- **SOURCE**: commits `98bf49164e119e2f207215dcc905ab518ce8a725`, `b3d15947265d20d083c91af94eacb020777b2029`, `8c9f85ef54419903af5f44da5630bfcf7e12ee40`, `f5fd17155b6d5ea36ca9e8400499cfb76731949b` y `e017fdc84e10b0bbd8393fd8464460359189feda`.
+- **PENDIENTE**: verificar build/runtime, multiplayer y terminar auditoría de objetivos pasivos y del ciclo de madera. No hay checks de Actions visibles en el estado combinado consultado.
+- **AVANCE GLOBAL ESTIMADO**: 87%; el avance refleja correcciones de contenido/comportamiento, pero quedan diferencias RNG, paridad global, pruebas y bloques del port.
+
 
 
 ### Jaulas — paridad de captura/liberación — 2026-09-25
