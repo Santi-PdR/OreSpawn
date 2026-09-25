@@ -18,6 +18,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -225,7 +226,7 @@ public final class AlienEntity extends Monster {
             return false;
         }
         boolean result = super.hurt(source, amount);
-        if (source.getEntity() instanceof LivingEntity attacker) {
+        if (source.getEntity() instanceof Mob attacker) {
             this.setTarget(attacker);
             this.getNavigation().moveTo(attacker, 1.2D);
             return true;
