@@ -78,7 +78,7 @@ public final class PointysaurusEntity extends Monster {
         super.customServerAiStep();
 
         // El original ejecuta esta lógica sólo en 1 de cada 6 ticks.
-        if (this.random.nextInt(6) != 0) {
+        if (level().getRandom().nextInt(6) != 0) {
             return;
         }
 
@@ -87,7 +87,7 @@ public final class PointysaurusEntity extends Monster {
             target = null;
         }
         if (target != null) {
-            if (!target.isAlive() || this.random.nextInt(250) == 1) {
+            if (!target.isAlive() || level().getRandom().nextInt(250) == 1) {
                 target = null;
                 this.revengeTarget = null;
             }
@@ -110,7 +110,7 @@ public final class PointysaurusEntity extends Monster {
         double attackReach = 4.0D + target.getBbWidth() / 2.0D;
         if (this.distanceToSqr(target) < attackReach * attackReach) {
             setAttacking(1);
-            if (this.random.nextInt(5) == 0 || this.random.nextInt(6) == 1) {
+            if (level().getRandom().nextInt(5) == 0 || level().getRandom().nextInt(6) == 1) {
                 this.doHurtTarget(target);
             }
         } else {

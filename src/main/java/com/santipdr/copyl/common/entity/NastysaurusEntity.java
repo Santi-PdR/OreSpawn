@@ -85,14 +85,14 @@ public final class NastysaurusEntity extends Monster {
     protected void customServerAiStep() {
         if (this.isRemoved()) return;
         super.customServerAiStep();
-        if (this.random.nextInt(5) != 0) return;
+        if (level().getRandom().nextInt(5) != 0) return;
 
         LivingEntity target = this.revengeTarget;
         if (LegacyGameplayFlags.PLAY_NICELY != 0) {
             target = null;
         }
         if (target != null) {
-            if (!target.isAlive() || this.random.nextInt(250) == 1) {
+            if (!target.isAlive() || level().getRandom().nextInt(250) == 1) {
                 target = null;
                 this.revengeTarget = null;
             } else if (!this.getSensing().hasLineOfSight(target)) {
@@ -109,7 +109,7 @@ public final class NastysaurusEntity extends Monster {
         double reach = 4.5D + target.getBbWidth() / 2.0D;
         if (this.distanceToSqr(target) < reach * reach) {
             setAttacking(1);
-            if (this.random.nextInt(4) == 0 || this.random.nextInt(5) == 1) this.doHurtTarget(target);
+            if (level().getRandom().nextInt(4) == 0 || level().getRandom().nextInt(5) == 1) this.doHurtTarget(target);
         } else {
             this.getNavigation().moveTo(target, 1.25D);
         }

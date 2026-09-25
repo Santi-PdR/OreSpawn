@@ -85,7 +85,7 @@ public final class CaveFisherEntity extends Monster {
         }
 
         super.customServerAiStep();
-        if (random.nextInt(8) != 0) {
+        if (level().getRandom().nextInt(8) != 0) {
             return;
         }
 
@@ -98,7 +98,7 @@ public final class CaveFisherEntity extends Monster {
         double reach = 4.0D + target.getBbWidth() / 2.0D;
         if (distanceToSqr(target) < reach * reach) {
             setAttacking(1);
-            if (random.nextInt(7) == 0 || random.nextInt(8) == 1) {
+            if (level().getRandom().nextInt(7) == 0 || level().getRandom().nextInt(8) == 1) {
                 doHurtTarget(target);
             }
         } else {

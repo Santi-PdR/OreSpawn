@@ -95,14 +95,14 @@ public final class TRexEntity extends Monster {
     protected void customServerAiStep() {
         if (this.isRemoved()) return;
         super.customServerAiStep();
-        if (this.random.nextInt(5) != 1) return;
+        if (level().getRandom().nextInt(5) != 1) return;
 
         LivingEntity target = this.revengeTarget;
         if (LegacyGameplayFlags.PLAY_NICELY != 0) {
             target = null;
         }
         if (target != null) {
-            if (!target.isAlive() || this.random.nextInt(200) == 1) {
+            if (!target.isAlive() || level().getRandom().nextInt(200) == 1) {
                 this.revengeTarget = null;
                 target = null;
             } else if (!this.getSensing().hasLineOfSight(target)) {
@@ -120,7 +120,7 @@ public final class TRexEntity extends Monster {
         double reach = 4.0D + target.getBbWidth() / 2.0D;
         if (this.distanceToSqr(target) < reach * reach) {
             setAttacking(1);
-            if (this.random.nextInt(4) == 0 || this.random.nextInt(5) == 1) {
+            if (level().getRandom().nextInt(4) == 0 || level().getRandom().nextInt(5) == 1) {
                 this.doHurtTarget(target);
             }
         } else {
