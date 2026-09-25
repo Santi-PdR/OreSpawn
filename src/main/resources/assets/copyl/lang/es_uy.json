@@ -236,5 +236,8 @@
   "item.copyl.spyro_cage": "Spyro enjaulado",
   "entity.copyl.spyro": "Spyro",
   "item.copyl.doomworm_egg": "Huevo del Gusano del Destino",
-  "entity.copyl.doomworm": "Gusano del Destino"
+  "entity.copyl.doomworm": "Gusano del Destino",
+  "item.copyl.brutalfly_egg": "Huevo de Brutalfly",
+  "item.copyl.brutalfly_cage": "Brutalfly en jaula",
+  "entity.copyl.brutalfly": "Brutalfly"
 }
