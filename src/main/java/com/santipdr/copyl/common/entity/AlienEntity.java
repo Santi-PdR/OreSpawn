@@ -153,10 +153,10 @@ public final class AlienEntity extends Monster {
         this.setTarget(null);
 
         AABB search = this.getBoundingBox().inflate(12.0D, 4.0D, 12.0D);
-        List<Player> players = this.level().getEntitiesOfClass(Player.class, search,
-                player -> player.isAlive() && !player.isCreative() && !player.isSpectator()
-                        && this.getSensing().hasLineOfSight(player));
-        return players.stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
+        List<LivingEntity> targets = this.level().getEntitiesOfClass(LivingEntity.class, search,
+                candidate -> candidate != this && candidate.isAlive()
+                        && (!(candidate instanceof Player player) || !player.isCreative()));
+        return targets.stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
     }
 
     private BlockPos findNearestTorch() {
