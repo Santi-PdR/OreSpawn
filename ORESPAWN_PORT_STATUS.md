@@ -254,6 +254,7 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **CÓDIGO**: registradas estadísticas originales (110 de vida, velocidad 0,35, ataque 10, armadura 6, inmunidad al fuego y 100 XP), vuelo/selección de blancos, combate cuerpo a cuerpo y de proyectiles, curación cada 100 ticks, retaliación y muerte con 53 pepitas de oro + 20 mariposas.
 - **SPAWN**: bosque/selva con peso 10 y grupo 1; se conserva noche, Y≥70, columna de aire y radio de separación de 64×32×64 del original.
 - **CONTENIDO**: huevo, jaula, modelos, renderer y cuatro imágenes originales extraídas del JAR, incluida la capa superpuesta alada; traducciones EN y siete variantes ES.
-- **FIDELIDAD PENDIENTE**: el proyectil grande usa por ahora LargeFireball (explosión 1) en lugar de reproducir el código completo de BetterFireball; el mesh aún reutiliza la geometría de Butterfly. Falta cotejar el bytecode restante, cargar en cliente/servidor y terminar la pasada visual solicitada.
-- **BUILD**: GitHub Actions #466 pasó para `1234cd0ab3678d39c46dcaf8344d1cd769efd14a`.
-- **AVANCE GLOBAL ESTIMADO**: 73%; el objetivo sigue activo.
+- **FIDELIDAD**: `BetterFireballEntity` reproduce los impactos del JAR: evita Brutalfly/Mothra, inflige 10 y prende fuego 5 s a objetivos pequeños, coloca fuego adyacente al chocar con bloque y explota con potencia 1 respetando `mobGriefing`. El mesh todavía reutiliza la geometría de Butterfly y requiere port del modelo original.
+- **BUILD**: Actions #466 pasó el registro/contenido y #469 pasó después del port del proyectil (incluye `gradle build`, validación del JAR final y carga de artefacto).
+- **PENDIENTE**: revisar el mesh original y runtime cliente/servidor; la pasada final atenderá también los fallos visuales de las capturas.
+- **AVANCE GLOBAL ESTIMADO**: 74%; el objetivo sigue activo.
