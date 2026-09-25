@@ -177,10 +177,10 @@ public final class SpyroEntity extends TamableAnimal {
         int horizontalRange = ownerFlying ? 6 : isTame() && getOwner() != null ? 4 : 5;
         BlockPos candidate = origin;
         for (int attempt = 0; attempt < 50; attempt++) {
-            int dx = minHorizontal + level().getRandom().nextInt(horizontalRange);
             int dz = minHorizontal + level().getRandom().nextInt(horizontalRange);
-            if (level().getRandom().nextBoolean()) dx = -dx;
-            if (level().getRandom().nextBoolean()) dz = -dz;
+            int dx = minHorizontal + level().getRandom().nextInt(horizontalRange);
+            if (level().getRandom().nextInt(2) == 0) dz = -dz;
+            if (level().getRandom().nextInt(2) == 0) dx = -dx;
             int dy = level().getRandom().nextInt(9 + (ownerFlying ? 2 : 0)) - 4;
             candidate = origin.offset(dx, dy, dz);
             if (level().getBlockState(candidate).isAir()
@@ -197,7 +197,7 @@ public final class SpyroEntity extends TamableAnimal {
         if (activity == 0) activity = 1;
         if (level().getRandom().nextInt(20) != 1) return;
 
-        BlockPos center = blockPosition().below();
+        BlockPos center = new BlockPos((int) getX(), (int) getY() - 1, (int) getZ());
         for (int radius = 1; radius <= 10; radius++) {
             int verticalRadius = Math.min(radius, 4);
             BlockPos closestWater = null;
@@ -228,6 +228,8 @@ public final class SpyroEntity extends TamableAnimal {
                 }
                 return;
             }
+            // The legacy scan increments radius twice from 6 onward: 6, 8, 10.
+            if (radius >= 6) radius++;
         }
     }
 
@@ -297,13 +299,13 @@ public final class SpyroEntity extends TamableAnimal {
                 if (isTame() && getHealth() / getMaxHealth() < 0.25F) {
                     activity = 2;
                     targetInSight = false;
-                    flightTarget = BlockPos.containing(2.0D * getX() - target.getX(),
-                            getY() + 1.0D, 2.0D * getZ() - target.getZ());
+                    flightTarget = new BlockPos((int) (2.0D * getX() - target.getX()),
+                            (int) (getY() + 1.0D), (int) (2.0D * getZ() - target.getZ()));
                     chooseNewTarget = false;
                 } else {
                     activity = 2;
                     targetInSight = true;
-                    flightTarget = BlockPos.containing(target.getX(), target.getY() + 1.0D, target.getZ());
+                    flightTarget = new BlockPos((int) target.getX(), (int) (target.getY() + 1.0D), (int) target.getZ());
                     getNavigation().moveTo(target, 1.25D);
                     chooseNewTarget = false;
                     attack(target);
@@ -314,11 +316,15 @@ public final class SpyroEntity extends TamableAnimal {
         }
 
         if (activity == 2 && flightTarget != null && !targetInSight) {
-            Vec3 destination = new Vec3(flightTarget.getX(), flightTarget.getY(), flightTarget.getZ());
-            if (destination.distanceToSqr(getX(), getY(), getZ()) < 2.1D) chooseNewTarget = true;
+            double tx = flightTarget.getX() - (int) getX();
+            double ty = flightTarget.getY() - (int) getY();
+            double tz = flightTarget.getZ() - (int) getZ();
+            if (tx * tx + ty * ty + tz * tz < 2.1D) chooseNewTarget = true;
         }
         if (chooseNewTarget && !targetInSight) {
-            BlockPos origin = owner != null ? owner.blockPosition() : blockPosition();
+            BlockPos origin = owner != null
+                    ? new BlockPos((int) owner.getX(), (int) owner.getY(), (int) owner.getZ())
+                    : new BlockPos((int) getX(), (int) getY(), (int) getZ());
             flightTarget = chooseFlightTarget(origin);
         }
 
