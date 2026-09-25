@@ -121,7 +121,7 @@ public final class CageProjectileEntity extends ThrowableProjectile {
         if (entity != null) {
             entity.moveTo(pos.getX(), pos.getY() + 1.0D, pos.getZ(), entity.getYRot(), entity.getXRot());
             if (entity instanceof Horse horse) {
-                horse.setVariant(level.random.nextInt());
+                horse.setVariant(Horse.Variant.byId(level.random.nextInt()));
             }
             level.addFreshEntity(entity);
             if (entity instanceof LivingEntity && customName != null) {
