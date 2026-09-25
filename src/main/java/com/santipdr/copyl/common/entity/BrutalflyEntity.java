@@ -1,5 +1,6 @@
 package com.santipdr.copyl.common.entity;
 
+import com.santipdr.copyl.common.util.LegacyRandom;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -73,7 +74,14 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
                     level().addFreshEntity(moth);
                 }
             }
-            spawnAtLocation(net.minecraft.world.item.Items.GOLD_NUGGET, 53);
+            for (int i = 0; i < 53; i++) {
+                double x = getX() + LegacyRandom.nextInt(8) - LegacyRandom.nextInt(8);
+                double z = getZ() + LegacyRandom.nextInt(8) - LegacyRandom.nextInt(8);
+                net.minecraft.world.entity.item.ItemEntity nugget =
+                        new net.minecraft.world.entity.item.ItemEntity(level(), x, getY() + 1.0D, z,
+                                new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.GOLD_NUGGET));
+                server.addFreshEntity(nugget);
+            }
         }
     }
 
