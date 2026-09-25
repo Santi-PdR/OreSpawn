@@ -383,7 +383,7 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **VALIDACIÓN**: comprobados los archivos guardados en la rama y comparadas las coordenadas/orden de efectos con el bytecode del JAR. El estado combinado de GitHub para el commit `4c88a446ea87eb51e3947af389e6c80c9b09318c` no devuelve checks; no se declara compilación validada. Falta build/runtime de los commits actuales y continuar paridad de entidades/contenido.
 - **AVANCE GLOBAL ESTIMADO**: 87%; avance acotado de paridad en jaulas, con validación build/runtime aún pendiente.
 
-- **API 1.20.1**: verificado el tipo público `Horse.Variant` y su método `byId(int)`; las liberaciones pasan el siguiente ID del RNG del mundo a `Horse#setVariant(Variant)`, adaptando el antiguo entero a la API moderna. Correcciones de API en commits `db22638e9c3b2bb028e9820a6a92482dbefb8022` y `c6c41a4474f0a336a48116f357d3eb5c1c2e55df`. Sigue pendiente validar con Actions.
+- **API 1.20.1**: las liberaciones decodifican el byte bajo del `nextInt()` original y aplican `Horse.Variant.byId(valor % 7)` mediante `Horse#setVariant(Variant)`. Minecraft moderno separa las marcas del color y no expone un setter público de marcas; esa parte del valor combinado legacy aún no queda preservada. Ajustes de API/selección en commits `db22638e9c3b2bb028e9820a6a92482dbefb8022`, `c6c41a4474f0a336a48116f357d3eb5c1c2e55df`, `62271397b9bc5bd981bb49d3008961b45318e000` y `d14839a0ab17ee2502822bfd4646e2a439614c1e`. Sigue pendiente validar con Actions.
 
 
 ### Termite — búsqueda original de madera — 2026-09-25
