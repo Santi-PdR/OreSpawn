@@ -107,6 +107,9 @@ public final class CritterCageItem extends Item {
             }
 
             BlockPos pos = context.getClickedPos();
+            CageProjectileEntity.emitReleaseEffects(serverLevel, pos);
+            level.playSound(null, pos, SoundEvents.GENERIC_EXPLODE,
+                    SoundSource.PLAYERS, 1.0F, 1.5F);
             entity.moveTo(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D,
                     entity.getYRot(), entity.getXRot());
             if (entity instanceof Horse horse) {
@@ -116,7 +119,6 @@ public final class CritterCageItem extends Item {
             if (entity instanceof net.minecraft.world.entity.LivingEntity && stack.hasCustomHoverName()) {
                 entity.setCustomName(Component.literal(stack.getHoverName().getString()));
             }
-            CageProjectileEntity.emitReleaseEffects(serverLevel, pos);
             CageProjectileEntity.dropEmptyCage(serverLevel, pos);
 
             if (!player.getAbilities().instabuild) {
