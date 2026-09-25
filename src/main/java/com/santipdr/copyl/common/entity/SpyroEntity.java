@@ -165,6 +165,22 @@ public final class SpyroEntity extends TamableAnimal {
         if (isInWater()) {
             setDeltaMovement(getDeltaMovement().add(0.0D, 0.07D, 0.0D));
         }
+        // Spyro's legacy onUpdate had a 1/100000 self-replacement roll for
+        // non-persistent instances, using the normal natural-spawn initializer.
+        if (!level().isClientSide && random.nextInt(100000) == 1 && !isPersistenceRequired()) {
+            SpyroEntity replacement = ModEntities.SPYRO.get().create(level());
+            if (replacement != null) {
+                replacement.moveTo(getX(), getY(), getZ(), random.nextFloat() * 360.0F, 0.0F);
+                level().addFreshEntity(replacement);
+                if (level() instanceof ServerLevel serverLevel) {
+                    replacement.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(blockPosition()),
+                            MobSpawnType.NATURAL, null, null);
+                }
+                if (isTame()) replacement.setTame(true);
+                discard();
+                return;
+            }
+        }
         if (isOrderedToSit()) {
             setNoGravity(false);
             activity = 1;
