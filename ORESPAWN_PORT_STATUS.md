@@ -296,3 +296,12 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **VALIDACIÓN**: los tres JSON parsean, la referencia `copyl:mining` coincide y Actions run 481 pasó `gradle build`, comprobación del JAR y carga del artefacto para commit `8c2472c46a68964021cd650376ae727a3d74e5a0`.
 - **LÍMITE**: se preserva el volumen vertical; el router moderno no reproduce exactamente el algoritmo de ruido 1.12. Falta comparar terreno y carga en runtime.
 - **AVANCE GLOBAL ESTIMADO**: 79%; los bordes verticales ya coinciden con el original.
+
+
+### Doom Worm — paridad de movimiento y visibilidad — 2026-09-25
+
+- **CORREGIDO**: cotejado el constructor y `tick()` de `WormDoom` con el JAR: segmentos iniciales cada 0.5625 bloques (antes el doble), fase vertical aleatoria, giro inicial de 1°, elección del objetivo de giro con probabilidad 1/100 por tick, velocidades/ondas y exploración vertical distintas para adulto y cría. Si la columna está vacía, se preserva el offset `-rango-1` del bucle original.
+- **VISIBILIDAD**: el renderer moderno ahora evita el descarte por frustum del cuerpo largo segmentado, correspondiente a las anulaciones de distancia siempre visible del original.
+- **BUILD**: Actions #483 validó el movimiento y #484 validó el renderer; ambas pasaron `gradle build` y empaquetado en commits `db290a84e1e48c349912d5204e12cb4295a1b940` y `6046f089bf68398d9f5263f3a1ae2db3716bc75a`.
+- **PENDIENTE**: validar movimiento/culling dentro de juego y seguir cotejando la conducta, el modelo y el resto del contenido contra el JAR. Las capturas de defectos visuales siguen reservadas para la pasada final.
+- **AVANCE GLOBAL ESTIMADO**: 80%; la compilación verde confirma build, no runtime ni cierre del port.
