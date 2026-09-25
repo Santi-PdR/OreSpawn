@@ -115,7 +115,19 @@
         "maxCount": 1
       },
       {
+        "type": "copyl:spyro",
+        "weight": 250,
+        "minCount": 1,
+        "maxCount": 1
+      },
+      {
         "type": "copyl:gammametroid",
+        "weight": 200,
+        "minCount": 1,
+        "maxCount": 1
+      },
+      {
+        "type": "copyl:nastysaurus",
         "weight": 200,
         "minCount": 1,
         "maxCount": 1
