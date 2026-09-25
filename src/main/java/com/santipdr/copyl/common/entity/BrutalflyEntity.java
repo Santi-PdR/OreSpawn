@@ -56,7 +56,7 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
         if (source.getEntity() == this) return false;
         boolean result = super.hurt(source, amount);
         if (result && source.getEntity() instanceof LivingEntity attacker && attacker != this && !level().isClientSide)
-            flightTarget = BlockPos.containing(attacker.getX(), attacker.getY() + 2.0D, attacker.getZ());
+            flightTarget = new BlockPos((int) attacker.getX(), (int) attacker.getY() + 2, (int) attacker.getZ());
         return result;
     }
 
@@ -88,11 +88,11 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
     @Override protected void customServerAiStep() {
         super.customServerAiStep();
         if (level().isClientSide) return;
-        int x=Mth.floor(getX()), y=Mth.floor(getY()), z=Mth.floor(getZ());
+        int x=(int)getX(), y=(int)getY(), z=(int)getZ();
         if (lastX==x && lastY==y && lastZ==z) stuckTicks++;
         else { lastX=x; lastY=y; lastZ=z; stuckTicks=0; }
         if (flightTarget == null || stuckTicks > 30 ||
-                (random.nextInt(200)==0 && flightTarget.distToCenterSqr(getX(),getY(),getZ())<81))
+                (random.nextInt(200)==0 && distanceFromLegacyPositionSquared()<81))
             chooseFlightTarget();
 
         if (random.nextInt(6)==0 && level().getDifficulty()!=Difficulty.PEACEFUL) {
@@ -104,7 +104,7 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
                 target=level().getEntitiesOfClass(LivingEntity.class,getBoundingBox().inflate(25,20,25),this::isOriginalHostile)
                         .stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
             if (target!=null) {
-                flightTarget=BlockPos.containing(target.getX(),target.getY()+(player!=null?4:5),target.getZ());
+                flightTarget=new BlockPos((int)target.getX(),(int)target.getY()+(player!=null?4:5),(int)target.getZ());
                 if (distanceToSqr(target)<=25) doHurtTarget(target);
                 else if (random.nextInt(level().getDifficulty()==Difficulty.HARD?2:3)==0) shoot(target);
             }
@@ -123,8 +123,15 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
                 && hasLineOfSight(e) && (e instanceof Enemy || e instanceof Player p&&!p.getAbilities().instabuild);
     }
 
+    private double distanceFromLegacyPositionSquared() {
+        double dx = flightTarget.getX() - (int) getX();
+        double dy = flightTarget.getY() - (int) getY();
+        double dz = flightTarget.getZ() - (int) getZ();
+        return dx * dx + dy * dy + dz * dz;
+    }
+
     private void chooseFlightTarget() {
-        BlockPos origin=blockPosition();
+        BlockPos origin=new BlockPos((int)getX(),(int)getY(),(int)getZ());
         int nearestGround=999;
         for(int ox=-5;ox<=5;ox+=5) for(int oz=-5;oz<=5;oz+=5)
             for(int down=1;down<=19;down++) if(!level().isEmptyBlock(origin.offset(ox,-down,oz))) {

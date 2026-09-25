@@ -111,12 +111,12 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
     protected void customServerAiStep() {
         super.customServerAiStep();
         if (level().isClientSide) return;
-        int x = Mth.floor(getX()), y = Mth.floor(getY()), z = Mth.floor(getZ());
+        int x = (int) getX(), y = (int) getY(), z = (int) getZ();
         if (lastX == x && lastY == y && lastZ == z) stuckTicks++;
         else { stuckTicks = 0; lastX = x; lastY = y; lastZ = z; }
         int attackDivisor = level().getDifficulty() == Difficulty.HARD ? 2 : 3;
         if (flightTarget == null || stuckTicks > 50 || (level().getRandom().nextInt(300) == 0 &&
-                flightTarget.distToCenterSqr(getX(), getY(), getZ()) < 81.0D)) {
+                distanceFromLegacyPositionSquared() < 81.0D)) {
             chooseFlightTarget();
         } else if (level().getRandom().nextInt(10) == 0 && level().getDifficulty() != Difficulty.PEACEFUL
                 && LegacyGameplayFlags.PLAY_NICELY == 0) {
@@ -124,7 +124,7 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
                     getBoundingBox().inflate(25.0D, 20.0D, 25.0D))
                     .stream().min(Comparator.comparingDouble((Player p) -> distanceToSqr(p))).orElse(null);
             if (player != null && player.isAlive() && !player.getAbilities().instabuild && hasLineOfSight(player)) {
-                flightTarget = BlockPos.containing(player.getX(), player.getY() + 4.0D, player.getZ());
+                flightTarget = new BlockPos((int) player.getX(), (int) player.getY() + 4, (int) player.getZ());
                 if (random.nextInt(attackDivisor) == 0) attackWithSomething(player);
             } else if (level().getRandom().nextInt(3) == 0) {
                 LivingEntity victim = level().getEntitiesOfClass(LivingEntity.class,
@@ -136,7 +136,7 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
                                 (!(e instanceof Player p) || !p.getAbilities().instabuild) && hasLineOfSight(e))
                         .stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
                 if (victim != null) {
-                    flightTarget = BlockPos.containing(victim.getX(), victim.getY() + 5.0D, victim.getZ());
+                    flightTarget = new BlockPos((int) victim.getX(), (int) victim.getY() + 5, (int) victim.getZ());
                     if (level().getRandom().nextInt(attackDivisor) == 0) attackWithSomething(victim);
                 }
             }
@@ -153,10 +153,17 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
         setYRot((float)(Mth.atan2(v.z, v.x) * (180.0D / Math.PI)) - 90.0F);
     }
 
+    private double distanceFromLegacyPositionSquared() {
+        double dx = flightTarget.getX() - (int) getX();
+        double dy = flightTarget.getY() - (int) getY();
+        double dz = flightTarget.getZ() - (int) getZ();
+        return dx * dx + dy * dy + dz * dz;
+    }
+
     private void chooseFlightTarget() {
         int groundOffset = 0;
         int bestHeight = 999;
-        BlockPos origin = blockPosition();
+        BlockPos origin = new BlockPos((int) getX(), (int) getY(), (int) getZ());
         for (int ox = -5; ox <= 5; ox += 5) for (int oz = -5; oz <= 5; oz += 5) {
             for (int dy = 1; dy <= 19; dy++) {
                 BlockPos sample = origin.offset(ox, -dy, oz);
