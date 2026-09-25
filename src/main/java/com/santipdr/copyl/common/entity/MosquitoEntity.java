@@ -150,7 +150,8 @@ public final class MosquitoEntity extends AmbientCreature {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return ModSounds.MOSQUITO_LIVING.get();
+        // Legacy Mosquito sound field was never registered and remained null.
+        return null;
     }
 
     @Override
