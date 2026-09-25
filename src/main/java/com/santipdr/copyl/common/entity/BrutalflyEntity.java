@@ -106,8 +106,7 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
                 player = null;
             }
             LivingEntity target = player;
-            boolean playerOccluded = target != null && !hasLineOfSight(target);
-            if (target==null && level().getRandom().nextInt(3)==0 && !playerOccluded)
+            if (target==null && level().getRandom().nextInt(3)==0)
                 target=level().getEntitiesOfClass(LivingEntity.class,getBoundingBox().inflate(25,20,25),this::isOriginalHostile)
                         .stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
             if (target!=null) {
