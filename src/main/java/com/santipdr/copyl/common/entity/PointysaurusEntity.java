@@ -83,6 +83,9 @@ public final class PointysaurusEntity extends Monster {
         }
 
         LivingEntity target = this.revengeTarget;
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
+            target = null;
+        }
         if (target != null) {
             if (!target.isAlive() || this.random.nextInt(250) == 1) {
                 target = null;

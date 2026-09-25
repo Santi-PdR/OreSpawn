@@ -88,6 +88,9 @@ public final class NastysaurusEntity extends Monster {
         if (this.random.nextInt(5) != 0) return;
 
         LivingEntity target = this.revengeTarget;
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
+            target = null;
+        }
         if (target != null) {
             if (!target.isAlive() || this.random.nextInt(250) == 1) {
                 target = null;

@@ -98,6 +98,9 @@ public final class TRexEntity extends Monster {
         if (this.random.nextInt(5) != 1) return;
 
         LivingEntity target = this.revengeTarget;
+        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
+            target = null;
+        }
         if (target != null) {
             if (!target.isAlive() || this.random.nextInt(200) == 1) {
                 this.revengeTarget = null;
