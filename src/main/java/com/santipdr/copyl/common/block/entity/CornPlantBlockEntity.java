@@ -1,9 +1,9 @@
 package com.santipdr.copyl.common.block.entity;
 
 import com.santipdr.copyl.common.block.entity.ModBlockEntities;
+import com.santipdr.copyl.common.util.LegacyRandom;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public final class CornPlantBlockEntity extends BlockEntity {
     private int age;
     private int phase = 1;
-    private int heightContribution = RandomSource.create().nextInt(5) + 3;
+    private int heightContribution = LegacyRandom.nextInt(5) + 3;
 
     public CornPlantBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CORN_PLANT.get(), pos, state);
