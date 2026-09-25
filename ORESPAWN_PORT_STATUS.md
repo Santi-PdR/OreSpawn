@@ -348,3 +348,11 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **VALIDACIÓN ESTÁTICA**: cotejados los 27 IDs originales. Los 27 están registrados y expuestos en la pestaña; no hay IDs de jaula adicionales. Cambios de source en commits `cc808f41d5b308072988c2f7a403c5396cd3f878` y `956413d24d550b1bacbc4fda220ea9c818eac8f3`.
 - **BUILD**: pendiente de evidencia. El workflow se activa en push, pero el conector GitHub disponible no lista los runs de push y el estado combinado de estos commits aún no ofrece checks.
 - **AVANCE GLOBAL ESTIMADO**: 85%; corregido el contenido funcional accesible y alineado al registro original. La compilación y runtime de estos cambios siguen pendientes.
+
+
+### Auditoría del inventario creativo: huevos — 2026-09-25
+
+- **CORREGIDO**: añadidos a la pestaña creativa los huevos de Spyro, Nastysaurus, Kyuubi y Mothra, ya registrados pero omitidos de la lista visible.
+- **VALIDACIÓN ESTÁTICA**: comparación del JAR con `ModItems` y `ModCreativeTabs`: los 32 huevos originales están registrados y los 32 son accesibles desde la pestaña, sin duplicados ni extras. Cambio en commit `525c67316c496fa337ebbd0eb0b60b29eefe3dba`.
+- **BUILD**: el workflow corre en pushes, pero los estados combinados siguen sin checks y el conector actual solo lista ejecuciones de PR; compilación de este head aún no confirmada.
+- **AVANCE GLOBAL ESTIMADO**: 86%; accesibilidad de huevos/jaulas ajustada al inventario original. Runtime y build siguen pendientes.
