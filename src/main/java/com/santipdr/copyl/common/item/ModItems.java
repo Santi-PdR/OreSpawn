@@ -65,6 +65,7 @@ public final class ModItems {
     public static final RegistryObject<Item> NASTYSAURUS_EGG = ModRegistries.ITEMS.register("nastysaurus_egg", () -> new CreatureEggItem(ModEntities.NASTYSAURUS));
     public static final RegistryObject<Item> KYUUBI_EGG = ModRegistries.ITEMS.register("kyuubi_egg", () -> new CreatureEggItem(ModEntities.KYUUBI));
     public static final RegistryObject<Item> MOTHRA_EGG = ModRegistries.ITEMS.register("mothra_egg", () -> new CreatureEggItem(ModEntities.MOTHRA));
+    public static final RegistryObject<Item> BRUTALFLY_EGG = ModRegistries.ITEMS.register("brutalfly_egg", () -> new CreatureEggItem(ModEntities.BRUTALFLY));
     public static final RegistryObject<Item> DOOMWORM_EGG = ModRegistries.ITEMS.register("doomworm_egg", () -> new CreatureEggItem(ModEntities.DOOMWORM));
     public static final RegistryObject<Item> SPYRO_EGG = ModRegistries.ITEMS.register("spyro_egg", () -> new CreatureEggItem(ModEntities.SPYRO));
     public static final RegistryObject<Item> FIREFLY_EGG = ModRegistries.ITEMS.register("firefly_egg", () -> new CreatureEggItem(ModEntities.FIREFLY));
@@ -109,6 +110,7 @@ public final class ModItems {
     public static final RegistryObject<Item> NASTYSAURUS_CAGE = ModRegistries.ITEMS.register("nastysaurus_cage", () -> new CritterCageItem(ModEntities.NASTYSAURUS, 0.4F));
     public static final RegistryObject<Item> KYUUBI_CAGE = ModRegistries.ITEMS.register("kyuubi_cage", () -> new CritterCageItem(ModEntities.KYUUBI, 0.4F));
     public static final RegistryObject<Item> MOTHRA_CAGE = ModRegistries.ITEMS.register("mothra_cage", () -> new CritterCageItem(ModEntities.MOTHRA, 0.4F));
+    public static final RegistryObject<Item> BRUTALFLY_CAGE = ModRegistries.ITEMS.register("brutalfly_cage", () -> new CritterCageItem(ModEntities.BRUTALFLY, 0.4F));
     public static final RegistryObject<Item> SPYRO_CAGE = ModRegistries.ITEMS.register("spyro_cage", () -> new CritterCageItem(ModEntities.SPYRO, 0.4F));
 
     public static final RegistryObject<Item> MANTIS_CLAW = ModRegistries.ITEMS.register("mantis_claw", () -> new Item(new Item.Properties()));
