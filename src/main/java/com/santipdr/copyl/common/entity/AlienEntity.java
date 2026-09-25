@@ -1,5 +1,7 @@
 package com.santipdr.copyl.common.entity;
 
+import com.santipdr.copyl.common.util.LegacyRandom;
+
 import com.santipdr.copyl.common.block.ModBlocks;
 import com.santipdr.copyl.common.entity.ai.LongRangeWanderGoal;
 import net.minecraft.core.BlockPos;
@@ -273,9 +275,9 @@ public final class AlienEntity extends Monster {
     private void dropItemRand(Item item, int count) {
         ItemEntity dropped = new ItemEntity(
                 this.level(),
-                this.getX() + this.random.nextInt(4) - this.random.nextInt(4),
+                this.getX() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4),
                 this.getY() + 1.0D,
-                this.getZ() + this.random.nextInt(4) - this.random.nextInt(4),
+                this.getZ() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4),
                 new ItemStack(item, count)
         );
         this.level().addFreshEntity(dropped);
