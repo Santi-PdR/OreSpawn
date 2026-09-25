@@ -95,18 +95,20 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
                 (random.nextInt(200)==0 && distanceFromLegacyPositionSquared()<81))
             chooseFlightTarget();
 
-        if (random.nextInt(6)==0 && level().getDifficulty()!=Difficulty.PEACEFUL) {
+        if (level().getRandom().nextInt(6)==0 && level().getDifficulty()!=Difficulty.PEACEFUL) {
             Player player = level().getEntitiesOfClass(Player.class,getBoundingBox().inflate(30,20,30))
                     .stream().filter(p -> p.isAlive()&&!p.getAbilities().instabuild&&hasLineOfSight(p))
                     .min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
             LivingEntity target = player;
-            if (target==null && random.nextInt(3)==0)
+            if (target==null && level().getRandom().nextInt(3)==0)
                 target=level().getEntitiesOfClass(LivingEntity.class,getBoundingBox().inflate(25,20,25),this::isOriginalHostile)
                         .stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
             if (target!=null) {
                 flightTarget=new BlockPos((int)target.getX(),(int)target.getY()+(player!=null?4:5),(int)target.getZ());
                 if (distanceToSqr(target)<=25) doHurtTarget(target);
-                else if (random.nextInt(level().getDifficulty()==Difficulty.HARD?2:3)==0) shoot(target);
+                else if ((player != null
+                        ? random.nextInt(level().getDifficulty()==Difficulty.HARD?2:3)
+                        : level().getRandom().nextInt(level().getDifficulty()==Difficulty.HARD?2:3)) == 0) shoot(target);
             }
         }
         if (flightTarget==null) return;
@@ -139,9 +141,12 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
             }
         int groundOffset=nearestGround<10?nearestGround-9:0;
         for(int i=0;i<30;i++) {
-            int ox=random.nextInt(20)+8,oz=random.nextInt(20)+8;
-            if(random.nextBoolean()) ox=-ox; if(random.nextBoolean()) oz=-oz;
-            BlockPos p=origin.offset(ox,random.nextInt(7)-1-groundOffset,oz);
+            int xSign = level().getRandom().nextInt(2) == 0 ? -1 : 1;
+            int zSign = level().getRandom().nextInt(2) == 0 ? -1 : 1;
+            int oz = (random.nextInt(20) + 8) * zSign;
+            int ox = (random.nextInt(20) + 8) * xSign;
+            int y = origin.getY() + level().getRandom().nextInt(7) - 1 - groundOffset;
+            BlockPos p = new BlockPos(origin.getX() + ox, y, origin.getZ() + oz);
             if(level().isEmptyBlock(p)&&hasLineOfSightTo(p)){flightTarget=p;stuckTicks=0;return;}
         }
         flightTarget=null; stuckTicks=0;
