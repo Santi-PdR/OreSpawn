@@ -50,7 +50,7 @@ public final class FireflyEntity extends AmbientCreature {
 
         if (!level().isClientSide && !isPersistenceRequired()) {
             long time = level().getDayTime() % 24000L;
-            if (time <= 11000L && random.nextInt(500) == 1) {
+            if (time <= 11000L && level().getRandom().nextInt(500) == 1) {
                 discard();
             }
         }
@@ -64,17 +64,17 @@ public final class FireflyEntity extends AmbientCreature {
         }
 
         if (currentFlightTarget == null) {
-            currentFlightTarget = blockPosition();
+            currentFlightTarget = new BlockPos((int) getX(), (int) getY(), (int) getZ());
         }
 
-        if (random.nextInt(40) == 0 || currentFlightTarget.distToCenterSqr(getX(), getY(), getZ()) < 2.0D) {
+        if (random.nextInt(40) == 0 || currentFlightTarget.distToCenterSqr((int) getX(), (int) getY(), (int) getZ()) < 2.0D) {
             int tries = 25;
             BlockPos candidate;
             do {
                 candidate = new BlockPos(
-                        Mth.floor(getX()) + random.nextInt(4) - random.nextInt(4),
-                        Mth.floor(getY()) + random.nextInt(4) - 2,
-                        Mth.floor(getZ()) + random.nextInt(4) - random.nextInt(4)
+                        (int) getX() + random.nextInt(4) - random.nextInt(4),
+                        (int) getY() + random.nextInt(4) - 2,
+                        (int) getZ() + random.nextInt(4) - random.nextInt(4)
                 );
                 currentFlightTarget = candidate;
                 tries--;
