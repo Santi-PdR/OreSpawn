@@ -1,5 +1,7 @@
 package com.santipdr.copyl.common.entity;
 
+import com.santipdr.copyl.common.util.LegacyRandom;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Difficulty;
@@ -66,12 +68,21 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
     protected void dropCustomDeathLoot(DamageSource source, int lootingModifier, boolean recentlyHit) {
         super.dropCustomDeathLoot(source, lootingModifier, recentlyHit);
         if (!level().isClientSide) {
+            // Original 1.12.2 order: item frame, explosion particles, scattered item drops, moths.
+            dropLegacyItem(net.minecraft.world.item.Items.ITEM_FRAME);
             for (int i = 0; i < 20; i++) {
                 double px = getX() + random.nextFloat() * 8.0D - random.nextFloat() * 8.0D;
                 double py = getY() + 2.0D + random.nextFloat() * 4.0D - random.nextFloat() * 4.0D;
                 double pz = getZ() + random.nextFloat() * 8.0D - random.nextFloat() * 8.0D;
                 ((ServerLevel) level()).sendParticles(net.minecraft.core.particles.ParticleTypes.EXPLOSION, px, py, pz, 1, 0.0D, 0.0D, 0.0D, 0.0D);
             }
+            for (int i = 0; i < 53; i++) {
+                dropLegacyItem(net.minecraft.world.item.Items.GOLD_NUGGET);
+            }
+            for (int i = 0; i < 3; i++) {
+                dropLegacyItem(net.minecraft.world.item.Items.BLAZE_ROD);
+            }
+            dropLegacyItem(net.minecraft.world.item.Items.NETHER_STAR);
             for (int i = 0; i < 20; i++) {
                 MothEntity moth = ModEntities.MOTH.get().create(level());
                 if (moth != null) {
@@ -80,6 +91,14 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
                 }
             }
         }
+    }
+
+    private void dropLegacyItem(net.minecraft.world.item.Item item) {
+        double x = getX() + LegacyRandom.nextInt(8) - LegacyRandom.nextInt(8);
+        double z = getZ() + LegacyRandom.nextInt(8) - LegacyRandom.nextInt(8);
+        net.minecraft.world.entity.item.ItemEntity dropped = new net.minecraft.world.entity.item.ItemEntity(
+                level(), x, getY() + 1.0D, z, new net.minecraft.world.item.ItemStack(item));
+        level().addFreshEntity(dropped);
     }
 
     @Override
