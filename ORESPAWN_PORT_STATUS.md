@@ -237,3 +237,13 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - BUILD: Actions #433 validó entidad/modelo, #434 el spawn en Mining Dimension y #435 los ajustes de vuelo/sentado. Head `45dd05d94799ab08e728d79482ba0ce0759ad0d9`.
 - SIGUIENTE: Doom Worm y Brutalfly, loot de dungeon pendiente, auditoría AI y pruebas runtime/visual.
 - AVANCE GLOBAL ESTIMADO: 71%; el objetivo completo sigue activo.
+
+
+### Doom Worm — integración funcional inicial 2026-09-25
+
+- **PORTADO**: EntityType, vida 3000, desplazamiento server-authoritative y movimiento del cuerpo de 100 segmentos con giro gradual y ondulación vertical según `WormDoom` del JAR.
+- **CONTENIDO**: huevo invocable, entrada creativa, modelo/render por segmentos, textura corporal y icono originales; nombres EN + siete variantes ES.
+- **FIDELIDAD**: no se añadió aparición natural, jaula, recipe ni sonidos CaterKiller inexistentes en el JAR. El tamaño y detalle del modelo todavía necesitan comparación visual con el original; el orden de orientación/culling del cuerpo está pendiente de verificación runtime.
+- **BUILD**: Actions #438 pasó tras corregir el import del modelo; #440 pasó para el head con textura e idiomas, commit `e9a848c3dba7746ea92a3096cc411b58a0c864bd`.
+- **PENDIENTE**: Doom Worm requiere cotejar visual/runtime; quedan Brutalfly y las auditorías finales de IA, contenido, runtime y visuales.
+- **AVANCE GLOBAL ESTIMADO**: 72 %.
