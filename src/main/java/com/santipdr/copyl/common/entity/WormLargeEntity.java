@@ -271,9 +271,9 @@ public final class WormLargeEntity extends Monster {
     }
 
     private void dropRand(ItemLike item, int count) {
-        double x = getX() + random.nextInt(4) - random.nextInt(4);
-        double y = getY() + 2.5D + random.nextInt(4);
-        double z = getZ() + random.nextInt(4) - random.nextInt(4);
+        double x = getX() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4);
+        double y = getY() + 2.5D + level().getRandom().nextInt(4);
+        double z = getZ() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4);
         level().addFreshEntity(new ItemEntity(level(), x, y, z, new ItemStack(item, count)));
     }
 
