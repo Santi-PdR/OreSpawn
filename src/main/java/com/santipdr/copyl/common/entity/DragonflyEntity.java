@@ -66,12 +66,14 @@ public final class DragonflyEntity extends Animal {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return ModSounds.DRAGONFLY_LIVING.get();
+        // Legacy Dragonfly sound fields were never registered and remained null.
+        return null;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.DRAGONFLY_HURT.get();
+        // Legacy Dragonfly sound fields were never registered and remained null.
+        return null;
     }
 
     @Override
