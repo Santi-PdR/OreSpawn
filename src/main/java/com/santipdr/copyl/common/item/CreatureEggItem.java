@@ -4,9 +4,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.function.Supplier;
 
@@ -38,6 +41,13 @@ public final class CreatureEggItem extends Item {
         BlockPos pos = context.getClickedPos();
         entity.moveTo(pos.getX(), pos.getY() + 1.0D, pos.getZ(), entity.getYRot(), entity.getXRot());
         level.addFreshEntity(entity);
+
+        // ItemGenericEgg invokes EntityLiving.onInitialSpawn after insertion; finalizeSpawn
+        // is the 1.20.1 equivalent for mob variants/equipment and difficulty-aware setup.
+        if (entity instanceof Mob mob && level instanceof ServerLevel serverLevel) {
+            mob.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(pos),
+                    MobSpawnType.SPAWN_EGG, null, null);
+        }
 
         if (context.getPlayer() == null || !context.getPlayer().getAbilities().instabuild) {
             context.getItemInHand().shrink(1);
