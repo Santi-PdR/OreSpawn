@@ -1,5 +1,7 @@
 package com.santipdr.copyl.common.block;
 
+import com.santipdr.copyl.common.util.LegacyRandom;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -47,7 +49,7 @@ public final class InsectSpawnPlant extends CropBlock {
             return;
         }
         int rate = matureSpawnRate - (state.getValue(AGE) & 7);
-        if (rate > 1 && random.nextInt(rate) != 0) {
+        if (rate > 1 && LegacyRandom.nextInt(rate) != 0) {
             return;
         }
         if (!level.isEmptyBlock(pos.above())) {
