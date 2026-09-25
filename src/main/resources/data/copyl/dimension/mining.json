@@ -6,6 +6,6 @@
       "type": "minecraft:fixed",
       "biome": "copyl:mining_biome"
     },
-    "settings": "minecraft:overworld"
+    "settings": "copyl:mining"
   }
 }
