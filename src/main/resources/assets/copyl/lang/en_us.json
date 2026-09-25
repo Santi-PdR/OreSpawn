@@ -248,5 +248,8 @@
   "item.copyl.spyro_cage": "Caged Spyro",
   "entity.copyl.spyro": "Spyro",
   "item.copyl.doomworm_egg": "Doom Worm Egg",
-  "entity.copyl.doomworm": "Doom Worm"
+  "entity.copyl.doomworm": "Doom Worm",
+  "item.copyl.brutalfly_egg": "Brutalfly Egg",
+  "item.copyl.brutalfly_cage": "Caged Brutalfly",
+  "entity.copyl.brutalfly": "Brutalfly"
 }
