@@ -26,6 +26,7 @@ import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.item.Item;
@@ -132,6 +133,7 @@ public final class SpyroEntity extends TamableAnimal {
 
     private double targetScore(Monster target) {
         double score = distanceToSqr(target);
+        if (target instanceof Creeper) score *= 0.5D;
         double area = target.getBbWidth() * target.getBbHeight();
         return area > 1.0D ? score / area : score;
     }
