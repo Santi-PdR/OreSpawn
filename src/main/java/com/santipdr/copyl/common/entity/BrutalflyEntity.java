@@ -16,7 +16,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.LargeFireball;
 import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -148,7 +147,7 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
                 level().getDifficulty()==Difficulty.NORMAL&&random.nextBoolean()) {
             SmallFireball f=new SmallFireball(level(),this,dx,dy,dz); f.setPos(sx,getY(),sz); level().addFreshEntity(f);
         } else {
-            LargeFireball f=new LargeFireball(level(),this,dx,dy,dz,1); f.setPos(sx,getY(),sz); level().addFreshEntity(f);
+            BetterFireballEntity f=new BetterFireballEntity(level(),this,dx,dy,dz,1); f.setPos(sx,getY(),sz); level().addFreshEntity(f);
         }
         playSound(net.minecraft.sounds.SoundEvents.GHAST_SHOOT,1,.8F/(random.nextFloat()*.4F+.8F));
         heal(1);
