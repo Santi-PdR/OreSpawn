@@ -153,5 +153,7 @@
   "entity.copyl.nastysaurus": "Nastysaurus",
   "item.copyl.kyuubi_egg": "Huevo de Kyuubi",
   "item.copyl.kyuubi_cage": "Jaula de Kyuubi",
-  "entity.copyl.kyuubi": "Kyuubi"
+  "entity.copyl.kyuubi": "Kyuubi",
+  "item.copyl.doomworm_egg": "Huevo del Gusano del Destino",
+  "entity.copyl.doomworm": "Gusano del Destino"
 }

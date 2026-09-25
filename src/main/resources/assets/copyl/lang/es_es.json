@@ -156,5 +156,7 @@
   "entity.copyl.kyuubi": "Kyuubi",
   "item.copyl.spyro_egg": "Huevo de Spyro",
   "item.copyl.spyro_cage": "Spyro enjaulado",
-  "entity.copyl.spyro": "Spyro"
+  "entity.copyl.spyro": "Spyro",
+  "item.copyl.doomworm_egg": "Huevo del Gusano del Destino",
+  "entity.copyl.doomworm": "Gusano del Destino"
 }
