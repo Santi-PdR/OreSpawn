@@ -152,7 +152,7 @@ public final class CageProjectileEntity extends ThrowableProjectile {
             double z = pos.getZ() + 0.5D;
             level.sendParticles(ParticleTypes.LARGE_SMOKE, x, y, z,
                     1, 0.0D, 0.0D, 0.0D, 0.0D);
-            level.sendParticles(ParticleTypes.EXPLOSION, x, y, z,
+            level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, x, y, z,
                     1, 0.0D, 0.0D, 0.0D, 0.0D);
             level.sendParticles(DustParticleOptions.REDSTONE, x, y, z,
                     1, 0.0D, 0.0D, 0.0D, 0.0D);
