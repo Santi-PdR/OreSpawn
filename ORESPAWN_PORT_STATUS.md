@@ -340,3 +340,11 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **VALIDACIÓN**: cotejado directamente con `Spyro.scan_it()` y `func_70030_z()` del JAR de referencia. El source se actualizó en commit `5f2cc6ec1f2d7df74b45fbb8c77dc2c78a498e33`. El workflow build está configurado para cada push, pero el endpoint GitHub disponible aquí solo expone runs de pull request; no hay evidencia del resultado de build de este push todavía.
 - **PENDIENTE**: confirmar compilación; probar navegación al agua y comportamiento de curación en runtime. La fidelidad completa de AI y la pasada visual final siguen abiertas.
 - **AVANCE GLOBAL ESTIMADO**: 84%; este bloque restaura una mecánica faltante de Spyro, sujeto a validación de build/runtime.
+
+
+### Auditoría de jaulas originales — 2026-09-25
+
+- **CORREGIDO**: comparación del registro moderno con `ModItems.registerEntities()` del JAR. Retiradas tres jaulas que el original no registraba (Baryonyx, Camarasaurus y CaveFisher); agregadas a la pestaña creativa las diez jaulas originales que no eran accesibles allí (las seis vanilla, Spyro, Nastysaurus, Kyuubi y Mothra).
+- **VALIDACIÓN ESTÁTICA**: cotejados los 27 IDs originales. Los 27 están registrados y expuestos en la pestaña; no hay IDs de jaula adicionales. Cambios de source en commits `cc808f41d5b308072988c2f7a403c5396cd3f878` y `956413d24d550b1bacbc4fda220ea9c818eac8f3`.
+- **BUILD**: pendiente de evidencia. El workflow se activa en push, pero el conector GitHub disponible no lista los runs de push y el estado combinado de estos commits aún no ofrece checks.
+- **AVANCE GLOBAL ESTIMADO**: 85%; corregido el contenido funcional accesible y alineado al registro original. La compilación y runtime de estos cambios siguen pendientes.
