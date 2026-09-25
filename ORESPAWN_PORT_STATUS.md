@@ -281,3 +281,10 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **COTEJADO**: las 14 entradas globales de `EntitySpawns.addSpawns()` están representadas en los modifiers de Overworld, Mining, Nether, bosque/selva, pantano y colinas extremas, con pesos y tamaños originales. Se conservaron duplicaciones que sí existen en el JAR (Bird/Butterfly en Mining).
 - **BUILD**: Actions run 475 pasó para el commit `0221e48819c6341e12035584759f91b759a4995a`, incluido empaquetado del JAR.
 - **AVANCE GLOBAL ESTIMADO**: 77%; quedan validación runtime, paridad de terreno/IA y el alcance completo de contenido.
+
+
+### Rollover de hora al dormir en Mining Dimension — 2026-09-24
+
+- **CORREGIDO**: el rollover ya no se ejecuta automáticamente cada tick después del mediodía. El método 1.12.2 exige que todos estén durmiendo; el port ahora usa `SleepFinishedTimeEvent`, que Forge dispara al completar el sueño colectivo, y sincroniza con las demás dimensiones la hora de despertar propuesta por el evento.
+- **VALIDACIÓN**: compilación y empaquetado correctos en Actions run 477, commit `bf6b4c64344b1dcfc60d34667d30c647145214f1`. La prueba runtime de sueño multiplayer sigue pendiente.
+- **AVANCE GLOBAL ESTIMADO**: 78%; el comportamiento queda cotejado por bytecode, pero requiere runtime para cerrar paridad práctica.
