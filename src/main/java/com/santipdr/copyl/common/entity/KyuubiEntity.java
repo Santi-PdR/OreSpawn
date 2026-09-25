@@ -1,5 +1,7 @@
 package com.santipdr.copyl.common.entity;
 
+import com.santipdr.copyl.common.util.LegacyRandom;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -178,8 +180,8 @@ public final class KyuubiEntity extends Monster {
 
     private void dropItemRand(Item item, int amount) {
         for (int i = 0; i < amount; i++) {
-            double x = getX() + random.nextInt(4) - random.nextInt(4);
-            double z = getZ() + random.nextInt(4) - random.nextInt(4);
+            double x = getX() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4);
+            double z = getZ() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4);
             level().addFreshEntity(new ItemEntity(level(), x, getY() + 1.0D, z, new ItemStack(item)));
         }
     }
