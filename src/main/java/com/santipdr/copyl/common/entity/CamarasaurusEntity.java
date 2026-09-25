@@ -82,7 +82,7 @@ public final class CamarasaurusEntity extends TamableAnimal {
 
     @Override
     protected void customServerAiStep() {
-        if (random.nextInt(200) == 1) {
+        if (level().getRandom().nextInt(200) == 1) {
             setTarget(null);
         }
 
@@ -92,8 +92,8 @@ public final class CamarasaurusEntity extends TamableAnimal {
             return;
         }
 
-        boolean shouldFeed = (random.nextInt(20) == 0 && getHealth() < getMaxHealth())
-                || random.nextInt(250) == 0;
+        boolean shouldFeed = (level().getRandom().nextInt(20) == 0 && getHealth() < getMaxHealth())
+                || level().getRandom().nextInt(250) == 0;
         if (!shouldFeed || LegacyGameplayFlags.PLAY_NICELY != 0) {
             return;
         }
@@ -112,7 +112,7 @@ public final class CamarasaurusEntity extends TamableAnimal {
             level().removeBlock(plant, false);
         }
         heal(1.0F);
-        playSound(SoundEvents.PLAYER_BURP, 1.0F, random.nextFloat() * 0.2F + 0.9F);
+        playSound(SoundEvents.PLAYER_BURP, 1.0F, level().getRandom().nextFloat() * 0.2F + 0.9F);
     }
 
     @Nullable

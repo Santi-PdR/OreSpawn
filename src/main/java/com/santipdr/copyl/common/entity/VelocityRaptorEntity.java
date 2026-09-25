@@ -76,7 +76,7 @@ public final class VelocityRaptorEntity extends TamableAnimal {
 
     @Override
     protected void customServerAiStep() {
-        if (random.nextInt(200) == 1) {
+        if (level().getRandom().nextInt(200) == 1) {
             setTarget(null);
         }
         super.customServerAiStep();
@@ -85,8 +85,8 @@ public final class VelocityRaptorEntity extends TamableAnimal {
             return;
         }
 
-        boolean shouldFeed = (random.nextInt(20) == 0 && getHealth() < getMaxHealth())
-                || random.nextInt(250) == 0;
+        boolean shouldFeed = (level().getRandom().nextInt(20) == 0 && getHealth() < getMaxHealth())
+                || level().getRandom().nextInt(250) == 0;
         if (!shouldFeed || LegacyGameplayFlags.PLAY_NICELY != 0) {
             return;
         }
@@ -105,7 +105,7 @@ public final class VelocityRaptorEntity extends TamableAnimal {
             level().removeBlock(plant, false);
         }
         heal(2.0F);
-        playSound(SoundEvents.PLAYER_BURP, 0.5F, random.nextFloat() * 0.2F + 1.5F);
+        playSound(SoundEvents.PLAYER_BURP, 0.5F, level().getRandom().nextFloat() * 0.2F + 1.5F);
     }
 
     @Nullable
