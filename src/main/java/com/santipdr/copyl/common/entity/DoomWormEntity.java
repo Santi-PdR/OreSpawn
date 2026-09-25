@@ -3,6 +3,8 @@ package com.santipdr.copyl.common.entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.MoverType;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
@@ -50,6 +52,23 @@ public final class DoomWormEntity extends Monster {
     @Override
     public MobType getMobType() {
         return MobType.UNDEFINED;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        // The legacy class rolls among unregistered Caterkiller events, so all are silent.
+        level().getRandom().nextInt(4);
+        return null;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return ModSounds.ALOSAURUS_HURT.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.ALOSAURUS_DEATH.get();
     }
 
     @Override
