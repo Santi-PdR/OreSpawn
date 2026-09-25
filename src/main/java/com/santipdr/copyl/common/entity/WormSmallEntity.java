@@ -1,5 +1,7 @@
 package com.santipdr.copyl.common.entity;
 
+import com.santipdr.copyl.common.util.LegacyRandom;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
@@ -147,8 +149,8 @@ public final class WormSmallEntity extends Monster {
         }
 
         if (!stolen.isEmpty()) {
-            double x = getX() + random.nextInt(5) - random.nextInt(5);
-            double z = getZ() + random.nextInt(5) - random.nextInt(5);
+            double x = getX() + LegacyRandom.nextInt(5) - LegacyRandom.nextInt(5);
+            double z = getZ() + LegacyRandom.nextInt(5) - LegacyRandom.nextInt(5);
             level().addFreshEntity(new ItemEntity(level(), x, getY() + 3.0D, z, stolen));
         }
     }
