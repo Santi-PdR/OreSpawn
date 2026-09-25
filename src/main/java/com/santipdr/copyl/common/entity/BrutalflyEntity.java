@@ -161,7 +161,7 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
 
     private boolean hasLineOfSightTo(BlockPos p) {
         Vec3 from=new Vec3(getX(),getY()+.75,getZ());
-        return level().clip(new net.minecraft.world.level.ClipContext(from,Vec3.atCenterOf(p),
+        return level().clip(new net.minecraft.world.level.ClipContext(from,new Vec3(p.getX(), p.getY(), p.getZ()),
                 net.minecraft.world.level.ClipContext.Block.COLLIDER,net.minecraft.world.level.ClipContext.Fluid.NONE,this))
                 .getType()==net.minecraft.world.phys.HitResult.Type.MISS;
     }
