@@ -428,3 +428,12 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **VALIDACIÓN**: bytecode de `ChunkGeneratorMiningDimension.generateBiomeTerrain()` cotejado; JSON parseado y confirmado sin reglas de deepslate. Actions #542 pasó `Build mod`, detección y carga del JAR para `8ab113e9134685496a3e1fc697f797759430a06f`.
 - **PENDIENTE**: el router de ruido y las cuevas modernos aún no reproducen en bits el generador 1.12.2; falta comparar mundo generado en runtime.
 - **AVANCE GLOBAL ESTIMADO**: 87%; se corrigió una sustitución de bloques no original en la dimensión y continúa la auditoría del terreno.
+
+
+### Recetas de huevos — cotejo integral con CraftingRecipes — 2026-09-25
+
+- **AUDITORÍA**: se extrajeron los 28 IDs de recetas de huevo registrados por `danger.orespawn.recipes.CraftingRecipes` en el JAR original y se compararon con `data/copyl/recipes`.
+- **CORREGIDO**: se añadieron las 11 recetas del original que faltaban: las seis recetas de spawn eggs vanilla y las recetas de Nastysaurus, Spyro, Kyuubi, Brutalfly y Mothra. Cada una usa `minecraft:egg` más su bloque `copyl:*_ore`; las vanilla producen el spawn egg vanilla y las demás su item de criatura.
+- **CORREGIDO**: se eliminaron las tres recetas modernas `largeworm_egg`, `mediumworm_egg` y `smallworm_egg`. El JAR sí registra esos items, pero su registro completo de recetas no contiene esas recetas.
+- **VALIDACIÓN**: los 11 JSON nuevos parsean y se contrastó el conjunto final de 28 IDs con los 28 IDs del bytecode original. Cambios en commits `7c44a329`–`26b0e178`; GitHub Actions pendiente para el head consolidado.
+- **AVANCE GLOBAL ESTIMADO**: 87%; se cierra una brecha concreta de recetas, mientras siguen pendientes paridad completa de criaturas/sistemas y runtime/client/server.
