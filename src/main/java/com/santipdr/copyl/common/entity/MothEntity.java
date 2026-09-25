@@ -1,6 +1,7 @@
 package com.santipdr.copyl.common.entity;
 
 import com.santipdr.copyl.common.block.ModBlocks;
+import com.santipdr.copyl.common.util.LegacyRandom;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -28,7 +29,7 @@ public final class MothEntity extends PathfinderMob {
 
     public MothEntity(EntityType<? extends MothEntity> type, Level level) {
         super(type, level);
-        this.mothType = random.nextInt(4);
+        this.mothType = LegacyRandom.nextInt(4);
     }
 
     public int getMothType() {
