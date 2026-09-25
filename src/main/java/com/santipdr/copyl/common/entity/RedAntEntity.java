@@ -14,8 +14,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -37,9 +35,7 @@ public final class RedAntEntity extends AntEntity {
     @Override
     protected void registerGoals() {
         goalSelector.addGoal(0, new net.minecraft.world.entity.ai.goal.PanicGoal(this, 1.4D));
-        goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, false));
         goalSelector.addGoal(2, new com.santipdr.copyl.common.entity.ai.LongRangeWanderGoal(this, 10, 1.0D));
-        targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
     @Override
