@@ -332,3 +332,11 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **BUILD**: GitHub Actions run #495 pasó para el commit `9a65401d576a1d07320725d4d4cfa477e7940387`, incluyendo build y empaquetado del JAR. El run #494 del commit intermedio se canceló al ser supersedido.
 - **PENDIENTE**: falta cotejar la búsqueda de líquidos/recuperación de ruta y probar vuelo, selección de blancos y combate en runtime. La pasada de defectos visuales sigue aplazada hasta cerrar el port funcional.
 - **AVANCE GLOBAL ESTIMADO**: 83%; el build valida compilación y empaquetado, no el cierre de runtime ni de las mecánicas pendientes.
+
+
+### Spyro — búsqueda de agua — 2026-09-25
+
+- **IMPLEMENTADO EN SOURCE**: el bytecode muestra que los Spyros salvajes buscan agua con tirada 1/20 en capas crecientes, hasta 10 bloques en horizontal y 4 en vertical. El port busca agua vanilla, elige la más cercana de la capa hallada y navega al bloque bajo ella a velocidad 1. También conserva el borrado ocasional del objetivo (1/200) y la curación/sonido cuando ya está en el agua.
+- **VALIDACIÓN**: cotejado directamente con `Spyro.scan_it()` y `func_70030_z()` del JAR de referencia. El source se actualizó en commit `5f2cc6ec1f2d7df74b45fbb8c77dc2c78a498e33`. El workflow build está configurado para cada push, pero el endpoint GitHub disponible aquí solo expone runs de pull request; no hay evidencia del resultado de build de este push todavía.
+- **PENDIENTE**: confirmar compilación; probar navegación al agua y comportamiento de curación en runtime. La fidelidad completa de AI y la pasada visual final siguen abiertas.
+- **AVANCE GLOBAL ESTIMADO**: 84%; este bloque restaura una mecánica faltante de Spyro, sujeto a validación de build/runtime.
