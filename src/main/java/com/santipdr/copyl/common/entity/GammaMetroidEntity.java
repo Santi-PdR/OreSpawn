@@ -86,14 +86,14 @@ public final class GammaMetroidEntity extends TamableAnimal {
         super.customServerAiStep();
 
         if (this.level().getDifficulty() != Difficulty.PEACEFUL
-                && this.random.nextInt(5) == 0
+                && this.level().getRandom().nextInt(5) == 0
                 && !this.isBaby()
                 && !this.isTame()) {
             LivingEntity target = findSomethingToAttack();
             if (target != null) {
                 this.getLookControl().setLookAt(target, 10.0F, 10.0F);
                 if (this.distanceTo(target) <= 9.0F) {
-                    if (this.random.nextInt(4) == 0 || this.random.nextInt(5) == 1) {
+                    if (this.level().getRandom().nextInt(4) == 0 || this.level().getRandom().nextInt(5) == 1) {
                         this.doHurtTarget(target);
                     }
                 } else {

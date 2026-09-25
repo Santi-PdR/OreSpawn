@@ -85,17 +85,17 @@ public final class BeaverEntity extends Animal {
 
     @Override
     protected void customServerAiStep() {
-        if (random.nextInt(200) == 1) {
+        if (level().getRandom().nextInt(200) == 1) {
             setTarget(null);
         }
 
-        boolean wantsTree = (random.nextInt(30) == 0 && getHealth() < getMaxHealth())
-                || random.nextInt(350) == 1;
+        boolean wantsTree = (level().getRandom().nextInt(30) == 0 && getHealth() < getMaxHealth())
+                || level().getRandom().nextInt(350) == 1;
         if (wantsTree && LegacyGameplayFlags.PLAY_NICELY == 0) {
             seekAndCutTree();
         }
 
-        if (random.nextInt(200) == 1) {
+        if (level().getRandom().nextInt(200) == 1) {
             followNearestBeaver();
         }
 

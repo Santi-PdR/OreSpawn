@@ -69,11 +69,11 @@ public final class CryolophosaurusEntity extends Monster {
     protected void customServerAiStep() {
         super.customServerAiStep();
 
-        if (this.random.nextInt(200) == 1) {
+        if (this.level().getRandom().nextInt(200) == 1) {
             this.setTarget(null);
         }
 
-        if (this.random.nextInt(5) == 1) {
+        if (this.level().getRandom().nextInt(5) == 1) {
             LivingEntity target = findSomethingToAttack();
             if (target != null) {
                 this.getNavigation().moveTo(target, 1.25D);

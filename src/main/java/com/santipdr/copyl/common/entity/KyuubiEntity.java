@@ -80,7 +80,7 @@ public final class KyuubiEntity extends Monster {
     @Override
     public void aiStep() {
         super.aiStep();
-        if (random.nextInt(10) != 1) return;
+        if (level().getRandom().nextInt(10) != 1) return;
 
         setSecondsOnFire(5);
         if (level().isClientSide) {
@@ -101,7 +101,7 @@ public final class KyuubiEntity extends Monster {
     @Override
     protected void customServerAiStep() {
         if (!isAlive()) return;
-        if (random.nextInt(200) == 1) setTarget(null);
+        if (level().getRandom().nextInt(200) == 1) setTarget(null);
         super.customServerAiStep();
         if (random.nextInt(10) != 1) return;
 
