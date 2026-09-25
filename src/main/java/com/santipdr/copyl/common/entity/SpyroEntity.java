@@ -240,6 +240,9 @@ public final class SpyroEntity extends TamableAnimal {
         if (isInWater()) {
             setDeltaMovement(getDeltaMovement().add(0.0D, 0.07D, 0.0D));
         }
+        if (flightTarget == null) {
+            flightTarget = new BlockPos((int) getX(), (int) getY(), (int) getZ());
+        }
         // Spyro's legacy onUpdate had a 1/100000 self-replacement roll for
         // non-persistent instances, using the normal natural-spawn initializer.
         if (!level().isClientSide && level().getRandom().nextInt(100000) == 1 && !isPersistenceRequired()) {
@@ -270,13 +273,15 @@ public final class SpyroEntity extends TamableAnimal {
         LivingEntity owner = isTame() ? getOwner() : null;
         ownerFlying = owner instanceof Player ownerPlayer && ownerPlayer.getAbilities().flying;
 
-        boolean chooseNewTarget = flightTarget == null;
+        if (ownerFlying) activity = 2;
+        if (owner != null && activity == 1 && distanceToSqr(owner) > 256.0D) activity = 2;
+
+        boolean chooseNewTarget = false;
         if (activity == 2 && level().getRandom().nextInt(300) == 0) chooseNewTarget = true;
-        if (owner != null) {
+        if (owner != null && activity == 2) {
             double ownerDistance = distanceToSqr(owner);
             if (ownerDistance > 100.0D || ownerFlying && ownerDistance > 36.0D) {
                 chooseNewTarget = true;
-                activity = 2;
             }
         }
         if (!targetInSight && level().getRandom().nextInt(100) == 1) {
@@ -321,7 +326,7 @@ public final class SpyroEntity extends TamableAnimal {
             double tz = flightTarget.getZ() - (int) getZ();
             if (activity != 3 && tx * tx + ty * ty + tz * tz < 2.1D) chooseNewTarget = true;
         }
-        if (chooseNewTarget && !targetInSight) {
+        if (activity != 1 && chooseNewTarget && !targetInSight) {
             BlockPos origin = owner != null
                     ? new BlockPos((int) owner.getX(), (int) owner.getY(), (int) owner.getZ())
                     : new BlockPos((int) getX(), (int) getY(), (int) getZ());
@@ -329,6 +334,11 @@ public final class SpyroEntity extends TamableAnimal {
         }
 
         if (activity == 2 && flightTarget != null) {
+            double verticalMotion = getDeltaMovement().y;
+            if (getY() < flightTarget.getY() + 2.0D) verticalMotion *= 0.7D;
+            else if (getY() > flightTarget.getY() - 2.0D) verticalMotion *= 0.5D;
+            else verticalMotion *= 0.61D;
+            setDeltaMovement(getDeltaMovement().x, verticalMotion, getDeltaMovement().z);
             double dx = flightTarget.getX() + 0.5D - getX();
             double dy = flightTarget.getY() + 0.1D - getY();
             double dz = flightTarget.getZ() + 0.5D - getZ();
