@@ -57,7 +57,7 @@ public final class TermiteEntity extends AntEntity {
 
     @Override
     public boolean doHurtTarget(Entity target) {
-        if (random.nextInt(15) != 0 || level().getDifficulty() == Difficulty.PEACEFUL) {
+        if (level().getRandom().nextInt(15) != 0 || level().getDifficulty() == Difficulty.PEACEFUL) {
             return false;
         }
         return target.hurt(damageSources().mobAttack(this), 1.0F);
@@ -86,11 +86,11 @@ public final class TermiteEntity extends AntEntity {
 
     @Override
     protected void customServerAiStep() {
-        if (!isRemoved() && random.nextInt(200) == 1) {
+        if (!isRemoved() && level().getRandom().nextInt(200) == 1) {
             setTarget(null);
         }
 
-        if (!isRemoved() && random.nextInt(200) == 1) {
+        if (!isRemoved() && level().getRandom().nextInt(200) == 1) {
             closest = 99999;
             woodTarget = null;
 
@@ -153,7 +153,7 @@ public final class TermiteEntity extends AntEntity {
         }
 
         // El original decide primero si esta interacción convierte en tierra o elimina el bloque.
-        boolean removeBranch = random.nextInt(3) == 0;
+        boolean removeBranch = level().getRandom().nextInt(3) == 0;
         if (server.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
             if (removeBranch) {
                 server.removeBlock(pos, false);
@@ -168,7 +168,7 @@ public final class TermiteEntity extends AntEntity {
                 double x = removeBranch ? pos.getX() + 0.1D : getX() + 0.1D;
                 double y = removeBranch ? pos.getY() + 0.1D : getY() + 0.1D;
                 double z = removeBranch ? pos.getZ() + 0.1D : getZ() + 0.1D;
-                termite.moveTo(x, y, z, random.nextFloat() * 360.0F, 0.0F);
+                termite.moveTo(x, y, z, level().getRandom().nextFloat() * 360.0F, 0.0F);
                 server.addFreshEntity(termite);
             }
         }
