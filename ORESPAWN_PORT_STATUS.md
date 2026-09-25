@@ -220,6 +220,7 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **PORTADO**: vuelo derivado de Butterfly; vida 150, velocidad 0.35, armadura 12, inmunidad al fuego, curación periódica y ataques de bola de fuego según la dificultad. Se conservan el movimiento aéreo y el objetivo de vuelo del JAR.
 - **MUERTE**: sonido genérico de explosión del original, ráfaga de 20 partículas, 20 Moths invocadas y botín original (marco, 53 pepitas de oro, 3 varas de blaze y una estrella del Nether).
 - **CONTENIDO**: EntityType/atributos/spawn placement, aparición peso 15/grupo 1 en Extreme Hills, huevo y jaula con texturas originales, renderer y sonido de alas extraído del JAR.
-- **BUILD**: pendiente de GitHub Actions para este commit.
+- **SPAWN**: cotejados con el método original el requisito de noche, altura mínima Y=70, columna de aire y separación de 64×32×64 respecto de otra Mothra.
+- **BUILD**: GitHub Actions run 428 pasó para `d9dd40e947315d959f1104977df9c179ad581e62`; se encontró y corrigió después la diferencia de placement y selección de objetivos. El nuevo checkpoint queda pendiente de Actions.
 - **PENDIENTE**: Spyro, Doom Worm y Brutalfly; auditoría de conducta/loot, runtime y revisión visual final.
 - **AVANCE GLOBAL ESTIMADO**: 70 %.

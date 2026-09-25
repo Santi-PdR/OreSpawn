@@ -7,10 +7,13 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.projectile.LargeFireball;
 import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.level.Level;
@@ -97,16 +100,20 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
                 flightTarget.distToCenterSqr(getX(), getY(), getZ()) < 81.0D)) {
             chooseFlightTarget();
         } else if (random.nextInt(10) == 0 && level().getDifficulty() != Difficulty.PEACEFUL) {
-            LivingEntity target = level().getNearestPlayer(this, 25.0D);
-            if (target instanceof Player player && player.isAlive() && !player.getAbilities().instabuild &&
-                    hasLineOfSight(player)) {
+            Player player = level().getEntitiesOfClass(Player.class,
+                    getBoundingBox().inflate(25.0D, 20.0D, 25.0D))
+                    .stream().min(Comparator.comparingDouble((Player p) -> distanceToSqr(p))).orElse(null);
+            if (player != null && player.isAlive() && !player.getAbilities().instabuild && hasLineOfSight(player)) {
                 flightTarget = BlockPos.containing(player.getX(), player.getY() + 4.0D, player.getZ());
                 if (random.nextInt(attackDivisor) == 0) attackWithSomething(player);
             } else if (random.nextInt(3) == 0) {
                 LivingEntity victim = level().getEntitiesOfClass(LivingEntity.class,
-                        getBoundingBox().inflate(25.0D, 20.0D, 25.0D),
-                        e -> e != this && e.isAlive() && !(e instanceof MothraEntity) &&
-                                !(e instanceof Enemy) && hasLineOfSight(e))
+                        getBoundingBox().inflate(15.0D, 20.0D, 15.0D),
+                        e -> e != this && e.isAlive() &&
+                                !(e instanceof MothraEntity) &&
+                                !(e instanceof VelocityRaptorEntity) && !(e instanceof CryolophosaurusEntity) &&
+                                !(e instanceof MantisEntity) &&
+                                (!(e instanceof Player p) || !p.getAbilities().instabuild) && hasLineOfSight(e))
                         .stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
                 if (victim != null) {
                     flightTarget = BlockPos.containing(victim.getX(), victim.getY() + 5.0D, victim.getZ());
@@ -198,6 +205,20 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
             if (getHealth() < getMaxHealth()) heal(1.0F);
             healTicks = 200;
         }
+    }
+
+    public static boolean checkSpawnRules(EntityType<MothraEntity> type, ServerLevelAccessor level,
+                                          MobSpawnType reason, BlockPos pos, RandomSource random) {
+        if (pos.getY() < 70 || level.getLevel().isDay()) return false;
+        for (int dx = -4; dx < 4; dx++) {
+            for (int dz = -4; dz < 4; dz++) {
+                for (int dy = 1; dy < 10; dy++) {
+                    if (!level.getBlockState(pos.offset(dx, dy, dz)).isAir()) return false;
+                }
+            }
+        }
+        AABB area = new AABB(pos).inflate(64.0D, 32.0D, 64.0D);
+        return level.getLevel().getEntitiesOfClass(MothraEntity.class, area).isEmpty();
     }
 
     @Override
