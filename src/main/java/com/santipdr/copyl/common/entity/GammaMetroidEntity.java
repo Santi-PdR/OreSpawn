@@ -248,12 +248,12 @@ public final class GammaMetroidEntity extends TamableAnimal {
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHit) {
         super.dropCustomDeathLoot(source, looting, recentlyHit);
 
-        int nuggets = 5 + this.random.nextInt(10);
+        int nuggets = 5 + LegacyRandom.nextInt(10);
         for (int i = 0; i < nuggets; i++) {
             dropItemRand(Items.GOLD_NUGGET, 1);
         }
 
-        int iron = 6 + this.random.nextInt(10);
+        int iron = 6 + LegacyRandom.nextInt(10);
         for (int i = 0; i < iron; i++) {
             dropItemRand(Items.IRON_INGOT, 1);
         }
