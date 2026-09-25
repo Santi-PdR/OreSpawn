@@ -14,6 +14,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.horse.Horse;
+import net.minecraft.world.entity.animal.horse.Variant;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.item.ItemStack;
@@ -121,7 +122,7 @@ public final class CageProjectileEntity extends ThrowableProjectile {
         if (entity != null) {
             entity.moveTo(pos.getX(), pos.getY() + 1.0D, pos.getZ(), entity.getYRot(), entity.getXRot());
             if (entity instanceof Horse horse) {
-                horse.setVariant(Horse.Variant.byId((level.random.nextInt() & 255) % Horse.Variant.values().length));
+                horse.setVariant(Variant.byId((level.random.nextInt() & 255) % Variant.values().length));
             }
             level.addFreshEntity(entity);
             if (entity instanceof LivingEntity && customName != null) {
