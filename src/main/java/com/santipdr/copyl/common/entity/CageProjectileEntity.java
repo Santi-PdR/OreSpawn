@@ -13,7 +13,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.item.ItemStack;
@@ -89,7 +89,7 @@ public final class CageProjectileEntity extends ThrowableProjectile {
         level.playSound(null, target.blockPosition(), SoundEvents.GENERIC_EXPLODE,
                 SoundSource.PLAYERS, 1.0F, 1.5F);
 
-        if (!(target instanceof Mob)) {
+        if (!(target instanceof LivingEntity)) {
             return;
         }
 
@@ -120,10 +120,13 @@ public final class CageProjectileEntity extends ThrowableProjectile {
         Entity entity = containedType.create(level);
         if (entity != null) {
             entity.moveTo(pos.getX(), pos.getY() + 1.0D, pos.getZ(), entity.getYRot(), entity.getXRot());
-            if (customName != null) {
-                entity.setCustomName(net.minecraft.network.chat.Component.literal(customName));
+            if (entity instanceof Horse horse) {
+                horse.setVariant(level.random.nextInt());
             }
             level.addFreshEntity(entity);
+            if (entity instanceof LivingEntity && customName != null) {
+                entity.setCustomName(net.minecraft.network.chat.Component.literal(customName));
+            }
         }
         dropEmptyCage(level, pos);
     }
@@ -133,7 +136,7 @@ public final class CageProjectileEntity extends ThrowableProjectile {
             level.sendParticles(ParticleTypes.SMOKE,
                     target.getX(), target.getY() + 0.25D, target.getZ(),
                     1, 0.0D, 0.0D, 0.0D, 0.0D);
-            level.sendParticles(ParticleTypes.POOF,
+            level.sendParticles(ParticleTypes.EXPLOSION,
                     target.getX(), target.getY() + 0.25D, target.getZ(),
                     1, 0.0D, 0.0D, 0.0D, 0.0D);
             level.sendParticles(DustParticleOptions.REDSTONE,
