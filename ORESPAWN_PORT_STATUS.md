@@ -414,3 +414,10 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **CORREGIDO**: `WormDoom.tick()` construye el origen del barrido vertical con las conversiones JVM `d2i` para X/Y/Z (truncamiento hacia cero). El port ya usa `(int)getX/Y/Z` en vez de `blockPosition()`, que redondea hacia abajo en valores negativos.
 - **VALIDACIÓN**: confirmado contra las instrucciones `d2i` del bytecode original. Actions #535 pasó `Build mod`, detección y carga del JAR para `4a0b5b2623c88d0ecfde2c65daa407780dd500ae`; falta prueba en mundo con coordenadas negativas.
 - **AVANCE GLOBAL ESTIMADO**: 87%; continúa la revisión de paridad restante y runtime/client/server antes de la auditoría visual final.
+
+### Auditoría de sonidos registrados — 2026-09-25
+
+- **COTEJADO**: extraído `SoundsHandler.registerSounds()` del bytecode. El original inicializa 47 eventos; el port conserva el mismo conjunto (incluidos 23 llamados de pájaros, nueve farts y los dos sonidos de splat con el namespace moderno).
+- **CORREGIDO**: las clases Dragonfly y Mosquito referencian en el JAR campos que nunca son inicializados por el registro original; sus sonidos resultan silenciosos. Se eliminaron del registro moderno los tres eventos Dragonfly y el evento Mosquito, incluido el evento de muerte Dragonfly que no tiene campo original. Los métodos modernos ahora retornan `null`, fiel al original.
+- **VALIDACIÓN**: comparados los campos estáticos referenciados por el bytecode, la lista de registro original y las rutas de audio existentes. Actions #540 pasó compilación, detección y carga del JAR para `73e830ffa7523f259c252378cb68516f9680a47c`.
+- **AVANCE GLOBAL ESTIMADO**: 87%; continúan abiertas otras auditorías de paridad y la verificación runtime/client/server antes de la pasada visual final.
