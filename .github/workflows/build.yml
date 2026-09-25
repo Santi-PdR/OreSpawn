@@ -70,6 +70,50 @@ jobs:
           echo "name=$(basename "$JAR" .jar)" >> "$GITHUB_OUTPUT"
           sha256sum "$JAR"
 
+      - name: Validate Mining Dimension datapack in final JAR
+        if: steps.project.outputs.ready == 'true'
+        env:
+          MOD_JAR: ${{ steps.jar.outputs.jar }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import zipfile
+
+          jar = os.environ["MOD_JAR"]
+          prefix = "data/copyl/"
+          entries = {
+              "dimension": "dimension/mining.json",
+              "dimension_type": "dimension_type/mining.json",
+              "biome": "worldgen/biome/mining_biome.json",
+              "noise": "worldgen/noise_settings/mining.json",
+          }
+          with zipfile.ZipFile(jar) as archive:
+              data = {}
+              for key, relative_path in entries.items():
+                  path = prefix + relative_path
+                  assert path in archive.namelist(), f"Missing {path} in final mod JAR"
+                  data[key] = json.loads(archive.read(path))
+
+          dimension = data["dimension"]
+          generator = dimension["generator"]
+          assert dimension["type"] == "copyl:mining"
+          assert generator["type"] == "minecraft:noise"
+          assert generator["biome_source"] == {
+              "type": "minecraft:fixed",
+              "biome": "copyl:mining_biome",
+          }
+          assert generator["settings"] == "copyl:mining"
+
+          dimension_type = data["dimension_type"]
+          noise = data["noise"]["noise"]
+          assert dimension_type["min_y"] == noise["min_y"] == 0
+          assert dimension_type["height"] == noise["height"] == 256
+          assert data["biome"]["spawners"]["monster"]
+          assert data["biome"]["spawners"]["creature"]
+          print("Mining Dimension registry resources and references are present in the final JAR.")
+          PY
+
       - name: Upload compiled JAR
         if: steps.project.outputs.ready == 'true'
         uses: actions/upload-artifact@v4

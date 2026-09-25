@@ -83,8 +83,8 @@ public final class RedAntEntity extends AntEntity {
         if (player.getItemInHand(hand).isEmpty() && !level().isClientSide && player instanceof ServerPlayer serverPlayer) {
             // Original 1.12.2 behavior:
             // Overworld -> Mining Dimension; any other dimension -> Overworld.
-            // The Mining Dimension itself remains paused. When it is absent,
-            // DimensionTeleport simply leaves the player where they are.
+            // The Mining Dimension is loaded from the mod's dynamic datapack
+            // registry; the helper safely declines only if that target is absent.
             var target = level().dimension().equals(Level.OVERWORLD)
                     ? ModDimensionKeys.MINING
                     : Level.OVERWORLD;

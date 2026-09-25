@@ -24,8 +24,8 @@ public final class DimensionTeleport {
                                               double x, double z) {
         ServerLevel destination = player.server.getLevel(target);
         if (destination == null) {
-            // Mining Dimension is deliberately paused. Do not fabricate or load
-            // a substitute destination when its actual level is not registered.
+            // Dimension data is supplied by the mod datapack. Keep the failure
+            // explicit to callers if the target is absent from the loaded world.
             return false;
         }
 
