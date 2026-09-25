@@ -87,7 +87,7 @@ local. `[ ]` = fase todavía no portada.
 
 ## Fase 5 — worldgen/dimensión
 - [~] WorldGenOres: registered vein feature now covers the original 28 creature ores plus Uranium, Titanium and Amethyst in Overworld and Mining Dimension; exact 1.12.2 heights, per-chunk attempts and 5–9 vein sizes are preserved.
-- [~] Mining Dimension base: datapack dimension/type + fixed mining biome, hills-style vanilla noise and ore/mob spawn tables. Original day rollover is ported; Red Ant provides the original empty-hand two-way teleport. Exact custom chunk-noise parity and runtime behavior still need verification. AntHillFeature, its configured/placed features and Overworld/Mining biome modifiers are present.
+- [~] Mining Dimension base: datapack dimension/type + fixed mining biome, vanilla noise router and ore/mob spawn tables. Bounds match the original 0–256 world height. Original day rollover and Red Ant empty-hand two-way teleport are ported. The legacy 1.12 noise algorithm is not bit-for-bit matched by the 1.20.1 router and still needs terrain/runtime comparison. AntHillFeature, its configured/placed features and Overworld/Mining biome modifiers are present.
 - [~] GenericDungeon is connected to new Mining Dimension chunks at the original 1/16 frequency and Y 5–44; its chest loot table currently includes all registered original items.
 
 ## Fase 6 — mecánicas especiales
@@ -288,3 +288,11 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **CORREGIDO**: el rollover ya no se ejecuta automáticamente cada tick después del mediodía. El método 1.12.2 exige que todos estén durmiendo; el port ahora usa `SleepFinishedTimeEvent`, que Forge dispara al completar el sueño colectivo, y sincroniza con las demás dimensiones la hora de despertar propuesta por el evento.
 - **VALIDACIÓN**: compilación y empaquetado correctos en Actions run 477, commit `bf6b4c64344b1dcfc60d34667d30c647145214f1`. La prueba runtime de sueño multiplayer sigue pendiente.
 - **AVANCE GLOBAL ESTIMADO**: 78%; el comportamiento queda cotejado por bytecode, pero requiere runtime para cerrar paridad práctica.
+
+
+### Límites verticales de Mining Dimension — 2026-09-24
+
+- **CORREGIDO**: la dimensión usaba −64..319 por heredar el tipo y noise settings del Overworld moderno. El generador original 1.12 trabaja con chunks de 256 bloques desde Y=0. Añadido un noise settings propio copiado de los datos oficiales de Minecraft 1.20.1 con `min_y=0`, `height=256` y nivel del mar 63; la dimensión ahora apunta a esos ajustes y el dimension type declara los mismos límites.
+- **VALIDACIÓN**: los tres JSON parsean, la referencia `copyl:mining` coincide y Actions run 481 pasó `gradle build`, comprobación del JAR y carga del artefacto para commit `8c2472c46a68964021cd650376ae727a3d74e5a0`.
+- **LÍMITE**: se preserva el volumen vertical; el router moderno no reproduce exactamente el algoritmo de ruido 1.12. Falta comparar terreno y carga en runtime.
+- **AVANCE GLOBAL ESTIMADO**: 79%; los bordes verticales ya coinciden con el original.
