@@ -207,7 +207,7 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
 
     private boolean hasLineOfSightTo(BlockPos target) {
         Vec3 start = new Vec3(getX(), getY() + 0.75D, getZ());
-        Vec3 end = Vec3.atCenterOf(target);
+        Vec3 end = new Vec3(target.getX(), target.getY(), target.getZ());
         return level().clip(new net.minecraft.world.level.ClipContext(start, end,
                 net.minecraft.world.level.ClipContext.Block.COLLIDER,
                 net.minecraft.world.level.ClipContext.Fluid.NONE, this)).getType() ==
