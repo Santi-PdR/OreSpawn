@@ -67,22 +67,25 @@ public final class CageProjectileEntity extends ThrowableProjectile {
             return;
         }
 
+        boolean removeProjectile = true;
         if (containedType == null) {
-            tryCapture(serverLevel, result);
+            removeProjectile = tryCapture(serverLevel, result);
         } else {
             releaseContained(serverLevel, result);
         }
-        discard();
+        if (removeProjectile) {
+            discard();
+        }
     }
 
-    private void tryCapture(ServerLevel level, HitResult result) {
+    private boolean tryCapture(ServerLevel level, HitResult result) {
         if (!(result instanceof EntityHitResult entityHit)) {
-            return;
+            return true;
         }
 
         // El original descarta 2 resultados de 10 antes de intentar la captura: 80%.
         if (random.nextInt(10) < 2) {
-            return;
+            return true;
         }
 
         Entity target = entityHit.getEntity();
@@ -95,17 +98,22 @@ public final class CageProjectileEntity extends ThrowableProjectile {
         }
 
         if (!(target instanceof LivingEntity)) {
-            return;
+            return true;
         }
 
         CritterCageItem cage = CritterCageItem.getCageFromEntity(target);
-        if (cage == null || random.nextFloat() >= cage.getChance()) {
-            return;
+        if (cage == null) {
+            // The 1.12.2 early return left the projectile alive for uncageable living entities.
+            return false;
+        }
+        if (random.nextFloat() >= cage.getChance()) {
+            return true;
         }
 
         spawnAtLocation(cage);
         // El 1.12.2 eliminaba la criatura sin soltar sus drops.
         target.discard();
+        return true;
     }
 
     private void releaseContained(ServerLevel level, HitResult result) {
