@@ -408,3 +408,9 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **RECURSOS**: comprobados los OGG originales de Alosaurus y sus rutas en los recursos modernos.
 - **BUILD**: GitHub Actions #533 pasó para `4b53ebccacefb3c23a1eaec1baec57cb7aa3cfc8`, incluyendo empaquetado del JAR.
 - **AVANCE GLOBAL ESTIMADO**: 87%; queda continuar la auditoría de mecánicas y entidades, además de runtime/client/server antes de la pasada visual final.
+
+### Doom Worm — sondeo de columna en coordenadas negativas — 2026-09-25
+
+- **CORREGIDO**: `WormDoom.tick()` construye el origen del barrido vertical con las conversiones JVM `d2i` para X/Y/Z (truncamiento hacia cero). El port ya usa `(int)getX/Y/Z` en vez de `blockPosition()`, que redondea hacia abajo en valores negativos.
+- **VALIDACIÓN**: confirmado contra las instrucciones `d2i` del bytecode original. Actions #535 pasó `Build mod`, detección y carga del JAR para `4a0b5b2623c88d0ecfde2c65daa407780dd500ae`; falta prueba en mundo con coordenadas negativas.
+- **AVANCE GLOBAL ESTIMADO**: 87%; continúa la revisión de paridad restante y runtime/client/server antes de la auditoría visual final.
