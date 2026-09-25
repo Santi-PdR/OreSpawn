@@ -474,3 +474,12 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **PORTED**: Corrected world-vs-entity RNG sources in the audited AI paths for Alien, Alosaurus, Beaver, Baryonyx, Camarasaurus, CaveFisher, Cryolophosaurus, GammaMetroid, Kyuubi, Mothra, Nastysaurus, Pointysaurus, Spyro, T-Rex, VelocityRaptor, Termite and WormLarge/Medium/Small. Beaver also keeps the original world-RNG pitch draw for its uninitialized chainsaw sound event.
 - **VALIDATED**: GitHub Actions builds #597–#607 pass on `work/eggs-cages-20260923`, including compilation, final JAR detection and artifact upload.
 - This closes the `PlayNicely` call-site audit; it does **not** complete full entity AI parity. Original-vs-port behavior, Mining Dimension terrain at runtime, client/server and multiplayer testing, and remaining resource/render checks remain open. Overall progress stays at approximately **87%** until the wider port audit changes materially.
+
+## Checkpoint 2026-09-25 — Mining Dimension resource validation and flight-coordinate parity
+
+- **MINING DIMENSION**: clarified that the dimension and its type are dynamic datapack registry entries in `data/copyl/dimension/mining.json` and `data/copyl/dimension_type/mining.json`; removed comments that incorrectly described the feature as paused.
+- **CI VALIDATION**: Actions #612 now checks the final built JAR for all four dimension resources (dimension, dimension type, fixed biome, noise settings), parses each as JSON, verifies registry references, and asserts matching Y=0..255 bounds. Actions #612 passed.
+- **BEHAVIOR PARITY**: bytecode comparison found that Firefly uses world RNG for its daytime despawn roll and that Firefly, Bird, Butterfly, Moth, and Mosquito truncate coordinates toward zero before flight-target distance and target selection. The port now preserves those sources/conversions, including negative coordinates.
+- **BUILD VALIDATION**: Actions #613, #615, #616, and #617 passed with compilation, final JAR checks, dimension-resource validation, and artifact upload. Action #614 was canceled by the workflow concurrency rule; #615 successfully validated the same head.
+- **LIMITS**: this verifies packaging and cross-references for the dimension but does not replace a live-world terrain, teleport, client/server, or multiplayer test. Entity behavior audits and the final visual/textures pass remain open.
+- **OVERALL PROGRESS**: remains approximately 87%; this batch closes narrow compatibility gaps without changing the estimate for the larger unfinished port.
