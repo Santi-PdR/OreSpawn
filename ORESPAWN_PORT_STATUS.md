@@ -457,10 +457,12 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **BUILD**: GitHub Actions #590 pasó para `c55e806b522e8c6eb58ade5afe1ec1b42d39e7f8`, incluyendo compilación y artefacto.
 - **AVANCE GLOBAL ESTIMADO**: 87%; quedan auditorías de comportamiento y pruebas runtime/client/server.
 
-### Alien — selección de blancos — 2026-09-25
+### Alien — selección de blancos, represalia y RNG — 2026-09-25
 
-- **CORREGIDO**: la búsqueda ahora considera cualquier `LivingEntity` viva en el AABB original de 12×4×12, excluye jugadores creativos y el propio Alien, y selecciona la entidad más cercana. Se quitaron filtros extra de línea de visión y espectador que el JAR no aplica.
-- **COTEJO**: comparados `findSomethingToAttack()` y `isSuitableTarget()` del bytecode de `danger.orespawn.entity.Alien` con `AlienEntity.findSomethingToAttack()`.
-- **BUILD**: GitHub Actions #591 pasó para `cb5f09767635441423da12fe1d58e5ed91009b9c`; `Build mod`, detección del JAR y carga del artefacto terminaron correctamente.
-- **PENDIENTE**: verificar combate y selección de blancos en runtime.
+- **SELECCIÓN**: la búsqueda considera cualquier `LivingEntity` viva en el AABB original de 12×4×12, excluye jugadores creativos y el propio Alien, y selecciona la entidad más cercana. Se quitaron los filtros extra de línea de visión y espectador que el JAR no aplica.
+- **REPRESALIA**: `hurt()` ahora inicia persecución inmediata solo ante `Mob`, equivalente a `EntityLiving` en el bytecode 1.12.2; jugadores y otras entidades vivas conservan el resultado normal del daño.
+- **RNG**: se restauró `Level.getRandom()` para las tiradas que el original hace con `World.rand`: partículas y su orden de consumo, selección/ataque de objetivo, probabilidad de hambre, curación, sonido ambiental y cantidades de botín. La búsqueda de antorchas conserva el RNG individual que el original lee desde `Entity.rand`.
+- **COTEJO**: comparados `findSomethingToAttack()`, `isSuitableTarget()`, `attackEntityFrom()`, `attackEntityAsMob()`, actualización de partículas y los accesos RNG del bytecode de `danger.orespawn.entity.Alien`.
+- **BUILD**: Actions #591 pasó para la selección de blancos, #593 para el tipo de atacante y #594 para el flujo RNG; los tres compilaron y empaquetaron el JAR.
+- **PENDIENTE**: verificar combate, efectos aleatorios y selección de blancos en runtime.
 - **AVANCE GLOBAL ESTIMADO**: 87%; queda paridad de otras mecánicas y validación runtime.
