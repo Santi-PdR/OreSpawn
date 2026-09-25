@@ -3,6 +3,9 @@ package com.santipdr.copyl.common.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -49,11 +52,25 @@ import java.util.List;
 /** Baby dragon: behavior, tame interactions and fire state ported from the original Spyro. */
 public final class SpyroEntity extends TamableAnimal {
     private static final double BASE_SPEED = 0.3D;
-    private int activity = 1;
-    private boolean fireballsEnabled = true;
+    private static final EntityDataAccessor<Byte> ACTIVITY =
+            SynchedEntityData.defineId(SpyroEntity.class, EntityDataSerializers.BYTE);
+    private static final EntityDataAccessor<Byte> FIRE =
+            SynchedEntityData.defineId(SpyroEntity.class, EntityDataSerializers.BYTE);
     @Nullable private BlockPos flightTarget;
     private boolean targetInSight;
     private boolean ownerFlying;
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        entityData.define(ACTIVITY, (byte) 1);
+        entityData.define(FIRE, (byte) 1);
+    }
+
+    public int getActivity() { return entityData.get(ACTIVITY) & 0xFF; }
+    public void setActivity(int value) { entityData.set(ACTIVITY, (byte) value); }
+    public int getSpyroFire() { return entityData.get(FIRE) & 0xFF; }
+    public void setSpyroFire(int value) { entityData.set(FIRE, (byte) value); }
 
     public SpyroEntity(EntityType<? extends SpyroEntity> type, Level level) {
         super(type, level);
@@ -103,15 +120,15 @@ public final class SpyroEntity extends TamableAnimal {
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
-        tag.putInt("SpyroActivity", activity);
-        tag.putBoolean("SpyroFire", fireballsEnabled);
+        tag.putInt("SpyroActivity", getActivity());
+        tag.putBoolean("SpyroFire", getSpyroFire() != 0);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
-        activity = tag.getInt("SpyroActivity");
-        fireballsEnabled = !tag.contains("SpyroFire") || tag.getBoolean("SpyroFire");
+        setActivity(tag.getInt("SpyroActivity"));
+        setSpyroFire(!tag.contains("SpyroFire") || tag.getBoolean("SpyroFire") ? 1 : 0);
     }
 
     @Override
@@ -129,7 +146,7 @@ public final class SpyroEntity extends TamableAnimal {
         }
         if (level().getDifficulty() == Difficulty.PEACEFUL) {
             setTarget(null);
-            activity = 1;
+            setActivity(1);
             return;
         }
         // Attack selection and flight steering are handled together in tick().
@@ -151,7 +168,7 @@ public final class SpyroEntity extends TamableAnimal {
 
         // The legacy roll attempts 1/10 when fire is enabled, then falls through
         // to the 1/15 roll when that first attempt misses (or fire is disabled).
-        boolean fire = fireballsEnabled && level().getRandom().nextInt(10) == 0;
+        boolean fire = getSpyroFire() != 0 && level().getRandom().nextInt(10) == 0;
         if (!fire) fire = level().getRandom().nextInt(15) == 1;
         if (!fire) return;
 
@@ -194,7 +211,7 @@ public final class SpyroEntity extends TamableAnimal {
     /** Original Spyro scans outward for the nearest water surface while wild. */
     private void scanForWater() {
         if (isTame()) return;
-        if (activity == 0) activity = 1;
+        if (getActivity() == 0) setActivity(1);
         if (level().getRandom().nextInt(20) != 1) return;
 
         BlockPos center = new BlockPos((int) getX(), (int) getY() - 1, (int) getZ());
@@ -218,7 +235,7 @@ public final class SpyroEntity extends TamableAnimal {
                 }
             }
             if (closestWater != null) {
-                activity = 1;
+                setActivity(1);
                 getNavigation().moveTo(closestWater.getX(), closestWater.getY() - 1,
                         closestWater.getZ(), 1.0D);
                 if (isInWater()) {
@@ -261,7 +278,7 @@ public final class SpyroEntity extends TamableAnimal {
         }
         if (isOrderedToSit()) {
             setNoGravity(false);
-            activity = 1;
+            setActivity(1);
             flightTarget = null;
             getNavigation().stop();
             return;
@@ -273,26 +290,26 @@ public final class SpyroEntity extends TamableAnimal {
         LivingEntity owner = isTame() ? getOwner() : null;
         ownerFlying = owner instanceof Player ownerPlayer && ownerPlayer.getAbilities().flying;
 
-        if (ownerFlying) activity = 2;
-        if (owner != null && activity == 1 && distanceToSqr(owner) > 256.0D) activity = 2;
+        if (ownerFlying) setActivity(2);
+        if (owner != null && getActivity() == 1 && distanceToSqr(owner) > 256.0D) setActivity(2);
 
         boolean chooseNewTarget = false;
-        if (activity == 2 && level().getRandom().nextInt(300) == 0) chooseNewTarget = true;
-        if (owner != null && activity == 2) {
+        if (getActivity() == 2 && level().getRandom().nextInt(300) == 0) chooseNewTarget = true;
+        if (owner != null && getActivity() == 2) {
             double ownerDistance = distanceToSqr(owner);
             if (ownerDistance > 100.0D || ownerFlying && ownerDistance > 36.0D) {
                 chooseNewTarget = true;
             }
         }
         if (!targetInSight && level().getRandom().nextInt(100) == 1) {
-            activity = 1;
+            setActivity(1);
             if (level().getRandom().nextInt(8) == 1) {
-                activity = 2;
+                setActivity(2);
                 chooseNewTarget = true;
             }
         }
 
-        if (activity == 2 && level().getRandom().nextInt(6) == 1
+        if (getActivity() == 2 && level().getRandom().nextInt(6) == 1
                 && level().getDifficulty() != Difficulty.PEACEFUL
                 && LegacyGameplayFlags.PLAY_NICELY == 0) {
             List<Monster> targets = level().getEntitiesOfClass(Monster.class,
@@ -303,13 +320,13 @@ public final class SpyroEntity extends TamableAnimal {
             if (!targets.isEmpty()) {
                 Monster target = targets.get(0);
                 if (isTame() && getHealth() / getMaxHealth() < 0.25F) {
-                    activity = 2;
+                    setActivity(2);
                     targetInSight = false;
                     flightTarget = new BlockPos((int) (2.0D * getX() - target.getX()),
                             (int) (getY() + 1.0D), (int) (2.0D * getZ() - target.getZ()));
                     chooseNewTarget = false;
                 } else {
-                    activity = 2;
+                    setActivity(2);
                     targetInSight = true;
                     flightTarget = new BlockPos((int) target.getX(), (int) (target.getY() + 1.0D), (int) target.getZ());
                     getNavigation().moveTo(target, 1.25D);
@@ -321,20 +338,20 @@ public final class SpyroEntity extends TamableAnimal {
             }
         }
 
-        if (activity != 1 && flightTarget != null) {
+        if (getActivity() != 1 && flightTarget != null) {
             double tx = flightTarget.getX() - (int) getX();
             double ty = flightTarget.getY() - (int) getY();
             double tz = flightTarget.getZ() - (int) getZ();
-            if (activity != 3 && tx * tx + ty * ty + tz * tz < 2.1D) chooseNewTarget = true;
+            if (getActivity() != 3 && tx * tx + ty * ty + tz * tz < 2.1D) chooseNewTarget = true;
         }
-        if (activity != 1 && chooseNewTarget && !targetInSight) {
+        if (getActivity() != 1 && chooseNewTarget && !targetInSight) {
             BlockPos origin = owner != null
                     ? new BlockPos((int) owner.getX(), (int) owner.getY(), (int) owner.getZ())
                     : new BlockPos((int) getX(), (int) getY(), (int) getZ());
             flightTarget = chooseFlightTarget(origin);
         }
 
-        if (activity == 2 && flightTarget != null) {
+        if (getActivity() == 2 && flightTarget != null) {
             double verticalMotion = getDeltaMovement().y;
             if (getY() < flightTarget.getY() + 2.0D) verticalMotion *= 0.7D;
             else if (getY() > flightTarget.getY() - 2.0D) verticalMotion *= 0.5D;
@@ -426,7 +443,7 @@ public final class SpyroEntity extends TamableAnimal {
         if (isTame() && item == Items.ICE) {
             if (!level().isClientSide) {
                 setOrderedToSit(true);
-                fireballsEnabled = false;
+                setSpyroFire(0);
                 level().broadcastEntityEvent(this, (byte) 6);
                 player.displayClientMessage(Component.literal("Baby Spyro fireballs extinguished."), true);
             }
@@ -436,7 +453,7 @@ public final class SpyroEntity extends TamableAnimal {
         if (isTame() && item == Items.FLINT_AND_STEEL) {
             if (!level().isClientSide) {
                 setOrderedToSit(true);
-                fireballsEnabled = true;
+                setSpyroFire(1);
                 level().broadcastEntityEvent(this, (byte) 6);
                 player.displayClientMessage(Component.literal("Baby Spyro fireballs lit!"), true);
             }
