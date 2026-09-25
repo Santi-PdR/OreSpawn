@@ -1,5 +1,7 @@
 package com.santipdr.copyl.common.entity;
 
+import com.santipdr.copyl.common.util.LegacyRandom;
+
 import com.santipdr.copyl.common.entity.ai.LongRangeWanderGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -176,9 +178,9 @@ public final class BeaverEntity extends Animal {
             Item drop = state.getBlock().asItem();
             level().removeBlock(current, false);
             if (drop != Items.AIR) {
-                double x = getX() + random.nextInt(4) - random.nextInt(4);
-                double y = getY() + 4.0D + random.nextInt(4);
-                double z = getZ() + random.nextInt(4) - random.nextInt(4);
+                double x = getX() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4);
+                double y = getY() + 4.0D + level().getRandom().nextInt(4);
+                double z = getZ() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4);
                 ItemEntity entity = new ItemEntity(level(), x, y, z, new ItemStack(drop));
                 entity.setPickUpDelay(10);
                 level().addFreshEntity(entity);
