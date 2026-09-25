@@ -1,5 +1,6 @@
 package com.santipdr.copyl.common.entity;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.MoverType;
@@ -97,10 +98,15 @@ public final class DoomWormEntity extends Monster {
         double dx = Math.sin(Math.toRadians(heading)) * speed;
         double dz = Math.cos(Math.toRadians(heading)) * speed;
 
-        // The original loop leaves y at -range-1 when the entire column is air.
+        // WormDoom builds its BlockPos from (int) coordinates (Java truncation toward zero).
+        // Keep that behavior at negative fractional world coordinates too.
+        int scanX = (int) getX();
+        int scanY = (int) getY();
+        int scanZ = (int) getZ();
         int verticalOffset = -verticalRange - 1;
         for (int y = verticalRange; y >= -verticalRange; y--) {
-            if (!level().getBlockState(blockPosition().offset(0, y, 0)).isAir()) {
+            BlockPos scanPos = new BlockPos(scanX, scanY + y, scanZ);
+            if (!level().getBlockState(scanPos).isAir()) {
                 verticalOffset = y;
                 break;
             }
