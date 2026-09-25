@@ -16,6 +16,12 @@
       "weight": 15,
       "minCount": 1,
       "maxCount": 1
+    },
+    {
+      "type": "copyl:brutalfly",
+      "weight": 10,
+      "minCount": 1,
+      "maxCount": 1
     }
   ]
 }
