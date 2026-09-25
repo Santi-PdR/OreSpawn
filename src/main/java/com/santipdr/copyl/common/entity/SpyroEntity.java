@@ -20,10 +20,10 @@ import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MoveIndoorsGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -56,7 +56,7 @@ public final class SpyroEntity extends TamableAnimal {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return TamableAnimal.createAttributes()
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 200.0D)
                 .add(Attributes.MOVEMENT_SPEED, BASE_SPEED)
                 .add(Attributes.ARMOR, 5.0D)
@@ -68,12 +68,11 @@ public final class SpyroEntity extends TamableAnimal {
         goalSelector.addGoal(1, new FloatGoal(this));
         goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Monster.class, 8.0F, 0.3D, 0.4D));
         goalSelector.addGoal(3, new FollowOwnerGoal(this, 1.15D, 12.0F, 2.0F, false));
-        goalSelector.addGoal(4, new TemptGoal(this, 1.25D, stack -> stack.is(Items.BEEF), false));
+        goalSelector.addGoal(4, new TemptGoal(this, 1.25D, Ingredient.of(Items.BEEF), false));
         goalSelector.addGoal(5, new PanicGoal(this, 1.5D));
         goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
         goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 0.75D));
         goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-        goalSelector.addGoal(9, new MoveIndoorsGoal(this));
     }
 
     @Override
@@ -169,7 +168,7 @@ public final class SpyroEntity extends TamableAnimal {
         if (random.nextInt(6) == 1) {
             List<Monster> targets = level().getEntitiesOfClass(Monster.class,
                     getBoundingBox().inflate(12.0D, 6.0D, 12.0D),
-                    target -> target != this && target.isAlive() && hasLineOfSight(target));
+                    target -> target.isAlive() && hasLineOfSight(target));
             targets.sort(Comparator.comparingDouble(this::targetScore));
             if (!targets.isEmpty()) {
                 Monster target = targets.get(0);
@@ -222,7 +221,7 @@ public final class SpyroEntity extends TamableAnimal {
     protected float getSoundVolume() { return 0.4F; }
 
     @Override
-    protected float getVoicePitch() {
+    public float getVoicePitch() {
         return isBaby() ? 1.5F + (random.nextFloat() - random.nextFloat()) * 0.1F
                 : 1.0F + (random.nextFloat() - random.nextFloat()) * 0.1F;
     }
