@@ -11,6 +11,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -107,10 +108,13 @@ public final class CritterCageItem extends Item {
             BlockPos pos = context.getClickedPos();
             entity.moveTo(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D,
                     entity.getYRot(), entity.getXRot());
-            if (stack.hasCustomHoverName()) {
-                entity.setCustomName(Component.literal(stack.getHoverName().getString()));
+            if (entity instanceof Horse horse) {
+                horse.setVariant(serverLevel.random.nextInt());
             }
             level.addFreshEntity(entity);
+            if (entity instanceof net.minecraft.world.entity.LivingEntity && stack.hasCustomHoverName()) {
+                entity.setCustomName(Component.literal(stack.getHoverName().getString()));
+            }
             CageProjectileEntity.emitReleaseEffects(serverLevel, pos);
             CageProjectileEntity.dropEmptyCage(serverLevel, pos);
 
