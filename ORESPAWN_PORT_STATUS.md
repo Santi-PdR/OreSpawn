@@ -443,6 +443,16 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 
 - **CORREGIDO**: `OreSpawnMain.OreSpawnRand` se inicializa como `java.util.Random(151L)`; `RedAnt.func_70652_k` usa esa fuente para `nextInt(15)`. El port ahora usa `LegacyRandom.nextInt(15)` con el mismo flujo compartido, en vez del RNG de cada mundo.
 - **SOURCE**: commits `b1a5558f` y `6ad911bb`.
-- **ALCANCE PENDIENTE**: el mismo RNG global aparece en otros 22 tipos/clases del JAR; solo se migró aquí la llamada cuyo uso se había identificado. No se afirma todavía paridad de la secuencia global.
-- **BUILD**: GitHub Actions pendiente para el head actual `6ad911bbd94448891b66b3eb852d13172c633847`.
+- **ALCANCE PENDIENTE**: el mismo RNG global aparece en otros 22 tipos/clases del JAR. Además de Red Ant, ya se migraron Moth (variante), las probabilidades compartidas por las cuatro plantas de insecto y la altura inicial/fallback del maíz; el resto sigue en auditoría. No se afirma todavía paridad de la secuencia global.
+- **BUILD**: GitHub Actions #566 pasó para el cambio de Red Ant. El run #570 detectó una referencia `RandomSource` que quedaba en el fallback de carga del maíz; se corrigió y Actions #571 pasó el head `43f26a5c52eba85299b7ac0e20c8d9a94e00de14`, con build y artefacto completados.
 - **AVANCE GLOBAL ESTIMADO**: 87%; sigue abierta la auditoría del resto de llamadas aleatorias, además de IA, spawn y runtime.
+
+
+### RNG compartido — Moth, plantas de insecto y maíz — 2026-09-25
+
+- **CORREGIDO**: `MothEntity` usa `LegacyRandom.nextInt(4)` para la variante que en el original consumía `OreSpawnRand`; las tiradas de vuelo que usan el RNG de entidad se dejaron intactas.
+- **CORREGIDO**: `InsectSpawnPlant` usa la fuente global para las probabilidades compartidas por Butterfly, Firefly, Mosquito y Moth; mantiene el parámetro aleatorio moderno para la llamada base.
+- **CORREGIDO**: `CornPlantBlockEntity` usa la fuente legacy para el valor inicial y para el fallback de guardado antiguo, equivalentes a `TileEntityPlant` del JAR.
+- **VALIDACIÓN**: comparación directa de los métodos originales y las llamadas actuales. Actions #571 pasó `compileJava`, `build`, localización del JAR y carga del artefacto.
+- **PENDIENTE**: quedan otros usos de `OreSpawnRand` en bloques y entidades. No se sustituyó a ciegas el RNG de entidad/nivel, ya que el bytecode distingue esos flujos.
+- **AVANCE GLOBAL ESTIMADO**: 87%; esta migración parcial mejora fidelidad sin cerrar la auditoría global ni las pruebas runtime.
