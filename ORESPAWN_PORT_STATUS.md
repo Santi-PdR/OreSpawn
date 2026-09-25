@@ -322,3 +322,13 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **VALIDACIÓN**: Actions #488 pasó las reglas de agua/curación; #489 y #491 fallaron por el import omitido de `ServerLevel`; se corrigió y Actions #492 pasó el build, verificación del JAR y carga del artefacto para `ed567a3d1e4d36e41d41d696de2e575d302aefb1`.
 - **PENDIENTE**: el algoritmo de búsqueda/steering de vuelo aún es una simplificación moderna pendiente de cotejo; runtime y restantes entidades/mecánicas siguen abiertos.
 - **AVANCE GLOBAL ESTIMADO**: 82%; mejoró la paridad de vida/objetivos, pero Spyro aún no está completamente cotejado.
+
+
+### Spyro — búsqueda y steering de vuelo cotejados — 2026-09-25
+
+- **CORREGIDO**: la búsqueda de objetivos solo se ejecuta cuando Spyro está en actividad de vuelo/ataque; la cadencia de selección, el reinicio de actividad en reposo y el seguimiento del dueño ahora respetan los disparadores del JAR.
+- **VUELO**: portados los rangos originales para elegir puntos libres y visibles, los umbrales de distancia al dueño/objetivo, el modo de vuelo del dueño, la huida de Spyro domesticado con poca salud, la navegación hacia el objetivo y los factores de aceleración/velocidad. La visibilidad se comprueba con raycast moderno.
+- **ATAQUE**: recuperada la probabilidad original de bola de fuego y quitado el cooldown que no existía en el bytecode.
+- **BUILD**: GitHub Actions run #495 pasó para el commit `9a65401d576a1d07320725d4d4cfa477e7940387`, incluyendo build y empaquetado del JAR. El run #494 del commit intermedio se canceló al ser supersedido.
+- **PENDIENTE**: falta cotejar la búsqueda de líquidos/recuperación de ruta y probar vuelo, selección de blancos y combate en runtime. La pasada de defectos visuales sigue aplazada hasta cerrar el port funcional.
+- **AVANCE GLOBAL ESTIMADO**: 83%; el build valida compilación y empaquetado, no el cierre de runtime ni de las mecánicas pendientes.
