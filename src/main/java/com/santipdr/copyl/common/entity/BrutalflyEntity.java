@@ -42,6 +42,8 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
                 .add(Attributes.ARMOR, 6.0D);
     }
 
+    @Override public boolean fireImmune() { return true; }
+    @Override public boolean removeWhenFarAway(double distanceToClosestPlayer) { return !isPersistenceRequired(); }
     @Override protected net.minecraft.sounds.SoundEvent getAmbientSound() { return null; }
     @Override protected net.minecraft.sounds.SoundEvent getHurtSound(DamageSource source) { return null; }
     @Override protected net.minecraft.sounds.SoundEvent getDeathSound() { return net.minecraft.sounds.SoundEvents.GENERIC_EXPLODE; }
@@ -51,6 +53,7 @@ public final class BrutalflyEntity extends ButterflyEntity implements Enemy {
     @Override protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) { }
 
     @Override public boolean hurt(DamageSource source, float amount) {
+        if (source.getEntity() == this) return false;
         boolean result = super.hurt(source, amount);
         if (result && source.getEntity() instanceof LivingEntity attacker && attacker != this && !level().isClientSide)
             flightTarget = BlockPos.containing(attacker.getX(), attacker.getY() + 2.0D, attacker.getZ());
