@@ -115,25 +115,42 @@ public final class MothraEntity extends ButterflyEntity implements Enemy {
         if (lastX == x && lastY == y && lastZ == z) stuckTicks++;
         else { stuckTicks = 0; lastX = x; lastY = y; lastZ = z; }
         int attackDivisor = level().getDifficulty() == Difficulty.HARD ? 2 : 3;
-        if (flightTarget == null || stuckTicks > 50 || (level().getRandom().nextInt(300) == 0 &&
-                distanceFromLegacyPositionSquared() < 9.0D)) {
+        if (flightTarget == null) {
+            flightTarget = new BlockPos((int) getX(), (int) getY(), (int) getZ());
+        }
+
+        boolean chooseNewFlightTarget = stuckTicks > 50;
+        if (!chooseNewFlightTarget) {
+            // The 1.12.2 condition is random roll OR target within three blocks.
+            chooseNewFlightTarget = level().getRandom().nextInt(300) == 0
+                    || distanceFromLegacyPositionSquared() < 9.0D;
+        }
+
+        if (chooseNewFlightTarget) {
             chooseFlightTarget();
-        } else if (level().getRandom().nextInt(10) == 0 && level().getDifficulty() != Difficulty.PEACEFUL
-                && LegacyGameplayFlags.PLAY_NICELY == 0) {
+        } else if (level().getRandom().nextInt(10) == 0
+                && level().getDifficulty() != Difficulty.PEACEFUL) {
             Player player = level().getEntitiesOfClass(Player.class,
                     getBoundingBox().inflate(25.0D, 20.0D, 25.0D))
-                    .stream().min(Comparator.comparingDouble((Player p) -> distanceToSqr(p))).orElse(null);
-            if (player != null && player.isAlive() && !player.getAbilities().instabuild && hasLineOfSight(player)) {
+                    .stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
+            if (player != null && player.getAbilities().instabuild) {
+                player = null;
+            }
+            if (player != null && player.isAlive() && hasLineOfSight(player)) {
                 flightTarget = new BlockPos((int) player.getX(), (int) player.getY() + 4, (int) player.getZ());
                 if (random.nextInt(attackDivisor) == 0) attackWithSomething(player);
-            } else if (level().getRandom().nextInt(3) == 0) {
+            } else if (player == null && level().getRandom().nextInt(3) == 0
+                    && LegacyGameplayFlags.PLAY_NICELY == 0) {
                 LivingEntity victim = level().getEntitiesOfClass(LivingEntity.class,
                         getBoundingBox().inflate(15.0D, 20.0D, 15.0D),
-                        e -> e != this && e.isAlive() &&
-                                !(e instanceof MothraEntity) &&
-                                !(e instanceof VelocityRaptorEntity) && !(e instanceof CryolophosaurusEntity) &&
-                                !(e instanceof MantisEntity) &&
-                                (!(e instanceof Player p) || !p.getAbilities().instabuild) && hasLineOfSight(e))
+                        e -> e != this && e.isAlive()
+                                && !(e instanceof MothraEntity)
+                                && !(e instanceof BrutalflyEntity)
+                                && !(e instanceof VelocityRaptorEntity)
+                                && !(e instanceof CryolophosaurusEntity)
+                                && !(e instanceof MantisEntity)
+                                && (!(e instanceof Player p) || !p.getAbilities().instabuild)
+                                && hasLineOfSight(e))
                         .stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
                 if (victim != null) {
                     flightTarget = new BlockPos((int) victim.getX(), (int) victim.getY() + 5, (int) victim.getZ());
