@@ -34,6 +34,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.server.level.ServerLevel;
@@ -190,6 +191,46 @@ public final class SpyroEntity extends TamableAnimal {
         return candidate;
     }
 
+    /** Original Spyro scans outward for the nearest water surface while wild. */
+    private void scanForWater() {
+        if (isTame()) return;
+        if (activity == 0) activity = 1;
+        if (random.nextInt(20) != 1) return;
+
+        BlockPos center = blockPosition().below();
+        for (int radius = 1; radius <= 10; radius++) {
+            int verticalRadius = Math.min(radius, 4);
+            BlockPos closestWater = null;
+            int closestDistance = Integer.MAX_VALUE;
+            for (int dx = -radius; dx <= radius; dx++) {
+                for (int dy = -verticalRadius; dy <= verticalRadius; dy++) {
+                    for (int dz = -radius; dz <= radius; dz++) {
+                        if (Math.abs(dx) != radius && Math.abs(dz) != radius
+                                && Math.abs(dy) != verticalRadius) continue;
+                        BlockPos candidate = center.offset(dx, dy, dz);
+                        if (!level().getBlockState(candidate).is(Blocks.WATER)) continue;
+                        int distance = dx * dx + dy * dy + dz * dz;
+                        if (distance < closestDistance) {
+                            closestDistance = distance;
+                            closestWater = candidate;
+                        }
+                    }
+                }
+            }
+            if (closestWater != null) {
+                activity = 1;
+                getNavigation().moveTo(closestWater.getX(), closestWater.getY() - 1,
+                        closestWater.getZ(), 1.0D);
+                if (isInWater()) {
+                    heal(1.0F);
+                    playSound(SoundEvents.WATER_AMBIENT, 1.0F,
+                            0.9F + random.nextFloat() * 0.2F);
+                }
+                return;
+            }
+        }
+    }
+
     @Override
     public void tick() {
         super.tick();
@@ -222,6 +263,8 @@ public final class SpyroEntity extends TamableAnimal {
         }
         setNoGravity(true);
         if (level().isClientSide) return;
+        if (random.nextInt(200) == 1) setTarget(null);
+        scanForWater();
         LivingEntity owner = isTame() ? getOwner() : null;
         ownerFlying = owner instanceof Player ownerPlayer && ownerPlayer.getAbilities().flying;
 
