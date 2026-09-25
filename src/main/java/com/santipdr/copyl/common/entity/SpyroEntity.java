@@ -124,7 +124,7 @@ public final class SpyroEntity extends TamableAnimal {
         super.customServerAiStep();
         // Spyro.updateAITasks heals one point on a 1-in-100 server-tick roll,
         // independently of water; water supplies lift rather than healing.
-        if (random.nextInt(100) == 1 && getHealth() < getMaxHealth()) {
+        if (level().getRandom().nextInt(100) == 1 && getHealth() < getMaxHealth()) {
             heal(1.0F);
         }
         if (level().getDifficulty() == Difficulty.PEACEFUL) {
@@ -195,7 +195,7 @@ public final class SpyroEntity extends TamableAnimal {
     private void scanForWater() {
         if (isTame()) return;
         if (activity == 0) activity = 1;
-        if (random.nextInt(20) != 1) return;
+        if (level().getRandom().nextInt(20) != 1) return;
 
         BlockPos center = blockPosition().below();
         for (int radius = 1; radius <= 10; radius++) {
@@ -224,7 +224,7 @@ public final class SpyroEntity extends TamableAnimal {
                 if (isInWater()) {
                     heal(1.0F);
                     playSound(SoundEvents.WATER_AMBIENT, 1.0F,
-                            0.9F + random.nextFloat() * 0.2F);
+                            0.9F + level().getRandom().nextFloat() * 0.2F);
                 }
                 return;
             }
@@ -240,10 +240,10 @@ public final class SpyroEntity extends TamableAnimal {
         }
         // Spyro's legacy onUpdate had a 1/100000 self-replacement roll for
         // non-persistent instances, using the normal natural-spawn initializer.
-        if (!level().isClientSide && random.nextInt(100000) == 1 && !isPersistenceRequired()) {
+        if (!level().isClientSide && level().getRandom().nextInt(100000) == 1 && !isPersistenceRequired()) {
             SpyroEntity replacement = ModEntities.SPYRO.get().create(level());
             if (replacement != null) {
-                replacement.moveTo(getX(), getY(), getZ(), random.nextFloat() * 360.0F, 0.0F);
+                replacement.moveTo(getX(), getY(), getZ(), level().getRandom().nextFloat() * 360.0F, 0.0F);
                 level().addFreshEntity(replacement);
                 if (level() instanceof ServerLevel serverLevel) {
                     replacement.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(blockPosition()),
@@ -263,7 +263,7 @@ public final class SpyroEntity extends TamableAnimal {
         }
         setNoGravity(true);
         if (level().isClientSide) return;
-        if (random.nextInt(200) == 1) setTarget(null);
+        if (level().getRandom().nextInt(200) == 1) setTarget(null);
         scanForWater();
         LivingEntity owner = isTame() ? getOwner() : null;
         ownerFlying = owner instanceof Player ownerPlayer && ownerPlayer.getAbilities().flying;
@@ -381,7 +381,7 @@ public final class SpyroEntity extends TamableAnimal {
         if (distanceToSqr(player) >= 16.0D) return super.mobInteract(player, hand);
         if (stack.is(Items.BEEF) && !isTame()) {
             if (!level().isClientSide) {
-                if (random.nextBoolean()) {
+                if (level().getRandom().nextBoolean()) {
                     setTame(true);
                     setOwnerUUID(player.getUUID());
                     setOrderedToSit(true);
