@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "copyl:spyro_ore"
+    }
+  ],
+  "result": {
+    "item": "copyl:spyro_egg",
+    "count": 1
+  }
+}
