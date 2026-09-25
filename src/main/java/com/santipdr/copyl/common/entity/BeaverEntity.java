@@ -91,7 +91,7 @@ public final class BeaverEntity extends Animal {
 
         boolean wantsTree = (random.nextInt(30) == 0 && getHealth() < getMaxHealth())
                 || random.nextInt(350) == 1;
-        if (wantsTree) {
+        if (wantsTree && LegacyGameplayFlags.PLAY_NICELY == 0) {
             seekAndCutTree();
         }
 

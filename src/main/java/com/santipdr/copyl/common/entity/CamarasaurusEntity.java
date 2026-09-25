@@ -94,7 +94,7 @@ public final class CamarasaurusEntity extends TamableAnimal {
 
         boolean shouldFeed = (random.nextInt(20) == 0 && getHealth() < getMaxHealth())
                 || random.nextInt(250) == 0;
-        if (!shouldFeed) {
+        if (!shouldFeed || LegacyGameplayFlags.PLAY_NICELY != 0) {
             return;
         }
 

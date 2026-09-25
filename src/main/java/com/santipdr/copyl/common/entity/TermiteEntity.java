@@ -88,7 +88,8 @@ public final class TermiteEntity extends AntEntity {
 
     @Override
     protected void customServerAiStep() {
-        if (!isRemoved() && level().getRandom().nextInt(200) == 1) {
+        if (!isRemoved() && level().getRandom().nextInt(200) == 1
+                && LegacyGameplayFlags.PLAY_NICELY == 0) {
             setTarget(null);
         }
 

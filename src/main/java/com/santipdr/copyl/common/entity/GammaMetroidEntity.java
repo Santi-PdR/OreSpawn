@@ -104,7 +104,8 @@ public final class GammaMetroidEntity extends TamableAnimal {
 
         if (((this.random.nextInt(20) == 0 && this.getHealth() < this.getMaxHealth())
                 || this.random.nextInt(100) == 0)
-                && !this.isOrderedToSit()) {
+                && !this.isOrderedToSit()
+                && LegacyGameplayFlags.PLAY_NICELY == 0) {
             BlockPos stone = findNearestStone();
             if (stone != null) {
                 this.getNavigation().moveTo(stone.getX(), stone.getY(), stone.getZ(), 1.0D);
