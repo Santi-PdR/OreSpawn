@@ -162,7 +162,7 @@ public final class SpyroEntity extends TamableAnimal {
         fireball.setPos(getX(), getY() + 1.25D, getZ());
         level().addFreshEntity(fireball);
         level().playSound(null, this, SoundEvents.GHAST_SHOOT, SoundSource.NEUTRAL,
-                0.75F, 1.0F / (level().getRandom().nextFloat() * 0.2F + 0.9F));
+                0.75F, 1.0F / (random.nextFloat() * 0.2F + 0.9F));
     }
 
     private boolean canSeeTarget(double x, double y, double z) {
