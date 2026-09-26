@@ -1,80 +1,133 @@
-name: Build Forge 1.20.1
+name: Build
 
 on:
   push:
-    branches: [ main, 'work/**', 'feature/**' ]
+    branches: [ main, 'feature/**' ]
   pull_request:
     branches: [ main ]
-  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: orespawn-build-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: copyl-build-${{ github.workflow }}-${{ github.ref }}
+  # Queue runs for the same ref instead of letting delayed events cancel the current HEAD.
+  # Stale main runs are still prevented from publishing by the REMOTE_MAIN/GITHUB_SHA check.
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Check project is present
-        id: project
-        shell: bash
-        run: |
-          if [[ -f build.gradle && -d src ]]; then
-            echo "ready=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "El repo todavía no contiene el checkpoint del proyecto."
-            echo "Cuando se suban build.gradle + src/, este workflow compilará automáticamente."
-          fi
-
       - name: Set up Java 17
-        if: steps.project.outputs.ready == 'true'
         uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
           cache: gradle
 
-      - name: Set up Gradle 8.1.1
-        if: steps.project.outputs.ready == 'true'
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.1.1'
+      - name: Build with Gradle
+        run: ./gradlew build --no-daemon
 
-      - name: Build mod
-        if: steps.project.outputs.ready == 'true'
-        run: gradle build --no-daemon --stacktrace
-
-      - name: Find final JAR
-        if: steps.project.outputs.ready == 'true'
+      - name: Select and validate mod jar
         id: jar
         shell: bash
         run: |
           set -euo pipefail
-          JAR="$(find build/libs -maxdepth 1 -type f -name '*.jar' ! -name '*-sources.jar' ! -name '*-dev.jar' | head -n 1)"
-          if [[ -z "$JAR" || ! -f "$JAR" ]]; then
-            echo "No se encontró el JAR final en build/libs" >&2
+          VERSION="$(grep -E '^version = ' build.gradle | sed -E "s/version = ['\"]([^'\"]+)['\"]/\1/")"
+          JAR="build/libs/copyl-${VERSION}.jar"
+          if [ ! -f "$JAR" ]; then
+            echo "Expected final mod JAR was not produced: $JAR" >&2
+            echo "Available files:" >&2
             find build/libs -maxdepth 1 -type f -printf '  %f\n' >&2 || true
             exit 1
           fi
 
           unzip -t "$JAR" >/dev/null
-          echo "jar=$JAR" >> "$GITHUB_OUTPUT"
-          echo "name=$(basename "$JAR" .jar)" >> "$GITHUB_OUTPUT"
-          sha256sum "$JAR"
+          unzip -Z1 "$JAR" > /tmp/copyl-entries.txt
+          grep -Fxq 'META-INF/mods.toml' /tmp/copyl-entries.txt
+          grep -Fxq 'com/santipdr/copyl/CopyL.class' /tmp/copyl-entries.txt
 
-      - name: Upload compiled JAR
-        if: steps.project.outputs.ready == 'true'
+          cp "$JAR" /tmp/copyl-latest.jar
+          SHA256="$(sha256sum /tmp/copyl-latest.jar | awk '{print $1}')"
+          test -n "$SHA256"
+
+          echo "jar_path=$JAR" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "sha256=$SHA256" >> "$GITHUB_OUTPUT"
+
+      - name: Upload mod jar
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ steps.jar.outputs.name }}
-          path: ${{ steps.jar.outputs.jar }}
+          name: CopyL-${{ steps.jar.outputs.version }}
+          path: ${{ steps.jar.outputs.jar_path }}
           if-no-files-found: error
-          retention-days: 30
+
+      - name: Publish latest installer payload
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          VERSION="${{ steps.jar.outputs.version }}"
+          SHA256="${{ steps.jar.outputs.sha256 }}"
+
+          REMOTE_MAIN="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          if [ "$REMOTE_MAIN" != "$GITHUB_SHA" ]; then
+            echo "Skipping installer publication: this run is stale."
+            echo "Run SHA:      $GITHUB_SHA"
+            echo "Current main: $REMOTE_MAIN"
+            exit 0
+          fi
+
+          ACTUAL_SHA="$(sha256sum /tmp/copyl-latest.jar | awk '{print $1}')"
+          if [ "$ACTUAL_SHA" != "$SHA256" ]; then
+            echo "Installer JAR changed after validation." >&2
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          PUBLISH_DIR="$(mktemp -d)"
+          cleanup() {
+            git worktree remove --force "$PUBLISH_DIR" >/dev/null 2>&1 || true
+            rm -rf "$PUBLISH_DIR" >/dev/null 2>&1 || true
+          }
+          trap cleanup EXIT
+
+          if git ls-remote --exit-code --heads origin build-output >/dev/null 2>&1; then
+            git fetch origin build-output:refs/remotes/origin/build-output
+            git worktree add --detach "$PUBLISH_DIR" refs/remotes/origin/build-output
+          else
+            git worktree add --detach "$PUBLISH_DIR" "$GITHUB_SHA"
+            (
+              cd "$PUBLISH_DIR"
+              git checkout --orphan build-output
+            )
+          fi
+
+          cd "$PUBLISH_DIR"
+
+          # build-output must contain only the installer payload and metadata. Keeping it in a
+          # separate worktree prevents Gradle-generated files from ever contaminating the branch.
+          git rm -rf . >/dev/null 2>&1 || true
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+
+          base64 -w 0 /tmp/copyl-latest.jar > copyl-latest.jar.b64
+          printf '\n' >> copyl-latest.jar.b64
+          printf '%s\n' "$VERSION" > version.txt
+          printf '%s\n' "$SHA256" > sha256.txt
+          printf '%s\n' "$GITHUB_SHA" > source-commit.txt
+
+          git add -- copyl-latest.jar.b64 version.txt sha256.txt source-commit.txt
+          if git diff --cached --quiet; then
+            echo "Installer payload already matches this build."
+            exit 0
+          fi
+
+          git commit -m "build: publish CopyL ${VERSION} [skip ci]"
+          git push origin HEAD:build-output

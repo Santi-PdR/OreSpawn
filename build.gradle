@@ -33,30 +33,15 @@ minecraft {
         }
 
         client {}
-
-        server {}
-
-        data {
-            workingDirectory project.file('run-data')
-            args '--mod', 'copyl', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-        }
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
 repositories {
     mavenCentral()
-    maven { name = 'GeckoLib'; url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.4.10'
-    // GeckoLib: solo se usa para las criaturas boss/mini-boss con animaciones multi-parte
-    // (ver PORTING_PLAN.md). Se agrega ahora porque el runtime lo necesita apenas se registre
-    // la primera entidad GeckoLib en Fase 4; no se usa todavía en Fase 3.
-    // Coordenadas verificadas contra el repo oficial de Cloudsmith (release estable para 1.20.1).
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.4.9')
 }
 
 tasks.withType(JavaCompile).configureEach {
