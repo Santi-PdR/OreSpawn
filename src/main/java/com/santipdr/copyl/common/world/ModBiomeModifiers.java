@@ -1,7 +1,6 @@
 package com.santipdr.copyl.common.world;
 
-import com.mojang.serialization.MapCodec;
-import com.santipdr.copyl.CopyL;
+import com.mojang.serialization.Codec;
 import com.santipdr.copyl.common.entity.ModEntities;
 import com.santipdr.copyl.common.registry.ModRegistries;
 import java.util.Locale;
@@ -20,7 +19,7 @@ import net.minecraftforge.registries.RegistryObject;
  * registered only in the vanilla Swampland biome.
  */
 public final class ModBiomeModifiers {
-    public static final RegistryObject<MapCodec<LegacySwampLakeInsectSpawns>> LEGACY_SWAMP_LAKE_INSECT_SPAWNS =
+    public static final RegistryObject<Codec<LegacySwampLakeInsectSpawns>> LEGACY_SWAMP_LAKE_INSECT_SPAWNS =
             ModRegistries.BIOME_MODIFIER_SERIALIZERS.register(
                     "legacy_swamp_lake_insect_spawns",
                     () -> LegacySwampLakeInsectSpawns.CODEC);
@@ -33,8 +32,8 @@ public final class ModBiomeModifiers {
     }
 
     public record LegacySwampLakeInsectSpawns() implements BiomeModifier {
-        public static final MapCodec<LegacySwampLakeInsectSpawns> CODEC =
-                MapCodec.unit(new LegacySwampLakeInsectSpawns());
+        public static final Codec<LegacySwampLakeInsectSpawns> CODEC =
+                Codec.unit(new LegacySwampLakeInsectSpawns());
 
         @Override
         public void modify(Holder<Biome> biome, Phase phase, Builder builder) {
@@ -61,7 +60,7 @@ public final class ModBiomeModifiers {
         }
 
         @Override
-        public MapCodec<? extends BiomeModifier> codec() {
+        public Codec<? extends BiomeModifier> codec() {
             return CODEC;
         }
     }
