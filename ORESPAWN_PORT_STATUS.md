@@ -541,3 +541,12 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **CORREGIDO**: `ModEntities.DOOMWORM` deja de usar `2 × 2` y recupera `0.6 × 1.8`. El registro moderno tampoco sobrescribe el tamaño desde `DoomWormEntity`. Cambio en `729826ff35b9868d5d475154097d1fe6b921950f`.
 - **BUILD**: push al workflow de compilación; la respuesta disponible del conector aún no permite verificar el resultado de las ejecuciones push.
 - **AVANCE GLOBAL ESTIMADO**: 87%; este ajuste restituye la caja original y no equivale a validar movimiento/collisions en runtime.
+
+
+### Categorías de spawn — tablas originales — 2026-09-25
+
+- **COTEJO**: las 33 entradas registradas por `danger.orespawn.init.ModEntities.registerEntities()` tienen contraparte en `ModEntities` moderna. El cotejo de `EntitySpawns.addSpawns()` confirmó grupos explícitos `CREATURE`/`MONSTER` para los spawns globales y listas de ambas categorías de `BiomeMiningDimension`.
+- **CORREGIDO**: Firefly y Mosquito estaban como `AMBIENT` modernos aunque el JAR los agrega al grupo `CREATURE`; Nastysaurus se añade a la lista `CREATURE` de Mining Biome aunque su clase herede de `EntityMob`. Ahora las tres entradas modernas usan el grupo que el JAR asigna para esos ciclos y límites de población. Cambios en commits `f3ca91aa42d83f120bd047faa4aa03f45a40ceb8` y `ac6c4dd6e02a650967380046fef60d6bbab18c00`.
+- **BUILD VERDE**: GitHub Actions #651, #653 y #655 completaron `Build mod`, detección del JAR, validación de los cuatro recursos de Mining Dimension y subida del artefacto. #655 validó el último cambio de categoría.
+- **ALCANCE PENDIENTE**: la comparación no sustituye la auditoría restante de reglas de spawn por biome, runtime del mundo ni multiplayer.
+- **AVANCE GLOBAL ESTIMADO**: 87%; se cerraron diferencias de grupo/cap de spawn, pero quedan la paridad restante y pruebas de juego.
