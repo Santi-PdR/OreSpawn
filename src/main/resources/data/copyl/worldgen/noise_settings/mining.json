@@ -1,5 +1,5 @@
 {
-  "aquifers_enabled": true,
+  "aquifers_enabled": false,
   "default_block": {
     "Name": "minecraft:stone"
   },
@@ -10,7 +10,7 @@
     }
   },
   "disable_mob_generation": false,
-  "legacy_random_source": false,
+  "legacy_random_source": true,
   "noise": {
     "height": 256,
     "min_y": 0,
