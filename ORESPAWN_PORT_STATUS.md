@@ -550,3 +550,12 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **BUILD VERDE**: GitHub Actions #651, #653 y #655 completaron `Build mod`, detección del JAR, validación de los cuatro recursos de Mining Dimension y subida del artefacto. #655 validó el último cambio de categoría.
 - **ALCANCE PENDIENTE**: la comparación no sustituye la auditoría restante de reglas de spawn por biome, runtime del mundo ni multiplayer.
 - **AVANCE GLOBAL ESTIMADO**: 87%; se cerraron diferencias de grupo/cap de spawn, pero quedan la paridad restante y pruebas de juego.
+
+
+### Mining Dimension — ajuste de la generación heredada — 2026-09-25
+
+- **AJUSTADO**: deshabilitados los grandes filones de mineral incorporados en 1.18+ y el mineral de cobre vanilla, que no existen en las tablas del JAR 1.12.2. Se conserva la feature propia con los minerales originales de OreSpawn.
+- **AJUSTADO**: desactivados los aquifers 3D modernos y activado `legacy_random_source` para acercar el generador a la fuente aleatoria anterior a 1.18. La forma del terreno y las cuevas aún usan el router de ruido 1.20.1; no se declara equivalencia exacta con `MapGenCaves`/terreno 1.12.2 sin comparación en juego.
+- **VALIDACIÓN**: Actions #665 pasó en el head `d3aacbd3a939d513ecb406327f719e7c124daa9a`: compilación, inspección del JAR final, assertions de settings y upload del artefacto.
+- **PENDIENTE**: comparar terreno y cuevas en runtime; comprobar teletransporte, generación de estructuras y multiplayer con el artefacto actual.
+- **AVANCE GLOBAL ESTIMADO**: ~87%; este cambio retira diferencias introducidas por features modernas, pero no cierra la equivalencia del generador ni el resto de pruebas funcionales.
