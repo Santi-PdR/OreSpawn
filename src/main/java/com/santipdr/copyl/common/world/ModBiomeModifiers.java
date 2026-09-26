@@ -25,6 +25,10 @@ public final class ModBiomeModifiers {
                     "legacy_swamp_lake_insect_spawns",
                     () -> LegacySwampLakeInsectSpawns.CODEC);
 
+    public static void bootstrap() {
+        // Force codec registration before the Forge biome modifier registry is populated.
+    }
+
     private ModBiomeModifiers() {
     }
 

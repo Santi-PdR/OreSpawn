@@ -36,6 +36,7 @@ public final class CopyL {
         ModArmor.bootstrap();
         ModEntities.bootstrap();
         ModWorldGenFeatures.bootstrap();
+        ModBiomeModifiers.bootstrap();
         ModSounds.bootstrap();
         ModCreativeTabs.bootstrap();
 
