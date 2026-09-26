@@ -106,7 +106,14 @@ jobs:
           assert generator["settings"] == "copyl:mining"
 
           dimension_type = data["dimension_type"]
-          noise = data["noise"]["noise"]
+          settings = data["noise"]
+          noise = settings["noise"]
+          assert settings["aquifers_enabled"] is False
+          assert settings["legacy_random_source"] is True
+          assert settings["ore_veins_enabled"] is False
+          biome_features = [feature for step in data["biome"]["features"] for feature in step]
+          assert "minecraft:ore_copper" not in biome_features
+          assert "copyl:worldgen_ores" in biome_features
           assert dimension_type["min_y"] == noise["min_y"] == 0
           assert dimension_type["height"] == noise["height"] == 256
           assert data["biome"]["spawners"]["monster"]
