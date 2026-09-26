@@ -2,7 +2,7 @@
 
 Repositorio de trabajo para integrar el contenido del OreSpawn 1.12.2 proporcionado dentro de CopyL Forge 1.20.1.
 
-La Mining Dimension está activa con biome fijo, generación de minerales OreSpawn y teletransporte Red Ant. La estructura GenericDungeon se genera allí con la frecuencia del original.
+La Mining Dimension permanece pausada intencionalmente. El contenido dependiente de ella puede portarse y quedar preparado, pero no debe generarse artificialmente en el Overworld.
 
 ## Build automático
 

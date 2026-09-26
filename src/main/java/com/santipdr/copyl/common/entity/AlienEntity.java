@@ -1,7 +1,5 @@
 package com.santipdr.copyl.common.entity;
 
-import com.santipdr.copyl.common.util.LegacyRandom;
-
 import com.santipdr.copyl.common.block.ModBlocks;
 import com.santipdr.copyl.common.entity.ai.LongRangeWanderGoal;
 import net.minecraft.core.BlockPos;
@@ -18,7 +16,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -99,18 +96,16 @@ public final class AlienEntity extends Monster {
         }
         super.tick();
 
-        if (this.level().isClientSide) {
-            float distance = 1.7F + Math.abs(this.level().getRandom().nextFloat() * 0.75F);
-            if (this.level().getRandom().nextInt(20) == 1) {
-                double yaw = Math.toRadians(this.getYHeadRot());
-                this.level().addParticle(
-                        ParticleTypes.DRIPPING_LAVA,
-                        this.getX() - distance * Math.sin(yaw),
-                        this.getY() + 1.6D,
-                        this.getZ() + distance * Math.cos(yaw),
-                        0.0D, 0.0D, 0.0D
-                );
-            }
+        if (this.level().isClientSide && this.random.nextInt(20) == 1) {
+            float distance = 1.7F + Math.abs(this.random.nextFloat() * 0.75F);
+            double yaw = Math.toRadians(this.getYHeadRot());
+            this.level().addParticle(
+                    ParticleTypes.DRIPPING_LAVA,
+                    this.getX() - distance * Math.sin(yaw),
+                    this.getY() + 1.6D,
+                    this.getZ() + distance * Math.cos(yaw),
+                    0.0D, 0.0D, 0.0D
+            );
         }
     }
 
@@ -118,13 +113,13 @@ public final class AlienEntity extends Monster {
     protected void customServerAiStep() {
         super.customServerAiStep();
 
-        if (this.level().getRandom().nextInt(8) == 0) {
+        if (this.random.nextInt(8) == 0) {
             LivingEntity target = findSomethingToAttack();
             if (target != null) {
                 this.getLookControl().setLookAt(target, 10.0F, 10.0F);
                 if (this.distanceToSqr(target) < 16.0D) {
                     setAttacking(1);
-                    if (this.level().getRandom().nextInt(4) == 0 || this.level().getRandom().nextInt(5) == 1) {
+                    if (this.random.nextInt(4) == 0 || this.random.nextInt(5) == 1) {
                         this.doHurtTarget(target);
                     }
                 }
@@ -132,7 +127,7 @@ public final class AlienEntity extends Monster {
             } else {
                 setAttacking(0);
             }
-        } else if (this.random.nextInt(30) == 0 && LegacyGameplayFlags.PLAY_NICELY == 0) {
+        } else if (this.random.nextInt(30) == 0) {
             BlockPos torch = findNearestTorch();
             if (torch != null) {
                 this.getNavigation().moveTo(torch.getX(), torch.getY(), torch.getZ(), 1.0D);
@@ -143,15 +138,12 @@ public final class AlienEntity extends Monster {
             }
         }
 
-        if (this.level().getRandom().nextInt(40) == 1 && this.getHealth() < this.getMaxHealth()) {
+        if (this.random.nextInt(40) == 1 && this.getHealth() < this.getMaxHealth()) {
             this.heal(1.0F);
         }
     }
 
     private LivingEntity findSomethingToAttack() {
-        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
-            return null;
-        }
         LivingEntity current = this.getTarget();
         if (current != null && current.isAlive()) {
             return current;
@@ -159,10 +151,10 @@ public final class AlienEntity extends Monster {
         this.setTarget(null);
 
         AABB search = this.getBoundingBox().inflate(12.0D, 4.0D, 12.0D);
-        List<LivingEntity> targets = this.level().getEntitiesOfClass(LivingEntity.class, search,
-                candidate -> candidate != this && candidate.isAlive()
-                        && (!(candidate instanceof Player player) || !player.isCreative()));
-        return targets.stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
+        List<Player> players = this.level().getEntitiesOfClass(Player.class, search,
+                player -> player.isAlive() && !player.isCreative() && !player.isSpectator()
+                        && this.getSensing().hasLineOfSight(player));
+        return players.stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
     }
 
     private BlockPos findNearestTorch() {
@@ -213,7 +205,7 @@ public final class AlienEntity extends Monster {
                 case NORMAL -> 10;
                 case HARD -> 12;
             };
-            if (this.level().getRandom().nextInt(5) == 1) {
+            if (this.random.nextInt(5) == 1) {
                 living.addEffect(new MobEffectInstance(MobEffects.HUNGER, durationMultiplier * 5, 0), this);
             }
 
@@ -231,7 +223,7 @@ public final class AlienEntity extends Monster {
             return false;
         }
         boolean result = super.hurt(source, amount);
-        if (source.getEntity() instanceof Mob attacker) {
+        if (source.getEntity() instanceof LivingEntity attacker) {
             this.setTarget(attacker);
             this.getNavigation().moveTo(attacker, 1.2D);
             return true;
@@ -241,7 +233,7 @@ public final class AlienEntity extends Monster {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return this.level().getRandom().nextInt(4) == 0 ? ModSounds.ALIEN_LIVING.get() : null;
+        return this.random.nextInt(4) == 0 ? ModSounds.ALIEN_LIVING.get() : null;
     }
 
     @Override
@@ -263,12 +255,12 @@ public final class AlienEntity extends Monster {
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHit) {
         super.dropCustomDeathLoot(source, looting, recentlyHit);
 
-        int spiderEyes = 5 + this.level().getRandom().nextInt(6);
+        int spiderEyes = 5 + this.random.nextInt(6);
         for (int i = 0; i < spiderEyes; i++) {
             dropItemRand(Items.SPIDER_EYE, 1);
         }
 
-        int flint = 5 + this.level().getRandom().nextInt(6);
+        int flint = 5 + this.random.nextInt(6);
         for (int i = 0; i < flint; i++) {
             dropItemRand(Items.FLINT, 1);
         }
@@ -281,9 +273,9 @@ public final class AlienEntity extends Monster {
     private void dropItemRand(Item item, int count) {
         ItemEntity dropped = new ItemEntity(
                 this.level(),
-                this.getX() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4),
+                this.getX() + this.random.nextInt(4) - this.random.nextInt(4),
                 this.getY() + 1.0D,
-                this.getZ() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4),
+                this.getZ() + this.random.nextInt(4) - this.random.nextInt(4),
                 new ItemStack(item, count)
         );
         this.level().addFreshEntity(dropped);

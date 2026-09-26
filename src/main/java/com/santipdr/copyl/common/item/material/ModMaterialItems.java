@@ -14,8 +14,6 @@ public final class ModMaterialItems {
 
     // Drop real del Moth y material de su set de armadura. La entidad llega en Fase 4.
     public static final RegistryObject<Item> MOTH_SCALE = item("moth_scale");
-    public static final RegistryObject<Item> WORM_TOOTH = item("worm_tooth");
-    public static final RegistryObject<Item> WORM_FOOD = item("worm_food");
 
     private static RegistryObject<Item> item(String id) {
         return ModRegistries.ITEMS.register(id, () -> new Item(new Item.Properties()));

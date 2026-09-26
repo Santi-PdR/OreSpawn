@@ -5,12 +5,12 @@ license="All Rights Reserved"
 [[mods]]
 modId="copyl"
 version="3.3.0"
-displayName="OreSpawn Reforged"
+displayName="CopyL"
 authors="Santi-PdR"
-displayURL="https://github.com/Santi-PdR/OreSpawn"
+displayURL="https://github.com/Santi-PdR/Lclient"
 description='''
-OreSpawn Reforged para Forge 1.20.1: port progresivo del contenido del OreSpawn 1.12.2 proporcionado,
-conservando sus criaturas, objetos, estructuras, comportamiento y assets originales lo más fielmente posible.
+CopyL para Forge 1.20.1: macros/atajos configurables del cliente y una base de contenido gameplay
+integrada. Esta rama de trabajo incorpora progresivamente contenido de OreSpawn al mismo modid.
 '''
 displayTest="MATCH_VERSION"
 

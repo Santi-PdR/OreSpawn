@@ -69,11 +69,11 @@ public final class CryolophosaurusEntity extends Monster {
     protected void customServerAiStep() {
         super.customServerAiStep();
 
-        if (this.level().getRandom().nextInt(200) == 1) {
+        if (this.random.nextInt(200) == 1) {
             this.setTarget(null);
         }
 
-        if (this.level().getRandom().nextInt(5) == 1) {
+        if (this.random.nextInt(5) == 1) {
             LivingEntity target = findSomethingToAttack();
             if (target != null) {
                 this.getNavigation().moveTo(target, 1.25D);
@@ -86,9 +86,6 @@ public final class CryolophosaurusEntity extends Monster {
     }
 
     private LivingEntity findSomethingToAttack() {
-        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
-            return null;
-        }
         AABB search = this.getBoundingBox().inflate(9.0D, 2.0D, 9.0D);
         List<LivingEntity> candidates = this.level().getEntitiesOfClass(LivingEntity.class, search, this::isSuitableTargetOriginal);
         return candidates.isEmpty() ? null : candidates.get(0);

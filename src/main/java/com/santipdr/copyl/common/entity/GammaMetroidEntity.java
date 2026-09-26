@@ -1,7 +1,5 @@
 package com.santipdr.copyl.common.entity;
 
-import com.santipdr.copyl.common.util.LegacyRandom;
-
 import com.santipdr.copyl.common.entity.ai.LongRangeWanderGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -86,14 +84,14 @@ public final class GammaMetroidEntity extends TamableAnimal {
         super.customServerAiStep();
 
         if (this.level().getDifficulty() != Difficulty.PEACEFUL
-                && this.level().getRandom().nextInt(5) == 0
+                && this.random.nextInt(5) == 0
                 && !this.isBaby()
                 && !this.isTame()) {
             LivingEntity target = findSomethingToAttack();
             if (target != null) {
                 this.getLookControl().setLookAt(target, 10.0F, 10.0F);
                 if (this.distanceTo(target) <= 9.0F) {
-                    if (this.level().getRandom().nextInt(4) == 0 || this.level().getRandom().nextInt(5) == 1) {
+                    if (this.random.nextInt(4) == 0 || this.random.nextInt(5) == 1) {
                         this.doHurtTarget(target);
                     }
                 } else {
@@ -104,8 +102,7 @@ public final class GammaMetroidEntity extends TamableAnimal {
 
         if (((this.random.nextInt(20) == 0 && this.getHealth() < this.getMaxHealth())
                 || this.random.nextInt(100) == 0)
-                && !this.isOrderedToSit()
-                && LegacyGameplayFlags.PLAY_NICELY == 0) {
+                && !this.isOrderedToSit()) {
             BlockPos stone = findNearestStone();
             if (stone != null) {
                 this.getNavigation().moveTo(stone.getX(), stone.getY(), stone.getZ(), 1.0D);
@@ -121,9 +118,6 @@ public final class GammaMetroidEntity extends TamableAnimal {
     }
 
     private LivingEntity findSomethingToAttack() {
-        if (LegacyGameplayFlags.PLAY_NICELY != 0) {
-            return null;
-        }
         if (this.isBaby() || this.isTame()) {
             return null;
         }
@@ -252,12 +246,12 @@ public final class GammaMetroidEntity extends TamableAnimal {
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHit) {
         super.dropCustomDeathLoot(source, looting, recentlyHit);
 
-        int nuggets = 5 + LegacyRandom.nextInt(10);
+        int nuggets = 5 + this.random.nextInt(10);
         for (int i = 0; i < nuggets; i++) {
             dropItemRand(Items.GOLD_NUGGET, 1);
         }
 
-        int iron = 6 + LegacyRandom.nextInt(10);
+        int iron = 6 + this.random.nextInt(10);
         for (int i = 0; i < iron; i++) {
             dropItemRand(Items.IRON_INGOT, 1);
         }
@@ -266,9 +260,9 @@ public final class GammaMetroidEntity extends TamableAnimal {
     private void dropItemRand(Item item, int count) {
         ItemEntity dropped = new ItemEntity(
                 this.level(),
-                this.getX() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4),
+                this.getX() + this.random.nextInt(4) - this.random.nextInt(4),
                 this.getY() + 1.0D,
-                this.getZ() + LegacyRandom.nextInt(4) - LegacyRandom.nextInt(4),
+                this.getZ() + this.random.nextInt(4) - this.random.nextInt(4),
                 new ItemStack(item, count)
         );
         this.level().addFreshEntity(dropped);

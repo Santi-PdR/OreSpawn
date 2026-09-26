@@ -11,6 +11,9 @@
     },
     "U": {
       "item": "copyl:uranium_ingot"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
     }
   },
   "result": {

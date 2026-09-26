@@ -6,41 +6,35 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.RegistryObject;
 
-/** EntityTypes porteados del OreSpawn 1.12.2. */
+/** Primer grupo de EntityTypes del OreSpawn 1.12.2. */
 public final class ModEntities {
-    public static final RegistryObject<EntityType<AlienEntity>> ALIEN = ModRegistries.ENTITY_TYPES.register("alien", () -> EntityType.Builder.of(AlienEntity::new, MobCategory.MONSTER).sized(1.1F, 3.25F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":alien"));
-    public static final RegistryObject<EntityType<AlosaurusEntity>> ALOSAURUS = ModRegistries.ENTITY_TYPES.register("alosaurus", () -> EntityType.Builder.of(AlosaurusEntity::new, MobCategory.MONSTER).sized(1.9F, 3.6F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":alosaurus"));
-    public static final RegistryObject<EntityType<BaryonyxEntity>> BARYONYX = ModRegistries.ENTITY_TYPES.register("baryonyx", () -> EntityType.Builder.of(BaryonyxEntity::new, MobCategory.CREATURE).sized(1.5F, 2.8F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":baryonyx"));
-    public static final RegistryObject<EntityType<GammaMetroidEntity>> GAMMA_METROID = ModRegistries.ENTITY_TYPES.register("gammametroid", () -> EntityType.Builder.of(GammaMetroidEntity::new, MobCategory.CREATURE).sized(1.5F, 1.5F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":gammametroid"));
-    public static final RegistryObject<EntityType<CryolophosaurusEntity>> CRYOLOPHOSAURUS = ModRegistries.ENTITY_TYPES.register("cryolophosaurus", () -> EntityType.Builder.of(CryolophosaurusEntity::new, MobCategory.MONSTER).sized(0.75F, 0.75F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":cryolophosaurus"));
-    public static final RegistryObject<EntityType<BeaverEntity>> BEAVER = ModRegistries.ENTITY_TYPES.register("beaver", () -> EntityType.Builder.of(BeaverEntity::new, MobCategory.CREATURE).sized(0.6F, 0.8F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":beaver"));
-    public static final RegistryObject<EntityType<BirdEntity>> BIRD = ModRegistries.ENTITY_TYPES.register("bird", () -> EntityType.Builder.of(BirdEntity::new, MobCategory.CREATURE).sized(0.4F, 0.4F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":bird"));
-    public static final RegistryObject<EntityType<ButterflyEntity>> BUTTERFLY = ModRegistries.ENTITY_TYPES.register("butterfly", () -> EntityType.Builder.of(ButterflyEntity::new, MobCategory.CREATURE).sized(0.4F, 0.4F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":butterfly"));
-    public static final RegistryObject<EntityType<CassowaryEntity>> CASSOWARY = ModRegistries.ENTITY_TYPES.register("cassowary", () -> EntityType.Builder.of(CassowaryEntity::new, MobCategory.CREATURE).sized(0.5F, 1.2F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":cassowary"));
-    public static final RegistryObject<EntityType<CamarasaurusEntity>> CAMARASAURUS = ModRegistries.ENTITY_TYPES.register("camarasaurus", () -> EntityType.Builder.of(CamarasaurusEntity::new, MobCategory.CREATURE).sized(0.5F, 1.2F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":camarasaurus"));
-    public static final RegistryObject<EntityType<CaveFisherEntity>> CAVE_FISHER = ModRegistries.ENTITY_TYPES.register("cavefisher", () -> EntityType.Builder.of(CaveFisherEntity::new, MobCategory.MONSTER).sized(1.35F, 0.75F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":cavefisher"));
-    public static final RegistryObject<EntityType<DragonflyEntity>> DRAGONFLY = ModRegistries.ENTITY_TYPES.register("dragonfly", () -> EntityType.Builder.of(DragonflyEntity::new, MobCategory.CREATURE).sized(1.5F, 0.5F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":dragonfly"));
-    public static final RegistryObject<EntityType<PointysaurusEntity>> POINTYSAURUS = ModRegistries.ENTITY_TYPES.register("pointysaurus", () -> EntityType.Builder.of(PointysaurusEntity::new, MobCategory.MONSTER).sized(2.9F, 2.9F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":pointysaurus"));
-    public static final RegistryObject<EntityType<NastysaurusEntity>> NASTYSAURUS = ModRegistries.ENTITY_TYPES.register("nastysaurus", () -> EntityType.Builder.of(NastysaurusEntity::new, MobCategory.CREATURE).sized(2.2F, 4.6F).clientTrackingRange(8).updateInterval(1).build(CopyL.MOD_ID + ":nastysaurus"));
-    public static final RegistryObject<EntityType<KyuubiEntity>> KYUUBI = ModRegistries.ENTITY_TYPES.register("kyuubi", () -> EntityType.Builder.of(KyuubiEntity::new, MobCategory.MONSTER).sized(0.5F, 1.25F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":kyuubi"));
-    public static final RegistryObject<EntityType<BrutalflyEntity>> BRUTALFLY = ModRegistries.ENTITY_TYPES.register("brutalfly", () -> EntityType.Builder.of(BrutalflyEntity::new, MobCategory.MONSTER).sized(5.0F, 2.0F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":brutalfly"));
-    public static final RegistryObject<EntityType<MothraEntity>> MOTHRA = ModRegistries.ENTITY_TYPES.register("mothra", () -> EntityType.Builder.of(MothraEntity::new, MobCategory.MONSTER).sized(5.0F, 2.0F).fireImmune().clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":mothra"));
-    public static final RegistryObject<EntityType<FireflyEntity>> FIREFLY = ModRegistries.ENTITY_TYPES.register("firefly", () -> EntityType.Builder.of(FireflyEntity::new, MobCategory.CREATURE).sized(0.4F, 0.8F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":firefly"));
-    public static final RegistryObject<EntityType<MosquitoEntity>> MOSQUITO = ModRegistries.ENTITY_TYPES.register("mosquito", () -> EntityType.Builder.of(MosquitoEntity::new, MobCategory.CREATURE).sized(0.2F, 0.2F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":mosquito"));
-    public static final RegistryObject<EntityType<MothEntity>> MOTH = ModRegistries.ENTITY_TYPES.register("moth", () -> EntityType.Builder.of(MothEntity::new, MobCategory.CREATURE).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":moth"));
-    public static final RegistryObject<EntityType<MantisEntity>> MANTIS = ModRegistries.ENTITY_TYPES.register("mantis", () -> EntityType.Builder.of(MantisEntity::new, MobCategory.MONSTER).sized(0.6F, 1.8F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":mantis"));
-    public static final RegistryObject<EntityType<RedCowEntity>> RED_COW = ModRegistries.ENTITY_TYPES.register("redcow", () -> EntityType.Builder.of(RedCowEntity::new, MobCategory.CREATURE).sized(0.9F, 1.4F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":redcow"));
-    public static final RegistryObject<EntityType<StinkBugEntity>> STINK_BUG = ModRegistries.ENTITY_TYPES.register("stinkbug", () -> EntityType.Builder.of(StinkBugEntity::new, MobCategory.CREATURE).sized(0.55F, 0.55F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":stinkbug"));
-    public static final RegistryObject<EntityType<RedAntEntity>> RED_ANT = ModRegistries.ENTITY_TYPES.register("red_ant", () -> EntityType.Builder.of(RedAntEntity::new, MobCategory.CREATURE).sized(0.2F, 0.2F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":red_ant"));
-    public static final RegistryObject<EntityType<TermiteEntity>> TERMITE = ModRegistries.ENTITY_TYPES.register("termite", () -> EntityType.Builder.of(TermiteEntity::new, MobCategory.CREATURE).sized(0.2F, 0.2F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":termite"));
-    public static final RegistryObject<EntityType<WormSmallEntity>> SMALL_WORM = ModRegistries.ENTITY_TYPES.register("smallworm", () -> EntityType.Builder.of(WormSmallEntity::new, MobCategory.MONSTER).sized(0.25F, 1.0F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":smallworm"));
-    public static final RegistryObject<EntityType<WormMediumEntity>> MEDIUM_WORM = ModRegistries.ENTITY_TYPES.register("mediumworm", () -> EntityType.Builder.of(WormMediumEntity::new, MobCategory.MONSTER).sized(0.5F, 2.0F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":mediumworm"));
-    public static final RegistryObject<EntityType<WormLargeEntity>> LARGE_WORM = ModRegistries.ENTITY_TYPES.register("large_worm", () -> EntityType.Builder.of(WormLargeEntity::new, MobCategory.MONSTER).sized(1.55F, 2.5F).clientTrackingRange(8).updateInterval(1).build(CopyL.MOD_ID + ":large_worm"));
-    public static final RegistryObject<EntityType<TRexEntity>> TREX = ModRegistries.ENTITY_TYPES.register("trex", () -> EntityType.Builder.of(TRexEntity::new, MobCategory.MONSTER).sized(2.0F, 4.2F).clientTrackingRange(8).updateInterval(1).build(CopyL.MOD_ID + ":trex"));
-    public static final RegistryObject<EntityType<VelocityRaptorEntity>> VELOCITY_RAPTOR = ModRegistries.ENTITY_TYPES.register("velocityraptor", () -> EntityType.Builder.of(VelocityRaptorEntity::new, MobCategory.CREATURE).sized(0.5F, 0.6F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":velocityraptor"));
-    public static final RegistryObject<EntityType<DoomWormEntity>> DOOMWORM = ModRegistries.ENTITY_TYPES.register("doomworm", () -> EntityType.Builder.of(DoomWormEntity::new, MobCategory.MONSTER).sized(0.6F, 1.8F).fireImmune().clientTrackingRange(21).updateInterval(1).build(CopyL.MOD_ID + ":doomworm"));
-    public static final RegistryObject<EntityType<SpyroEntity>> SPYRO = ModRegistries.ENTITY_TYPES.register("spyro", () -> EntityType.Builder.of(SpyroEntity::new, MobCategory.CREATURE).sized(0.5F, 0.5F).fireImmune().clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":spyro"));
-    public static final RegistryObject<EntityType<CageProjectileEntity>> CAGE_PROJECTILE = ModRegistries.ENTITY_TYPES.register("thrown_critter_cage", () -> EntityType.Builder.<CageProjectileEntity>of(CageProjectileEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(1).build(CopyL.MOD_ID + ":thrown_critter_cage"));
-    public static void bootstrap() {}
-    private ModEntities() {}
+    public static final RegistryObject<EntityType<AlienEntity>> ALIEN =
+            ModRegistries.ENTITY_TYPES.register("alien", () -> EntityType.Builder
+                    .of(AlienEntity::new, MobCategory.MONSTER)
+                    .sized(1.1F, 3.25F)
+                    .clientTrackingRange(4)
+                    .updateInterval(1)
+                    .build(CopyL.MOD_ID + ":alien"));
+
+    public static final RegistryObject<EntityType<GammaMetroidEntity>> GAMMA_METROID =
+            ModRegistries.ENTITY_TYPES.register("gammametroid", () -> EntityType.Builder
+                    .of(GammaMetroidEntity::new, MobCategory.CREATURE)
+                    .sized(1.5F, 1.5F)
+                    .clientTrackingRange(4)
+                    .updateInterval(1)
+                    .build(CopyL.MOD_ID + ":gammametroid"));
+
+    public static final RegistryObject<EntityType<CryolophosaurusEntity>> CRYOLOPHOSAURUS =
+            ModRegistries.ENTITY_TYPES.register("cryolophosaurus", () -> EntityType.Builder
+                    .of(CryolophosaurusEntity::new, MobCategory.MONSTER)
+                    .sized(0.75F, 0.75F)
+                    .clientTrackingRange(4)
+                    .updateInterval(1)
+                    .build(CopyL.MOD_ID + ":cryolophosaurus"));
+
+    public static void bootstrap() {
+    }
+
+    private ModEntities() {
+    }
 }

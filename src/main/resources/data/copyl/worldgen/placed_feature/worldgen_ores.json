@@ -1,8 +1,0 @@
-{
-  "feature": "copyl:worldgen_ores",
-  "placement": [
-    {
-      "type": "minecraft:biome"
-    }
-  ]
-}

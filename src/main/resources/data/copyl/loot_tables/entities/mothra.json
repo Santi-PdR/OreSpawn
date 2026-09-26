@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:entity",
-  "pools": [
-    {"rolls": 1, "entries": [{"type": "minecraft:item", "name": "minecraft:item_frame"}]},
-    {"rolls": 1, "entries": [{"type": "minecraft:item", "name": "minecraft:gold_nugget", "functions": [{"function": "minecraft:set_count", "count": 53}]}]},
-    {"rolls": 1, "entries": [{"type": "minecraft:item", "name": "minecraft:blaze_rod", "functions": [{"function": "minecraft:set_count", "count": 3}]}]},
-    {"rolls": 1, "entries": [{"type": "minecraft:item", "name": "minecraft:nether_star"}]}
-  ]
-}

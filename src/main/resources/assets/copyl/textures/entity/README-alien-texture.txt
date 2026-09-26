@@ -1,1 +1,0 @@
-The Alien renderer expects assets/copyl/textures/entity/alien.png. The original texture is staged separately as alien.png.b64 for binary-safe repository transfer and is decoded during the build until the binary blob is committed directly.
