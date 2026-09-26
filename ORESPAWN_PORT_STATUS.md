@@ -559,3 +559,12 @@ Al cruzar las rutas de texturas de los 26 renderers con el árbol actual de GitH
 - **VALIDACIÓN**: Actions #665 pasó en el head `d3aacbd3a939d513ecb406327f719e7c124daa9a`: compilación, inspección del JAR final, assertions de settings y upload del artefacto.
 - **PENDIENTE**: comparar terreno y cuevas en runtime; comprobar teletransporte, generación de estructuras y multiplayer con el artefacto actual.
 - **AVANCE GLOBAL ESTIMADO**: ~87%; este cambio retira diferencias introducidas por features modernas, pero no cierra la equivalencia del generador ni el resto de pruebas funcionales.
+
+
+### Reglas originales de Dragonfly y Mosquito — 2026-09-25
+
+- **COTEJADO CON BYTECODE**: `EntitySpawns.swampsAndLakes()` registra Dragonfly en cualquier ID de biome que contenga `swamp` o `lake`; Mosquito, en cambio, se registra solo en el biome vanilla Swampland. El modifier anterior usaba exclusivamente el tag de swamp y aplicaba ambas criaturas a todas las variantes etiquetadas.
+- **CORREGIDO**: añadido un `BiomeModifier` Forge 1.20.1 registrado por `Codec`: reproduce la selección por ID para Dragonfly y mapea Swampland a `minecraft:swamp` para Mosquito. El datapack swamp anterior ya no duplica ni amplía esas reglas.
+- **BUILD VERDE**: Actions #673 pasó para `6d6c1ce61bb005b061d8eeb6cc54db16c1bd178a`, con compilación, inspección de resources en el JAR y upload del artefacto. El primer intento #669 identificó la diferencia de API entre `Codec` (Forge 1.20.1) y `MapCodec`; la corrección quedó en el head que pasó #673.
+- **PENDIENTE**: confirmar en un mundo real que el modifier dinámico carga y que Dragonfly/Mosquito aparecen en los biomas esperados; runtime general, terreno y multiplayer continúan sin probar.
+- **AVANCE GLOBAL ESTIMADO**: ~87%; cerrada esta diferencia de spawn, pero quedan pruebas de juego y paridad restante.
