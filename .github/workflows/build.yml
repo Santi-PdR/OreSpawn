@@ -87,6 +87,8 @@ jobs:
               "dimension_type": "dimension_type/mining.json",
               "biome": "worldgen/biome/mining_biome.json",
               "noise": "worldgen/noise_settings/mining.json",
+          "lake_spawns": "forge/biome_modifier/add_spawns_lake_and_swamp_ids.json",
+          "swamp_spawns": "forge/biome_modifier/add_spawns_swamp.json",
           }
           with zipfile.ZipFile(jar) as archive:
               data = {}
@@ -118,7 +120,9 @@ jobs:
           assert dimension_type["height"] == noise["height"] == 256
           assert data["biome"]["spawners"]["monster"]
           assert data["biome"]["spawners"]["creature"]
-          print("Mining Dimension registry resources and references are present in the final JAR.")
+          assert data["lake_spawns"]["type"] == "copyl:legacy_swamp_lake_insect_spawns"
+          assert data["swamp_spawns"]["type"] == "forge:none"
+          print("Mining Dimension resources and legacy swamp/lake spawn modifier are present in the final JAR.")
           PY
 
       - name: Upload compiled JAR
