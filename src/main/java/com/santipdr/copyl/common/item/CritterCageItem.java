@@ -110,7 +110,7 @@ public final class CritterCageItem extends Item {
             CageProjectileEntity.emitReleaseEffects(serverLevel, pos);
             level.playSound(null, pos, SoundEvents.GENERIC_EXPLODE,
                     SoundSource.PLAYERS, 1.0F, 1.5F);
-            entity.moveTo(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D,
+            entity.moveTo(pos.getX(), pos.getY() + 1.0D, pos.getZ(),
                     entity.getYRot(), entity.getXRot());
             if (entity instanceof Horse horse) {
                 horse.setVariant(Variant.byId((serverLevel.random.nextInt() & 255) % Variant.values().length));
